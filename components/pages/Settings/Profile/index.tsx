@@ -1,7 +1,6 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core';
 
-import ProfilePicture from './ProfilePicture';
 import Name from './Name';
 import Email from './Email';
 import Biography from './Biography';
@@ -23,7 +22,6 @@ function Profile(): JSX.Element {
 
   return (
     <div className={classes.container}>
-      <ProfilePicture />
       <Name />
       <Email />
       <Biography />
