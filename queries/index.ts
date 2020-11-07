@@ -67,8 +67,8 @@ export const LOGIN = gql`
 `;
 
 export const UPDATE = gql`
-    mutation update($id: String!, $newUsername: String, $email: String, $description: String) {
-        update(id: $id, newUsername: $newUsername, email: $email, description: $description) {
+    mutation update($id: String!, $username: String, $email: String, $description: String) {
+        update(id: $id, username: $username, email: $email, description: $description) {
             id,
             username,
             email,

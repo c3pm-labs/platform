@@ -6,8 +6,7 @@ import { Formik, Form } from 'formik';
 import * as yup from 'yup';
 import { UPDATE } from 'queries';
 import { useMutation } from '@apollo/client';
-// import { useRouter } from 'next/router';
-// import { useUser } from 'hooks/user';
+import { useViewer } from 'hooks/auth';
 
 import InputFied from '../../InputField';
 import SettingWrapper from '../../SettingWrapper';
@@ -55,9 +54,13 @@ const testSchema = yup.object().shape({
 
 function Name(): JSX.Element {
   const classes = useStyles();
-  // const router = useRouter();
-  // const user = useUser({ id: String(router.query.params) });
+  const viewer = useViewer();
   const [update] = useMutation(UPDATE);
+
+  if (!viewer) {
+    return null;
+  }
+
   return (
     <SettingWrapper
       title="Name :"
@@ -68,8 +71,8 @@ function Name(): JSX.Element {
         onSubmit={(values: UpdateUserParams): void => {
           update({
             variables: {
-              id: 'ckh6whm390001eyt8mg7ja97m', // CHANGER PAR LE VRAI ID, PROBLEME DE LOGIN!!!
-              newUsername: values.newUsername,
+              id: viewer.id,
+              username: values.username,
             },
           });
         }}
@@ -77,7 +80,7 @@ function Name(): JSX.Element {
         <div className={classes.containerInput}>
           <Form className={classes.styleForm}>
             <InputFied
-              name="newUsername"
+              name="username"
               label="Username :"
               value="Alice"
               multiline
