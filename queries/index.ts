@@ -66,6 +66,17 @@ export const LOGIN = gql`
     }
 `;
 
+export const UPDATE = gql`
+    mutation update($id: String!, $newUsername: String, $email: String, $description: String) {
+        update(id: $id, newUsername: $newUsername, email: $email, description: $description) {
+            id,
+            username,
+            email,
+            description,
+        }
+    }
+`;
+
 export const PACKAGE_FROM_VERSION = gql`
     query packageFromVersion($packageName: String!, $version: String) {
         version(packageName: $packageName, version: $version) {

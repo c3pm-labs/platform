@@ -48,16 +48,21 @@ export interface AvatarProps {
     picture?: string,
     name?: string,
   };
+  stylePicture?: string,
   user: User;
   withName?: boolean
 }
 
-function Avatar({
-  user, classes, withName = true,
-}: AvatarProps): JSX.Element {
+function Avatar(props: AvatarProps): JSX.Element {
+  const {
+    user,
+    classes,
+    withName = true,
+    stylePicture,
+  } = props;
   const styles = useStyles({ name: user?.username ?? '' });
   const containerClass = clsx(styles.container, classes?.container);
-  const pictureClass = clsx(styles.picture, classes?.picture);
+  const pictureClass = clsx(styles.picture, classes?.picture, stylePicture);
   const nameClass = clsx(styles.name, classes?.name);
 
   return (
