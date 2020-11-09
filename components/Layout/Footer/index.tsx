@@ -48,13 +48,13 @@ function Footer(): JSX.Element {
           <Typography className={classes.text}>Docs</Typography>
         </a>
         <a
-          href="https://github.com/gabrielcolson/c3pm/"
+          href="https://github.com/c3pm-labs/"
           className={classes.text}
         >
           <Typography className={classes.text}>Github</Typography>
         </a>
         <a
-          href="https://github.com/gabrielcolson/c3pm/releases"
+          href="https://github.com/c3pm-labs/c3pm/releases"
           className={classes.text}
         >
           <Typography className={classes.text}>Releases</Typography>
@@ -71,7 +71,7 @@ function Footer(): JSX.Element {
           </Typography>
         </a>
         <a
-          href="https://github.com/gabrielcolson/c3pm/issues/new/choose"
+          href="https://github.com/c3pm-labs/c3pm/issues/new"
           className={classes.text}
         >
           <Typography className={classes.text}>Issues</Typography>
