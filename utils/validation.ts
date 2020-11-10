@@ -7,6 +7,11 @@ export const loginSchema = Yup.object().shape({
 
 export type LoginParams = Yup.InferType<typeof loginSchema>;
 
+export const resetPasswordSchema = Yup.object().shape({
+  password: Yup.string().required('Password is required'),
+  confirmPassword: Yup.string().required('Confirm Password is required').oneOf([Yup.ref('password'), null], 'Passwords must match'),
+});
+
 export const registerSchema = Yup.object().shape({
   username: Yup.string().required('Username is required'),
   email: Yup.string().email('Email is invalid').required('Email is required'),
