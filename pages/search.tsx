@@ -90,12 +90,12 @@ const useStyles = makeStyles((theme) => ({
 function Search(): JSX.Element {
   const router = useRouter();
   const theme = useTheme();
-  const { q, page = 1 } = router.query;
   const classes = useStyles();
   const isMobile = useMediaQuery(theme.breakpoints.down('xs'));
+  const { q, page = 1 } = router.query;
   const baseIndex = Number(page) * 5 - 5;
   const { data, loading } = useQuery<{ search: Package[] }>(SEARCH, {
-    variables: { keyword: q[0] },
+    variables: { keyword: q ? q[0] : '' },
   });
 
   const numberOfPages = () => {
