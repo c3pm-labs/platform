@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "Webapp of c3pm",
   "main": "index.js",
-  "repository": "git@github.com:gabrielcolson/c3pm.git",
+  "repository": "git@github.com:c3pm-labs/platform.git",
   "scripts": {
     "dev": "next",
     "build": "next build",
