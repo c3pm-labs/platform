@@ -79,7 +79,7 @@ function ForgotPassword(): JSX.Element {
         <Form noValidate className={classes.form}>
           <PasswordInput
             name="password"
-            label="password"
+            label="new password"
             required
             fullWidth
           />
