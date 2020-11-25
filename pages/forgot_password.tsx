@@ -46,17 +46,21 @@ function ForgotPassword(): JSX.Element {
         <Logo type="classic" size="lg" />
       </div>
       <Typography
-        variant="subtitle1"
+        variant="h6"
         className={classes.text}
       >
         Password forgotten
       </Typography>
+      <Typography
+        variant="subtitle1"
+        className={classes.text}
+      >
+        Enter your email and click the button below to receive a link to reset your password.
+      </Typography>
       <Formik
         initialValues={{ email: '' }}
         validationSchema={emailSchema}
-        onSubmit={(): void => {
-          // TODO Send email
-        }}
+        onSubmit={(): void => {}}
       >
         <Form noValidate className={classes.form}>
           <TextInput
