@@ -6,7 +6,7 @@ import withApollo from 'utils/withApollo';
 import TextInput from 'components/TextInput';
 import Button from 'components/Button';
 import Head from 'components/Head';
-import { EmailParam, emailSchema } from 'utils/validation';
+import { emailSchema } from 'utils/validation';
 import Logo from 'components/Logo';
 
 const useStyles = makeStyles((theme) => ({
@@ -54,7 +54,7 @@ function ForgotPassword(): JSX.Element {
       <Formik
         initialValues={{ email: '' }}
         validationSchema={emailSchema}
-        onSubmit={(value: EmailParam): void => {
+        onSubmit={(): void => {
           // TODO Send email
         }}
       >
