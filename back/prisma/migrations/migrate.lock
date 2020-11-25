@@ -1,0 +1,10 @@
+# Prisma Migrate lockfile v1
+
+20200426163118-create-user-model
+20200509174220-add-username-field
+20200613181527-add-api-key
+20200716221150-create-package-model
+20200821173416-add-description-field-to-user
+20200821173456-removed-default-value-of-descritpion
+20200821174521-add-avatar-to-user
+20200828195337-rm-avatar---default-description-string
