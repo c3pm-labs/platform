@@ -45,9 +45,9 @@ export class AuthService extends Service {
     }
     let user;
 
-    user = await this.db.user.findOne({ where: { email: login } });
+    user = await this.db.user.findUnique({ where: { email: login } });
     if (!user) {
-      user = await this.db.user.findOne({ where: { username: login } });
+      user = await this.db.user.findUnique({ where: { username: login } });
     }
     if (!user || !(await compare(password, user.password))) {
       throw new AuthenticationError('invalid credentials');

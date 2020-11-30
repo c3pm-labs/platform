@@ -33,7 +33,7 @@ export class PublishService extends Service {
     bufferToStream(file.buffer).pipe(parseReadme);
 
     const user = await this.session.get();
-    const currentPackage = await this.db.package.findOne({
+    const currentPackage = await this.db.package.findUnique({
       where: { name: parsedC3PM.name }, include: { author: true },
     });
 

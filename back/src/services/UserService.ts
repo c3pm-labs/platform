@@ -13,7 +13,7 @@ export class UserService extends Service {
     if ((username === undefined) === (id === undefined)) {
       throw new UserInputError('Require one argument');
     }
-    return this.db.user.findOne({
+    return this.db.user.findUnique({
       where: {
         username,
         id,

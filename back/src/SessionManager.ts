@@ -31,13 +31,13 @@ export class SessionManager {
   async get(): Promise<User> {
     const { userId } = this.req.session;
     if (this.req.header('Authorization')) {
-      const user = await this.db.user.findOne({ where: { apiKey: this.req.header('Authorization') } });
+      const user = await this.db.user.findUnique({ where: { apiKey: this.req.header('Authorization') } });
       if (user) {
         return user;
       }
     }
     if (userId) {
-      const user = await this.db.user.findOne({ where: { id: userId } });
+      const user = await this.db.user.findUnique({ where: { id: userId } });
       if (user) {
         return user;
       }

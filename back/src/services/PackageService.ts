@@ -22,7 +22,7 @@ export class PackageService extends Service {
     if (name === undefined) {
       throw new CustomError('Need package\'s name');
     }
-    return this.db.package.findOne({
+    return this.db.package.findUnique({
       where: {
         name,
       },
@@ -31,7 +31,7 @@ export class PackageService extends Service {
 
   async getVersionOrLatest(packageName: string, version?: string): Promise<Version> {
     if (version !== null) {
-      return this.db.version.findOne({
+      return this.db.version.findUnique({
         where: {
           version_packageName: {
             packageName,

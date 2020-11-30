@@ -4,7 +4,7 @@ import { createHttpLink } from 'apollo-link-http';
 import { DocumentNode, execute, toPromise } from 'apollo-link';
 import fetch from 'isomorphic-fetch';
 import fetchCookie from 'fetch-cookie';
-import { PrismaClient } from 'nexus-plugin-prisma/client';
+import { PrismaClient } from '@prisma/client';
 
 import Server from '../../src/Server';
 
