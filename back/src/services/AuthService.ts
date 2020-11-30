@@ -1,4 +1,4 @@
-import { User } from 'nexus-plugin-prisma/client';
+import { User } from '@prisma/client';
 import { hash, compare } from 'bcryptjs';
 
 import { Service } from '../utils/Service';
@@ -49,7 +49,7 @@ export class AuthService extends Service {
     if (!user) {
       user = await this.db.user.findOne({ where: { username: login } });
     }
-    if (!user || !await compare(password, user.password)) {
+    if (!user || !(await compare(password, user.password))) {
       throw new AuthenticationError('invalid credentials');
     }
 

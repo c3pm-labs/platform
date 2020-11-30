@@ -1,6 +1,6 @@
 import http from 'http';
 
-import { PrismaClient } from 'nexus-plugin-prisma/client';
+import { PrismaClient } from '@prisma/client';
 import session from 'express-session';
 import express from 'express';
 import env from 'env-var';

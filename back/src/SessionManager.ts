@@ -1,7 +1,14 @@
-import { User, PrismaClient } from 'nexus-plugin-prisma/client';
+import { PrismaClient, User } from '@prisma/client';
 import { Request } from 'express';
 
 import { AuthenticationError } from './utils/errors';
+
+declare module 'express-session' {
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  interface SessionData {
+    userId?: string;
+  }
+}
 
 export class SessionManager {
   db: PrismaClient;

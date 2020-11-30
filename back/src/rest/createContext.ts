@@ -1,4 +1,4 @@
-import { PrismaClient } from 'nexus-plugin-prisma/client';
+import { PrismaClient } from '@prisma/client';
 import { Request } from 'express';
 
 import { Context } from '../context';

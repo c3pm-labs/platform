@@ -1,4 +1,4 @@
-import { queryType, stringArg } from '@nexus/schema';
+import { nullable, queryType, stringArg } from '@nexus/schema';
 
 import { AuthService } from '../../services/AuthService';
 import { UserService } from '../../services/UserService';
@@ -17,12 +17,11 @@ export const Query = queryType({
         return authService.viewer();
       },
     });
-    t.field('user', {
+    t.nullable.field('user', {
       type: User,
-      nullable: true,
       args: {
-        username: stringArg(),
-        id: stringArg(),
+        username: nullable(stringArg()),
+        id: nullable(stringArg()),
       },
       resolve: async (parent, args, ctx) => {
         const userService = new UserService(ctx);
@@ -32,7 +31,7 @@ export const Query = queryType({
     t.list.field('search', {
       type: Package,
       args: {
-        keyword: stringArg({ required: true }),
+        keyword: stringArg(),
       },
       resolve: async (parent, args, ctx) => {
         const packageService = new PackageService(ctx);
@@ -42,7 +41,7 @@ export const Query = queryType({
     t.field('package', {
       type: Package,
       args: {
-        name: stringArg({ required: true }),
+        name: stringArg(),
       },
       resolve: async (parent, args, ctx) => {
         const packageService = new PackageService(ctx);
@@ -52,8 +51,8 @@ export const Query = queryType({
     t.field('version', {
       type: Versions,
       args: {
-        packageName: stringArg({ required: true }),
-        version: stringArg({ required: false }),
+        packageName: stringArg(),
+        version: stringArg(),
       },
       resolve: async (parent, args, ctx) => {
         const packageService = new PackageService(ctx);

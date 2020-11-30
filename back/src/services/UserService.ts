@@ -1,4 +1,4 @@
-import { User } from 'nexus-plugin-prisma/client';
+import { User } from '@prisma/client';
 
 import { Service } from '../utils/Service';
 import { UserInputError } from '../utils/errors';

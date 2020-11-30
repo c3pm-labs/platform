@@ -1,4 +1,4 @@
-import { Package, Version } from 'nexus-plugin-prisma/client';
+import { Package, Version } from '@prisma/client';
 import semverCompare from 'semver/functions/compare';
 
 import { Service } from '../utils/Service';
