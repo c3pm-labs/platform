@@ -1,5 +1,5 @@
 import env from 'env-var';
-import { PrismaClient } from 'nexus-plugin-prisma/client';
+import { PrismaClient } from '@prisma/client';
 
 import Server from './Server';
 import logger from './utils/logger';

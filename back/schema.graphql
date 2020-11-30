@@ -5,15 +5,15 @@
 scalar DateTime
 
 type Mutation {
-  login(login: String!, password: String!): Viewer!
-  logout: Viewer!
-  register(email: String!, password: String!, username: String!): Viewer!
+  login(login: String!, password: String!): Viewer
+  logout: Viewer
+  register(email: String!, password: String!, username: String!): Viewer
   update(description: String, email: String, id: String, username: String): User
 }
 
 type Package {
   author: User!
-  latest: Version!
+  latest: Version
   name: String!
   versions(after: VersionWhereUniqueInput, before: VersionWhereUniqueInput, first: Int, last: Int): [Version!]!
 }
@@ -23,11 +23,11 @@ input PackageWhereUniqueInput {
 }
 
 type Query {
-  package(name: String!): Package!
-  search(keyword: String!): [Package!]!
+  package(name: String!): Package
+  search(keyword: String!): [Package]
   user(id: String, username: String): User
-  version(packageName: String!, version: String): Version!
-  viewer: Viewer!
+  version(packageName: String!, version: String): Version
+  viewer: Viewer
 }
 
 type User {
