@@ -1,5 +1,5 @@
 import {
-  mutationType, nonNull, nullable, stringArg,
+  mutationType, nullable, stringArg,
 } from '@nexus/schema';
 
 import { AuthService } from '../../services/AuthService';
