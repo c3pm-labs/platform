@@ -1,4 +1,6 @@
-import { mutationType, stringArg } from '@nexus/schema';
+import {
+  mutationType, nullable, stringArg,
+} from '@nexus/schema';
 
 import { AuthService } from '../../services/AuthService';
 import { UpdateService } from '../../services/UpdateService';
@@ -11,9 +13,9 @@ export const Mutation = mutationType({
     t.field('register', {
       type: Viewer,
       args: {
-        username: stringArg({ required: true }),
-        email: stringArg({ required: true }),
-        password: stringArg({ required: true }),
+        username: stringArg(),
+        email: stringArg(),
+        password: stringArg(),
       },
       resolve: async (parent, args, ctx) => {
         const authService = new AuthService(ctx);
@@ -23,8 +25,8 @@ export const Mutation = mutationType({
     t.field('login', {
       type: Viewer,
       args: {
-        login: stringArg({ required: true }),
-        password: stringArg({ required: true }),
+        login: stringArg(),
+        password: stringArg(),
       },
       resolve: async (parent, args, ctx) => {
         const authService = new AuthService(ctx);
@@ -38,14 +40,13 @@ export const Mutation = mutationType({
         return authService.logout();
       },
     });
-    t.field('update', {
+    t.nullable.field('update', {
       type: User,
-      nullable: true,
       args: {
-        id: stringArg(),
-        username: stringArg(),
-        email: stringArg(),
-        description: stringArg(),
+        id: nullable(stringArg()),
+        username: nullable(stringArg()),
+        email: nullable(stringArg()),
+        description: nullable(stringArg()),
       },
       resolve: async (parent, args, ctx) => {
         const updateService = new UpdateService(ctx);

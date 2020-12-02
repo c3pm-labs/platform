@@ -1,5 +1,5 @@
 import express, { Router } from 'express';
-import { PrismaClient } from 'nexus-plugin-prisma/client';
+import { PrismaClient } from '@prisma/client';
 import { ValidationError } from 'yup';
 
 import * as errors from '../utils/errors';

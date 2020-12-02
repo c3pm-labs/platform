@@ -6,6 +6,10 @@ import * as types from './types';
 export const schema = makeSchema({
   types,
   plugins: [nexusSchemaPrisma({ prismaClient: (ctx) => ctx.db })],
+  nonNullDefaults: {
+    output: true,
+    input: true,
+  },
   outputs: {
     schema: `${__dirname}/../../schema.graphql`,
     typegen: `${__dirname}/generated/nexus.ts`,
@@ -14,7 +18,7 @@ export const schema = makeSchema({
     contextType: 'Context.Context',
     sources: [
       {
-        source: 'nexus-plugin-prisma/client',
+        source: '@prisma/client',
         alias: 'prisma',
       },
       {

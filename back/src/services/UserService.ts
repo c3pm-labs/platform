@@ -1,4 +1,4 @@
-import { User } from 'nexus-plugin-prisma/client';
+import { User } from '@prisma/client';
 
 import { Service } from '../utils/Service';
 import { UserInputError } from '../utils/errors';
@@ -13,7 +13,7 @@ export class UserService extends Service {
     if ((username === undefined) === (id === undefined)) {
       throw new UserInputError('Require one argument');
     }
-    return this.db.user.findOne({
+    return this.db.user.findUnique({
       where: {
         username,
         id,
