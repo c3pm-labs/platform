@@ -2,3 +2,4 @@ node_modules
 .envrc
 src/graphql/generated
 dist
+coverage
