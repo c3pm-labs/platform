@@ -5,13 +5,16 @@ import { DocumentNode, execute, toPromise } from 'apollo-link';
 import fetch from 'isomorphic-fetch';
 import fetchCookie from 'fetch-cookie';
 import { PrismaClient } from '@prisma/client';
+import axios, { AxiosInstance } from 'axios';
 
 import Server from '../../src/Server';
+import { handleRequestFailure } from './async';
 
 interface TestServer {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   graphql: (query: DocumentNode, variables?: unknown) => Promise<any>;
   stop: () => void;
+  baseURL: string;
 }
 
 export interface TestContext {
@@ -36,26 +39,36 @@ function startTestServer(): TestServer {
   }));
 
   const stop = async (): Promise<void> => server.stop();
+  const baseURL = `http://localhost:${(httpServer.address() as AddressInfo).port}`;
 
   return {
     stop,
     graphql,
+    baseURL,
   };
 }
 
 export function createTestContext(): TestContext {
   const ctx: TestContext = { server: {} as TestServer };
 
-  beforeEach(() => {
+  beforeAll(() => {
     const testServer = startTestServer();
 
     ctx.server.graphql = testServer.graphql;
     ctx.server.stop = testServer.stop;
+    ctx.server.baseURL = testServer.baseURL;
   });
 
-  afterEach(async () => {
+  afterAll(async () => {
     await ctx.server.stop();
   });
 
   return ctx;
+}
+
+export function createAxiosInstance(ctx: TestContext): AxiosInstance {
+  const instance = axios.create({ baseURL: ctx.server.baseURL });
+  instance.interceptors.response.use((res) => res, handleRequestFailure);
+
+  return instance;
 }
