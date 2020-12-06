@@ -13,7 +13,9 @@
     "storybook": "start-storybook -s ./public -p 6006",
     "build:storybook": "build-storybook -s ./public",
     "build-storybook": "build-storybook",
-    "test": "jest"
+    "test": "jest --coverage",
+    "test:watch": "jest --watch",
+    "test:debug": "node --inspect-brk ./node_modules/jest/bin/jest.js --runInBand --watch"
   },
   "author": "",
   "license": "ISC",
@@ -46,6 +48,8 @@
     "@storybook/addon-essentials": "^6.0.12",
     "@storybook/addon-links": "^6.0.12",
     "@storybook/react": "^6.0.12",
+    "@testing-library/jest-dom": "^5.11.6",
+    "@testing-library/react": "^11.2.2",
     "@types/jest": "^26.0.15",
     "@types/node": "^14.0.13",
     "@types/react": "^16.9.36",
