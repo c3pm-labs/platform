@@ -5,6 +5,7 @@
 scalar DateTime
 
 type Mutation {
+  forgotPassword(email: String!): User!
   login(login: String!, password: String!): Viewer!
   logout: Viewer!
   register(email: String!, password: String!, username: String!): Viewer!
@@ -35,6 +36,7 @@ type User {
   email: String!
   id: String!
   packages(after: PackageWhereUniqueInput, before: PackageWhereUniqueInput, first: Int!, last: Int!): [Package!]!
+  resetPasswordToken: String
   username: String!
 }
 
