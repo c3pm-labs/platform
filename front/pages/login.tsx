@@ -82,6 +82,10 @@ const useStyles = makeStyles((theme) => ({
     color: theme.palette.grey[400],
     marginTop: theme.spacing(4),
   },
+  forgotPassword: {
+    display: 'flex',
+    marginTop: theme.spacing(4),
+  },
 }));
 
 function Login(): JSX.Element {
@@ -150,6 +154,7 @@ function Login(): JSX.Element {
               </Button>
             </Form>
           </Formik>
+          <TextLink className={classes.forgotPassword} href="/forgot_password">Forgot password?</TextLink>
           <Typography
             variant="caption"
             className={classes.register}
