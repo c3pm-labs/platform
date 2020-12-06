@@ -12,5 +12,17 @@ module.exports = {
     '**/utils/**/*.ts',
     '**/utils/**/*.tsx',
     '!**/*.stories.tsx',
+  ],
+  coverageThreshold: {
+    global: {
+      statements: 1,
+      branches: 1,
+      functions: 1,
+      lines: 1
+    }
+  },
+  watchPlugins: [
+    'jest-watch-typeahead/filename',
+    'jest-watch-typeahead/testname'
   ]
 }
