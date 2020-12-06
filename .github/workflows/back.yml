@@ -1,0 +1,79 @@
+name: Backend CI
+
+on:
+  pull_request:
+    paths:
+      - 'back/**'
+      - .github/workflows/back.yml
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Use Node.js 12
+      uses: actions/setup-node@v1
+      with:
+        node-version: 12.x
+    - name: npm install and build
+      working-directory: ./back
+      run: |
+        npm ci
+        npm run build
+      env:
+        CI: true
+
+  test:
+
+    runs-on: ubuntu-latest
+
+    services:
+      posgres:
+        image: postgres
+        env:
+          POSTGRES_PASSWORD: postgres
+          POSTGRES_USER: postgres
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+        ports:
+          - 5432:5432
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Use Node.js 12
+      uses: actions/setup-node@v1
+      with:
+        node-version: 12.x
+    - name: npm install and test
+      working-directory: ./back
+      run: |
+        npm ci
+        npm test
+      env:
+        CI: true
+        NODE_ENV: development
+        ALLOWED_ORIGIN: http://localhost:3000
+        SESSION_SECRET: secret
+
+  lint:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Use Node.js 12
+      uses: actions/setup-node@v1
+      with:
+        node-version: 12.x
+    - name: npm install and lint
+      working-directory: ./back
+      run: |
+        npm ci
+        npm run lint
+      env:
+        CI: true

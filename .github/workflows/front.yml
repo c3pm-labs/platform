@@ -1,10 +1,10 @@
-name: Platform CI
+name: Frontend CI
 
 on:
   pull_request:
     paths:
-      - './**'
-      - .github/workflows/platform.yml
+      - 'front/**'
+      - .github/workflows/front.yml
 
 jobs:
   Build :
@@ -16,7 +16,7 @@ jobs:
       with:
         node-version: 12.x
     - name: Install dependencies and build
-      working-directory: ./
+      working-directory: ./front
       run: |
         npm ci
         npm run build
@@ -32,7 +32,7 @@ jobs:
       with:
         node-version: 12.x
     - name: Install dependencies and test
-      working-directory: ./
+      working-directory: ./front
       run: |
         npm ci
         npm run test
@@ -48,7 +48,7 @@ jobs:
       with:
         node-version: 12.x
     - name: Install dependencies and build storybook
-      working-directory: ./
+      working-directory: ./front
       run: |
         npm ci
         npm run build:storybook
@@ -64,7 +64,7 @@ jobs:
       with:
         node-version: 12.x
     - name: Install dependencies and launch linter
-      working-directory: ./
+      working-directory: ./front
       run: |
         npm ci
         npm run lint
