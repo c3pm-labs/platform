@@ -21,7 +21,6 @@ export class ForgotPasswordService extends Service {
     sgMail.send({
       from: 'contact@c3pm.io',
       to: email,
-      cc: { name: 'c3pm', email: 'contact@c3pm.io' },
       subject: 'Reset Password',
       text: 'Click on the link to reset your password',
       html: `<p>Click <a href='http://localhost:3000/reset_password?token=${token}'>here</a> to reset your password.</p>`,
