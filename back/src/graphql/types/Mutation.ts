@@ -50,7 +50,7 @@ export const Mutation = mutationType({
         const forgotPasswordService = new ForgotPasswordService(ctx);
         return forgotPasswordService.forgotPassword(args);
       },
-    }),
+    });
     t.nullable.field('update', {
       type: User,
       args: {

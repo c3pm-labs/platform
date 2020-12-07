@@ -1,6 +1,7 @@
 import { v4 as uuidv4 } from 'uuid';
 import { User } from '@prisma/client';
 
+import sgMail = require('@sendgrid/mail');
 import { Service } from '../utils/Service';
 import { UserInputError } from '../utils/errors';
 
@@ -10,12 +11,21 @@ export interface ForgotPasswordParams {
 
 export class ForgotPasswordService extends Service {
   async forgotPassword({
-    email
+    email,
   }: ForgotPasswordParams): Promise<User> {
     if (!email) {
       throw new UserInputError('Email argument is required.');
     }
     const token = uuidv4();
+    sgMail.setApiKey(process.env.SENDGRID_API_KEY);
+    sgMail.send({
+      from: 'contact@c3pm.io',
+      to: email,
+      cc: { name: 'c3pm', email: 'contact@c3pm.io' },
+      subject: 'Reset Password',
+      text: 'Click on the link to reset your password',
+      html: `<p>Click <a href='http://localhost:3000/reset_password?token=${token}'>here</a> to reset your password.</p>`,
+    });
     return this.db.user.update({
       where: {
         email,
