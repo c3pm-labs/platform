@@ -1,12 +1,14 @@
 import { Formik, Form } from 'formik';
 import { makeStyles } from '@material-ui/core';
 import Typography from '@material-ui/core/Typography';
+import { useForgot } from 'hooks/forgot';
 
 import withApollo from 'utils/withApollo';
 import TextInput from 'components/TextInput';
 import Button from 'components/Button';
 import Head from 'components/Head';
 import Logo from 'components/Logo';
+import { ForgotParams, forgotSchema } from 'utils/validation';
 
 const useStyles = makeStyles((theme) => ({
   text: {
@@ -37,6 +39,7 @@ const useStyles = makeStyles((theme) => ({
 
 function ForgotPassword(): JSX.Element {
   const classes = useStyles();
+  const forgot = useForgot();
 
   return (
     <>
@@ -58,7 +61,10 @@ function ForgotPassword(): JSX.Element {
       </Typography>
       <Formik
         initialValues={{ email: '' }}
-        onSubmit={(): void => {}}
+        validationSchema={forgotSchema}
+        onSubmit={(email: ForgotParams): void => {
+          forgot(email);
+        }}
       >
         <Form noValidate className={classes.form}>
           <TextInput

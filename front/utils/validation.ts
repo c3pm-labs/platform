@@ -16,3 +16,9 @@ export const registerSchema = Yup.object().shape({
 });
 
 export type RegisterParams = Yup.InferType<typeof registerSchema>;
+
+export const forgotSchema = Yup.object().shape({
+  email: Yup.string().email('Email is invalid').required('Email is required'),
+});
+
+export type ForgotParams = Yup.InferType<typeof forgotSchema>;
