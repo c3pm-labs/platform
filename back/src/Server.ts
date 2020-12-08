@@ -18,6 +18,7 @@ class Server {
     this.db = db;
 
     const app = express();
+    app.get('/', (req, res) => res.sendStatus(200));
 
     const ALLOWED_ORIGIN = env.get('ALLOWED_ORIGIN').required().asString();
     app.use(cors({
