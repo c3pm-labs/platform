@@ -1,5 +1,9 @@
+import * as fs from 'fs';
+import { request } from 'http';
+
 import { gql } from 'apollo-server-express';
 import faker from 'faker';
+import FormData from 'form-data';
 
 import { createAxiosInstance, createTestContext } from './__helpers__/context';
 
@@ -19,6 +23,57 @@ describe('auth', () => {
       }
   `, user);
 
+  const searchQuery = async (params: { keyword: string }): Promise<any> => ctx.server.graphql(gql`
+      query search($keyword: String!) {
+          search(keyword: $keyword) {
+              name,
+              versions {
+                  description,
+                  license,
+                  readme,
+                  publishedAt,
+                  version,
+              }
+              author {
+                  username,
+              }
+              latest {
+                  description,
+                  license,
+                  readme,
+                  publishedAt,
+                  version,
+              }
+          }
+      }
+  `);
+
+  const createForm = (file, apiKey) => {
+    const form = new FormData();
+    form.append('package', file, { filename: '1.0.0' });
+
+    const req = request(
+      {
+        host: 'localhost',
+        port: ctx.server.port,
+        path: '/v1/auth/publish',
+        method: 'POST',
+        headers: {
+          ...form.getHeaders(),
+          name: 'testLib',
+          version: '1.0.0',
+          authorization: apiKey,
+        },
+      },
+      (response) => {
+        // eslint-disable-next-line no-console
+        console.log(response);
+      },
+    );
+    form.pipe(req);
+    return form;
+  };
+
   test('cli flow', async () => {
     const api = createAxiosInstance(ctx);
 
@@ -33,5 +88,8 @@ describe('auth', () => {
     expect(loginRes.data).toEqual({
       apiKey: expect.any(String),
     });
+
+    const file = fs.createReadStream('./tests/data/my-lib.tar');
+    const form = createForm(file, loginRes.data.apiKey);
   });
 });

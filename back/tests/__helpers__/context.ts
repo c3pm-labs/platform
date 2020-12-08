@@ -15,6 +15,7 @@ interface TestServer {
   graphql: (query: DocumentNode, variables?: unknown) => Promise<any>;
   stop: () => void;
   baseURL: string;
+  port: number;
 }
 
 export interface TestContext {
@@ -45,6 +46,7 @@ function startTestServer(): TestServer {
     stop,
     graphql,
     baseURL,
+    port: (httpServer.address() as AddressInfo).port,
   };
 }
 
@@ -57,6 +59,7 @@ export function createTestContext(): TestContext {
     ctx.server.graphql = testServer.graphql;
     ctx.server.stop = testServer.stop;
     ctx.server.baseURL = testServer.baseURL;
+    ctx.server.port = testServer.port;
   });
 
   afterAll(async () => {
@@ -68,7 +71,7 @@ export function createTestContext(): TestContext {
 
 export function createAxiosInstance(ctx: TestContext): AxiosInstance {
   const instance = axios.create({ baseURL: ctx.server.baseURL });
-  instance.interceptors.response.use((res) => res, handleRequestFailure);
+  // instance.interceptors.response.use((res) => res, handleRequestFailure);
 
   return instance;
 }

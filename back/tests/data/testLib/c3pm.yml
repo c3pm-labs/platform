@@ -1,0 +1,16 @@
+c3pm_version: v1
+type: executable
+name: testLib
+description: testLib project
+version: 1.0.0
+standard: "20"
+license: MIT
+files:
+  sources:
+  - '**/*.cpp'
+  includes:
+  - '**/*.hpp'
+  include_dirs: []
+  exported_dir: ""
+  exported_include_dirs: []
+dependencies: {}
