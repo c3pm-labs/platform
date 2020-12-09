@@ -1,5 +1,6 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
+
 import * as fs from 'fs';
-import { request } from 'http';
 
 import { gql } from 'apollo-server-express';
 import faker from 'faker';
@@ -72,10 +73,9 @@ describe('publish and search', () => {
           }
       }
   `, params);
-  const libName = 'testLib';
 
   // publish
-  const publishPackage = async (file, apiKey, api, version) => {
+  const publishPackage = async (file, apiKey, api, libName, version) => {
     const form = new FormData();
     form.append('package', file, { filename: version });
 
@@ -92,15 +92,16 @@ describe('publish and search', () => {
   };
 
   // search
-  const PublishandSearchForAPackage = async (api, apiKey, path, version) => {
+  const PublishandSearchForAPackage = async (api, apiKey, path, libName, version) => {
     const lib = fs.createReadStream(`${__dirname}${path}`);
-    await publishPackage(lib, apiKey, api, version);
+    await publishPackage(lib, apiKey, api, libName, version);
     const res = await searchQuery({ keyword: libName });
     return res.data.search;
   };
 
   test('publish and search flow', async () => {
     const api = createAxiosInstance(ctx);
+    const libName = 'testLib';
 
     // register
     await registerMutation(userData);
@@ -115,7 +116,9 @@ describe('publish and search', () => {
     });
 
     // search the first version
-    const searchRes = await PublishandSearchForAPackage(api, loginRes.data.apiKey, '/data/lib.tar', '1.0.0');
+    const searchRes = await PublishandSearchForAPackage(
+      api, loginRes.data.apiKey, '/data/lib.tar', libName, '1.0.0',
+    );
     expect(searchRes).toEqual([{
       name: libName,
       versions: expect.any(Array),
@@ -130,7 +133,9 @@ describe('publish and search', () => {
     }]);
 
     // search the new latest version
-    const newSearchRes = await PublishandSearchForAPackage(api, loginRes.data.apiKey, '/data/lib-2.0.0.tar', '2.0.0');
+    const newSearchRes = await PublishandSearchForAPackage(
+      api, loginRes.data.apiKey, '/data/lib-2.0.0.tar', libName, '2.0.0',
+    );
     expect(newSearchRes).toEqual([{
       name: libName,
       versions: expect.any(Array),
