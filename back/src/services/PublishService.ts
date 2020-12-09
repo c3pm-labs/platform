@@ -91,7 +91,7 @@ export class PublishService extends Service {
           ...form.getHeaders(),
           name: parsedC3PM.name,
           version: parsedC3PM.version,
-          authorization: 'secret',
+          authorization: process.env.REGISTRY_SECRET,
         },
       },
       (response) => {
