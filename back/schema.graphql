@@ -26,7 +26,7 @@ type Query {
   package(name: String!): Package!
   search(keyword: String!): [Package!]!
   user(id: String, username: String): User
-  version(packageName: String!, version: String!): Version!
+  version(packageName: String!, version: String): Version!
   viewer: Viewer!
 }
 
