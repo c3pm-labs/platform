@@ -3,6 +3,7 @@ import { request } from 'http';
 import FormData from 'form-data';
 import tar from 'tar';
 import YAML from 'yaml';
+import axios from 'axios';
 
 import { Service } from '../utils/Service';
 import { ForbiddenError } from '../utils/errors';
@@ -81,24 +82,16 @@ export class PublishService extends Service {
     }
     const form = new FormData();
     form.append('package', bufferToStream(file.buffer), { filename: parsedC3PM.version });
-    const req = request(
-      {
-        host: process.env.REGISTRY_HOST,
-        port: process.env.REGISTRY_PORT,
-        path: '/v1',
-        method: 'POST',
-        headers: {
-          ...form.getHeaders(),
-          name: parsedC3PM.name,
-          version: parsedC3PM.version,
-          authorization: process.env.REGISTRY_SECRET,
-        },
+
+    const registryUrl = `https://${process.env.REGISTRY_HOST}:${process.env.REGISTRY_PORT}/v1`;
+
+    await axios.post(registryUrl, form, {
+      headers: {
+        ...form.getHeaders(),
+        name: parsedC3PM.name,
+        version: parsedC3PM.version,
+        authorization: process.env.REGISTRY_SECRET,
       },
-      (response) => {
-        // eslint-disable-next-line no-console
-        console.log(response.statusCode);
-      },
-    );
-    form.pipe(req);
+    });
   }
 }
