@@ -1,0 +1,72 @@
+name: Frontend CI
+
+on:
+  pull_request:
+    paths:
+      - 'front/**'
+      - .github/workflows/front.yml
+
+jobs:
+  Build :
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: Set up Node.js
+      uses: actions/setup-node@v1
+      with:
+        node-version: 12.x
+    - name: Install dependencies and build
+      working-directory: ./front
+      run: |
+        npm ci
+        npm run build
+      env:
+        CI: true
+
+  Test :
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: Set up Node.js
+      uses: actions/setup-node@v1
+      with:
+        node-version: 12.x
+    - name: Install dependencies and test
+      working-directory: ./front
+      run: |
+        npm ci
+        npm run test
+      env:
+        CI: true
+  
+  Storybook :
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: Set up Node.js
+      uses: actions/setup-node@v1
+      with:
+        node-version: 12.x
+    - name: Install dependencies and build storybook
+      working-directory: ./front
+      run: |
+        npm ci
+        npm run build:storybook
+      env:
+        CI: true
+  
+  Lint :
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: Set up Node.js
+      uses: actions/setup-node@v1
+      with:
+        node-version: 12.x
+    - name: Install dependencies and launch linter
+      working-directory: ./front
+      run: |
+        npm ci
+        npm run lint
+      env:
+        CI: true
