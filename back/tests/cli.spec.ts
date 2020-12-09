@@ -48,30 +48,24 @@ describe('auth', () => {
       }
   `);
 
-  const createForm = (file, apiKey) => {
+  const createForm = async (file, apiKey, api) => {
     const form = new FormData();
     form.append('package', file, { filename: '1.0.0' });
 
-    const req = request(
+    return api.post('/v1/auth/publish',
+      form,
       {
-        host: 'localhost',
-        port: ctx.server.port,
-        path: '/v1/auth/publish',
-        method: 'POST',
+        // host: 'localhost',
+        // port: ctx.server.port,
+        // path: '/v1/auth/publish',
+        // method: 'POST',
         headers: {
           ...form.getHeaders(),
           name: 'testLib',
           version: '1.0.0',
           authorization: apiKey,
         },
-      },
-      (response) => {
-        // eslint-disable-next-line no-console
-        console.log(response);
-      },
-    );
-    form.pipe(req);
-    return form;
+      });
   };
 
   test('cli flow', async () => {
@@ -89,7 +83,8 @@ describe('auth', () => {
       apiKey: expect.any(String),
     });
 
-    const file = fs.createReadStream('./tests/data/my-lib.tar');
-    const form = createForm(file, loginRes.data.apiKey);
+    const file = fs.createReadStream(`${__dirname}/data/lib.tar`);
+    const res = await createForm(file, loginRes.data.apiKey, api);
+    console.log(res);
   });
 });
