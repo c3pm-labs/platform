@@ -10,7 +10,6 @@ import { SessionManager } from '../SessionManager';
 import { Context } from '../context';
 
 import { schema } from './schema';
-import LoggingExtension from './LoggingExtension';
 
 function formatError(err: GraphQLError): Error {
   const { originalError } = err;
