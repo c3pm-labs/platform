@@ -1,6 +1,30 @@
 import { gql } from '@apollo/client';
 
-export const USER = gql`      query user($id: String) {          user(id: $id) {              id,              username,              email,              description,              packages {                  name                  author {                      username                  }                  versions {                      version                      publishedAt                  }                  latest {                      description                      publishedAt                      version                  },              }          }      }  `;
+export const USER = gql`
+    query user($id: String) {
+        user(id: $id) {
+            id,
+            username,
+            email,
+            description,
+            packages(first: 0, last: 1000) {
+                name
+                author {
+                    username
+                }
+                versions(first: 0, last: 1000) {
+                    version
+                    publishedAt
+                }
+                latest {
+                    description
+                    publishedAt
+                    version
+                },
+            }
+        }
+    }
+`;
 
 export const VIEWER = gql`
     query {
