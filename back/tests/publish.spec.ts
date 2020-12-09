@@ -7,7 +7,7 @@ import FormData from 'form-data';
 
 import { createAxiosInstance, createTestContext } from './__helpers__/context';
 
-describe('auth', () => {
+describe('publish and search', () => {
   const ctx = createTestContext();
   const userData = {
     email: faker.internet.email(),
