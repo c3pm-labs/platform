@@ -31,7 +31,6 @@ function formatError(err: GraphQLError): Error {
 export function getGraphqlMiddleware(db: PrismaClient): Router {
   const apolloServer = new ApolloServer({
     schema,
-    extensions: [(): LoggingExtension => new LoggingExtension()],
     context: ({ req }): Context => {
       const session = new SessionManager(db, req);
       return ({

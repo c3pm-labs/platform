@@ -74,10 +74,36 @@ describe('publish and search', () => {
       }
   `, params);
 
+  const packageQuery = async (params: { name: string }): Promise<any> => ctx.server.graphql(gql`
+      query package($name: String!) {
+          package(name: $name) {
+              name,
+              versions(first: 0, last: 100) {
+                  description,
+                  license,
+                  readme,
+                  publishedAt,
+                  version,
+              }
+              author {
+                  username,
+              }
+              latest {
+                  description,
+                  license,
+                  readme,
+                  publishedAt,
+                  version,
+              }
+          }
+      }
+  `, params);
+
   // publish
-  const publishPackage = async (file, apiKey, api, libName, version) => {
+  const publishPackage = async (api, apiKey, path, libName, version) => {
+    const lib = fs.createReadStream(`${__dirname}${path}`);
     const form = new FormData();
-    form.append('package', file, { filename: version });
+    form.append('package', lib, { filename: version });
 
     return api.post('/v1/auth/publish',
       form,
@@ -91,17 +117,10 @@ describe('publish and search', () => {
       });
   };
 
-  // search
-  const PublishandSearchForAPackage = async (api, apiKey, path, libName, version) => {
-    const lib = fs.createReadStream(`${__dirname}${path}`);
-    await publishPackage(lib, apiKey, api, libName, version);
-    const res = await searchQuery({ keyword: libName });
-    return res.data.search;
-  };
-
   test('publish and search flow', async () => {
     const api = createAxiosInstance(ctx);
-    const libName = 'testLib';
+    const packageName = 'testLib';
+    const keyword = 'test';
 
     // register
     await registerMutation(userData);
@@ -115,12 +134,11 @@ describe('publish and search', () => {
       apiKey: expect.any(String),
     });
 
-    // search the first version
-    const searchRes = await PublishandSearchForAPackage(
-      api, loginRes.data.apiKey, '/data/lib.tar', libName, '1.0.0',
-    );
-    expect(searchRes).toEqual([{
-      name: libName,
+    // publish and search the first version
+    await publishPackage(api, loginRes.data.apiKey, '/data/lib.tar', packageName, '1.0.0');
+    const searchRes = await searchQuery({ keyword });
+    expect(searchRes.data.search).toEqual([{
+      name: packageName,
       versions: expect.any(Array),
       author: { username: expect.any(String) },
       latest: {
@@ -132,12 +150,11 @@ describe('publish and search', () => {
       },
     }]);
 
-    // search the new latest version
-    const newSearchRes = await PublishandSearchForAPackage(
-      api, loginRes.data.apiKey, '/data/lib-2.0.0.tar', libName, '2.0.0',
-    );
-    expect(newSearchRes).toEqual([{
-      name: libName,
+    // publish and search the new latest version
+    await publishPackage(api, loginRes.data.apiKey, '/data/lib-2.0.0.tar', packageName, '2.0.0');
+    const newSearchRes = await searchQuery({ keyword });
+    expect(newSearchRes.data.search).toEqual([{
+      name: packageName,
       versions: expect.any(Array),
       author: { username: expect.any(String) },
       latest: {
@@ -149,15 +166,32 @@ describe('publish and search', () => {
       },
     }]);
 
-    // search a specific version
-    const firstVersion = await packageFromVersionQuery({ packageName: libName, version: '1.0.0' });
+    // search for a package by name
+    const packageRes = await packageQuery({ name: packageName });
+    expect(packageRes.data).toEqual({
+      package: {
+        name: packageName,
+        versions: expect.any(Array),
+        author: { username: expect.any(String) },
+        latest: {
+          description: expect.any(String),
+          license: expect.any(String),
+          readme: expect.any(String),
+          publishedAt: expect.any(String),
+          version: expect.any(String),
+        },
+      },
+    });
+
+    // search for a specific version
+    const firstVersion = await packageFromVersionQuery({ packageName, version: '1.0.0' });
     expect(firstVersion.data).toEqual({
       version: {
         description: expect.any(String),
         version: '1.0.0',
         readme: expect.any(String),
         package: {
-          name: libName,
+          name: packageName,
           author: {
             id: expect.any(String),
             username: expect.any(String),
