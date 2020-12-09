@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { Formik, Form } from 'formik';
 import { makeStyles } from '@material-ui/core';
 import Typography from '@material-ui/core/Typography';
@@ -9,7 +10,6 @@ import Button from 'components/Button';
 import Head from 'components/Head';
 import Logo from 'components/Logo';
 import { ForgotParams, forgotSchema } from 'utils/validation';
-import { boolean } from 'yup';
 
 const useStyles = makeStyles((theme) => ({
   text: {
@@ -41,7 +41,8 @@ const useStyles = makeStyles((theme) => ({
 function ForgotPassword(): JSX.Element {
   const classes = useStyles();
   const forgot = useForgot();
-  var boolean emailSent = false;
+  const [emailSent, setEmailSent] = useState(false);
+
   return (
     <>
       <Head title="c3pm - login" />
@@ -54,17 +55,30 @@ function ForgotPassword(): JSX.Element {
       >
         Password forgotten
       </Typography>
-      <Typography
-        variant="subtitle1"
-        className={classes.text}
-      >
-        Enter your email and click the button below to receive a link to reset your password.
-      </Typography>
+      {
+        emailSent
+          ? (
+            <Typography
+              variant="subtitle1"
+              className={classes.text}
+            >
+              Email sent. Check your inbox.
+            </Typography>
+          ) : (
+            <Typography
+              variant="subtitle1"
+              className={classes.text}
+            >
+              Enter your email and click the button below to receive a link to reset your password.
+            </Typography>
+          )
+      }
       <Formik
         initialValues={{ email: '' }}
         validationSchema={forgotSchema}
         onSubmit={(email: ForgotParams): void => {
           forgot(email);
+          setEmailSent(true);
         }}
       >
         <Form noValidate className={classes.form}>

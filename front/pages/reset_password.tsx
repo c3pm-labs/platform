@@ -8,7 +8,7 @@ import Button from 'components/Button';
 import Head from 'components/Head';
 import Logo from 'components/Logo';
 import PasswordInput from 'components/PasswordInput';
-import { resetPasswordSchema } from 'utils/validation';
+import { resetSchema } from 'utils/validation';
 
 const useStyles = makeStyles((theme) => ({
   text: {
@@ -46,7 +46,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-function ForgotPassword(): JSX.Element {
+function ResetPassword(): JSX.Element {
   const classes = useStyles();
   const router = useRouter();
 
@@ -69,7 +69,8 @@ function ForgotPassword(): JSX.Element {
         Enter your new password and password confirmation.
       </Typography>
       <Formik
-        initialValues={{ password: '', confirmPassword: '' }}
+        initialValues={{ password: '', confirm: '' }}
+        validationSchema={resetSchema}
         onSubmit={(): void => {
           (router.push({ pathname: '/login' }));
         }}
@@ -82,7 +83,7 @@ function ForgotPassword(): JSX.Element {
             fullWidth
           />
           <PasswordInput
-            name="confirmPassword"
+            name="confirm"
             label="confirm password"
             required
             fullWidth
@@ -97,14 +98,8 @@ function ForgotPassword(): JSX.Element {
           </Button>
         </Form>
       </Formik>
-      <button
-        type="button"
-        className={classes.buttonLink}
-        onClick={() => (router.push({ pathname: '/' }))}
-      >
-      </button>
     </>
   );
 }
 
-export default withApollo(ForgotPassword);
+export default withApollo(ResetPassword);

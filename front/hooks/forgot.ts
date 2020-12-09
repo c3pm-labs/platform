@@ -4,8 +4,7 @@ import { FORGOT } from 'queries';
 
 import { ForgotParams } from 'utils/validation';
 
-
-export function useForgot(): (variables: ForgotParams) => Promise<void> {
+export default function useForgot(): (variables: ForgotParams) => Promise<void> {
   const [forgot] = useMutation<{ forgot: User }, ForgotParams>(FORGOT, {
   });
 
