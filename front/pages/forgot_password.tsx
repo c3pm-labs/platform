@@ -9,6 +9,7 @@ import Button from 'components/Button';
 import Head from 'components/Head';
 import Logo from 'components/Logo';
 import { ForgotParams, forgotSchema } from 'utils/validation';
+import { boolean } from 'yup';
 
 const useStyles = makeStyles((theme) => ({
   text: {
@@ -40,7 +41,7 @@ const useStyles = makeStyles((theme) => ({
 function ForgotPassword(): JSX.Element {
   const classes = useStyles();
   const forgot = useForgot();
-
+  var boolean emailSent = false;
   return (
     <>
       <Head title="c3pm - login" />
