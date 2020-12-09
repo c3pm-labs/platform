@@ -1,6 +1,7 @@
 import { Formik, Form } from 'formik';
 import { makeStyles } from '@material-ui/core';
 import { useRouter } from 'next/router';
+import useReset from 'hooks/reset';
 import Typography from '@material-ui/core/Typography';
 
 import withApollo from 'utils/withApollo';
@@ -8,7 +9,7 @@ import Button from 'components/Button';
 import Head from 'components/Head';
 import Logo from 'components/Logo';
 import PasswordInput from 'components/PasswordInput';
-import { resetSchema } from 'utils/validation';
+import { ResetParams, resetSchema } from 'utils/validation';
 
 const useStyles = makeStyles((theme) => ({
   text: {
@@ -49,6 +50,8 @@ const useStyles = makeStyles((theme) => ({
 function ResetPassword(): JSX.Element {
   const classes = useStyles();
   const router = useRouter();
+  const reset = useReset();
+  const { token } = router.query;
 
   return (
     <>
@@ -71,7 +74,8 @@ function ResetPassword(): JSX.Element {
       <Formik
         initialValues={{ password: '', confirm: '' }}
         validationSchema={resetSchema}
-        onSubmit={(): void => {
+        onSubmit={async (params: ResetParams): Promise<void> => {
+          reset({ token: token.toString(), password: params.password });
           (router.push({ pathname: '/login' }));
         }}
       >

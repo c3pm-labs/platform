@@ -123,3 +123,11 @@ export const FORGOT = gql`
         }
     }
 `;
+
+export const RESET = gql`
+    mutation resetPassword($token: String!, $password: String!) {
+        resetPassword(token: $token, password: $password) {
+            resetPasswordToken,
+        }
+    }
+`;
