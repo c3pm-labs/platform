@@ -121,7 +121,7 @@ function UserCard(): JSX.Element {
                   <MenuItemLink
                     className={classes.option}
                     onClick={handleClose}
-                    href="settings"
+                    href="/settings"
                   >
                     Settings
                   </MenuItemLink>
