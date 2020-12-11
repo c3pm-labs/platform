@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { Formik, Form } from 'formik';
 import { makeStyles } from '@material-ui/core';
 import Typography from '@material-ui/core/Typography';
-import useForgot from 'hooks/forgot';
+import { useForgot } from 'hooks/forgot_password';
 
 import withApollo from 'utils/withApollo';
 import TextInput from 'components/TextInput';

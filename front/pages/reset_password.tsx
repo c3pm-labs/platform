@@ -1,7 +1,7 @@
 import { Formik, Form } from 'formik';
 import { makeStyles } from '@material-ui/core';
 import { useRouter } from 'next/router';
-import useReset from 'hooks/reset';
+import { useReset } from 'hooks/forgot_password';
 import Typography from '@material-ui/core/Typography';
 
 import withApollo from 'utils/withApollo';
