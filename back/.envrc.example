@@ -6,3 +6,4 @@ export SESSION_SECRET=toto
 export REGISTRY_HOST=localhost
 export REGISTRY_PORT=4444
 export REGISTRY_SECRET=highfive
+export SENDGRID_API_KEY=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
