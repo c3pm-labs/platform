@@ -1,6 +1,6 @@
 import { v4 as uuidv4 } from 'uuid';
 import { User } from '@prisma/client';
-import sgMail = require('@sendgrid/mail');
+import sgMail from '@sendgrid/mail';
 
 import { Service } from '../utils/Service';
 import { UserInputError } from '../utils/errors';
