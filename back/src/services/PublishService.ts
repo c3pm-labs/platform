@@ -1,5 +1,3 @@
-import { request } from 'http';
-
 import FormData from 'form-data';
 import tar from 'tar';
 import YAML from 'yaml';
