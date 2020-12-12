@@ -7,12 +7,12 @@ export const USER = gql`
             username,
             email,
             description,
-            packages {
+            packages(first: 1000, last: 0) {
                 name
                 author {
                     username
                 }
-                versions {
+                versions(first: 1000, last: 0) {
                     version
                     publishedAt
                 }
@@ -78,7 +78,7 @@ export const PACKAGE_FROM_VERSION = gql`
                     username
                     id
                 }
-                versions {
+                versions(first: 1000, last: 0) {
                     version
                     publishedAt
                 }
@@ -95,7 +95,7 @@ export const SEARCH = gql`
     query search($keyword: String!) {
         search(keyword: $keyword) {
             name,
-            versions {
+            versions(first: 1000, last: 0) {
                 description,
                 license,
                 readme,
