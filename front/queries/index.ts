@@ -7,12 +7,12 @@ export const USER = gql`
             username,
             email,
             description,
-            packages {
+            packages(first: 0, last: 10) {
                 name
                 author {
                     username
                 }
-                versions {
+                versions(first: 0, last: 10) {
                     version
                     publishedAt
                 }
