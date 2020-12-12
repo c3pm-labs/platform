@@ -58,6 +58,14 @@ Cypress.Commands.add('assertHome', () => {
     cy.url().should('eq', `${Cypress.config().baseUrl}/`)
 })
 
+Cypress.Commands.add('assertLogin', () => {
+    cy.url().should('eq', `${Cypress.config().baseUrl}/login`)
+})
+
+Cypress.Commands.add('assertRegister', () => {
+    cy.url().should('eq', `${Cypress.config().baseUrl}/register`)
+})
+
 Cypress.Commands.add('checkAuthCookie', () => {
     cy.getCookies()
         .should('have.length', 1)

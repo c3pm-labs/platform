@@ -37,7 +37,7 @@ describe('registration', () => {
             cy.findByText(/sign up/i)
                 .click()
 
-            cy.url().should('eq', `${Cypress.config().baseUrl}/register`)
+            cy.assertRegister()
         })
     })
 
@@ -57,18 +57,18 @@ describe('registration', () => {
                 .click()
         })
 
-        cy.url().should('eq', `${Cypress.config().baseUrl}/register`)
+        cy.assertRegister()
     })
 
     it('should have a link redirecting on the login page', () => {
         cy.visit('/register')
         cy.findByText(/sign in/i).click()
-        cy.url().should('eq', `${Cypress.config().baseUrl}/login`)
+        cy.assertLogin()
     })
 
     it('should have a link redirecting on the home page', () => {
         cy.visit('/register')
         cy.findByAltText(/c3pm logo/i).click()
-        cy.url().should('eq', `${Cypress.config().baseUrl}/`)
+        cy.assertHome()
     })
 })

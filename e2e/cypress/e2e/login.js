@@ -34,19 +34,18 @@ describe('login', () => {
             .type(user.password)
         cy.findByText(/sign in/i)
             .click()
-        cy.url().should('eq', `${Cypress.config().baseUrl}/login`)
+        cy.assertLogin()
     })
 
     it('should have a link redirecting on the register page', () => {
         cy.visit('/login')
         cy.findByText(/sign up/i).click()
-        cy.url().should('eq', `${Cypress.config().baseUrl}/register`)
+        cy.assertRegister()
     })
 
     it('should have a link redirecting on the home page', () => {
         cy.visit('/login')
         cy.findByAltText(/c3pm logo/i).click()
-        cy.url().should('eq', `${Cypress.config().baseUrl}/`)
+        cy.assertHome()
     })
-
 })
