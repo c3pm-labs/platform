@@ -2,3 +2,6 @@ node_modules
 .idea
 .next
 storybook-static
+cypress/screenshots
+cypress/videos
+
