@@ -4,3 +4,5 @@ node_modules
 storybook-static
 
 .vercel
+cypress/screenshots
+cypress/videos
