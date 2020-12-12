@@ -9,4 +9,10 @@ describe('home page', () => {
     cy.findByPlaceholderText(/search\.\.\./i).type('toto\n').url().should('eq', `${Cypress.config().baseUrl}/search?q=toto`)
     cy.findByAltText(/classic-sm c3pm logo/i).click().assertHome()
   })
+  it.only('should have user navigation when a user is loggedin', () => {
+    cy.createUser().then((user) => {
+      cy.visit('/')
+      cy.findByTestId('user-avatar').should('contain', user.username[0]).click()
+    })
+  })
 })
