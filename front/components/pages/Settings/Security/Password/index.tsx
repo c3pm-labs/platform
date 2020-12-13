@@ -90,7 +90,10 @@ function Password(): JSX.Element {
       <Formik
         validationSchema={passwordSchema}
         initialValues={{ password: '' }}
-        onSubmit={(e): void => (console.log('username', e))}
+        onSubmit={(e): void => (
+          // eslint-disable-next-line no-console
+          console.log('username', e)
+        )}
       >
         <div className={classes.container}>
           <Form className={classes.styleForm}>
@@ -114,7 +117,12 @@ function Password(): JSX.Element {
                 />
               </div>
             </div>
-            <UpdateButton description="Update your password" onClick={(): void => (console.log('save'))} />
+            <UpdateButton
+              description="Update your password"
+              onClick={(): void => (
+                // eslint-disable-next-line no-console
+                console.log('save'))}
+            />
           </Form>
         </div>
       </Formik>

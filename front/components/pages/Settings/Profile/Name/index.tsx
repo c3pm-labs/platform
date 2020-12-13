@@ -85,7 +85,12 @@ function Name(): JSX.Element {
               value="Alice"
               multiline
             />
-            <UpdateButton description="Update your name" onClick={(): void => (console.log('save'))} />
+            <UpdateButton
+              description="Update your name"
+              onClick={(): void => (
+                // eslint-disable-next-line no-console
+                console.log('save'))}
+            />
           </Form>
         </div>
       </Formik>

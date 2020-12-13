@@ -79,7 +79,12 @@ function Biography(): JSX.Element {
               rows={4}
               multiline
             />
-            <UpdateButton description="Update your description" onClick={(): void => (console.log('save'))} />
+            <UpdateButton
+              description="Update your description"
+              onClick={(): void => (
+                // eslint-disable-next-line no-console
+                console.log('save'))}
+            />
           </Form>
         </div>
       </Formik>

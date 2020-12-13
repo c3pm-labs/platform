@@ -71,7 +71,12 @@ function Email(): JSX.Element {
         <div className={classes.containerInput}>
           <Form className={classes.styleForm}>
             <InputFied name="email" label="Email :" value="alice.dupont@gmail.com" />
-            <UpdateButton description="Update your email" onClick={(): void => (console.log('save'))} />
+            <UpdateButton
+              description="Update your email"
+              onClick={(): void => (
+                // eslint-disable-next-line no-console
+                console.log('save'))}
+            />
           </Form>
         </div>
       </Formik>
