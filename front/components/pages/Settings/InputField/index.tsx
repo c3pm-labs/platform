@@ -48,7 +48,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export interface InputFiedProps {
-  label: string;
+  label?: string;
   value: string;
   rows?: number;
   name: string;
@@ -67,9 +67,11 @@ function InputFied(props: InputFiedProps): JSX.Element {
 
   return (
     <div className={classes.container}>
+      {label && (
       <Typography className={classes.label}>
         {label}
       </Typography>
+      )}
       <div className={classes.containerTextInput}>
         <TextInput
           name={name}

@@ -43,10 +43,6 @@ const useStyles = makeStyles((theme) => ({
   },
   wrapperTitle: {
     display: 'flex',
-    paddingLeft: theme.spacing(2),
-    [theme.breakpoints.down('xs')]: {
-      paddingLeft: 0,
-    },
     width: '100%',
     justifyContent: 'flex-start',
     alignItems: 'flex-start',

@@ -52,7 +52,7 @@ export const Query = queryType({
       type: Versions,
       args: {
         packageName: stringArg(),
-        version: stringArg(),
+        version: nullable(stringArg()),
       },
       resolve: async (parent, args, ctx) => {
         const packageService = new PackageService(ctx);

@@ -12,6 +12,7 @@ import InputFied from '../../InputField';
 import SettingWrapper from '../../SettingWrapper';
 import UpdateButton from '../../UpdateButton';
 import { initialValues, UpdateUserParams } from '../utils/UpdateUtils';
+import TextInput from '../../../../TextInput';
 
 const useStyles = makeStyles((theme) => ({
   containerInput: {
@@ -79,11 +80,10 @@ function Name(): JSX.Element {
       >
         <div className={classes.containerInput}>
           <Form className={classes.styleForm}>
-            <InputFied
+            <TextInput
               name="username"
-              label="Username :"
-              value="Alice"
-              multiline
+              placeholder="username"
+              fullWidth
             />
             <UpdateButton description="Update your name" onClick={(): void => (console.log('save'))} />
           </Form>

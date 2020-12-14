@@ -8,10 +8,10 @@ import { UPDATE } from 'queries';
 import { useMutation } from '@apollo/client';
 import { useViewer } from 'hooks/auth';
 
-import InputFied from '../../InputField';
 import SettingWrapper from '../../SettingWrapper';
 import UpdateButton from '../../UpdateButton';
 import { initialValues, UpdateUserParams } from '../utils/UpdateUtils';
+import TextInput from '../../../../TextInput';
 
 const useStyles = makeStyles((theme) => ({
   containerInput: {
@@ -53,9 +53,7 @@ function Email(): JSX.Element {
   }
 
   return (
-    <SettingWrapper
-      title="Email :"
-    >
+    <SettingWrapper title="Email :">
       <Formik
         validationSchema={testSchema}
         initialValues={initialValues}
@@ -70,7 +68,7 @@ function Email(): JSX.Element {
       >
         <div className={classes.containerInput}>
           <Form className={classes.styleForm}>
-            <InputFied name="email" label="Email :" value="alice.dupont@gmail.com" />
+            <TextInput name="email" label="" placeholder="email" fullWidth />
             <UpdateButton description="Update your email" onClick={(): void => (console.log('save'))} />
           </Form>
         </div>

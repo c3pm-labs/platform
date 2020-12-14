@@ -30,15 +30,6 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-type OptionsConvert = {
-  [key in Options]: JSX.Element;
-};
-
-const optionsTable: OptionsConvert = {
-  [Options.PROFILE]: <Profile />,
-  [Options.SECURITY]: <Security />,
-};
-
 function Settings(): JSX.Element {
   const classes = useStyles();
   const [currentFocus, setCurrentFocus] = useState(Options.PROFILE);
@@ -55,7 +46,8 @@ function Settings(): JSX.Element {
               setIsMenu={setIsMenu}
             />
           </div>
-          {optionsTable[currentFocus]}
+          { currentFocus === Options.PROFILE && <Profile />}
+          { currentFocus === Options.SECURITY && <Security />}
         </div>
       </Hidden>
       <Hidden implementation="css" smUp>
@@ -72,7 +64,8 @@ function Settings(): JSX.Element {
           : (
             <div className={classes.wrapperOptionMobile}>
               <BackButton title={currentFocus} goBack={(): void => setIsMenu(true)} />
-              {optionsTable[currentFocus]}
+              { currentFocus === Options.PROFILE && <Profile />}
+              { currentFocus === Options.SECURITY && <Security />}
             </div>
           )}
       </Hidden>
