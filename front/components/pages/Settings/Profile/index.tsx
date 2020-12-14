@@ -10,8 +10,6 @@ import { UPDATE } from '../../../../queries';
 import TextInput from '../../../TextInput';
 import Button from '../../../Button';
 
-import { UpdateUserParams } from './utils/UpdateUtils';
-
 const useStyles = makeStyles((theme) => ({
   container: {
     display: 'flex',
@@ -107,7 +105,7 @@ function Profile(): JSX.Element {
       <Formik
         validationSchema={updateSchema}
         initialValues={initialValues}
-        onSubmit={async (values: UpdateUserParams): Promise<void> => {
+        onSubmit={async (values): Promise<void> => {
           await update({
             variables: {
               id: viewer.id,

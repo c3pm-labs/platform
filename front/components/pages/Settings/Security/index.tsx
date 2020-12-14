@@ -8,7 +8,6 @@ import * as yup from 'yup';
 import { Alert } from '@material-ui/lab';
 import { message } from 'memfs/lib/internal/errors';
 
-import { UpdateUserParams } from '../Profile/utils/UpdateUtils';
 import Button from '../../../Button';
 import { useViewer } from '../../../../hooks/auth';
 import { UPDATEPASSWORD } from '../../../../queries';
@@ -89,7 +88,7 @@ function Security(): JSX.Element {
       <Formik
         validationSchema={updateSchema}
         initialValues={{}}
-        onSubmit={async (values: UpdateUserParams): Promise<void> => {
+        onSubmit={async (values): Promise<void> => {
           await updatePassword({
             variables: {
               id: viewer.id,
