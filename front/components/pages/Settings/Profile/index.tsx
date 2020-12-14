@@ -73,14 +73,11 @@ function Profile(): JSX.Element {
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const [snackbar, setSnackbar] = useState<SnackBarState>({ type: 'success' });
   const [update] = useMutation(UPDATE, {
-    notifyOnNetworkStatusChange: true,
     onError: (error) => {
-      console.log('TOTO!');
       setSnackbar({ type: 'error', message: error.message });
       setIsOpen(true);
     },
     onCompleted: () => {
-      console.log('SALUT!');
       setSnackbar({ type: 'success', message: 'Infos successfully updated!' });
       setIsOpen(true);
     },

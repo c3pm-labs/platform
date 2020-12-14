@@ -6,13 +6,11 @@ import { Form, Formik } from 'formik';
 import { useMutation } from '@apollo/client';
 import * as yup from 'yup';
 import { Alert } from '@material-ui/lab';
-import { message } from 'memfs/lib/internal/errors';
 
 import Button from '../../../Button';
 import { useViewer } from '../../../../hooks/auth';
 import { UPDATEPASSWORD } from '../../../../queries';
 import PasswordInput from '../../../PasswordInput';
-import TextInput from '../../../TextInput';
 
 const useStyles = makeStyles((theme) => ({
   container: {
