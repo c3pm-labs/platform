@@ -48,7 +48,6 @@ export interface AvatarProps {
     picture?: string,
     name?: string,
   };
-  stylePicture?: string,
   user: User;
   withName?: boolean
 }
