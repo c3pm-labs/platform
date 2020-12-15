@@ -64,8 +64,8 @@ function UserCard(): JSX.Element {
   const router = useRouter();
   const logout = useLogout();
   const handleLogout = async () => {
-    await logout();
     await router.push({ pathname: '/' });
+    await logout();
   };
 
   if (!viewer) {
@@ -93,6 +93,7 @@ function UserCard(): JSX.Element {
         aria-controls={open ? 'menu-list-grow' : undefined}
         aria-haspopup="true"
         onClick={handleToggle}
+        data-testid="user-menu"
       >
         <Avatar
           classes={{ picture: classes.avatar }}

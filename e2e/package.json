@@ -7,14 +7,14 @@
   "scripts": {
     "lint": "eslint . --ext .ts,.tsx --ignore-path=.gitignore",
     "lint:fix": "eslint . --ext .ts,.tsx --fix --ignore-path=.gitignore",
-    "front:dev": "cd ../front && npm run dev",
+    "prefront:start": "cd ../front && npm run build ",
     "front:start": "cd ../front && npm run start",
-    "back:dev": "cd ../back && DATABASE_URL=postgresql://postgres:postgres@localhost:5432/postgres?schema=public npx prisma migrate up --experimental && DATABASE_URL=postgresql://postgres:postgres@localhost:5432/postgres?schema=public PORT=4000 SESSION_SECRET=toto ALLOWED_ORIGIN=http://localhost:3000 npm run dev",
-    "back:start": "cd ../back && DATABASE_URL=postgresql://postgres:postgres@localhost:5432/postgres?schema=public npx prisma migrate up --experimental && PORT=4000 SESSION_SECRET=toto ALLOWED_ORIGIN=http://localhost:3000 DATABASE_URL=postgresql://postgres:postgres@localhost:5432/postgres?schema=public npm run start",
+    "preback:start": "cd ../back && DATABASE_URL=postgresql://postgres:postgres@localhost:5432/postgres?schema=public npx prisma migrate up --experimental && npm run build",
+    "back:start": "cd ../back && PORT=4000 SESSION_SECRET=toto ALLOWED_ORIGIN=http://localhost:3000 DATABASE_URL=postgresql://postgres:postgres@localhost:5432/postgres?schema=public npm run start",
     "cy:run": "cypress run",
     "cy:open": "cypress open",
-    "test:e2e:ci": "start-test back:start 4000 front:start 3000 cy:run",
-    "test:e2e:dev": "start-test front:dev 3000 back:dev 4000 cy:open"
+    "cypress:ci": "start-test back:start 4000 front:start 3000 cy:run",
+    "cypress:dev": "start-test front:start 3000 back:start 4000 cy:open"
   },
   "author": "",
   "license": "ISC",

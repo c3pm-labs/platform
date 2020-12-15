@@ -9,10 +9,19 @@ describe('home page', () => {
     cy.findByPlaceholderText(/search\.\.\./i).type('toto\n').url().should('eq', `${Cypress.config().baseUrl}/search?q=toto`)
     cy.findByAltText(/classic-sm c3pm logo/i).click().assertHome()
   })
-  it.only('should have user navigation when a user is loggedin', () => {
+  it('should have user navigation when a user is loggedin', () => {
     cy.createUser().then((user) => {
       cy.visit('/')
-      cy.findByTestId('user-avatar').should('contain', user.username[0]).click()
+      cy.findByTestId('user-menu').should('contain', user.username[0]).click()
+      cy.findByText(/profile/i).click().url().should('eq', `${Cypress.config().baseUrl}/user/${user.id}`)
+
+      cy.findByTestId('user-menu').should('contain', user.username[0]).click()
+      cy.findByText(/settings/i).click().url().should('eq', `${Cypress.config().baseUrl}/settings`)
+
+      cy.findByTestId('user-menu').should('contain', user.username[0]).click()
+      cy.findByText(/sign out/i).click().assertHome()
+      cy.findByText(/sign in/i)
+      cy.findByText(/sign up/i)
     })
   })
 })
