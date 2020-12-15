@@ -7,12 +7,12 @@ export const USER = gql`
             username,
             email,
             description,
-            packages {
+            packages(first: 1000, last: 0) {
                 name
                 author {
                     username
                 }
-                versions {
+                versions(first: 1000, last: 0) {
                     version
                     publishedAt
                 }
@@ -32,6 +32,7 @@ export const VIEWER = gql`
             id
             email
             username
+            description
         }
     }
 `;
@@ -66,6 +67,25 @@ export const LOGIN = gql`
     }
 `;
 
+export const UPDATE = gql`
+    mutation update($id: String!, $username: String, $email: String, $description: String) {
+        update(id: $id, username: $username, email: $email, description: $description) {
+            id,
+            username,
+            email,
+            description,
+        }
+    }
+`;
+
+export const UPDATEPASSWORD = gql`
+    mutation updatePassword($id: String!, $password: String!, $newPassword: String!) {
+        updatePassword(id: $id, password: $password, newPassword: $newPassword) {
+            id
+        }
+    }
+`;
+
 export const PACKAGE_FROM_VERSION = gql`
     query packageFromVersion($packageName: String!, $version: String) {
         version(packageName: $packageName, version: $version) {
@@ -78,7 +98,7 @@ export const PACKAGE_FROM_VERSION = gql`
                     username
                     id
                 }
-                versions {
+                versions(first: 1000, last: 0) {
                     version
                     publishedAt
                 }
@@ -95,7 +115,7 @@ export const SEARCH = gql`
     query search($keyword: String!) {
         search(keyword: $keyword) {
             name,
-            versions {
+            versions(first: 1000, last: 0) {
                 description,
                 license,
                 readme,

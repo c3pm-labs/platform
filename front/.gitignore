@@ -2,6 +2,7 @@ node_modules
 .idea
 .next
 storybook-static
+
+.vercel
 cypress/screenshots
 cypress/videos
-

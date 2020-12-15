@@ -18,6 +18,7 @@
     "@nexus/schema": "^0.19.2",
     "@prisma/client": "^2.12.1",
     "apollo-server-express": "^2.19.0",
+    "axios": "^0.21.0",
     "bcryptjs": "^2.4.3",
     "cors": "^2.8.5",
     "env-var": "^7.0.0",
