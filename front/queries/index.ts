@@ -32,6 +32,7 @@ export const VIEWER = gql`
             id
             email
             username
+            description
         }
     }
 `;
@@ -62,6 +63,25 @@ export const LOGIN = gql`
             id,
             email,
             username,
+        }
+    }
+`;
+
+export const UPDATE = gql`
+    mutation update($id: String!, $username: String, $email: String, $description: String) {
+        update(id: $id, username: $username, email: $email, description: $description) {
+            id,
+            username,
+            email,
+            description,
+        }
+    }
+`;
+
+export const UPDATEPASSWORD = gql`
+    mutation updatePassword($id: String!, $password: String!, $newPassword: String!) {
+        updatePassword(id: $id, password: $password, newPassword: $newPassword) {
+            id
         }
     }
 `;

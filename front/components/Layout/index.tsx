@@ -6,7 +6,7 @@ import Footer from './Footer';
 
 const useStyles = makeStyles(() => ({
   container: {
-    minHeight: '91vh',
+    minHeight: '100vh',
   },
 }));
 

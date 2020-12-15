@@ -6,5 +6,6 @@ export const Viewer = objectType({
     t.model('User').id();
     t.model('User').email();
     t.model('User').username();
+    t.model('User').description();
   },
 });
