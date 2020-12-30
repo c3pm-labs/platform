@@ -1,9 +1,9 @@
 /* eslint-disable import/no-extraneous-dependencies */
-import { render } from "@testing-library/react";
+import { render } from '@testing-library/react';
 
-import Logo from "../index";
+import Logo from '../index';
 
-test("Logo baseline xl", () => {
+test('Logo baseline xl', () => {
   const { container } = render(<Logo type="baseline" size="xl" />);
 
   expect(container).toMatchInlineSnapshot(`
@@ -32,7 +32,7 @@ test("Logo baseline xl", () => {
   `);
 });
 
-test("Logo baseline md", () => {
+test('Logo baseline md', () => {
   const { container } = render(<Logo type="baseline" size="md" />);
 
   expect(container).toMatchInlineSnapshot(`
@@ -61,7 +61,7 @@ test("Logo baseline md", () => {
   `);
 });
 
-test("Logo baseline lg", () => {
+test('Logo baseline lg', () => {
   const { container } = render(<Logo type="baseline" size="lg" />);
 
   expect(container).toMatchInlineSnapshot(`
@@ -90,7 +90,7 @@ test("Logo baseline lg", () => {
   `);
 });
 
-test("Logo baseline sm", () => {
+test('Logo baseline sm', () => {
   const { container } = render(<Logo type="baseline" size="sm" />);
 
   expect(container).toMatchInlineSnapshot(`
@@ -119,7 +119,7 @@ test("Logo baseline sm", () => {
   `);
 });
 
-test("Logo no size no type", () => {
+test('Logo no size no type', () => {
   const { container } = render(<Logo />);
 
   expect(container).toMatchInlineSnapshot(`
@@ -143,7 +143,7 @@ test("Logo no size no type", () => {
   `);
 });
 
-test("Logo mini xl", () => {
+test('Logo mini xl', () => {
   const { container } = render(<Logo type="mini" size="xl" />);
 
   expect(container).toMatchInlineSnapshot(`
@@ -167,7 +167,7 @@ test("Logo mini xl", () => {
   `);
 });
 
-test("Logo mini md", () => {
+test('Logo mini md', () => {
   const { container } = render(<Logo type="mini" size="md" />);
 
   expect(container).toMatchInlineSnapshot(`
@@ -191,7 +191,7 @@ test("Logo mini md", () => {
   `);
 });
 
-test("Logo mini lg", () => {
+test('Logo mini lg', () => {
   const { container } = render(<Logo type="mini" size="lg" />);
 
   expect(container).toMatchInlineSnapshot(`
@@ -215,7 +215,7 @@ test("Logo mini lg", () => {
   `);
 });
 
-test("Logo mini sm", () => {
+test('Logo mini sm', () => {
   const { container } = render(<Logo type="mini" size="sm" />);
 
   expect(container).toMatchInlineSnapshot(`
@@ -239,7 +239,7 @@ test("Logo mini sm", () => {
   `);
 });
 
-test("Logo mini no size", () => {
+test('Logo mini no size', () => {
   const { container } = render(<Logo type="mini" />);
 
   expect(container).toMatchInlineSnapshot(`

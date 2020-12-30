@@ -1,11 +1,11 @@
 /* eslint-disable import/no-extraneous-dependencies */
-import { render } from "@testing-library/react";
+import { render } from '@testing-library/react';
 
-import ButtonLink from "../index";
+import ButtonLink from '../index';
 
-test("ButtonLink", () => {
+test('ButtonLink', () => {
   const { container } = render(
-    <ButtonLink href="https://c3pm.io/">Toto</ButtonLink>
+    <ButtonLink href="https://c3pm.io/">Toto</ButtonLink>,
   );
 
   expect(container).toMatchInlineSnapshot(`
