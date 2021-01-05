@@ -63,10 +63,10 @@ export const Mutation = mutationType({
         return resetPasswordService.resetPassword(args);
       },
     });
-    t.nullable.field('update', {
+    t.field('update', {
       type: User,
       args: {
-        id: nullable(stringArg()),
+        id: stringArg(),
         username: nullable(stringArg()),
         email: nullable(stringArg()),
         description: nullable(stringArg()),
@@ -74,6 +74,18 @@ export const Mutation = mutationType({
       resolve: async (parent, args, ctx) => {
         const updateService = new UpdateService(ctx);
         return updateService.updateUser(args);
+      },
+    });
+    t.field('updatePassword', {
+      type: User,
+      args: {
+        id: stringArg(),
+        password: stringArg(),
+        newPassword: stringArg(),
+      },
+      resolve: async (parent, args, ctx) => {
+        const updateService = new UpdateService(ctx);
+        return updateService.updatePassword(args);
       },
     });
   },

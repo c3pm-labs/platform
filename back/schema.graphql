@@ -10,7 +10,8 @@ type Mutation {
   logout: Viewer!
   register(email: String!, password: String!, username: String!): Viewer!
   resetPassword(password: String!, token: String!): User!
-  update(description: String, email: String, id: String, username: String): User
+  update(description: String, email: String, id: String!, username: String): User!
+  updatePassword(id: String!, newPassword: String!, password: String!): User!
 }
 
 type Package {
@@ -28,7 +29,7 @@ type Query {
   package(name: String!): Package!
   search(keyword: String!): [Package!]!
   user(id: String, username: String): User
-  version(packageName: String!, version: String!): Version!
+  version(packageName: String!, version: String): Version!
   viewer: Viewer!
 }
 
@@ -60,6 +61,7 @@ input VersionWhereUniqueInput {
 }
 
 type Viewer {
+  description: String!
   email: String!
   id: String!
   username: String!

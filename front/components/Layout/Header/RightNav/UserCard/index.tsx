@@ -9,6 +9,7 @@ import ExpandMore from '@material-ui/icons/ExpandMore';
 import ExpandLess from '@material-ui/icons/ExpandLess';
 import makeStyles from '@material-ui/core/styles/makeStyles';
 import { useLogout, useViewer } from 'hooks/auth';
+import { useRouter } from 'next/router';
 
 import MenuItemLink from 'components/Layout/Header/RightNav/UserCard/MenuItemLink';
 import Avatar from 'components/Avatar';
@@ -60,7 +61,12 @@ function UserCard(): JSX.Element {
   const anchorRef = useRef(null);
   const classes = useStyles();
   const viewer = useViewer();
+  const router = useRouter();
   const logout = useLogout();
+  const handleLogout = async () => {
+    await logout();
+    await router.push({ pathname: '/' });
+  };
 
   if (!viewer) {
     return null;
@@ -121,13 +127,13 @@ function UserCard(): JSX.Element {
                   <MenuItemLink
                     className={classes.option}
                     onClick={handleClose}
-                    href="settings"
+                    href="/settings"
                   >
                     Settings
                   </MenuItemLink>
                   <MenuItem
                     className={clsx(classes.option, classes.logout)}
-                    onClick={logout}
+                    onClick={handleLogout}
                   >
                     Sign out
                   </MenuItem>

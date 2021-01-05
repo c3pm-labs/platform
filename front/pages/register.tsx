@@ -135,7 +135,7 @@ function Register(): JSX.Element {
                 fullWidth
               />
               <TextInput
-                type="text"
+                type="email"
                 name="email"
                 label="email"
                 required
