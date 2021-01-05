@@ -17,8 +17,12 @@ const useStyles = makeStyles((theme) => ({
     justifyContent: 'center',
     marginTop: theme.spacing(3),
     marginBottom: theme.spacing(5),
+    [theme.breakpoints.down('sm')]: {
+      fontSize: 18,
+      textAlign: 'center',
+    },
     minWidth: 175,
-    fontSize: 24,
+    fontSize: 20,
   },
   logoContainer: {
     display: 'flex',
@@ -32,8 +36,23 @@ const useStyles = makeStyles((theme) => ({
   },
   form: {
     display: 'flex',
+    width: '100%',
+    alignItems: 'center',
+    flexDirection: 'column',
+  },
+  input: {
+    display: 'flex',
     width: '20%',
-    margin: 'auto',
+    [theme.breakpoints.down('sm')]: {
+      width: '50%',
+    },
+  },
+  button: {
+    display: 'flex',
+    width: '20%',
+    [theme.breakpoints.down('sm')]: {
+      width: '50%',
+    },
     flexDirection: 'column',
   },
 }));
@@ -82,21 +101,24 @@ function ForgotPassword(): JSX.Element {
         }}
       >
         <Form noValidate className={classes.form}>
-          <TextInput
-            type="text"
-            name="email"
-            label="email"
-            required
-            fullWidth
-          />
-          <Button
-            color="primary"
-            variant="contained"
-            type="submit"
-            fullWidth
-          >
-            Send password reset email
+          <div className={classes.input}>
+            <TextInput
+              type="text"
+              name="email"
+              label="email"
+              required
+              fullWidth
+            />
+          </div>
+          <div className={classes.button}>
+            <Button
+              color="primary"
+              variant="contained"
+              type="submit"
+            >
+              Send password reset email
           </Button>
+          </div>
         </Form>
       </Formik>
     </>

@@ -17,8 +17,12 @@ const useStyles = makeStyles((theme) => ({
     justifyContent: 'center',
     marginTop: theme.spacing(3),
     marginBottom: theme.spacing(5),
+    [theme.breakpoints.down('sm')]: {
+      fontSize: 18,
+      textAlign: 'center',
+    },
     minWidth: 175,
-    fontSize: 24,
+    fontSize: 20,
   },
   logoContainer: {
     display: 'flex',
@@ -32,18 +36,26 @@ const useStyles = makeStyles((theme) => ({
   },
   form: {
     display: 'flex',
-    width: '20%',
-    margin: 'auto',
+    width: '100%',
+    alignItems: 'center',
     flexDirection: 'column',
   },
-  buttonLink: {
+  input: {
     display: 'flex',
-    margin: 'auto',
-    borderWidth: '0px',
-    backgroundColor: 'rgba(0,0,0,0)',
-    cursor: 'pointer',
-    outline: 'none',
-    marginTop: theme.spacing(3),
+    width: '20%',
+    [theme.breakpoints.down('sm')]: {
+      width: '50%',
+    },
+    alignItems: 'center',
+    flexDirection: 'column'
+  },
+  button: {
+    display: 'flex',
+    width: '20%',
+    [theme.breakpoints.down('sm')]: {
+      width: '50%',
+    },
+    flexDirection: 'column',
   },
 }));
 
@@ -80,26 +92,30 @@ function ResetPassword(): JSX.Element {
         }}
       >
         <Form noValidate className={classes.form}>
-          <PasswordInput
-            name="password"
-            label="new password"
-            required
-            fullWidth
-          />
-          <PasswordInput
-            name="confirm"
-            label="confirm password"
-            required
-            fullWidth
-          />
-          <Button
-            color="primary"
-            variant="contained"
-            type="submit"
-            fullWidth
-          >
-            Confirm new password
+          <div className={classes.input}>
+            <PasswordInput
+              name="password"
+              label="new password"
+              required
+              fullWidth
+            />
+            <PasswordInput
+              name="confirm"
+              label="confirm password"
+              required
+              fullWidth
+            />
+          </div>
+          <div className={classes.button}>
+            <Button
+              color="primary"
+              variant="contained"
+              type="submit"
+              fullWidth
+            >
+              Confirm new password
           </Button>
+          </div>
         </Form>
       </Formik>
     </>
