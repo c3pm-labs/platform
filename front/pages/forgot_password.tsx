@@ -117,7 +117,7 @@ function ForgotPassword(): JSX.Element {
               type="submit"
             >
               Send password reset email
-          </Button>
+            </Button>
           </div>
         </Form>
       </Formik>

@@ -47,7 +47,7 @@ const useStyles = makeStyles((theme) => ({
       width: '50%',
     },
     alignItems: 'center',
-    flexDirection: 'column'
+    flexDirection: 'column',
   },
   button: {
     display: 'flex',
@@ -114,7 +114,7 @@ function ResetPassword(): JSX.Element {
               fullWidth
             >
               Confirm new password
-          </Button>
+            </Button>
           </div>
         </Form>
       </Formik>
