@@ -87,8 +87,8 @@ function ResetPassword(): JSX.Element {
         initialValues={{ password: '', confirm: '' }}
         validationSchema={resetSchema}
         onSubmit={async (params: ResetParams): Promise<void> => {
-          reset({ token: token.toString(), password: params.password });
-          (router.push({ pathname: '/login' }));
+          await reset({ token: token.toString(), password: params.password });
+          router.push({ pathname: '/login' });
         }}
       >
         <Form noValidate className={classes.form}>

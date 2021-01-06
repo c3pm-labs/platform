@@ -139,7 +139,7 @@ export const SEARCH = gql`
 export const FORGOT = gql`
     mutation forgotPassword($email: String!) {
         forgotPassword(email: $email) {
-            resetPasswordToken,
+            id,
         }
     }
 `;
@@ -147,7 +147,7 @@ export const FORGOT = gql`
 export const RESET = gql`
     mutation resetPassword($token: String!, $password: String!) {
         resetPassword(token: $token, password: $password) {
-            resetPasswordToken,
+            id,
         }
     }
 `;

@@ -95,8 +95,8 @@ function ForgotPassword(): JSX.Element {
       <Formik
         initialValues={{ email: '' }}
         validationSchema={forgotSchema}
-        onSubmit={(email: ForgotParams): void => {
-          forgot(email);
+        onSubmit={async (email: ForgotParams): Promise<void> => {
+          await forgot(email);
           setEmailSent(true);
         }}
       >

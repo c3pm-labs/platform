@@ -17,15 +17,7 @@ export class ForgotPasswordService extends Service {
       throw new UserInputError('Email argument is required.');
     }
     const token = uuidv4();
-    sgMail.setApiKey(process.env.SENDGRID_API_KEY);
-    sgMail.send({
-      from: 'contact@c3pm.io',
-      to: email,
-      subject: 'Reset Password',
-      text: 'Click on the link to reset your password',
-      html: `<p>Click <a href='${process.env.FORGOT_URL}${token}'>here</a> to reset your password.</p>`,
-    });
-    return this.db.user.update({
+    const user: User = await this.db.user.update({
       where: {
         email,
       },
@@ -33,5 +25,18 @@ export class ForgotPasswordService extends Service {
         resetPasswordToken: token,
       },
     });
+    if (!user) {
+      throw new UserInputError('Invalid email');
+    }
+
+    sgMail.setApiKey(process.env.SENDGRID_API_KEY);
+    sgMail.send({
+      from: 'contact@c3pm.io',
+      to: email,
+      subject: 'Reset Password',
+      text: 'Click on the link to reset your password',
+      html: `<p>Click <a href='${process.env.FRONTEND_URL}/reset_password?token=${token}'>here</a> to reset your password.</p>`,
+    });
+    return user;
   }
 }

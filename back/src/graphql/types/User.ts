@@ -7,7 +7,6 @@ export const User = objectType({
     t.model.username();
     t.model.email();
     t.model.description();
-    t.model.resetPasswordToken();
     t.model.packages();
   },
 });
