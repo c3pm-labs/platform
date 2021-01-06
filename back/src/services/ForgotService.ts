@@ -23,7 +23,7 @@ export class ForgotPasswordService extends Service {
       to: email,
       subject: 'Reset Password',
       text: 'Click on the link to reset your password',
-      html: `<p>Click <a href='http://localhost:3000/reset_password?token=${token}'>here</a> to reset your password.</p>`,
+      html: `<p>Click <a href='${process.env.FORGOT_URL}${token}'>here</a> to reset your password.</p>`,
     });
     return this.db.user.update({
       where: {

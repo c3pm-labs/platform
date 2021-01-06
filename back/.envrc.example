@@ -6,3 +6,4 @@ export SESSION_SECRET=toto
 export REGISTRY_HOST=localhost
 export REGISTRY_PORT=4444
 export REGISTRY_SECRET=highfive
+export FORGOT_URL=http://localhost:3000/reset_password?token=
