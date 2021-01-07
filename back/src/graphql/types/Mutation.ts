@@ -4,6 +4,8 @@ import {
 
 import { AuthService } from '../../services/AuthService';
 import { UpdateService } from '../../services/UpdateService';
+import { ForgotPasswordService } from '../../services/ForgotService';
+import { ResetPasswordService } from '../../services/ResetService';
 
 import { Viewer } from './Viewer';
 import { User } from './User';
@@ -38,6 +40,27 @@ export const Mutation = mutationType({
       resolve: (parent, args, ctx) => {
         const authService = new AuthService(ctx);
         return authService.logout();
+      },
+    });
+    t.field('forgotPassword', {
+      type: User,
+      args: {
+        email: stringArg(),
+      },
+      resolve: (parent, args, ctx) => {
+        const forgotPasswordService = new ForgotPasswordService(ctx);
+        return forgotPasswordService.forgotPassword(args);
+      },
+    });
+    t.field('resetPassword', {
+      type: User,
+      args: {
+        token: stringArg(),
+        password: stringArg(),
+      },
+      resolve: (parent, args, ctx) => {
+        const resetPasswordService = new ResetPasswordService(ctx);
+        return resetPasswordService.resetPassword(args);
       },
     });
     t.field('update', {

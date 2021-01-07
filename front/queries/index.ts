@@ -135,3 +135,19 @@ export const SEARCH = gql`
         }
     }
 `;
+
+export const FORGOT = gql`
+    mutation forgotPassword($email: String!) {
+        forgotPassword(email: $email) {
+            id,
+        }
+    }
+`;
+
+export const RESET = gql`
+    mutation resetPassword($token: String!, $password: String!) {
+        resetPassword(token: $token, password: $password) {
+            id,
+        }
+    }
+`;

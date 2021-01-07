@@ -16,3 +16,20 @@ export const registerSchema = Yup.object().shape({
 });
 
 export type RegisterParams = Yup.InferType<typeof registerSchema>;
+
+export const forgotSchema = Yup.object().shape({
+  email: Yup.string().email('Email is invalid').required('Email is required'),
+});
+
+export type ForgotParams = Yup.InferType<typeof forgotSchema>;
+
+export const resetSchema = Yup.object().shape({
+  password: Yup.string()
+    .required('No password provided.')
+    .min(8, 'Password is too short, 8 characters minimum.'),
+  confirm: Yup.string()
+    .required('Enter password confirmation.')
+    .oneOf([Yup.ref('password'), null], 'Passwords must match.'),
+});
+
+export type ResetParams = Yup.InferType<typeof resetSchema>;
