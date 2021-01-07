@@ -85,7 +85,7 @@ export class PublishService extends Service {
       {
         host: process.env.REGISTRY_HOST,
         port: process.env.REGISTRY_PORT,
-        path: '/v1',
+        path: 'v1',
         method: 'POST',
         headers: {
           ...form.getHeaders(),
