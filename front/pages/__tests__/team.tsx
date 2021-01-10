@@ -1,7 +1,7 @@
+import Team from "../team";
 import { MockedProvider } from "@apollo/client/testing";
 import TestRenderer from "react-test-renderer";
 import React from "react";
-import Layout from "..";
 
 jest.mock("next/router", () => ({
   useRouter() {
@@ -16,7 +16,7 @@ jest.mock("next/router", () => ({
 
 const useRouter = jest.spyOn(require("next/router"), "useRouter");
 
-test("Layout", () => {
+test("Team", () => {
   const mocks = [];
 
   useRouter.mockImplementation(() => ({
@@ -28,7 +28,7 @@ test("Layout", () => {
 
   const component = TestRenderer.create(
     <MockedProvider mocks={mocks} addTypename={false}>
-      <Layout>Toto</Layout>
+      <Team />
     </MockedProvider>
   );
 
