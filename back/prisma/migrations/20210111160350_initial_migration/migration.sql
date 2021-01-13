@@ -6,6 +6,7 @@ CREATE TABLE "User" (
     "username" TEXT NOT NULL,
     "description" TEXT NOT NULL DEFAULT E'',
     "apiKey" TEXT NOT NULL,
+    "resetPasswordToken" TEXT,
 
     PRIMARY KEY ("id")
 );
@@ -38,6 +39,9 @@ CREATE UNIQUE INDEX "User.username_unique" ON "User"("username");
 
 -- CreateIndex
 CREATE UNIQUE INDEX "User.apiKey_unique" ON "User"("apiKey");
+
+-- CreateIndex
+CREATE UNIQUE INDEX "User.resetPasswordToken_unique" ON "User"("resetPasswordToken");
 
 -- AddForeignKey
 ALTER TABLE "Package" ADD FOREIGN KEY("authorId")REFERENCES "User"("id") ON DELETE CASCADE ON UPDATE CASCADE;

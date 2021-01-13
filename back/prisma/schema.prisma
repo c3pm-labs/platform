@@ -8,13 +8,14 @@ datasource db {
 }
 
 model User {
-  id          String    @id @default(cuid())
-  email       String    @unique
-  password    String
-  username    String    @unique
-  description String    @default("")
-  apiKey      String    @unique @default(cuid())
-  packages    Package[]
+  id                 String    @id @default(cuid())
+  email              String    @unique
+  password           String
+  username           String    @unique
+  description        String    @default("")
+  apiKey             String    @unique @default(cuid())
+  resetPasswordToken String?   @unique
+  packages           Package[]
 }
 
 model Package {

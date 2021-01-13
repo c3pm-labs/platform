@@ -36,6 +36,27 @@ export const AuthMutation = extendType({
         return authService.logout(ctx);
       },
     });
+
+    t.field('forgotPassword', {
+      type: User,
+      args: {
+        email: stringArg(),
+      },
+      resolve(parent, args, ctx) {
+        return authService.forgotPassword(ctx, args);
+      },
+    });
+
+    t.field('resetPassword', {
+      type: User,
+      args: {
+        token: stringArg(),
+        password: stringArg(),
+      },
+      resolve(parent, args, ctx) {
+        return authService.resetPassword(ctx, args);
+      },
+    });
   },
 });
 

@@ -1,8 +1,11 @@
 import { User } from '@prisma/client';
 import { hash, compare } from 'bcryptjs';
+import sgMail from '@sendgrid/mail';
+import { v4 as uuidv4 } from 'uuid';
 
-import { AuthenticationError, ForbiddenError } from '../../utils/errors';
+import { AuthenticationError, ForbiddenError, UserInputError } from '../../utils/errors';
 import { Context } from '../../context';
+import { ResetPasswordParams } from '../../services/ResetService';
 
 export interface RegisterParams {
   username: string;
@@ -62,4 +65,47 @@ export async function logout(ctx: Context): Promise<User> {
 
 export async function getViewer(ctx: Context): Promise<User> {
   return ctx.session.get();
+}
+
+export interface ForgotPasswordParams {
+  email?: string;
+}
+
+export async function forgotPassword(ctx: Context, { email }: ForgotPasswordParams): Promise<User> {
+  const token = uuidv4();
+  const user: User = await ctx.db.user.update({
+    where: {
+      email,
+    },
+    data: {
+      resetPasswordToken: token,
+    },
+  });
+  if (!user) {
+    throw new UserInputError('Invalid email');
+  }
+
+  sgMail.setApiKey(process.env.SENDGRID_API_KEY);
+  await sgMail.send({
+    from: 'contact@c3pm.io',
+    to: email,
+    subject: 'Reset Password',
+    text: 'Click on the link to reset your password',
+    html: `<p>Click <a href='${process.env.FRONTEND_URL}/reset_password?token=${token}'>here</a> to reset your password.</p>`,
+  });
+  return user;
+}
+
+export async function resetPassword(ctx: Context, {
+  token, password,
+}: ResetPasswordParams): Promise<User> {
+  const hashedPassword = await hash(password, 10);
+  return ctx.db.user.update({
+    where: {
+      resetPasswordToken: token,
+    },
+    data: {
+      password: hashedPassword,
+    },
+  });
 }

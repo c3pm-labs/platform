@@ -1,6 +1,6 @@
 /* eslint-disable no-console */
 
-import { PrismaClient } from 'nexus-plugin-prisma/client';
+import { PrismaClient } from '@prisma/client';
 
 const db = new PrismaClient();
 

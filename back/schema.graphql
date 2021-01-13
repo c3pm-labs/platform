@@ -5,9 +5,11 @@
 scalar DateTime
 
 type Mutation {
+  forgotPassword(email: String!): User!
   login(login: String!, password: String!): User!
   logout: User!
   register(email: String!, password: String!, username: String!): User!
+  resetPassword(password: String!, token: String!): User!
   update(description: String, email: String, id: String!, username: String): User!
   updatePassword(id: String!, newPassword: String!, password: String!): User!
 }
