@@ -4,7 +4,6 @@ import { createHttpLink } from 'apollo-link-http';
 import { DocumentNode, execute, toPromise } from 'apollo-link';
 import fetch from 'isomorphic-fetch';
 import fetchCookie from 'fetch-cookie';
-import { PrismaClient } from '@prisma/client';
 
 import Server from '../../src/Server';
 
@@ -19,7 +18,7 @@ export interface TestContext {
 }
 
 function startTestServer(): TestServer {
-  const server = new Server(new PrismaClient());
+  const server = new Server();
   const httpServer = server.listen(0);
 
   const { port } = httpServer.address() as AddressInfo;
