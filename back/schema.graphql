@@ -50,11 +50,11 @@ type Version {
   version: String!
 }
 
-input VersionPackageNameCompoundUniqueInput {
+input VersionVersionPackageNameCompoundUniqueInput {
   packageName: String!
   version: String!
 }
 
 input VersionWhereUniqueInput {
-  version_packageName: VersionPackageNameCompoundUniqueInput
+  version_packageName: VersionVersionPackageNameCompoundUniqueInput
 }

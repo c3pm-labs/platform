@@ -129,7 +129,7 @@ export async function publish(ctx: Context, file: Express.Multer.File): Promise<
   const form = new FormData();
   form.append('package', bufferToStream(file.buffer), { filename: parsedC3PM.version });
 
-  const registryUrl = `https://${process.env.REGISTRY_HOST}:${process.env.REGISTRY_PORT}/v1`;
+  const registryUrl = `${process.env.REGISTRY_HOST}:${process.env.REGISTRY_PORT}/v1`;
 
   await axios.post(registryUrl, form, {
     headers: {
