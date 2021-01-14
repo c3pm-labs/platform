@@ -2,8 +2,6 @@ import {
   extendType, objectType, stringArg, nullable,
 } from 'nexus';
 
-import { PackageService } from '../../services/PackageService';
-
 import * as packagesService from './packages.service';
 
 export const Versions = objectType({
@@ -62,9 +60,8 @@ export const PackageQuery = extendType({
         packageName: stringArg(),
         version: nullable(stringArg()),
       },
-      resolve: async (parent, args, ctx) => {
-        const packageService = new PackageService(ctx);
-        return packageService.getVersionOrLatest(args.packageName, args.version);
+      resolve(parent, args, ctx) {
+        return packagesService.getVersionOrLatest(ctx, args.packageName, args.version);
       },
     });
   },

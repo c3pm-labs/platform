@@ -5,7 +5,11 @@ import { v4 as uuidv4 } from 'uuid';
 
 import { AuthenticationError, ForbiddenError, UserInputError } from '../../utils/errors';
 import { Context } from '../../context';
-import { ResetPasswordParams } from '../../services/ResetService';
+
+export interface ResetPasswordParams {
+  token ?: string;
+  password?: string;
+}
 
 export interface RegisterParams {
   username: string;
