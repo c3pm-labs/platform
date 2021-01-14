@@ -6,9 +6,9 @@ scalar DateTime
 
 type Mutation {
   forgotPassword(email: String!): User!
-  login(login: String!, password: String!): Viewer!
-  logout: Viewer!
-  register(email: String!, password: String!, username: String!): Viewer!
+  login(login: String!, password: String!): User!
+  logout: User!
+  register(email: String!, password: String!, username: String!): User!
   resetPassword(password: String!, token: String!): User!
   update(description: String, email: String, id: String!, username: String): User!
   updatePassword(id: String!, newPassword: String!, password: String!): User!
@@ -30,7 +30,7 @@ type Query {
   search(keyword: String!): [Package!]!
   user(id: String, username: String): User
   version(packageName: String!, version: String): Version!
-  viewer: Viewer!
+  viewer: User!
 }
 
 type User {
@@ -50,18 +50,11 @@ type Version {
   version: String!
 }
 
-input VersionPackageNameCompoundUniqueInput {
+input VersionVersionPackageNameCompoundUniqueInput {
   packageName: String!
   version: String!
 }
 
 input VersionWhereUniqueInput {
-  version_packageName: VersionPackageNameCompoundUniqueInput
-}
-
-type Viewer {
-  description: String!
-  email: String!
-  id: String!
-  username: String!
+  version_packageName: VersionVersionPackageNameCompoundUniqueInput
 }

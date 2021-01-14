@@ -1,11 +1,13 @@
-import { nexusSchemaPrisma } from 'nexus-plugin-prisma/schema';
-import { makeSchema } from '@nexus/schema';
+import { join } from 'path';
 
-import * as types from './types';
+import { nexusPrisma } from 'nexus-plugin-prisma';
+import { makeSchema } from 'nexus';
+
+import * as types from './allTypes';
 
 export const schema = makeSchema({
   types,
-  plugins: [nexusSchemaPrisma({ prismaClient: (ctx) => ctx.db })],
+  plugins: [nexusPrisma({ prismaClient: (ctx) => ctx.db })],
   nonNullDefaults: {
     output: true,
     input: true,
@@ -14,17 +16,9 @@ export const schema = makeSchema({
     schema: `${__dirname}/../../schema.graphql`,
     typegen: `${__dirname}/generated/nexus.ts`,
   },
-  typegenAutoConfig: {
-    contextType: 'Context.Context',
-    sources: [
-      {
-        source: '@prisma/client',
-        alias: 'prisma',
-      },
-      {
-        source: require.resolve('../context'),
-        alias: 'Context',
-      },
-    ],
+  contextType: {
+    module: join(__dirname, '..', 'context.ts'),
+    alias: 'ContextModule',
+    export: 'Context',
   },
 });

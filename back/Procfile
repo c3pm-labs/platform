@@ -1,1 +1,1 @@
-release: npx @prisma/cli@2.12.1 migrate up --experimental
+release: npx @prisma/cli@2.14.0 migrate deploy --preview-feature
