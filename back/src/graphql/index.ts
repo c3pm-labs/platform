@@ -2,7 +2,6 @@ import {
   ApolloServer, AuthenticationError, ForbiddenError, UserInputError,
 } from 'apollo-server-express';
 import { GraphQLError } from 'graphql';
-import { Router } from 'express';
 
 import * as errors from '../utils/errors';
 import { SessionManager } from '../SessionManager';
