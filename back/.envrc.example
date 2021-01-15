@@ -5,6 +5,5 @@ export ALLOWED_ORIGIN=http://localhost:3000
 export SESSION_SECRET=toto
 export FRONTEND_URL=http://localhost:3000
 export BUCKET_NAME=registry-c3pm
-export BUCKET_ENDPOINT=https://registry-c3pm.s3.fr-par.scw.cloud
 export REGISTRY_API_SECRET=SECRET
 export REGISTRY_API_KEY=KEY

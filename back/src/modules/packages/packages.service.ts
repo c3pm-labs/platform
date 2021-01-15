@@ -133,12 +133,12 @@ export async function publish(ctx: Context, file: Express.Multer.File): Promise<
     region: 'fr-par',
   });
   const bucket = process.env.BUCKET_NAME;
-  const key = `${parsedC3PM.name}/${parsedC3PM.version}`;
+  const key = `/${parsedC3PM.name}/${parsedC3PM.version}`;
   const body = file.buffer;
 
   try {
     await objectStorage.putObject({ bucket, key, body });
   } catch (e) {
-    throw new ForbiddenError('Package upload failed.');
+    throw new ForbiddenError(`Package upload failed: ${e}`);
   }
 }
