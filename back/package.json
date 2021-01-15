@@ -31,6 +31,8 @@
     "nexus": "^1.0.0",
     "nexus-plugin-prisma": "^0.28.0",
     "node-fetch": "^2.6.1",
+    "s3": "^4.4.0",
+    "scaleway-object-storage": "0.0.1",
     "semver": "^7.3.2",
     "tar": "^6.0.5",
     "uuid": "^8.3.1",

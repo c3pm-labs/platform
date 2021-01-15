@@ -4,6 +4,8 @@ import FormData from 'form-data';
 import tar from 'tar';
 import YAML from 'yaml';
 import axios from 'axios';
+import ObjectStorage from 'scaleway-object-storage';
+global.fetch = require('node-fetch')
 
 import { CustomError, ForbiddenError } from '../../utils/errors';
 import { Context } from '../../context';
@@ -128,6 +130,18 @@ export async function publish(ctx: Context, file: Express.Multer.File): Promise<
   }
   const form = new FormData();
   form.append('package', bufferToStream(file.buffer), { filename: parsedC3PM.version });
+
+  var objectStorage = new ObjectStorage({
+    accessKey: process.env.REGISTRY_API_KEY,
+    secretKey: process.env.REGISTRY_API_SECRET,
+    region: 'fr-par'
+  });
+  let bucket = 'c3pm-registry';
+  let key = `/package/${parsedC3PM.name}/${parsedC3PM.version}`;
+  let body = file.buffer;
+  let putResponse = await objectStorage.putObject({bucket, key, body})
+  console.log(`put status: ${putResponse.status}`)
+  console.log(`put response body: '${await putResponse.text()}'`)
 
   const registryUrl = `${process.env.REGISTRY_HOST}:${process.env.REGISTRY_PORT}/v1`;
 
