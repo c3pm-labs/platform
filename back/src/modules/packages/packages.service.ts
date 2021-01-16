@@ -2,7 +2,7 @@ import { Package, Version } from '@prisma/client';
 import semverCompare from 'semver/functions/compare';
 import tar from 'tar';
 import YAML from 'yaml';
-import ObjectStorage from 'scaleway-object-storage';
+import S3 from 'scaleway-s3';
 
 import { CustomError, ForbiddenError } from '../../utils/errors';
 import { Context } from '../../context';
@@ -127,17 +127,18 @@ export async function publish(ctx: Context, file: Express.Multer.File): Promise<
       },
     });
   }
-  const objectStorage = new ObjectStorage({
+  const s3 = new S3({
     accessKey: process.env.REGISTRY_API_KEY,
     secretKey: process.env.REGISTRY_API_SECRET,
     region: 'fr-par',
+    domain: 'scw.cloud',
   });
   const bucket = process.env.BUCKET_NAME;
   const key = `/${parsedC3PM.name}/${parsedC3PM.version}`;
   const body = file.buffer;
 
   try {
-    await objectStorage.putObject({ bucket, key, body });
+    await s3.putObject({ bucket, key, body });
   } catch (e) {
     throw new ForbiddenError(`Package upload failed: ${e}`);
   }
