@@ -2,5 +2,4 @@
 cypress/screenshots
 cypress/videos
 cypress/fixtures
-cypress/plugins
 node_modules

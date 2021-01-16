@@ -39,6 +39,30 @@ Cypress.Commands.add('login', user => {
         }))
 })
 
+Cypress.Commands.add('cliLogin', user => {
+    const rbody = {
+        login: user.email,
+        password: user.password,
+    };
+    return cy
+        .request({
+            url: `${Cypress.env('API_URL')}/v1/auth/login`,
+            method: 'POST',
+            body: rbody,
+        })
+        .then(({body}) => {
+            return ({
+                ...body,
+                ...rbody
+            })
+        })
+})
+
+Cypress.Commands.add('publish', ({ version, apiKey, name}) => {
+    const args = { version, url: `${Cypress.env('API_URL')}/v1/auth/publish`, apiKey, name };
+    return cy.task('publishPackage', args);
+})
+
 Cypress.Commands.add('logout', () => {
     const body = {
         operationName: "logout",

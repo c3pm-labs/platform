@@ -19,6 +19,8 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "axios": "^0.21.1",
+    "form-data": "^3.0.0",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "semver": "^7.3.2"
@@ -48,7 +50,6 @@
     "expect": "^26.0.1",
     "file": "^0.2.2",
     "fork-ts-checker-webpack-plugin": "^5.0.0",
-    "fs": "0.0.1-security",
     "jss-snapshot-serializer": "^1.0.0",
     "react-test-renderer": "^16.13.1",
     "start-server-and-test": "^1.11.6",
