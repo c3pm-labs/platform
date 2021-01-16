@@ -1,13 +1,14 @@
 import { Package, Version } from '@prisma/client';
 import semverCompare from 'semver/functions/compare';
-import FormData from 'form-data';
 import tar from 'tar';
 import YAML from 'yaml';
-import axios from 'axios';
+import S3 from 'scaleway-s3';
 
 import { CustomError, ForbiddenError } from '../../utils/errors';
 import { Context } from '../../context';
 import { bufferToStream, streamToString } from '../../utils/function';
+
+global.fetch = require('node-fetch');
 
 export async function getLatestVersion(ctx: Context, packageName: string): Promise<Version> {
   const versions = await ctx.db.version.findMany({
@@ -126,17 +127,19 @@ export async function publish(ctx: Context, file: Express.Multer.File): Promise<
       },
     });
   }
-  const form = new FormData();
-  form.append('package', bufferToStream(file.buffer), { filename: parsedC3PM.version });
-
-  const registryUrl = `${process.env.REGISTRY_HOST}:${process.env.REGISTRY_PORT}/v1`;
-
-  await axios.post(registryUrl, form, {
-    headers: {
-      ...form.getHeaders(),
-      name: parsedC3PM.name,
-      version: parsedC3PM.version,
-      authorization: process.env.REGISTRY_SECRET,
-    },
+  const s3 = new S3({
+    accessKey: process.env.REGISTRY_API_KEY,
+    secretKey: process.env.REGISTRY_API_SECRET,
+    region: 'fr-par',
+    domain: 'scw.cloud',
   });
+  const bucket = process.env.BUCKET_NAME;
+  const key = `/${parsedC3PM.name}/${parsedC3PM.version}`;
+  const body = file.buffer;
+
+  try {
+    await s3.putObject({ bucket, key, body });
+  } catch (e) {
+    throw new ForbiddenError(`Package upload failed: ${e}`);
+  }
 }
