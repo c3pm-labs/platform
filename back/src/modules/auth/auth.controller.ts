@@ -6,6 +6,8 @@ import db from '../../db';
 
 import * as authService from './auth.service';
 
+require('express-async-errors');
+
 const authController = Router();
 
 authController.post('/login', async (req, res) => {
