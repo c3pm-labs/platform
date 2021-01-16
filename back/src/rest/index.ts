@@ -5,8 +5,6 @@ import * as errors from '../utils/errors';
 import packagesController from '../modules/packages/packages.controller';
 import authController from '../modules/auth/auth.controller';
 
-require('express-async-errors');
-
 const router = express.Router();
 const v1 = express.Router();
 
