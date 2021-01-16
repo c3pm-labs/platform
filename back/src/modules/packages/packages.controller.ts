@@ -18,14 +18,8 @@ const upload = multer({
 packagesController.post('/publish', upload.any(), async (req, res) => {
   const ctx = createContext({ db, req });
 
-  try {
-    await packagesService.publish(ctx, req.files[0]);
-    res.status(200).end();
-  } catch (e) {
-    // eslint-disable-next-line no-console
-    console.log('error: ', e);
-    res.status(401).json({ message: e.message });
-  }
+  await packagesService.publish(ctx, req.files[0]);
+  res.status(200).end();
 });
 
 export default packagesController;
