@@ -1,13 +1,12 @@
-import { PrismaClient } from '@prisma/client';
 import {
   ApolloServer, AuthenticationError, ForbiddenError, UserInputError,
 } from 'apollo-server-express';
 import { GraphQLError } from 'graphql';
-import { Router } from 'express';
 
 import * as errors from '../utils/errors';
 import { SessionManager } from '../SessionManager';
 import { Context } from '../context';
+import db from '../db';
 
 import { schema } from './schema';
 
@@ -27,17 +26,18 @@ function formatError(err: GraphQLError): Error {
   return new Error('Internal server error');
 }
 
-export function getGraphqlMiddleware(db: PrismaClient): Router {
-  const apolloServer = new ApolloServer({
-    schema,
-    context: ({ req }): Context => {
-      const session = new SessionManager(db, req);
-      return ({
-        db,
-        session,
-      });
-    },
-    formatError,
-  });
-  return apolloServer.getMiddleware({ cors: false });
-}
+const apolloServer = new ApolloServer({
+  schema,
+  context: ({ req }): Context => {
+    const session = new SessionManager(req);
+    return ({
+      db,
+      session,
+    });
+  },
+  formatError,
+});
+
+const graphqlMiddleware = apolloServer.getMiddleware({ cors: false });
+
+export default graphqlMiddleware;

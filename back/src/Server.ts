@@ -1,23 +1,20 @@
 import http from 'http';
 
-import { PrismaClient } from '@prisma/client';
 import session from 'express-session';
 import express from 'express';
 import env from 'env-var';
 import cors from 'cors';
 
-import { getGraphqlMiddleware } from './graphql';
-import createRestMiddleware from './rest';
+import graphqlMiddleware from './graphql';
+import RESTMiddleware from './rest';
+import db from './db';
 
 class Server {
-  db: PrismaClient;
-
   server: http.Server;
 
-  constructor(db: PrismaClient) {
-    this.db = db;
-
+  constructor() {
     const app = express();
+    app.get('/', (req, res) => res.sendStatus(200));
 
     const ALLOWED_ORIGIN = env.get('ALLOWED_ORIGIN').required().asString();
     app.use(cors({
@@ -41,10 +38,9 @@ class Server {
         sameSite: env.get('NODE_ENV').asString() === 'production' ? 'none' : undefined,
       },
     }));
-    const graphqlMiddleware = getGraphqlMiddleware(this.db);
+
     app.use(graphqlMiddleware);
-    const restMiddleware = createRestMiddleware(this.db);
-    app.use(restMiddleware);
+    app.use(RESTMiddleware);
 
     this.server = http.createServer(app);
   }
@@ -55,7 +51,7 @@ class Server {
 
   async stop(): Promise<void> {
     this.server.close();
-    await this.db.$disconnect();
+    await db.$disconnect();
   }
 }
 

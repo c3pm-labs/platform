@@ -18,14 +18,16 @@ export interface TextInputProps {
   multiline?: boolean;
   rows?: number;
   fullWidth?: boolean;
+  className?: string;
   disableHelperText?: boolean;
+  autoComplete?: string;
   InputProps?: {
     endAdornment: JSX.Element;
   };
 }
 
-const TextInput = ({ disableHelperText = false, ...props }: TextInputProps): JSX.Element => {
-  const [field, meta] = useField(props);
+const TextInput = ({ disableHelperText = false, name, ...props }: TextInputProps): JSX.Element => {
+  const [field, meta] = useField({ name, ...props });
   const classes = useStyles();
   const { multiline, rows } = props;
   let helperText = ' ';
@@ -37,6 +39,7 @@ const TextInput = ({ disableHelperText = false, ...props }: TextInputProps): JSX
 
   return (
     <TextField
+      id={name}
       variant="outlined"
       helperText={helperText}
       error={!!(meta.error && meta.touched)}

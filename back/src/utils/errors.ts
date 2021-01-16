@@ -12,3 +12,4 @@ export class CustomError extends Error {
 export class AuthenticationError extends CustomError { }
 export class ForbiddenError extends CustomError { }
 export class UserInputError extends CustomError { }
+export class UserUpdateError extends CustomError { }

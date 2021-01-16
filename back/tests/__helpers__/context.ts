@@ -4,9 +4,12 @@ import { createHttpLink } from 'apollo-link-http';
 import { DocumentNode, execute, toPromise } from 'apollo-link';
 import fetch from 'isomorphic-fetch';
 import fetchCookie from 'fetch-cookie';
+<<<<<<< HEAD
 import { PrismaClient } from '@prisma/client';
 import axios, { AxiosInstance } from 'axios';
 import { SetupServerApi } from 'msw/node';
+=======
+>>>>>>> b5b87471c41ac71f8a7a6836e9bdc5d5e3400e1c
 
 import Server from '../../src/Server';
 import { setupMockServer } from '../mocks/server';
@@ -24,7 +27,7 @@ export interface TestContext {
 }
 
 function startTestServer(): TestServer {
-  const server = new Server(new PrismaClient());
+  const server = new Server();
   const httpServer = server.listen(0);
   const baseURL = `http://localhost:${(httpServer.address() as AddressInfo).port}`;
   const mockServer = setupMockServer();
