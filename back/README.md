@@ -61,7 +61,7 @@ npm install
 
 Apply the migrations to the database and start the dev server:
 ```bash
-npx prisma migrate up --experimental
+npx prisma migrate dev --preview-feature
 ```
 
 You should now have the GraphQL Playground available at
@@ -70,7 +70,7 @@ http://localhost:4000/graphql/
 To interact with the database directly you can start the Prisma
 Studio:
 ```bash
-npx prisma studio --experimental
+npx prisma studio
 ```
 
 

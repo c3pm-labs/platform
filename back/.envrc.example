@@ -3,7 +3,9 @@ export DATABASE_URL=postgresql://postgres:postgres@localhost:5432/postgres?schem
 export PORT=4000
 export ALLOWED_ORIGIN=http://localhost:3000
 export SESSION_SECRET=toto
-export REGISTRY_HOST=localhost
-export REGISTRY_PORT=4444
-export REGISTRY_SECRET=highfive
-export SENDGRID_API_KEY=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
+export FRONTEND_URL=http://localhost:3000
+export REGISTRY_BUCKET_NAME=registry-c3pm-io
+export REGISTRY_SECRET=SECRET
+export REGISTRY_KEY=KEY
+export REGISTRY_URL=http://localhost:4569
+

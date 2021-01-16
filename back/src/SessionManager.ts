@@ -2,6 +2,7 @@ import { PrismaClient, User } from '@prisma/client';
 import { Request } from 'express';
 
 import { AuthenticationError } from './utils/errors';
+import db from './db';
 
 declare module 'express-session' {
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
@@ -15,8 +16,7 @@ export class SessionManager {
 
   req: Request;
 
-  constructor(db: PrismaClient, req: Request) {
-    this.db = db;
+  constructor(req: Request) {
     this.req = req;
   }
 
@@ -31,13 +31,13 @@ export class SessionManager {
   async get(): Promise<User> {
     const { userId } = this.req.session;
     if (this.req.header('Authorization')) {
-      const user = await this.db.user.findUnique({ where: { apiKey: this.req.header('Authorization') } });
+      const user = await db.user.findUnique({ where: { apiKey: this.req.header('Authorization') } });
       if (user) {
         return user;
       }
     }
     if (userId) {
-      const user = await this.db.user.findUnique({ where: { id: userId } });
+      const user = await db.user.findUnique({ where: { id: userId } });
       if (user) {
         return user;
       }
