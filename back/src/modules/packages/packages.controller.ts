@@ -6,6 +6,8 @@ import createContext from '../../rest/createContext';
 
 import * as packagesService from './packages.service';
 
+require('express-async-errors');
+
 const packagesController = Router();
 
 const storage = multer.memoryStorage();
