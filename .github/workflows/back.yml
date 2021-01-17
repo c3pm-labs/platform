@@ -65,8 +65,8 @@ jobs:
         ALLOWED_ORIGIN: http://localhost:3000
         SESSION_SECRET: secret
         REGISTRY_BUCKET_NAME: registry-c3pm-io
-        REGISTRY_SECRET=SECRET
-        REGISTRY_KEY=KEY
+        REGISTRY_SECRET: SECRET
+        REGISTRY_KEY: KEY
         REGISTRY_URL: http://localhost:4569
 
   lint:
