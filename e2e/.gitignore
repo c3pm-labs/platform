@@ -1,5 +1,4 @@
 .idea
 cypress/screenshots
 cypress/videos
-cypress/fixtures
 node_modules

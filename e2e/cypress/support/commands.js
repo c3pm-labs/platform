@@ -58,10 +58,20 @@ Cypress.Commands.add('cliLogin', user => {
         })
 })
 
-Cypress.Commands.add('publish', ({ version, apiKey, name}) => {
-    const args = { version, url: `${Cypress.env('API_URL')}/v1/auth/publish`, apiKey, name };
-    return cy.task('publishPackage', args);
+Cypress.Commands.add('publish', ({ user, version, name }) => {
+    cy.cliLogin(user).then((cliUser) => {
+        const args = {url: `${Cypress.env('API_URL')}/v1/packages/publish`, apiKey: cliUser.apiKey, name, version};
+        return cy.task('publishPackage', args);
+    })
 })
+
+Cypress.Commands.add('createUserAndPublish', ({ version, name }) =>
+    cy.createUser().then((user) => {
+        cy.logout().then(() =>
+            cy.publish({user, name, version}).then(() => user)
+        )
+    })
+)
 
 Cypress.Commands.add('logout', () => {
     const body = {
@@ -96,4 +106,10 @@ Cypress.Commands.add('checkAuthCookie', () => {
         .then((cookies) => {
             expect(cookies[0]).to.have.property('name', 'connect.sid')
         })
+})
+
+Cypress.Commands.add('checkPackageCard', ({ name, version, author }) => {
+    cy.findByTestId(`packageCard-${name}`).should('exist').contains(author)
+    cy.findByTestId(`packageCard-${name}-name`).contains(name).should('have.prop', 'href', `${Cypress.config().baseUrl}/package/${name}`)
+    cy.findByTestId(`packageCard-${name}-version`).contains(version)
 })

@@ -1,4 +1,3 @@
-import { fake } from 'test-data-bot';
 import { buildUser } from '../support/generate';
 
 describe('profile', () => {
@@ -11,13 +10,12 @@ describe('profile', () => {
       cy.findByText('0 package uploaded').should('exist')
     })
   })
-  it.only('should display user packages', () => {
-    cy.createUser().then((user) => {
-      cy.logout()
-      cy.cliLogin(user).then((cliUser) => {
-        cy.publish({ name: fake.name, version: '1.0.0', apiKey: cliUser.apiKey })
-      })
+  it('should display user packages', () => {
+    const p = { name: 'hello', version: '1.0.0' }
+
+    cy.createUserAndPublish(p).then((user) => {
       cy.visit(`/user/${user.id}`)
+      cy.checkPackageCard({ ...p, author: user.username })
     })
   })
 
@@ -27,6 +25,16 @@ describe('profile', () => {
 
       cy.findByPlaceholderText(/username/i).clear().blur()
       cy.get('#username-helper-text').contains("username is a required field")
+    })
+  })
+  it('should update the username', () => {
+    cy.createUser().then((user) => {
+      const newUser = buildUser();
+      cy.visit('/settings')
+
+      cy.findByPlaceholderText(/username/i).clear().type(newUser.username)
+      cy.findByTestId("save-username").click()
+      cy.findByTestId('alert').contains("Infos successfully updated!")
     })
   })
 

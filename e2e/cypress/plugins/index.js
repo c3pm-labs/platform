@@ -5,7 +5,7 @@ const axios = require('axios');
 module.exports = (on) => {
     on('task', {
         publishPackage({ version, url, apiKey, name }) {
-            const lib = fs.createReadStream(`${__dirname}/../fixtures/data/package.tar`);
+            const lib = fs.createReadStream(`${__dirname}/../fixtures/data/${name}.tar`);
             const form = new formData();
             form.append('package', lib, {filename: version});
 
@@ -16,7 +16,7 @@ module.exports = (on) => {
                     version,
                     authorization: apiKey,
                 },
-            })
+            }).then(res => res.status)
         }}
     )
 }
