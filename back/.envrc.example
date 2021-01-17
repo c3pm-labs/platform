@@ -8,3 +8,4 @@ export REGISTRY_BUCKET_NAME=registry-c3pm-io
 export REGISTRY_SECRET=SECRET
 export REGISTRY_KEY=KEY
 export REGISTRY_URL=http://localhost:4569
+

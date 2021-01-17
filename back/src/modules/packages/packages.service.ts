@@ -96,7 +96,7 @@ export async function publish(ctx: Context, file: Express.Multer.File): Promise<
             create:
             {
               version: parsedC3PM.version,
-              readme: readmeBuffer ?? 'There is not readme for this package',
+              readme: readmeBuffer ?? 'There is no readme for this package',
               description: parsedC3PM.description,
               license: parsedC3PM.license,
             },
@@ -119,7 +119,7 @@ export async function publish(ctx: Context, file: Express.Multer.File): Promise<
           create:
           {
             version: parsedC3PM.version,
-            readme: readmeBuffer ?? 'There is not readme for this package',
+            readme: readmeBuffer ?? 'There is no readme for this package',
             description: parsedC3PM.description,
             license: parsedC3PM.license,
           },

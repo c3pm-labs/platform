@@ -153,8 +153,8 @@ function PackageDetails(): JSX.Element {
         <div className={classes.header}>
           <div className={`${classes.spaceBetween} ${classes.line}`}>
             <div className={`${classes.widthAuto} ${!isMobile && classes.line}`}>
-              <h1>{data.version.package.name}</h1>
-              <span className={classes.version}>
+              <h1 data-testid="name">{data.version.package.name}</h1>
+              <span className={classes.version} data-testid="version">
                 v
                 {data.version.version}
               </span>
@@ -172,7 +172,7 @@ function PackageDetails(): JSX.Element {
             <div className={classes.separator} />
             <Link href="/user/[id]" as={`/user/${data.version.package.author.id}`} passHref>
               {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
-              <a className={classes.avatar}>
+              <a className={classes.avatar} data-testid="author">
                 <Avatar
                   user={data.version.package.author}
                   classes={

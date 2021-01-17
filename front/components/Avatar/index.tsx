@@ -66,7 +66,8 @@ function Avatar(props: AvatarProps): JSX.Element {
   return (
     <div className={containerClass}>
       <MuiAvatar
-        alt="author"
+        data-testid="user-avatar"
+        alt="user-avatar"
         src=""
         className={pictureClass}
       >
