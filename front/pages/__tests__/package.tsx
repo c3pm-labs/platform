@@ -1,4 +1,4 @@
-import Search from "../search";
+import PackageDetails from "../package/[...params]";
 import { MockedProvider } from "@apollo/client/testing";
 import React from "react";
 import { render } from "@testing-library/react";
@@ -16,42 +16,44 @@ jest.mock("next/router", () => ({
 
 const useRouter = jest.spyOn(require("next/router"), "useRouter");
 
-test("Search", () => {
+test("PackageDetails", () => {
   const mocks = [];
 
   useRouter.mockImplementation(() => ({
     route: "/yourRoute",
     pathname: "/yourRoute",
-    query: "",
+    query: { pathname: "", params: "math" },
     asPath: "",
   }));
 
+  const props = { _documentProps: "" } as any;
+
   const { container } = render(
     <MockedProvider mocks={mocks} addTypename={false}>
-      <Search />
+      <PackageDetails {...props} />
     </MockedProvider>
   );
 
   expect(container).toMatchInlineSnapshot(`
     <div>
       <div
-        class="makeStyles-container-7"
+        class="makeStyles-container-15"
       >
         <header
-          class="MuiPaper-root MuiAppBar-root MuiAppBar-positionSticky MuiAppBar-colorDefault makeStyles-appBar-8 MuiPaper-elevation0"
+          class="MuiPaper-root MuiAppBar-root MuiAppBar-positionSticky MuiAppBar-colorDefault makeStyles-appBar-16 MuiPaper-elevation0"
         >
           <div
-            class="MuiToolbar-root MuiToolbar-regular makeStyles-container-9 MuiToolbar-gutters"
+            class="MuiToolbar-root MuiToolbar-regular makeStyles-container-17 MuiToolbar-gutters"
           >
             <div
-              class="PrivateHiddenCss-smUp-15"
+              class="PrivateHiddenCss-smUp-23"
             >
               <a
-                class="makeStyles-link-26"
+                class="makeStyles-link-34"
                 href="/"
               >
                 <div
-                  class="makeStyles-logo-28"
+                  class="makeStyles-logo-36"
                 >
                   <img
                     alt="c3pm logo"
@@ -63,14 +65,14 @@ test("Search", () => {
               </a>
             </div>
             <div
-              class="PrivateHiddenCss-xsDown-13"
+              class="PrivateHiddenCss-xsDown-21"
             >
               <a
-                class="makeStyles-link-26"
+                class="makeStyles-link-34"
                 href="/"
               >
                 <div
-                  class="makeStyles-logo-28"
+                  class="makeStyles-logo-36"
                 >
                   <img
                     alt="c3pm logo"
@@ -83,7 +85,7 @@ test("Search", () => {
             </div>
             <form
               action="#"
-              class="makeStyles-search-10"
+              class="makeStyles-search-18"
             >
               <div
                 class="MuiFormControl-root MuiTextField-root MuiFormControl-fullWidth"
@@ -101,11 +103,11 @@ test("Search", () => {
                   />
                   <fieldset
                     aria-hidden="true"
-                    class="PrivateNotchedOutline-root-32 MuiOutlinedInput-notchedOutline"
+                    class="PrivateNotchedOutline-root-40 MuiOutlinedInput-notchedOutline"
                     style="padding-left: 8px;"
                   >
                     <legend
-                      class="PrivateNotchedOutline-legend-33"
+                      class="PrivateNotchedOutline-legend-41"
                       style="width: 0.01px;"
                     >
                       <span>
@@ -120,7 +122,7 @@ test("Search", () => {
             <div>
               <a
                 aria-disabled="false"
-                class="MuiButtonBase-root MuiButton-root MuiButton-outlined makeStyles-default-38 makeStyles-primary-39 makeStyles-primary-43 makeStyles-marginRight-37 MuiButton-disableElevation"
+                class="MuiButtonBase-root MuiButton-root MuiButton-outlined makeStyles-default-46 makeStyles-primary-47 makeStyles-primary-51 makeStyles-marginRight-45 MuiButton-disableElevation"
                 href="/login"
                 tabindex="0"
               >
@@ -135,7 +137,7 @@ test("Search", () => {
               </a>
               <a
                 aria-disabled="false"
-                class="MuiButtonBase-root MuiButton-root MuiButton-contained makeStyles-default-38 makeStyles-primary-39 makeStyles-primary-47 MuiButton-disableElevation"
+                class="MuiButtonBase-root MuiButton-root MuiButton-contained makeStyles-default-46 makeStyles-primary-47 makeStyles-primary-55 MuiButton-disableElevation"
                 href="/register"
                 tabindex="0"
               >
@@ -156,73 +158,73 @@ test("Search", () => {
         </span>
       </div>
       <div
-        class="makeStyles-container-51"
+        class="makeStyles-container-59"
       >
         <div
-          class="makeStyles-textContainer-52"
+          class="makeStyles-textContainer-60"
         >
           <span>
             General Information
           </span>
           <a
-            class="makeStyles-text-53"
+            class="makeStyles-text-61"
             href="https://docs.c3pm.io"
           >
             <p
-              class="MuiTypography-root makeStyles-text-53 MuiTypography-body1"
+              class="MuiTypography-root makeStyles-text-61 MuiTypography-body1"
             >
               Docs
             </p>
           </a>
           <a
-            class="makeStyles-text-53"
+            class="makeStyles-text-61"
             href="https://github.com/c3pm-labs/"
           >
             <p
-              class="MuiTypography-root makeStyles-text-53 MuiTypography-body1"
+              class="MuiTypography-root makeStyles-text-61 MuiTypography-body1"
             >
               Github
             </p>
           </a>
           <a
-            class="makeStyles-text-53"
+            class="makeStyles-text-61"
             href="https://github.com/c3pm-labs/c3pm/releases"
           >
             <p
-              class="MuiTypography-root makeStyles-text-53 MuiTypography-body1"
+              class="MuiTypography-root makeStyles-text-61 MuiTypography-body1"
             >
               Releases
             </p>
           </a>
         </div>
         <div
-          class="makeStyles-textContainer-52"
+          class="makeStyles-textContainer-60"
         >
           <span>
             Contact us
           </span>
           <a
-            class="makeStyles-text-53"
+            class="makeStyles-text-61"
             href="mailto:contact@c3pm.io"
           >
             <p
-              class="MuiTypography-root makeStyles-text-53 MuiTypography-body1"
+              class="MuiTypography-root makeStyles-text-61 MuiTypography-body1"
             >
               contact@c3pm.io
             </p>
           </a>
           <a
-            class="makeStyles-text-53"
+            class="makeStyles-text-61"
             href="https://github.com/c3pm-labs/c3pm/issues/new"
           >
             <p
-              class="MuiTypography-root makeStyles-text-53 MuiTypography-body1"
+              class="MuiTypography-root makeStyles-text-61 MuiTypography-body1"
             >
               Issues
             </p>
           </a>
           <a
-            class="makeStyles-text-53"
+            class="makeStyles-text-61"
             href="/team"
           >
             Team
