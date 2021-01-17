@@ -1,8 +1,13 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { gql } from 'apollo-server-express';
 import faker from 'faker';
+import sgMail from '@sendgrid/mail';
+import { v4 } from 'uuid';
 
 import { createTestContext } from './__helpers__/context';
+
+jest.mock('uuid');
+jest.mock('@sendgrid/mail');
 
 describe('auth', () => {
   const ctx = createTestContext();
@@ -30,6 +35,22 @@ describe('auth', () => {
             }
         }
   `);
+  const forgotPasswordMutation = async (user: { email: string }): Promise<any> => ctx.server.graphql(gql`
+      mutation forgotPassword($email: String!) {
+          forgotPassword(email: $email) {
+              username
+              email
+          }
+      }
+  `, user);
+  const resetPassword = async (user: { token: string, password: string }): Promise<any> => ctx.server.graphql(gql`
+      mutation resetPassword($token: String!, $password: String!) {
+          resetPassword(token: $token, password: $password) {
+              username
+              email
+          }
+      }
+  `, user);
 
   const getGraphqlErrorsCodes = (errors): string[] => errors.map((e) => e?.extensions?.code);
   const userData = {
@@ -38,21 +59,51 @@ describe('auth', () => {
     username: faker.internet.userName(),
   };
 
+  beforeEach(() => {
+    jest.clearAllMocks();
+  });
+
   test('auth flow', async () => {
+    // register
     const { data: { register } } = await registerMutation(userData);
     expect(register).toEqual({ email: userData.email, username: userData.username });
 
+    // logout
     const { data: { logout } } = await logoutMutation();
     expect(logout).toEqual({ email: userData.email, username: userData.username });
 
+    // login with email
     const userWithEmail = { login: userData.email, password: userData.password };
     const { data: { login: loginWithEmail } } = await loginMutation(userWithEmail);
     expect(loginWithEmail).toEqual({ email: userData.email, username: userData.username });
 
     await logoutMutation();
 
-    const userWithUsername = { login: userData.username, password: userData.password };
+    // forgot password
+    const token = 'token';
+    const mockedSgMail = sgMail as jest.Mocked<typeof sgMail>;
+    const mocked = v4 as jest.Mocked<typeof v4>;
+
+    mocked.mockReturnValue('token');
+
+    await forgotPasswordMutation({ email: userData.email });
+
+    expect(mockedSgMail.send).toHaveBeenCalledWith({
+      from: 'contact@c3pm.io',
+      to: userData.email,
+      subject: 'Reset Password',
+      text: 'Click on the link to reset your password',
+      html: `<p>Click <a href='${process.env.FRONTEND_URL}/reset_password?token=${token}'>here</a> to reset your password.</p>`,
+    });
+
+    // reset password
+    const newPassword = faker.internet.password();
+    await resetPassword({ token, password: newPassword });
+
+    // login with username and new password
+    const userWithUsername = { login: userData.username, password: newPassword };
     const { data: { login: loginWithUsername } } = await loginMutation(userWithUsername);
+
     expect(loginWithUsername).toEqual({ email: userData.email, username: userData.username });
   });
 

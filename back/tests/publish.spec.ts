@@ -105,7 +105,7 @@ describe('publish and search', () => {
     const form = new FormData();
     form.append('package', lib, { filename: version });
 
-    return api.post('/v1/auth/publish',
+    return api.post('/v1/packages/publish',
       form,
       {
         headers: {
