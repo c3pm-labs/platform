@@ -7,7 +7,7 @@
   "scripts": {
     "lint": "eslint . --ignore-path=.gitignore",
     "lint:fix": "eslint . --fix --ignore-path=.gitignore",
-    "prefront:start": "cd ../front && npm i && npm build",
+    "prefront:start": "cd ../front && npm i && npm run build",
     "front:start": "cd ../front && npm run start",
     "preback:start": "cd ../back &&  npm i && DATABASE_URL=postgresql://postgres:postgres@localhost:5432/postgres?schema=public npx prisma migrate dev --preview-feature",
     "back:start": "cd ../back && PORT=4000 SESSION_SECRET=toto ALLOWED_ORIGIN=http://localhost:3000 FRONTEND_URL=http://localhost:3000 REGISTRY_BUCKET_NAME=registry-c3pm-io REGISTRY_SECRET=SECRET REGISTRY_KEY=KEY REGISTRY_URL=http://localhost:4569 DATABASE_URL=postgresql://postgres:postgres@localhost:5432/postgres?schema=public npm run dev",
