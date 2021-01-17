@@ -9,7 +9,8 @@ describe('home page', () => {
     cy.findByPlaceholderText(/search\.\.\./i).type('toto\n').url().should('eq', `${Cypress.config().baseUrl}/search?q=toto`);
     cy.findByAltText(/classic-sm c3pm logo/i).click().assertHome();
   });
-  it('should have user navigation when a user is loggedin', () => {
+
+  it('should have user navigation when a user is logged in', () => {
     cy.createUser().then((user) => {
       cy.visit('/');
       cy.findByTestId('user-menu').should('contain', user.username[0]).click();

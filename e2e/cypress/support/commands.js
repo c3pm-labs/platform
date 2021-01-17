@@ -12,7 +12,7 @@ Cypress.Commands.add('createUser', (overrides) => {
     .request({
       url: `${Cypress.env('API_URL')}/graphql`,
       method: 'POST',
-      rbody,
+      body: rbody,
     })
     .then(({ body }) => ({
       ...body.data.register,
@@ -31,7 +31,7 @@ Cypress.Commands.add('login', (user) => {
     .request({
       url: `${Cypress.env('API_URL')}/graphql`,
       method: 'POST',
-      rbody,
+      body: rbody,
     })
     .then(({ body }) => ({
       ...body.data.login,
