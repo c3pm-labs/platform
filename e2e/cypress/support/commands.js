@@ -59,16 +59,16 @@ Cypress.Commands.add('cliLogin', user => {
 })
 
 Cypress.Commands.add('publish', ({ user, version, name }) => {
-    cy.cliLogin(user).then((cliUser) => {
-        const args = {url: `${Cypress.env('API_URL')}/v1/packages/publish`, apiKey: cliUser.apiKey, name, version};
-        return cy.task('publishPackage', args);
-    })
+    const args = {url: `${Cypress.env('API_URL')}/v1/packages/publish`, apiKey: user.apiKey, name, version};
+    return cy.task('publishPackage', args);
 })
 
 Cypress.Commands.add('createUserAndPublish', ({ version, name }) =>
     cy.createUser().then((user) => {
         cy.logout().then(() =>
-            cy.publish({user, name, version}).then(() => user)
+            cy.cliLogin(user).then((cliUser) =>
+                cy.publish({ user: cliUser, name, version}).then(() => ({ ...user, ...cliUser }))
+            )
         )
     })
 )

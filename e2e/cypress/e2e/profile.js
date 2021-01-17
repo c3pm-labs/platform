@@ -11,7 +11,7 @@ describe('profile', () => {
     })
   })
   it('should display user packages', () => {
-    const p = { name: 'hello', version: '1.0.0' }
+    const p = { name: 'sort', version: '1.0.0' }
 
     cy.createUserAndPublish(p).then((user) => {
       cy.visit(`/user/${user.id}`)

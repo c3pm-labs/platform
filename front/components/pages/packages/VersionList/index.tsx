@@ -67,7 +67,7 @@ function VersionList({ versions, packageName }: VersionListProps): JSX.Element {
           )}
           <Link href="/package/[...params]" as={`/package/${packageName}/${v.version}`}>
             {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
-            <a>
+            <a data-testid={`link-to-v${v.version}`}>
               <span className={classes.versionName}>{v.version}</span>
               <div className={classes.separator} />
               <span className={classes.versionDate}>{new Date(v.publishedAt).toDateString()}</span>
