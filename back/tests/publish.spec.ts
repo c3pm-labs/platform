@@ -206,27 +206,4 @@ describe('publish and search', () => {
       },
     });
   });
-
-  test('should throw an error because credentials are invalid', async () => {
-    const api = createAxiosInstance(ctx);
-
-    expect(async () => {
-      await api.post('/v1/auth/login', {
-        login: userData.email,
-        password: faker.internet.password(),
-      });
-    }).rejects.toThrow();
-  });
-
-  test('should throw an error because version of the package already exist', async () => {
-    const api = createAxiosInstance(ctx);
-    const loginRes = await api.post('/v1/auth/login', {
-      login: userData.email,
-      password: userData.password,
-    });
-
-    expect(async () => {
-      await publishPackage(api, loginRes.data.apiKey, '/data/lib.tar', packageName, '1.0.0');
-    }).rejects.toThrow();
-  });
 });
