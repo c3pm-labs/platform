@@ -15,6 +15,9 @@ describe('publish and search', () => {
     password: faker.internet.password(),
     username: faker.internet.userName(),
   };
+  const packageName = 'testLib';
+  const keyword = 'test';
+
   const registerMutation = async (user: { email: string; password: string; username: string }): Promise<any> => ctx.server.graphql(gql`
       mutation Register($email: String!, $username: String!, $password: String!) {
           register(email: $email, username: $username, password: $password) {
@@ -119,8 +122,6 @@ describe('publish and search', () => {
 
   test('publish and search flow', async () => {
     const api = createAxiosInstance(ctx);
-    const packageName = 'testLib';
-    const keyword = 'test';
 
     // register
     await registerMutation(userData);
@@ -204,5 +205,28 @@ describe('publish and search', () => {
         },
       },
     });
+  });
+
+  test('should throw an error because credentials are invalid', async () => {
+    const api = createAxiosInstance(ctx);
+
+    expect(async () => {
+      await api.post('/v1/auth/login', {
+        login: userData.email,
+        password: faker.internet.password(),
+      });
+    }).rejects.toThrow();
+  });
+
+  test('should throw an error because version of the package already exist', async () => {
+    const api = createAxiosInstance(ctx);
+    const loginRes = await api.post('/v1/auth/login', {
+      login: userData.email,
+      password: userData.password,
+    });
+
+    expect(async () => {
+      await publishPackage(api, loginRes.data.apiKey, '/data/lib.tar', packageName, '1.0.0');
+    }).rejects.toThrow();
   });
 });

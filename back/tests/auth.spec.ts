@@ -149,4 +149,11 @@ describe('auth', () => {
     const codes = getGraphqlErrorsCodes(errors);
     expect(codes).toContain('FORBIDDEN');
   });
+
+  test('should throw an error because email is not linked to an account', async () => {
+    const { errors } = await forgotPasswordMutation({ email: faker.internet.email() });
+    const codes = getGraphqlErrorsCodes(errors);
+
+    expect(codes).toContain('BAD_USER_INPUT');
+  });
 });
