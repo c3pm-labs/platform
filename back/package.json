@@ -10,6 +10,8 @@
     "postinstall": "npm -s run generate",
     "dev": "ts-node-dev --no-notify --respawn --transpile-only src/",
     "test": "jest",
+    "test:watch": "jest --watch",
+    "test:cov": "jest --coverage",
     "lint": "eslint . --ext .ts --ignore-path=.gitignore",
     "lint:fix": "eslint . --ext .ts --fix --ignore-path=.gitignore",
     "seed": "ts-node prisma/seed.ts"

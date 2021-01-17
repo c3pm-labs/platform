@@ -77,27 +77,28 @@ export interface ForgotPasswordParams {
 
 export async function forgotPassword(ctx: Context, { email }: ForgotPasswordParams): Promise<User> {
   const token = uuidv4();
-  const user: User = await ctx.db.user.update({
-    where: {
-      email,
-    },
-    data: {
-      resetPasswordToken: token,
-    },
-  });
-  if (!user) {
+
+  try {
+    const user: User = await ctx.db.user.update({
+      where: {
+        email,
+      },
+      data: {
+        resetPasswordToken: token,
+      },
+    });
+    sgMail.setApiKey(process.env.SENDGRID_API_KEY);
+    await sgMail.send({
+      from: 'contact@c3pm.io',
+      to: email,
+      subject: 'Reset Password',
+      text: 'Click on the link to reset your password',
+      html: `<p>Click <a href='${process.env.FRONTEND_URL}/reset_password?token=${token}'>here</a> to reset your password.</p>`,
+    });
+    return user;
+  } catch (e) {
     throw new UserInputError('Invalid email');
   }
-
-  sgMail.setApiKey(process.env.SENDGRID_API_KEY);
-  await sgMail.send({
-    from: 'contact@c3pm.io',
-    to: email,
-    subject: 'Reset Password',
-    text: 'Click on the link to reset your password',
-    html: `<p>Click <a href='${process.env.FRONTEND_URL}/reset_password?token=${token}'>here</a> to reset your password.</p>`,
-  });
-  return user;
 }
 
 export async function resetPassword(ctx: Context, {
