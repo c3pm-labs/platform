@@ -9,7 +9,6 @@ import { Context } from '../context';
 import db from '../db';
 
 import { schema } from './schema';
-import LoggingExtension from './LoggingExtension';
 
 function formatError(err: GraphQLError): Error {
   const { originalError } = err;
@@ -29,7 +28,6 @@ function formatError(err: GraphQLError): Error {
 
 const apolloServer = new ApolloServer({
   schema,
-  extensions: [(): LoggingExtension => new LoggingExtension()],
   context: ({ req }): Context => {
     const session = new SessionManager(req);
     return ({

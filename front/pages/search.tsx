@@ -137,7 +137,7 @@ function Search(): JSX.Element {
     <Layout>
       <Head title="Search" />
       <div className={classes.resultBar}>
-        <Typography variant="body1">
+        <Typography variant="body1" data-testid="number-of-packages">
           {data ? data.search.length : 0}
           {' '}
           packages found

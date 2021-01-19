@@ -4,6 +4,7 @@ import { createHttpLink } from 'apollo-link-http';
 import { DocumentNode, execute, toPromise } from 'apollo-link';
 import fetch from 'isomorphic-fetch';
 import fetchCookie from 'fetch-cookie';
+import axios, { AxiosInstance } from 'axios';
 
 import Server from '../../src/Server';
 
@@ -11,6 +12,7 @@ interface TestServer {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   graphql: (query: DocumentNode, variables?: unknown) => Promise<any>;
   stop: () => void;
+  baseURL: string;
 }
 
 export interface TestContext {
@@ -20,6 +22,7 @@ export interface TestContext {
 function startTestServer(): TestServer {
   const server = new Server();
   const httpServer = server.listen(0);
+  const baseURL = `http://localhost:${(httpServer.address() as AddressInfo).port}`;
 
   const { port } = httpServer.address() as AddressInfo;
 
@@ -39,22 +42,28 @@ function startTestServer(): TestServer {
   return {
     stop,
     graphql,
+    baseURL,
   };
 }
 
 export function createTestContext(): TestContext {
   const ctx: TestContext = { server: {} as TestServer };
 
-  beforeEach(() => {
+  beforeAll(() => {
     const testServer = startTestServer();
 
     ctx.server.graphql = testServer.graphql;
     ctx.server.stop = testServer.stop;
+    ctx.server.baseURL = testServer.baseURL;
   });
 
-  afterEach(async () => {
-    await ctx.server.stop();
+  afterAll(() => {
+    ctx.server.stop();
   });
 
   return ctx;
+}
+
+export function createAxiosInstance(ctx: TestContext): AxiosInstance {
+  return axios.create({ baseURL: ctx.server.baseURL });
 }

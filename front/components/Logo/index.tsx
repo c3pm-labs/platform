@@ -77,7 +77,7 @@ const Logo = ({ type = 'classic', size = null, className }: LogoProps): JSX.Elem
       {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
       <a className={classes.link}>
         <div className={classes.logo}>
-          <img src={src} className={className} alt="c3pm logo" width={dimension.width} height={dimension.height} />
+          <img src={src} className={className} alt={`${type}-${size} c3pm logo`} width={dimension.width} height={dimension.height} />
           { type === 'baseline' && (<Typography className={classes.baseline}>C++ Package Manager</Typography>)}
         </div>
       </a>

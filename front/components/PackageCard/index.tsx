@@ -66,12 +66,12 @@ function PackageCard({ packageData }: PackageCardProps): JSX.Element {
   const date = new Date(latest.publishedAt);
 
   return (
-    <div className={classes.container}>
+    <div className={classes.container} data-testid={`packageCard-${name}`}>
       <div className={classes.top}>
-        <Typography variant="h5">
+        <Typography variant="h5" data-testid={`packageCard-${name}-name`}>
           <TextLink href="/package/[name]" as={`/package/${name}`}>{name}</TextLink>
         </Typography>
-        <Typography variant="h5" color="primary">{latest.version}</Typography>
+        <Typography variant="h5" color="primary" data-testid={`packageCard-${name}-version`}>{latest.version}</Typography>
       </div>
       <div style={{ display: 'flex', flexWrap: 'wrap' }}>
         <Typography color="textPrimary" variant="body1">{latest.description}</Typography>
