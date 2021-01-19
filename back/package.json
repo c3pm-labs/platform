@@ -8,7 +8,7 @@
     "generate:prisma": "prisma generate",
     "generate:nexus": "cross-env NODE_ENV=development ts-node --transpile-only src/graphql/schema",
     "dev": "ts-node-dev --no-notify --respawn --transpile-only src/",
-    "test": "jest",
+    "test": "npm run -s generate:nexus && jest",
     "test:watch": "jest --watch",
     "test:cov": "jest --coverage",
     "lint": "eslint . --ext .ts --ignore-path=.gitignore",
