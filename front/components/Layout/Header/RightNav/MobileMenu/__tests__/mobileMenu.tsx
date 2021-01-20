@@ -1,18 +1,8 @@
 import MobileMenu from "../index";
 import { MockedProvider } from "@apollo/client/testing";
-import TestRenderer from "react-test-renderer";
-import React from "react";
+import { render } from "@testing-library/react";
 
-jest.mock("next/router", () => ({
-  useRouter() {
-    return {
-      route: "/",
-      pathname: "",
-      query: "",
-      asPath: "",
-    };
-  },
-}));
+import React from "react";
 
 const useRouter = jest.spyOn(require("next/router"), "useRouter");
 
@@ -26,30 +16,37 @@ test("Mobile Menu", () => {
     asPath: "",
   }));
 
-  const component = TestRenderer.create(
+  const { container } = render(
     <MockedProvider mocks={mocks} addTypename={false}>
       <MobileMenu />
     </MockedProvider>
   );
 
-  const tree = component.toJSON();
-
-  expect(tree.children).toMatchInlineSnapshot(`
-    Array [
-      <span
-        className="MuiIconButton-label"
+  expect(container).toMatchInlineSnapshot(`
+    <div>
+      <button
+        class="MuiButtonBase-root MuiIconButton-root makeStyles-iconButton-3"
+        tabindex="0"
+        type="button"
       >
-        <svg
-          aria-hidden={true}
-          className="MuiSvgIcon-root makeStyles-icon-4"
-          focusable="false"
-          viewBox="0 0 24 24"
+        <span
+          class="MuiIconButton-label"
         >
-          <path
-            d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"
-          />
-        </svg>
-      </span>,
-    ]
+          <svg
+            aria-hidden="true"
+            class="MuiSvgIcon-root makeStyles-icon-4"
+            focusable="false"
+            viewBox="0 0 24 24"
+          >
+            <path
+              d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"
+            />
+          </svg>
+        </span>
+        <span
+          class="MuiTouchRipple-root"
+        />
+      </button>
+    </div>
   `);
 });

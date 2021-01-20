@@ -3,17 +3,6 @@ import { MockedProvider } from "@apollo/client/testing";
 import React from "react";
 import { render } from "@testing-library/react";
 
-jest.mock("next/router", () => ({
-  useRouter() {
-    return {
-      route: "/",
-      pathname: "",
-      query: "",
-      asPath: "",
-    };
-  },
-}));
-
 const useRouter = jest.spyOn(require("next/router"), "useRouter");
 
 test("404", () => {

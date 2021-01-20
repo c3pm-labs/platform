@@ -1,6 +1,5 @@
 import { render } from "@testing-library/react";
 import MenuItemLink from "../index";
-import makeStyles from "@material-ui/core/styles/makeStyles";
 
 test("Layout MenuItemLink", () => {
   const { container } = render(

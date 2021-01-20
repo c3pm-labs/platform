@@ -1,40 +1,114 @@
 import ProfileInfos from "../index";
-import { MockedProvider } from "@apollo/client/testing";
-import TestRenderer from "react-test-renderer";
 import React from "react";
+import { render } from "@testing-library/react";
+import { User } from "types";
 
-jest.mock("next/router", () => ({
-  useRouter() {
-    return {
-      route: "/",
-      pathname: "",
-      query: "",
-      asPath: "",
-    };
-  },
-}));
-
-const useRouter = jest.spyOn(require("next/router"), "useRouter");
+const useViewer = jest.spyOn(require("hooks/auth"), "useViewer");
 
 test("ProfileInfos", () => {
-  const mocks = [];
 
-  useRouter.mockImplementation(() => ({
-    route: "/yourRoute",
-    pathname: "/yourRoute",
-    query: { pathname: "", params: "math" },
-    asPath: "",
+  useViewer.mockImplementation(() => ({
+    username: "toto",
+    email: "toto@gmail.com",
   }));
 
-  const props = { _documentProps: "" } as any;
-
-  const component = TestRenderer.create(
-    <MockedProvider mocks={mocks} addTypename={false}>
-      <ProfileInfos {...props} />
-    </MockedProvider>
+  const { container } = render(
+    <ProfileInfos
+      user={
+        {
+          username: "toto",
+          email: "toto@gmail.com",
+          description: "FulltStack",
+          id: "12345",
+        } as User
+      }
+      setIsEdit={() => console.log("toto")}
+    />
   );
 
-  const tree = component.toJSON();
+  expect(container).toMatchInlineSnapshot(`
+    <div>
+      <h6
+        class="MuiTypography-root makeStyles-name-1 MuiTypography-subtitle1"
+      >
+        toto
+      </h6>
+      <h6
+        class="MuiTypography-root makeStyles-mail-2 MuiTypography-subtitle1"
+      >
+        toto@gmail.com
+      </h6>
+      <h6
+        class="MuiTypography-root makeStyles-description-3 MuiTypography-subtitle1"
+      >
+        FulltStack
+      </h6>
+      <hr
+        class="MuiDivider-root makeStyles-divider-4"
+      />
+      <h6
+        class="MuiTypography-root makeStyles-nbPackages-5 MuiTypography-subtitle1"
+      >
+        0
+         
+        package
+         
+        uploaded
+      </h6>
+      <button
+        class="MuiButtonBase-root MuiButton-root MuiButton-contained makeStyles-default-6 makeStyles-primary-7 makeStyles-primary-11 MuiButton-disableElevation MuiButton-fullWidth"
+        tabindex="0"
+        type="submit"
+      >
+        <span
+          class="MuiButton-label"
+        >
+          Edit
+        </span>
+        <span
+          class="MuiTouchRipple-root"
+        />
+      </button>
+    </div>
+  `);
+});
 
-  expect(tree.children).toMatchInlineSnapshot(`undefined`);
+test("ProfileInfos no data", () => {
+  useViewer.mockImplementation(() => null);
+
+  const { container } = render(
+    <ProfileInfos user={null} setIsEdit={() => console.log("toto")} />
+  );
+
+  expect(container).toMatchInlineSnapshot(`
+    <div>
+      <h6
+        class="MuiTypography-root makeStyles-name-15 MuiTypography-subtitle1"
+      >
+        error
+      </h6>
+      <h6
+        class="MuiTypography-root makeStyles-mail-16 MuiTypography-subtitle1"
+      >
+        error
+      </h6>
+      <h6
+        class="MuiTypography-root makeStyles-description-17 MuiTypography-subtitle1"
+      >
+        error
+      </h6>
+      <hr
+        class="MuiDivider-root makeStyles-divider-18"
+      />
+      <h6
+        class="MuiTypography-root makeStyles-nbPackages-19 MuiTypography-subtitle1"
+      >
+        0
+         
+        package
+         
+        uploaded
+      </h6>
+    </div>
+  `);
 });
