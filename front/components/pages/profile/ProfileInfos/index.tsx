@@ -1,12 +1,11 @@
 import { Divider, makeStyles, Typography } from '@material-ui/core';
-import { Dispatch, SetStateAction } from 'react';
+import { useRouter } from 'next/router';
 
 import Button from '../../../Button';
 import { User } from '../../../../types';
 import { useViewer } from '../../../../hooks/auth';
 
 export interface ProfileInfosProps {
-  setIsEdit: Dispatch<SetStateAction<boolean>>;
   user: User;
 }
 const useStyles = makeStyles((theme) => ({
@@ -38,7 +37,8 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const ProfileInfos = ({ user, setIsEdit }: ProfileInfosProps): JSX.Element => {
+const ProfileInfos = ({ user }: ProfileInfosProps): JSX.Element => {
+  const router = useRouter();
   const classes = useStyles();
   const CheckUser = (): boolean => {
     const viewer = useViewer();
@@ -83,7 +83,9 @@ const ProfileInfos = ({ user, setIsEdit }: ProfileInfosProps): JSX.Element => {
             variant="contained"
             type="submit"
             fullWidth
-            onClick={(): void => setIsEdit(true)}
+            onClick={(): void => {
+              router.push('/settings');
+            }}
           >
             Edit
           </Button>
