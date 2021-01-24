@@ -38,6 +38,8 @@ const useStyles = makeStyles((theme) => ({
   button: {
     display: 'flex',
     justifyContent: 'center',
+    textDecoration: 'none',
+    marginBottom: theme.spacing(8),
   },
   startLearningButton: {
     textAlign: 'center',
@@ -85,17 +87,17 @@ function Demo(): JSX.Element {
             />
           </div>
         </div>
-        <div className={classes.button}>
+        <a className={classes.button} href="https://docs.c3pm.io/docs/getting_started/install" target="_blank" rel="noopener noreferrer">
           <Button
             color="primary"
             variant="contained"
             size="large"
           >
             <Typography className={classes.startLearningButton}>
-              Start Learning
+              Install c3pm
             </Typography>
           </Button>
-        </div>
+        </a>
 
       </div>
     </Element>
