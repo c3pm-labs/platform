@@ -68,14 +68,14 @@ function Demo(): JSX.Element {
             <InfoCard
               title="C++ made easy"
               description="With c3pm, start your cross-platform project with 0 configuration. It has never been so simple!"
-              textLink="Learn c3pm"
-              link="/"
+              textLink="Learn more about c3pm"
+              link="https://docs.c3pm.io/docs/about"
             />
             <InfoCard
               title="Trivial Dependency management"
               description="c3pm will manage the dependencies for you! No more hours spent installing a simple library: one command and you’re good to go!"
               textLink="View full documentation"
-              link="/"
+              link="https://docs.c3pm.io/"
             />
             <InfoCard
               title="Package sharing"

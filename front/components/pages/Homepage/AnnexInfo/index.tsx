@@ -2,24 +2,23 @@ import {
   makeStyles, Typography, Button,
 } from '@material-ui/core';
 import clsx from 'clsx';
-import Link from 'next/link';
 
 const useStyles = makeStyles((theme) => ({
   container: {
-    minHeight: '60vh',
-    minWidth: '100vw',
-    width: '100vw',
+    height: '30vh',
     display: 'flex',
-    flex: 1,
     flexDirection: 'column',
-    justifyContent: 'space-around',
+    justifyContent: 'space-evenly',
     alignItems: 'center',
     [theme.breakpoints.down('md')]: {
       fontSize: '0.85em',
     },
-    paddingBottom: `${theme.spacing(5)}px`,
-    paddingLeft: `${theme.spacing(2)}px`,
-    paddingRight: `${theme.spacing(2)}px`,
+    marginTop: theme.spacing(5),
+    paddingBottom: theme.spacing(3),
+    '& > a': {
+      textDecoration: 'none',
+    },
+
   },
   defaultStyleText: {
     textAlign: 'center',
@@ -28,10 +27,6 @@ const useStyles = makeStyles((theme) => ({
   styleQuestion: {
     color: theme.palette.text.primary,
     fontSize: '2.5em',
-  },
-  minSpacingFantom: {
-    minHeight: '3em',
-    minWidth: '1.5em',
   },
   getStartedButton: {
     color: 'white',
@@ -44,13 +39,6 @@ const useStyles = makeStyles((theme) => ({
   containerKeepInTouchComponent: {
     width: '80vw',
   },
-  containerLines: {
-    height: '30vh',
-    display: 'flex',
-    flexDirection: 'column',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-  },
 }));
 
 function AnnexInfo(): JSX.Element {
@@ -58,31 +46,25 @@ function AnnexInfo(): JSX.Element {
 
   return (
     <div className={classes.container}>
-      <div className={classes.containerLines}>
-        <Typography className={clsx(classes.styleQuestion, classes.defaultStyleText)}>
-          Install c3pm today.
-        </Typography>
-        <Typography className={clsx(classes.subBaseline, classes.defaultStyleText)}>
-          It’s free and open source.
-        </Typography>
-        <div className={classes.minSpacingFantom} />
-        <Link href="/register">
-          <Button
-            color="primary"
-            variant="contained"
-            size="large"
+      <Typography className={clsx(classes.styleQuestion, classes.defaultStyleText)}>
+        Install c3pm today.
+      </Typography>
+      <a href="https://docs.c3pm.io/docs/getting_started/install">
+        <Button
+          color="primary"
+          variant="contained"
+          size="large"
+        >
+          <Typography
+            className={clsx(
+              classes.getStartedButton,
+              classes.defaultStyleText,
+            )}
           >
-            <Typography
-              className={clsx(
-                classes.getStartedButton,
-                classes.defaultStyleText,
-              )}
-            >
-              Get started
-            </Typography>
-          </Button>
-        </Link>
-      </div>
+            Get started
+          </Typography>
+        </Button>
+      </a>
     </div>
   );
 }
