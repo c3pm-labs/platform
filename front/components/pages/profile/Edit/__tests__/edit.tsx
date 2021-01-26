@@ -61,6 +61,8 @@ test("Edit", () => {
           <label
             class="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink MuiInputLabel-marginDense MuiInputLabel-outlined MuiFormLabel-filled Mui-required Mui-required"
             data-shrink="true"
+            for="username"
+            id="username-label"
           >
             username
             <span
@@ -75,8 +77,10 @@ test("Edit", () => {
             class="MuiInputBase-root MuiOutlinedInput-root MuiInputBase-fullWidth MuiInputBase-formControl MuiInputBase-marginDense MuiOutlinedInput-marginDense"
           >
             <input
+              aria-describedby="username-helper-text"
               aria-invalid="false"
               class="MuiInputBase-input MuiOutlinedInput-input MuiInputBase-inputMarginDense MuiOutlinedInput-inputMarginDense"
+              id="username"
               name="username"
               placeholder="toto"
               required=""
@@ -99,6 +103,7 @@ test("Edit", () => {
           </div>
           <p
             class="MuiFormHelperText-root makeStyles-root-5 MuiFormHelperText-contained MuiFormHelperText-filled Mui-required MuiFormHelperText-marginDense"
+            id="username-helper-text"
           >
             <span>
               ​
@@ -111,6 +116,8 @@ test("Edit", () => {
           <label
             class="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink MuiInputLabel-marginDense MuiInputLabel-outlined MuiFormLabel-filled Mui-required Mui-required"
             data-shrink="true"
+            for="email"
+            id="email-label"
           >
             email
             <span
@@ -125,8 +132,10 @@ test("Edit", () => {
             class="MuiInputBase-root MuiOutlinedInput-root MuiInputBase-fullWidth MuiInputBase-formControl MuiInputBase-marginDense MuiOutlinedInput-marginDense"
           >
             <input
+              aria-describedby="email-helper-text"
               aria-invalid="false"
               class="MuiInputBase-input MuiOutlinedInput-input MuiInputBase-inputMarginDense MuiOutlinedInput-inputMarginDense"
+              id="email"
               name="email"
               placeholder="toto@gmail.com"
               required=""
@@ -149,6 +158,7 @@ test("Edit", () => {
           </div>
           <p
             class="MuiFormHelperText-root makeStyles-root-5 MuiFormHelperText-contained MuiFormHelperText-filled Mui-required MuiFormHelperText-marginDense"
+            id="email-helper-text"
           >
             <span>
               ​
@@ -161,6 +171,8 @@ test("Edit", () => {
           <label
             class="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink MuiInputLabel-marginDense MuiInputLabel-outlined MuiFormLabel-filled"
             data-shrink="true"
+            for="description"
+            id="description-label"
           >
             description
           </label>
@@ -168,8 +180,10 @@ test("Edit", () => {
             class="MuiInputBase-root MuiOutlinedInput-root MuiInputBase-fullWidth MuiInputBase-formControl MuiInputBase-multiline MuiOutlinedInput-multiline MuiInputBase-marginDense MuiOutlinedInput-marginDense"
           >
             <textarea
+              aria-describedby="description-helper-text"
               aria-invalid="false"
               class="MuiInputBase-input MuiOutlinedInput-input MuiInputBase-inputMultiline MuiOutlinedInput-inputMultiline MuiInputBase-inputMarginDense MuiOutlinedInput-inputMarginDense"
+              id="description"
               name="description"
               placeholder="make jokes"
               rows="4"
@@ -191,6 +205,7 @@ test("Edit", () => {
           </div>
           <p
             class="MuiFormHelperText-root makeStyles-root-5 MuiFormHelperText-contained MuiFormHelperText-filled MuiFormHelperText-marginDense"
+            id="description-helper-text"
           >
             <span>
               ​

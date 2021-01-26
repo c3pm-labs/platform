@@ -1,13 +1,12 @@
 /* eslint-disable import/no-extraneous-dependencies */
-import { render } from '@testing-library/react';
+import { render } from "@testing-library/react";
 
-import Home from '../index';
+import Home from "../index";
 
-test('Home', () => {
+test("Home", () => {
   const { container } = render(<Home />);
 
-  expect(container).toMatchInlineSnapshot(
-    `
+  expect(container).toMatchInlineSnapshot(`
     <div>
       <div
         class="makeStyles-container-1"
@@ -26,7 +25,7 @@ test('Home', () => {
                 class="makeStyles-logo-24"
               >
                 <img
-                  alt="c3pm logo"
+                  alt="baseline-xl c3pm logo"
                   height="auto"
                   src="/assets/c3pm.png"
                   width="600"
@@ -50,7 +49,7 @@ test('Home', () => {
                 class="makeStyles-logo-24"
               >
                 <img
-                  alt="c3pm logo"
+                  alt="baseline-lg c3pm logo"
                   height="auto"
                   src="/assets/c3pm.png"
                   width="300"
@@ -286,6 +285,5 @@ test('Home', () => {
         </div>
       </div>
     </div>
-  `,
-  );
+  `);
 });

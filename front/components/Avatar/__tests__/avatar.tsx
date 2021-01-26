@@ -1,18 +1,18 @@
 /* eslint-disable import/no-extraneous-dependencies */
-import react from 'react';
-import { render } from '@testing-library/react';
+import react from "react";
+import { render } from "@testing-library/react";
 
-import Avatar from '../index';
+import Avatar from "../index";
 
 const mockupUser = {
-  id: '414',
-  username: 'Toto',
-  email: 'toto@gmail.com',
+  id: "414",
+  username: "Toto",
+  email: "toto@gmail.com",
   description: "I'm an example",
   packages: [],
 };
 
-test('Avatar', () => {
+test("Avatar", () => {
   const { container } = render(<Avatar user={mockupUser} />);
 
   expect(container).toMatchInlineSnapshot(`
@@ -22,6 +22,7 @@ test('Avatar', () => {
       >
         <div
           class="MuiAvatar-root MuiAvatar-circle makeStyles-picture-2 makeStyles-picture-4 MuiAvatar-colorDefault"
+          data-testid="user-avatar"
         >
           T
         </div>
@@ -37,7 +38,7 @@ test('Avatar', () => {
 
 const mockupUserNoUser = null;
 
-test('Avatar no user', () => {
+test("Avatar no user", () => {
   const { container } = render(<Avatar user={mockupUserNoUser} />);
 
   expect(container).toMatchInlineSnapshot(`
@@ -47,6 +48,7 @@ test('Avatar no user', () => {
       >
         <div
           class="MuiAvatar-root MuiAvatar-circle makeStyles-picture-6 makeStyles-picture-8 MuiAvatar-colorDefault"
+          data-testid="user-avatar"
         >
           <svg
             aria-hidden="true"

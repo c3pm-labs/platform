@@ -37,7 +37,7 @@ test("User Card", () => {
               class="makeStyles-logo-10"
             >
               <img
-                alt="c3pm logo"
+                alt="classic-lg c3pm logo"
                 height="auto"
                 src="/assets/c3pm.png"
                 width="300"
@@ -67,6 +67,8 @@ test("User Card", () => {
               <label
                 class="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-marginDense MuiInputLabel-outlined Mui-required Mui-required"
                 data-shrink="false"
+                for="username"
+                id="username-label"
               >
                 username
                 <span
@@ -81,8 +83,10 @@ test("User Card", () => {
                 class="MuiInputBase-root MuiOutlinedInput-root MuiInputBase-fullWidth MuiInputBase-formControl MuiInputBase-marginDense MuiOutlinedInput-marginDense"
               >
                 <input
+                  aria-describedby="username-helper-text"
                   aria-invalid="false"
                   class="MuiInputBase-input MuiOutlinedInput-input MuiInputBase-inputMarginDense MuiOutlinedInput-inputMarginDense"
+                  id="username"
                   name="username"
                   required=""
                   type="text"
@@ -104,6 +108,7 @@ test("User Card", () => {
               </div>
               <p
                 class="MuiFormHelperText-root makeStyles-root-12 MuiFormHelperText-contained Mui-required MuiFormHelperText-marginDense"
+                id="username-helper-text"
               >
                 <span>
                   ​
@@ -116,6 +121,8 @@ test("User Card", () => {
               <label
                 class="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-marginDense MuiInputLabel-outlined Mui-required Mui-required"
                 data-shrink="false"
+                for="email"
+                id="email-label"
               >
                 email
                 <span
@@ -130,11 +137,13 @@ test("User Card", () => {
                 class="MuiInputBase-root MuiOutlinedInput-root MuiInputBase-fullWidth MuiInputBase-formControl MuiInputBase-marginDense MuiOutlinedInput-marginDense"
               >
                 <input
+                  aria-describedby="email-helper-text"
                   aria-invalid="false"
                   class="MuiInputBase-input MuiOutlinedInput-input MuiInputBase-inputMarginDense MuiOutlinedInput-inputMarginDense"
+                  id="email"
                   name="email"
                   required=""
-                  type="text"
+                  type="email"
                   value=""
                 />
                 <fieldset
@@ -153,6 +162,7 @@ test("User Card", () => {
               </div>
               <p
                 class="MuiFormHelperText-root makeStyles-root-12 MuiFormHelperText-contained Mui-required MuiFormHelperText-marginDense"
+                id="email-helper-text"
               >
                 <span>
                   ​
@@ -165,6 +175,8 @@ test("User Card", () => {
               <label
                 class="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-marginDense MuiInputLabel-outlined Mui-required Mui-required"
                 data-shrink="false"
+                for="password"
+                id="password-label"
               >
                 password
                 <span
@@ -179,8 +191,10 @@ test("User Card", () => {
                 class="MuiInputBase-root MuiOutlinedInput-root MuiInputBase-fullWidth MuiInputBase-formControl MuiInputBase-adornedEnd MuiOutlinedInput-adornedEnd MuiInputBase-marginDense MuiOutlinedInput-marginDense"
               >
                 <input
+                  aria-describedby="password-helper-text"
                   aria-invalid="false"
                   class="MuiInputBase-input MuiOutlinedInput-input MuiInputBase-inputAdornedEnd MuiOutlinedInput-inputAdornedEnd MuiInputBase-inputMarginDense MuiOutlinedInput-inputMarginDense"
+                  id="password"
                   name="password"
                   required=""
                   type="password"
@@ -230,6 +244,7 @@ test("User Card", () => {
               </div>
               <p
                 class="MuiFormHelperText-root makeStyles-root-12 MuiFormHelperText-contained Mui-required MuiFormHelperText-marginDense"
+                id="password-helper-text"
               >
                 <span>
                   ​

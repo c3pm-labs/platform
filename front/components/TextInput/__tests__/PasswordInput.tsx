@@ -37,6 +37,7 @@ test("PasswordInput", () => {
             <input
               aria-invalid="false"
               class="MuiInputBase-input MuiOutlinedInput-input MuiInputBase-inputTypeSearch MuiInputBase-inputMarginDense MuiOutlinedInput-inputMarginDense"
+              id="search"
               name="search"
               placeholder="search..."
               type="search"
@@ -94,8 +95,10 @@ test("PasswordInput disableHelperText false", () => {
             class="MuiInputBase-root MuiOutlinedInput-root MuiInputBase-fullWidth MuiInputBase-formControl MuiInputBase-marginDense MuiOutlinedInput-marginDense"
           >
             <input
+              aria-describedby="search-helper-text"
               aria-invalid="false"
               class="MuiInputBase-input MuiOutlinedInput-input MuiInputBase-inputTypeSearch MuiInputBase-inputMarginDense MuiOutlinedInput-inputMarginDense"
+              id="search"
               name="search"
               placeholder="search..."
               type="search"
@@ -118,6 +121,7 @@ test("PasswordInput disableHelperText false", () => {
           </div>
           <p
             class="MuiFormHelperText-root makeStyles-root-6 MuiFormHelperText-contained MuiFormHelperText-marginDense"
+            id="search-helper-text"
           >
             <span>
               ​

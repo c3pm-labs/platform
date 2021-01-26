@@ -1,9 +1,9 @@
 /* eslint-disable import/no-extraneous-dependencies */
-import { render } from '@testing-library/react';
+import { render } from "@testing-library/react";
 
-import Logo from '../index';
+import Logo from "../index";
 
-test('Logo baseline xl', () => {
+test("Logo baseline xl", () => {
   const { container } = render(<Logo type="baseline" size="xl" />);
 
   expect(container).toMatchInlineSnapshot(`
@@ -16,7 +16,7 @@ test('Logo baseline xl', () => {
           class="makeStyles-logo-3"
         >
           <img
-            alt="c3pm logo"
+            alt="baseline-xl c3pm logo"
             height="auto"
             src="/assets/c3pm.png"
             width="600"
@@ -32,7 +32,7 @@ test('Logo baseline xl', () => {
   `);
 });
 
-test('Logo baseline md', () => {
+test("Logo baseline md", () => {
   const { container } = render(<Logo type="baseline" size="md" />);
 
   expect(container).toMatchInlineSnapshot(`
@@ -45,7 +45,7 @@ test('Logo baseline md', () => {
           class="makeStyles-logo-7"
         >
           <img
-            alt="c3pm logo"
+            alt="baseline-md c3pm logo"
             height="auto"
             src="/assets/c3pm.png"
             width="200"
@@ -61,7 +61,7 @@ test('Logo baseline md', () => {
   `);
 });
 
-test('Logo baseline lg', () => {
+test("Logo baseline lg", () => {
   const { container } = render(<Logo type="baseline" size="lg" />);
 
   expect(container).toMatchInlineSnapshot(`
@@ -74,7 +74,7 @@ test('Logo baseline lg', () => {
           class="makeStyles-logo-11"
         >
           <img
-            alt="c3pm logo"
+            alt="baseline-lg c3pm logo"
             height="auto"
             src="/assets/c3pm.png"
             width="300"
@@ -90,7 +90,7 @@ test('Logo baseline lg', () => {
   `);
 });
 
-test('Logo baseline sm', () => {
+test("Logo baseline sm", () => {
   const { container } = render(<Logo type="baseline" size="sm" />);
 
   expect(container).toMatchInlineSnapshot(`
@@ -103,7 +103,7 @@ test('Logo baseline sm', () => {
           class="makeStyles-logo-15"
         >
           <img
-            alt="c3pm logo"
+            alt="baseline-sm c3pm logo"
             height="auto"
             src="/assets/c3pm.png"
             width="100"
@@ -119,7 +119,7 @@ test('Logo baseline sm', () => {
   `);
 });
 
-test('Logo no size no type', () => {
+test("Logo no size no type", () => {
   const { container } = render(<Logo />);
 
   expect(container).toMatchInlineSnapshot(`
@@ -132,7 +132,7 @@ test('Logo no size no type', () => {
           class="makeStyles-logo-19"
         >
           <img
-            alt="c3pm logo"
+            alt="classic-null c3pm logo"
             height="auto"
             src="/assets/c3pm.png"
             width="100%"
@@ -143,7 +143,7 @@ test('Logo no size no type', () => {
   `);
 });
 
-test('Logo mini xl', () => {
+test("Logo mini xl", () => {
   const { container } = render(<Logo type="mini" size="xl" />);
 
   expect(container).toMatchInlineSnapshot(`
@@ -156,7 +156,7 @@ test('Logo mini xl', () => {
           class="makeStyles-logo-23"
         >
           <img
-            alt="c3pm logo"
+            alt="mini-xl c3pm logo"
             height="200"
             src="/assets/c3pm_3.png"
             width="auto"
@@ -167,7 +167,7 @@ test('Logo mini xl', () => {
   `);
 });
 
-test('Logo mini md', () => {
+test("Logo mini md", () => {
   const { container } = render(<Logo type="mini" size="md" />);
 
   expect(container).toMatchInlineSnapshot(`
@@ -180,7 +180,7 @@ test('Logo mini md', () => {
           class="makeStyles-logo-27"
         >
           <img
-            alt="c3pm logo"
+            alt="mini-md c3pm logo"
             height="80"
             src="/assets/c3pm_3.png"
             width="auto"
@@ -191,7 +191,7 @@ test('Logo mini md', () => {
   `);
 });
 
-test('Logo mini lg', () => {
+test("Logo mini lg", () => {
   const { container } = render(<Logo type="mini" size="lg" />);
 
   expect(container).toMatchInlineSnapshot(`
@@ -204,7 +204,7 @@ test('Logo mini lg', () => {
           class="makeStyles-logo-31"
         >
           <img
-            alt="c3pm logo"
+            alt="mini-lg c3pm logo"
             height="100"
             src="/assets/c3pm_3.png"
             width="auto"
@@ -215,7 +215,7 @@ test('Logo mini lg', () => {
   `);
 });
 
-test('Logo mini sm', () => {
+test("Logo mini sm", () => {
   const { container } = render(<Logo type="mini" size="sm" />);
 
   expect(container).toMatchInlineSnapshot(`
@@ -228,7 +228,7 @@ test('Logo mini sm', () => {
           class="makeStyles-logo-35"
         >
           <img
-            alt="c3pm logo"
+            alt="mini-sm c3pm logo"
             height="40"
             src="/assets/c3pm_3.png"
             width="auto"
@@ -239,7 +239,7 @@ test('Logo mini sm', () => {
   `);
 });
 
-test('Logo mini no size', () => {
+test("Logo mini no size", () => {
   const { container } = render(<Logo type="mini" />);
 
   expect(container).toMatchInlineSnapshot(`
@@ -252,7 +252,7 @@ test('Logo mini no size', () => {
           class="makeStyles-logo-39"
         >
           <img
-            alt="c3pm logo"
+            alt="mini-null c3pm logo"
             height="auto"
             src="/assets/c3pm_3.png"
             width="auto"

@@ -45,12 +45,14 @@ test("PackageCard", () => {
     <div>
       <div
         class="makeStyles-container-1"
+        data-testid="packageCard-"
       >
         <div
           class="makeStyles-top-2"
         >
           <h5
             class="MuiTypography-root MuiTypography-h5"
+            data-testid="packageCard--name"
           >
             <a
               class="MuiTypography-root MuiLink-root MuiLink-underlineAlways MuiTypography-colorPrimary"
@@ -59,6 +61,7 @@ test("PackageCard", () => {
           </h5>
           <h5
             class="MuiTypography-root MuiTypography-h5 MuiTypography-colorPrimary"
+            data-testid="packageCard--version"
           >
             0.2
           </h5>
@@ -85,6 +88,7 @@ test("PackageCard", () => {
           >
             <div
               class="MuiAvatar-root MuiAvatar-circle makeStyles-picture-9 makeStyles-picture-11 makeStyles-avatar-6 MuiAvatar-colorDefault"
+              data-testid="user-avatar"
             >
               B
             </div>

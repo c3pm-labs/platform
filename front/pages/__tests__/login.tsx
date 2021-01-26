@@ -30,14 +30,14 @@ test("Login", () => {
           class="makeStyles-rowContainer-3"
         >
           <a
-            class="makeStyles-link-8"
+            class="makeStyles-link-9"
             href="/"
           >
             <div
-              class="makeStyles-logo-10"
+              class="makeStyles-logo-11"
             >
               <img
-                alt="c3pm logo"
+                alt="classic-lg c3pm logo"
                 height="auto"
                 src="/assets/c3pm.png"
                 width="300"
@@ -67,6 +67,8 @@ test("Login", () => {
               <label
                 class="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-marginDense MuiInputLabel-outlined Mui-required Mui-required"
                 data-shrink="false"
+                for="login"
+                id="login-label"
               >
                 email or username
                 <span
@@ -81,8 +83,10 @@ test("Login", () => {
                 class="MuiInputBase-root MuiOutlinedInput-root MuiInputBase-fullWidth MuiInputBase-formControl MuiInputBase-marginDense MuiOutlinedInput-marginDense"
               >
                 <input
+                  aria-describedby="login-helper-text"
                   aria-invalid="false"
                   class="MuiInputBase-input MuiOutlinedInput-input MuiInputBase-inputMarginDense MuiOutlinedInput-inputMarginDense"
+                  id="login"
                   name="login"
                   required=""
                   type="text"
@@ -90,10 +94,10 @@ test("Login", () => {
                 />
                 <fieldset
                   aria-hidden="true"
-                  class="PrivateNotchedOutline-root-13 MuiOutlinedInput-notchedOutline"
+                  class="PrivateNotchedOutline-root-14 MuiOutlinedInput-notchedOutline"
                 >
                   <legend
-                    class="PrivateNotchedOutline-legendLabelled-15"
+                    class="PrivateNotchedOutline-legendLabelled-16"
                   >
                     <span>
                       email or username
@@ -103,7 +107,8 @@ test("Login", () => {
                 </fieldset>
               </div>
               <p
-                class="MuiFormHelperText-root makeStyles-root-12 MuiFormHelperText-contained Mui-required MuiFormHelperText-marginDense"
+                class="MuiFormHelperText-root makeStyles-root-13 MuiFormHelperText-contained Mui-required MuiFormHelperText-marginDense"
+                id="login-helper-text"
               >
                 <span>
                   ​
@@ -116,6 +121,8 @@ test("Login", () => {
               <label
                 class="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-marginDense MuiInputLabel-outlined Mui-required Mui-required"
                 data-shrink="false"
+                for="password"
+                id="password-label"
               >
                 password
                 <span
@@ -130,8 +137,10 @@ test("Login", () => {
                 class="MuiInputBase-root MuiOutlinedInput-root MuiInputBase-fullWidth MuiInputBase-formControl MuiInputBase-adornedEnd MuiOutlinedInput-adornedEnd MuiInputBase-marginDense MuiOutlinedInput-marginDense"
               >
                 <input
+                  aria-describedby="password-helper-text"
                   aria-invalid="false"
                   class="MuiInputBase-input MuiOutlinedInput-input MuiInputBase-inputAdornedEnd MuiOutlinedInput-inputAdornedEnd MuiInputBase-inputMarginDense MuiOutlinedInput-inputMarginDense"
+                  id="password"
                   name="password"
                   required=""
                   type="password"
@@ -142,7 +151,7 @@ test("Login", () => {
                 >
                   <button
                     aria-label="toggle password visibility"
-                    class="MuiButtonBase-root MuiIconButton-root makeStyles-root-17 MuiIconButton-edgeEnd"
+                    class="MuiButtonBase-root MuiIconButton-root makeStyles-root-18 MuiIconButton-edgeEnd"
                     tabindex="0"
                     type="button"
                   >
@@ -167,10 +176,10 @@ test("Login", () => {
                 </div>
                 <fieldset
                   aria-hidden="true"
-                  class="PrivateNotchedOutline-root-13 MuiOutlinedInput-notchedOutline"
+                  class="PrivateNotchedOutline-root-14 MuiOutlinedInput-notchedOutline"
                 >
                   <legend
-                    class="PrivateNotchedOutline-legendLabelled-15"
+                    class="PrivateNotchedOutline-legendLabelled-16"
                   >
                     <span>
                       password
@@ -180,7 +189,8 @@ test("Login", () => {
                 </fieldset>
               </div>
               <p
-                class="MuiFormHelperText-root makeStyles-root-12 MuiFormHelperText-contained Mui-required MuiFormHelperText-marginDense"
+                class="MuiFormHelperText-root makeStyles-root-13 MuiFormHelperText-contained Mui-required MuiFormHelperText-marginDense"
+                id="password-helper-text"
               >
                 <span>
                   ​
@@ -188,7 +198,7 @@ test("Login", () => {
               </p>
             </div>
             <button
-              class="MuiButtonBase-root MuiButton-root MuiButton-contained makeStyles-default-18 makeStyles-primary-19 makeStyles-primary-23 MuiButton-disableElevation MuiButton-fullWidth"
+              class="MuiButtonBase-root MuiButton-root MuiButton-contained makeStyles-default-19 makeStyles-primary-20 makeStyles-primary-24 MuiButton-disableElevation MuiButton-fullWidth"
               tabindex="0"
               type="submit"
             >
@@ -202,6 +212,12 @@ test("Login", () => {
               />
             </button>
           </form>
+          <a
+            class="MuiTypography-root MuiLink-root MuiLink-underlineAlways makeStyles-forgotPassword-8 MuiTypography-colorPrimary"
+            href="/forgot_password"
+          >
+            Forgot password?
+          </a>
           <span
             class="MuiTypography-root makeStyles-register-7 MuiTypography-caption"
           >

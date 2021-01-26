@@ -32,6 +32,7 @@ test("UserCard", () => {
       <button
         aria-haspopup="true"
         class="makeStyles-card-1"
+        data-testid="user-menu"
         type="button"
       >
         <div
@@ -39,6 +40,7 @@ test("UserCard", () => {
         >
           <div
             class="MuiAvatar-root MuiAvatar-circle makeStyles-picture-9 makeStyles-picture-11 makeStyles-avatar-6 MuiAvatar-colorDefault"
+            data-testid="user-avatar"
           >
             T
           </div>

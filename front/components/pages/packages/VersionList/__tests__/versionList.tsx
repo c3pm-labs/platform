@@ -1,26 +1,26 @@
 /* eslint-disable import/no-extraneous-dependencies */
-import { render } from '@testing-library/react';
+import { render } from "@testing-library/react";
 
-import VersionList from '../index';
+import VersionList from "../index";
 
-test('VersionList', () => {
+test("VersionList", () => {
   const mockVersions = [
     {
-      version: '0.1.5',
-      publishedAt: '10:04:1999',
-      description: 'hot fix',
-      readme: 'blablabla',
+      version: "0.1.5",
+      publishedAt: "10:04:1999",
+      description: "hot fix",
+      readme: "blablabla",
     },
     {
-      version: '0.2.5',
-      publishedAt: '10:04:1999',
-      description: 'hot fix',
-      readme: 'blablabla',
+      version: "0.2.5",
+      publishedAt: "10:04:1999",
+      description: "hot fix",
+      readme: "blablabla",
     },
   ];
 
   const { container } = render(
-    <VersionList versions={mockVersions} packageName="math" />,
+    <VersionList versions={mockVersions} packageName="math" />
   );
 
   expect(container).toMatchInlineSnapshot(`
@@ -36,6 +36,7 @@ test('VersionList', () => {
           :
         </h2>
         <a
+          data-testid="link-to-v0.2.5"
           href="/package/math/0.2.5"
         >
           <span
@@ -53,6 +54,7 @@ test('VersionList', () => {
           </span>
         </a>
         <a
+          data-testid="link-to-v0.1.5"
           href="/package/math/0.1.5"
         >
           <span

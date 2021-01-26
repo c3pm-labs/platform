@@ -37,8 +37,10 @@ test("PasswordInput", () => {
             class="MuiInputBase-root MuiOutlinedInput-root MuiInputBase-formControl MuiInputBase-adornedEnd MuiOutlinedInput-adornedEnd MuiInputBase-marginDense MuiOutlinedInput-marginDense"
           >
             <input
+              aria-describedby="password-helper-text"
               aria-invalid="false"
               class="MuiInputBase-input MuiOutlinedInput-input MuiInputBase-inputAdornedEnd MuiOutlinedInput-inputAdornedEnd MuiInputBase-inputMarginDense MuiOutlinedInput-inputMarginDense"
+              id="password"
               name="password"
               type="password"
               value=""
@@ -88,6 +90,7 @@ test("PasswordInput", () => {
           </div>
           <p
             class="MuiFormHelperText-root makeStyles-root-2 MuiFormHelperText-contained MuiFormHelperText-marginDense"
+            id="password-helper-text"
           >
             <span>
               ​

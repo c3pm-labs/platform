@@ -43,7 +43,7 @@ test("Search", () => {
                   class="makeStyles-logo-28"
                 >
                   <img
-                    alt="c3pm logo"
+                    alt="mini-sm c3pm logo"
                     height="40"
                     src="/assets/c3pm_3.png"
                     width="auto"
@@ -62,7 +62,7 @@ test("Search", () => {
                   class="makeStyles-logo-28"
                 >
                   <img
-                    alt="c3pm logo"
+                    alt="classic-sm c3pm logo"
                     height="auto"
                     src="/assets/c3pm.png"
                     width="100"
@@ -83,6 +83,7 @@ test("Search", () => {
                   <input
                     aria-invalid="false"
                     class="MuiInputBase-input MuiOutlinedInput-input MuiInputBase-inputTypeSearch MuiInputBase-inputMarginDense MuiOutlinedInput-inputMarginDense"
+                    id="search"
                     name="search"
                     placeholder="search..."
                     type="search"
