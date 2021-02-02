@@ -10,8 +10,8 @@ test('404', () => {
   const mocks = [];
 
   useRouter.mockImplementation(() => ({
-    route: '/yourRoute',
-    pathname: '/yourRoute',
+    route: '',
+    pathname: '',
     query: '',
     asPath: '',
   }));

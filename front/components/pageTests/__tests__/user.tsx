@@ -10,8 +10,8 @@ test('User', () => {
   const mocks = [];
 
   useRouter.mockImplementation(() => ({
-    route: '/yourRoute',
-    pathname: '/yourRoute',
+    route: '',
+    pathname: '',
     query: { pathname: '', params: 'math' },
     asPath: '',
   }));

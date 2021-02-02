@@ -13,8 +13,8 @@ test('UserCard', () => {
   const mocks = [];
 
   useRouter.mockImplementation(() => ({
-    route: '/yourRoute',
-    pathname: '/yourRoute',
+    route: '',
+    pathname: '',
     query: '',
     asPath: '',
   }));
@@ -37,8 +37,8 @@ test('UserCard no viewer', () => {
   const mocks = [];
 
   useRouter.mockImplementation(() => ({
-    route: '/yourRoute',
-    pathname: '/yourRoute',
+    route: '',
+    pathname: '',
     query: '',
     asPath: '',
   }));

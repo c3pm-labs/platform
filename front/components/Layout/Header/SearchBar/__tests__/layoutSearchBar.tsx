@@ -11,8 +11,8 @@ test('Layout', () => {
   const mocks = [];
 
   useRouter.mockImplementation(() => ({
-    route: '/yourRoute',
-    pathname: '/yourRoute',
+    route: '',
+    pathname: '',
     query: '',
     asPath: '',
   }));

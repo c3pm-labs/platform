@@ -54,6 +54,7 @@ const Button = React.forwardRef(({
   variant, children, className, color = 'primary', disabled = false, ...props
 }: ButtonProps, ref: React.Ref<HTMLButtonElement>): JSX.Element => {
   const classes = useStyles({ variant, disabled, color });
+  
   return (
     <MuiButton
       className={clsx(classes.default, classes[color], className)}

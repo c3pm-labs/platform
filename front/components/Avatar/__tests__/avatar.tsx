@@ -13,7 +13,6 @@ const mockupUser = {
 test('Avatar', () => {
   const { container } = render(<Avatar user={mockupUser} />);
 
-  // eslint-disable-next-line
   expect(container).toMatchSnapshot();
 });
 
@@ -22,6 +21,5 @@ const mockupUserNoUser = null;
 test('Avatar no user', () => {
   const { container } = render(<Avatar user={mockupUserNoUser} />);
 
-  // eslint-disable-next-line
   expect(container).toMatchSnapshot();
 });
