@@ -1,32 +1,19 @@
-import { render } from "@testing-library/react";
-import MenuItemLink from "../index";
+import { render } from '@testing-library/react';
 
-test("Layout MenuItemLink", () => {
+import MenuItemLink from '../index';
+
+test('Layout MenuItemLink', () => {
   const { container } = render(
     <MenuItemLink
-      className={""}
-      onClick={() => console.log("close")}
+      className=""
+      // eslint-disable-next-line no-console
+      onClick={() => console.log('close')}
       href="/user/[params]"
-      as={`/user/10`}
+      as="/user/10"
     >
       toto
-    </MenuItemLink>
+    </MenuItemLink>,
   );
 
-  expect(container).toMatchInlineSnapshot(`
-    <div>
-      <a
-        aria-disabled="false"
-        class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button"
-        href="/user/10"
-        role="menuitem"
-        tabindex="-1"
-      >
-        toto
-        <span
-          class="MuiTouchRipple-root"
-        />
-      </a>
-    </div>
-  `);
+  expect(container).toMatchSnapshot();
 });

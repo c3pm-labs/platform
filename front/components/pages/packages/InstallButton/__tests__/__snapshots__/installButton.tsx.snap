@@ -1,0 +1,14 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`InstallButton 1`] = `
+<div>
+  <button
+    class="makeStyles-add-1"
+    title="copy"
+    type="button"
+  >
+    $ 
+    ctpm add Math
+  </button>
+</div>
+`;

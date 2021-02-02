@@ -1,0 +1,13 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`TabPanel 1`] = `
+<div>
+  <div
+    aria-labelledby="simple-tab-1"
+    id="simple-tabpanel-1"
+    role="tabpanel"
+  >
+    toto
+  </div>
+</div>
+`;

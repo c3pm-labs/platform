@@ -1,0 +1,18 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Layout MenuItemLink 1`] = `
+<div>
+  <a
+    aria-disabled="false"
+    class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button"
+    href="/user/10"
+    role="menuitem"
+    tabindex="-1"
+  >
+    toto
+    <span
+      class="MuiTouchRipple-root"
+    />
+  </a>
+</div>
+`;

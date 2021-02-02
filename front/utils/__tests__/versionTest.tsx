@@ -1,5 +1,3 @@
-/* eslint-disable import/no-extraneous-dependencies */
-
 import { sortVersion, getLastVersion } from 'utils/version';
 
 test('SortVersion', () => {
