@@ -59,6 +59,7 @@ exports[`Profile 1`] = `
         </div>
         <button
           class="MuiButtonBase-root MuiButton-root MuiButton-contained makeStyles-default-12 makeStyles-primary-13 makeStyles-primary-17 makeStyles-button-5 MuiButton-disableElevation"
+          data-testid="save-username"
           tabindex="0"
           type="submit"
         >
@@ -122,6 +123,7 @@ exports[`Profile 1`] = `
         </div>
         <button
           class="MuiButtonBase-root MuiButton-root MuiButton-contained makeStyles-default-12 makeStyles-primary-13 makeStyles-primary-21 makeStyles-button-5 MuiButton-disableElevation"
+          data-testid="save-email"
           tabindex="0"
           type="submit"
         >
@@ -176,6 +178,7 @@ exports[`Profile 1`] = `
         </div>
         <button
           class="MuiButtonBase-root MuiButton-root MuiButton-contained makeStyles-default-12 makeStyles-primary-13 makeStyles-primary-25 makeStyles-button-5 MuiButton-disableElevation"
+          data-testid="save-description"
           tabindex="0"
           type="submit"
         >

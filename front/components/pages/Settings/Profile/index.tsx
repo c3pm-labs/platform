@@ -135,7 +135,7 @@ function Profile(): JSX.Element {
               placeholder="username"
               fullWidth
             />
-            <Button type="submit" variant="contained" color="primary" className={classes.button}>
+            <Button type="submit" variant="contained" color="primary" className={classes.button} data-testid="save-username">
               Save
             </Button>
           </div>
@@ -147,7 +147,7 @@ function Profile(): JSX.Element {
               placeholder="email"
               fullWidth
             />
-            <Button type="submit" variant="contained" color="primary" className={classes.button}>
+            <Button type="submit" variant="contained" color="primary" className={classes.button} data-testid="save-email">
               Save
             </Button>
           </div>
@@ -162,14 +162,14 @@ function Profile(): JSX.Element {
               disableHelperText
               rows={6}
             />
-            <Button type="submit" variant="contained" color="primary" className={classes.button}>
+            <Button type="submit" variant="contained" color="primary" className={classes.button} data-testid="save-description">
               Save
             </Button>
           </div>
         </Form>
       </Formik>
       <Snackbar open={isOpen} autoHideDuration={6000} onClose={() => setIsOpen(false)} anchorOrigin={{ vertical: 'top', horizontal: 'right' }}>
-        <Alert onClose={() => setIsOpen(false)} severity={snackbar.type}>
+        <Alert onClose={() => setIsOpen(false)} severity={snackbar.type} data-testid="alert">
           {snackbar.message}
         </Alert>
       </Snackbar>
