@@ -1,0 +1,195 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Profile 1`] = `
+<div>
+  <div
+    class="makeStyles-container-1"
+  >
+    <form
+      action="#"
+      class="makeStyles-form-2"
+    >
+      <span
+        class="makeStyles-title-4"
+      >
+        Username :
+      </span>
+      <div
+        class="makeStyles-line-3"
+      >
+        <div
+          class="MuiFormControl-root MuiTextField-root MuiFormControl-fullWidth"
+        >
+          <div
+            class="MuiInputBase-root MuiOutlinedInput-root MuiInputBase-fullWidth MuiInputBase-formControl MuiInputBase-marginDense MuiOutlinedInput-marginDense"
+          >
+            <input
+              aria-describedby="username-helper-text"
+              aria-invalid="false"
+              class="MuiInputBase-input MuiOutlinedInput-input MuiInputBase-inputMarginDense MuiOutlinedInput-inputMarginDense"
+              id="username"
+              name="username"
+              placeholder="username"
+              type="text"
+              value="toto"
+            />
+            <fieldset
+              aria-hidden="true"
+              class="PrivateNotchedOutline-root-8 MuiOutlinedInput-notchedOutline"
+              style="padding-left: 8px;"
+            >
+              <legend
+                class="PrivateNotchedOutline-legend-9"
+                style="width: 0.01px;"
+              >
+                <span>
+                  ​
+                </span>
+              </legend>
+            </fieldset>
+          </div>
+          <p
+            class="MuiFormHelperText-root makeStyles-root-7 MuiFormHelperText-contained MuiFormHelperText-filled MuiFormHelperText-marginDense"
+            id="username-helper-text"
+          >
+            <span>
+              ​
+            </span>
+          </p>
+        </div>
+        <button
+          class="MuiButtonBase-root MuiButton-root MuiButton-contained makeStyles-default-12 makeStyles-primary-13 makeStyles-primary-17 makeStyles-button-5 MuiButton-disableElevation"
+          tabindex="0"
+          type="submit"
+        >
+          <span
+            class="MuiButton-label"
+          >
+            Save
+          </span>
+          <span
+            class="MuiTouchRipple-root"
+          />
+        </button>
+      </div>
+      <span
+        class="makeStyles-title-4"
+      >
+        Email :
+      </span>
+      <div
+        class="makeStyles-line-3"
+      >
+        <div
+          class="MuiFormControl-root MuiTextField-root MuiFormControl-fullWidth"
+        >
+          <div
+            class="MuiInputBase-root MuiOutlinedInput-root MuiInputBase-fullWidth MuiInputBase-formControl MuiInputBase-marginDense MuiOutlinedInput-marginDense"
+          >
+            <input
+              aria-describedby="email-helper-text"
+              aria-invalid="false"
+              class="MuiInputBase-input MuiOutlinedInput-input MuiInputBase-inputMarginDense MuiOutlinedInput-inputMarginDense"
+              id="email"
+              name="email"
+              placeholder="email"
+              type="email"
+              value="tata"
+            />
+            <fieldset
+              aria-hidden="true"
+              class="PrivateNotchedOutline-root-8 MuiOutlinedInput-notchedOutline"
+              style="padding-left: 8px;"
+            >
+              <legend
+                class="PrivateNotchedOutline-legend-9"
+                style="width: 0.01px;"
+              >
+                <span>
+                  ​
+                </span>
+              </legend>
+            </fieldset>
+          </div>
+          <p
+            class="MuiFormHelperText-root makeStyles-root-7 MuiFormHelperText-contained MuiFormHelperText-filled MuiFormHelperText-marginDense"
+            id="email-helper-text"
+          >
+            <span>
+              ​
+            </span>
+          </p>
+        </div>
+        <button
+          class="MuiButtonBase-root MuiButton-root MuiButton-contained makeStyles-default-12 makeStyles-primary-13 makeStyles-primary-21 makeStyles-button-5 MuiButton-disableElevation"
+          tabindex="0"
+          type="submit"
+        >
+          <span
+            class="MuiButton-label"
+          >
+            Save
+          </span>
+          <span
+            class="MuiTouchRipple-root"
+          />
+        </button>
+      </div>
+      <span
+        class="makeStyles-title-4"
+      >
+        Description :
+      </span>
+      <div
+        class="makeStyles-column-6"
+      >
+        <div
+          class="MuiFormControl-root MuiTextField-root MuiFormControl-fullWidth"
+        >
+          <div
+            class="MuiInputBase-root MuiOutlinedInput-root MuiInputBase-fullWidth MuiInputBase-formControl MuiInputBase-multiline MuiOutlinedInput-multiline MuiInputBase-marginDense MuiOutlinedInput-marginDense"
+          >
+            <textarea
+              aria-invalid="false"
+              class="MuiInputBase-input MuiOutlinedInput-input MuiInputBase-inputMultiline MuiOutlinedInput-inputMultiline MuiInputBase-inputMarginDense MuiOutlinedInput-inputMarginDense"
+              id="description"
+              name="description"
+              placeholder="description"
+              rows="6"
+            />
+            <fieldset
+              aria-hidden="true"
+              class="PrivateNotchedOutline-root-8 MuiOutlinedInput-notchedOutline"
+              style="padding-left: 8px;"
+            >
+              <legend
+                class="PrivateNotchedOutline-legend-9"
+                style="width: 0.01px;"
+              >
+                <span>
+                  ​
+                </span>
+              </legend>
+            </fieldset>
+          </div>
+          
+        </div>
+        <button
+          class="MuiButtonBase-root MuiButton-root MuiButton-contained makeStyles-default-12 makeStyles-primary-13 makeStyles-primary-25 makeStyles-button-5 MuiButton-disableElevation"
+          tabindex="0"
+          type="submit"
+        >
+          <span
+            class="MuiButton-label"
+          >
+            Save
+          </span>
+          <span
+            class="MuiTouchRipple-root"
+          />
+        </button>
+      </div>
+    </form>
+  </div>
+</div>
+`;

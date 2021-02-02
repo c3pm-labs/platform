@@ -1,13 +1,12 @@
 import { MockedProvider } from '@apollo/client/testing';
-import { render } from '@testing-library/react';
 import React from 'react';
-
-import Register from '../register';
+import { render } from '@testing-library/react';
+import FourZeroFour from 'pages/404';
 
 // eslint-disable-next-line
 const useRouter = jest.spyOn(require('next/router'), 'useRouter');
 
-test('User Card', () => {
+test('404', () => {
   const mocks = [];
 
   useRouter.mockImplementation(() => ({
@@ -19,7 +18,7 @@ test('User Card', () => {
 
   const { container } = render(
     <MockedProvider mocks={mocks} addTypename={false}>
-      <Register />
+      <FourZeroFour />
     </MockedProvider>,
   );
 

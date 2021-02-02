@@ -7,8 +7,6 @@ module.exports = {
   collectCoverageFrom: [
     '**/components/**/*.ts',
     '**/components/**/*.tsx',
-    '**/pages/**/*.ts',
-    '**/pages/**/*.tsx',
     '**/utils/**/*.ts',
     '**/utils/**/*.tsx',
     '!**/*.stories.tsx',
@@ -16,10 +14,10 @@ module.exports = {
   ],
   coverageThreshold: {
     global: {
-      statements: 1,
-      branches: 1,
-      functions: 1,
-      lines: 1
+      statements: 80,
+      branches: 80,
+      functions: 75,
+      lines: 80
     }
   },
   watchPlugins: [

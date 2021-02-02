@@ -15,7 +15,7 @@ exports[`PackageCard 1`] = `
       >
         <a
           class="MuiTypography-root MuiLink-root MuiLink-underlineAlways MuiTypography-colorPrimary"
-          href="/package/"
+          href="/package"
         />
       </h5>
       <h5

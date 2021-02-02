@@ -1,25 +1,26 @@
 import { MockedProvider } from '@apollo/client/testing';
-import { render } from '@testing-library/react';
 import React from 'react';
-
-import Login from '../login';
+import { render } from '@testing-library/react';
+import Profile from 'pages/user/[params]';
 
 // eslint-disable-next-line
 const useRouter = jest.spyOn(require('next/router'), 'useRouter');
 
-test('Login', () => {
+test('User', () => {
   const mocks = [];
 
   useRouter.mockImplementation(() => ({
     route: '/yourRoute',
     pathname: '/yourRoute',
-    query: '',
+    query: { pathname: '', params: 'math' },
     asPath: '',
   }));
 
+  const props = { _documentProps: '' };
+
   const { container } = render(
     <MockedProvider mocks={mocks} addTypename={false}>
-      <Login />
+      <Profile {...props} />
     </MockedProvider>,
   );
 

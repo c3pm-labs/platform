@@ -1,23 +1,12 @@
 import { MockedProvider } from '@apollo/client/testing';
-import TestRenderer from 'react-test-renderer';
 import React from 'react';
+import { render } from '@testing-library/react';
+import UserCard from 'pages/index';
 
-import App from '../_app';
-
-jest.mock('next/router', () => ({
-  useRouter() {
-    return {
-      route: '/',
-      pathname: '',
-      query: '',
-      asPath: '',
-    };
-  },
-}));
 // eslint-disable-next-line
 const useRouter = jest.spyOn(require('next/router'), 'useRouter');
 
-test('App', () => {
+test('User Card', () => {
   const mocks = [];
 
   useRouter.mockImplementation(() => ({
@@ -27,13 +16,11 @@ test('App', () => {
     asPath: '',
   }));
 
-  const component = TestRenderer.create(
+  const { container } = render(
     <MockedProvider mocks={mocks} addTypename={false}>
-      <App Component="" pageProps="" />
+      <UserCard />
     </MockedProvider>,
   );
 
-  const tree = component.toJSON();
-
-  expect(tree.children).toMatchSnapshot();
+  expect(container).toMatchSnapshot();
 });

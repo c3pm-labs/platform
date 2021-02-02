@@ -1,25 +1,22 @@
 import { MockedProvider } from '@apollo/client/testing';
-import React from 'react';
 import { render } from '@testing-library/react';
 
-import FourZeroFour from '../404';
+import Profile from '../index';
 
 // eslint-disable-next-line
-const useRouter = jest.spyOn(require('next/router'), 'useRouter');
+const useViewer = jest.spyOn(require('hooks/auth'), 'useViewer');
 
-test('404', () => {
+test('Profile', () => {
   const mocks = [];
 
-  useRouter.mockImplementation(() => ({
-    route: '/yourRoute',
-    pathname: '/yourRoute',
-    query: '',
-    asPath: '',
+  useViewer.mockImplementation(() => ({
+    username: 'toto',
+    email: 'tata',
   }));
 
   const { container } = render(
     <MockedProvider mocks={mocks} addTypename={false}>
-      <FourZeroFour />
+      <Profile />
     </MockedProvider>,
   );
 

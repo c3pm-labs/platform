@@ -1,8 +1,7 @@
 import { MockedProvider } from '@apollo/client/testing';
 import React from 'react';
 import { render } from '@testing-library/react';
-
-import PackageDetails from '../package/[...params]';
+import PackageDetails from 'pages/package/[...params]';
 
 // eslint-disable-next-line
 const useRouter = jest.spyOn(require('next/router'), 'useRouter');
