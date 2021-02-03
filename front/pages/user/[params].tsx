@@ -4,7 +4,7 @@ import {
 } from '@material-ui/core';
 import { useRouter } from 'next/router';
 import ErrorPage from 'next/error';
-import { useUser } from 'hooks/user';
+import { Status, useUser } from 'hooks/user';
 import { getDataFromTree } from '@apollo/react-ssr';
 
 import withApollo from 'utils/withApollo';
@@ -106,9 +106,8 @@ function Profile(): JSX.Element {
   const router = useRouter();
   const user = useUser({ id: String(router.query.params) });
 
-  if (!user) {
-    return (<ErrorPage statusCode={404} />);
-  }
+  if (Status.LOADING) return (<></>);
+  if (Status.NO_USER) return (<ErrorPage statusCode={404} />);
 
   return (
     <>
