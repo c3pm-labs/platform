@@ -3,7 +3,6 @@ import {
   makeStyles, Typography, Box,
 } from '@material-ui/core';
 import { useRouter } from 'next/router';
-import ErrorPage from 'next/error';
 import { Status, useUser } from 'hooks/user';
 import { getDataFromTree } from '@apollo/react-ssr';
 
@@ -106,8 +105,14 @@ function Profile(): JSX.Element {
   const router = useRouter();
   const user = useUser({ id: String(router.query.params) });
 
-  if (Status.LOADING) return (<></>);
-  if (Status.NO_USER) return (<ErrorPage statusCode={404} />);
+  if (user === Status.LOADING) {
+    return (<></>);
+  }
+
+  if (user === Status.NO_USER) {
+    router.push({ pathname: '/404' });
+    return (<></>);
+  }
 
   return (
     <>
