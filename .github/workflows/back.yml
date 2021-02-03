@@ -43,9 +43,19 @@ jobs:
         ports:
           - 5432:5432
       s3:
-        image: gliffy/fake-s3
+        image: 'localstack/localstack'
         ports:
-          - 4569:4569
+        - 4566:4566
+        env:
+          REGISTRY_BUCKET_NAME: registry-c3pm-io
+          SERVICES: s3
+        options: >-
+          --health-cmd "awslocal s3 ls"
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+        volumes:
+        - ./scripts/localstack:/docker-entrypoint-initaws.d
 
     steps:
     - uses: actions/checkout@v2
@@ -56,7 +66,6 @@ jobs:
     - name: npm install and test
       working-directory: ./back
       run: |
-        curl "http://localhost:4569/registry-c3pm-io" -X PUT
         npm ci
         npm test
       env:
@@ -67,7 +76,7 @@ jobs:
         REGISTRY_BUCKET_NAME: registry-c3pm-io
         REGISTRY_SECRET: SECRET
         REGISTRY_KEY: KEY
-        REGISTRY_URL: http://localhost:4569
+        REGISTRY_URL: http://localhost:4566
 
   lint:
     runs-on: ubuntu-latest

@@ -15,15 +15,16 @@ services:
       retries: 5
 
   db-migrations:
+    image: c3pm/back/prod
     build:
       context: back
-      dockerfile: dev.Dockerfile
+      dockerfile: prod.Dockerfile
     environment:
       DATABASE_URL: postgresql://postgres:postgres@db:5432/postgres
     volumes:
       - ./back:/home/node/app
       - back-node_modules:/home/node/app/node_modules
-    command: npx prisma migrate dev --preview-feature
+    command: npx prisma migrate deploy --preview-feature
     depends_on:
       db:
         condition: service_healthy
@@ -44,9 +45,10 @@ services:
       - ./scripts/localstack:/docker-entrypoint-initaws.d
 
   back:
+    image: c3pm/back/prod
     build:
       context: back
-      dockerfile: dev.Dockerfile
+      dockerfile: prod.Dockerfile
     ports:
       - 4000:4000
     environment:
@@ -60,7 +62,6 @@ services:
       REGISTRY_KEY: key
       REGISTRY_URL: http://localstack:4566
     volumes:
-      - ./back:/home/node/app
       - back-node_modules:/home/node/app/node_modules
     depends_on:
       localstack:
@@ -71,13 +72,13 @@ services:
         condition: service_started
 
   front:
+    image: c3pm/front/prod
     build:
       context: front
-      dockerfile: dev.Dockerfile
+      dockerfile: prod.Dockerfile
     ports:
       - 3000:3000
     volumes:
-      - ./front:/home/node/app
       - front-node_modules:/home/node/app/node_modules
 
 volumes:

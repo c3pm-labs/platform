@@ -7,14 +7,8 @@
   "scripts": {
     "lint": "eslint . --ignore-path=.gitignore",
     "lint:fix": "eslint . --fix --ignore-path=.gitignore",
-    "prefront:start": "cd ../front && npm i && npm run build",
-    "front:start": "cd ../front && npm run start",
-    "preback:start": "cd ../back &&  npm i && DATABASE_URL=postgresql://postgres:postgres@localhost:5432/postgres?schema=public npx prisma migrate dev --preview-feature",
-    "back:start": "cd ../back && PORT=4000 SESSION_SECRET=toto ALLOWED_ORIGIN=http://localhost:3000 FRONTEND_URL=http://localhost:3000 REGISTRY_BUCKET_NAME=registry-c3pm-io REGISTRY_SECRET=SECRET REGISTRY_KEY=KEY REGISTRY_URL=http://localhost:4569 DATABASE_URL=postgresql://postgres:postgres@localhost:5432/postgres?schema=public npm run dev",
-    "cy:run": "cypress run",
-    "cy:open": "cypress open",
-    "cypress": "start-test front:start 3000 back:start 4000 cy:run",
-    "cypress:dev": "start-test front:start 3000 back:start 4000 cy:open"
+    "test": "cypress run",
+    "test:dev": "cypress open"
   },
   "author": "",
   "license": "ISC",
@@ -32,7 +26,6 @@
     "eslint-config-airbnb-base": "^14.2.1",
     "eslint-plugin-cypress": "^2.11.2",
     "eslint-plugin-import": "^2.22.1",
-    "start-server-and-test": "^1.11.6",
     "typescript": "3.9.7"
   }
 }
