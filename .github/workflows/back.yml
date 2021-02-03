@@ -50,12 +50,11 @@ jobs:
           REGISTRY_BUCKET_NAME: registry-c3pm-io
           SERVICES: s3
         options: >-
+          --name c3pm-s3
           --health-cmd "awslocal s3 ls"
           --health-interval 10s
           --health-timeout 5s
           --health-retries 5
-        volumes:
-        - ./scripts/localstack:/docker-entrypoint-initaws.d
 
     steps:
     - uses: actions/checkout@v2
@@ -63,6 +62,8 @@ jobs:
       uses: actions/setup-node@v1
       with:
         node-version: 12.x
+    - name: setup s3
+      run: docker exec -it c3pm-s3 "awslocal s3 mb s3://registry-c3pm-io"
     - name: npm install and test
       working-directory: ./back
       run: |
