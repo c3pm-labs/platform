@@ -62,7 +62,7 @@ jobs:
       with:
         node-version: 12.x
     - name: setup s3
-      run: docker exec -i ${{ job.services.s3.id }} "awslocal s3 mb s3://registry-c3pm-io"
+      run: curl "http://localhost:4566/registry-c3pm-io" -X PUT
     - name: npm install and test
       working-directory: ./back
       run: |
