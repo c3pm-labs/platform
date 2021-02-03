@@ -63,7 +63,7 @@ jobs:
       with:
         node-version: 12.x
     - name: setup s3
-      run: docker exec c3pm-s3 "awslocal s3 mb s3://registry-c3pm-io"
+      run: docker exec c3pm-s3 "bash -c 'awslocal s3 mb s3://registry-c3pm-io'"
     - name: npm install and test
       working-directory: ./back
       run: |
