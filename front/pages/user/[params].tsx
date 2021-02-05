@@ -10,6 +10,7 @@ import withApollo from 'utils/withApollo';
 import Head from 'components/Head';
 import Layout from 'components/Layout';
 
+import PageNotFound from '../404';
 import Avatar from '../../components/Avatar';
 import Edit from '../../components/pages/profile/Edit';
 import ProfileInfos from '../../components/pages/profile/ProfileInfos';
@@ -110,8 +111,7 @@ function Profile(): JSX.Element {
   }
 
   if (user === Status.NO_USER) {
-    router.push({ pathname: '/404' });
-    return (<></>);
+    return (<PageNotFound />);
   }
 
   return (

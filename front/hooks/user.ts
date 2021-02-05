@@ -20,7 +20,7 @@ export function useUser({ id }: UseUserProps): User | Status {
     return Status.LOADING;
   }
 
-  if (error || !data) {
+  if (error || !data || !data.user) {
     return Status.NO_USER;
   }
 
