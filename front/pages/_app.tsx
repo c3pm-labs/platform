@@ -17,7 +17,10 @@ function App({ Component, pageProps }: AppProps): JSX.Element {
 
   return (
     <ThemeProvider theme={theme}>
-      <Head><title>c3pm</title></Head>
+      <Head>
+        <title>c3pm</title>
+        <meta name="viewport" content="minimum-scale=1, initial-scale=1, width=device-width" />
+      </Head>
       <CssBaseline />
       <Component {...pageProps} />
     </ThemeProvider>
