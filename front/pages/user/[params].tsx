@@ -3,14 +3,14 @@ import {
   makeStyles, Typography, Box,
 } from '@material-ui/core';
 import { useRouter } from 'next/router';
-import ErrorPage from 'next/error';
-import { useUser } from 'hooks/user';
+import { Status, useUser } from 'hooks/user';
 import { getDataFromTree } from '@apollo/react-ssr';
 
 import withApollo from 'utils/withApollo';
 import Head from 'components/Head';
 import Layout from 'components/Layout';
 
+import PageNotFound from '../404';
 import Avatar from '../../components/Avatar';
 import ProfileInfos from '../../components/pages/profile/ProfileInfos';
 import PackageCard from '../../components/PackageCard';
@@ -104,8 +104,12 @@ function Profile(): JSX.Element {
   const router = useRouter();
   const user = useUser({ id: String(router.query.params) });
 
-  if (!user) {
-    return (<ErrorPage statusCode={404} />);
+  if (user === Status.LOADING) {
+    return (<></>);
+  }
+
+  if (user === Status.NO_USER) {
+    return (<PageNotFound />);
   }
 
   return (

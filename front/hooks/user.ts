@@ -6,13 +6,22 @@ export interface UseUserProps {
   id: string;
 }
 
-export function useUser({ id }: UseUserProps): User {
+export enum Status {
+  NO_USER = 'noUser',
+  LOADING = 'loading',
+}
+
+export function useUser({ id }: UseUserProps): User | Status {
   const { data, loading, error } = useQuery<{ user: User }>(USER, {
     variables: { id },
   });
 
-  if (loading || error || !data) {
-    return null;
+  if (loading) {
+    return Status.LOADING;
+  }
+
+  if (error || !data || !data.user) {
+    return Status.NO_USER;
   }
 
   return data.user;
