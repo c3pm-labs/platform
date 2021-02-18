@@ -8,7 +8,6 @@ import { makeStyles, useTheme } from '@material-ui/core/styles';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
-import ErrorPage from 'next/error';
 import { Version } from 'types';
 import { PACKAGE_FROM_VERSION } from 'queries';
 
@@ -20,6 +19,7 @@ import TabPanel from 'components/pages/packages/TabPanel';
 import MarkdownDisplayer from 'components/pages/packages/MarkdownDisplayer';
 import VersionList from 'components/pages/packages/VersionList';
 
+import PageNotFound from '../404';
 import Avatar from '../../components/Avatar';
 
 const useStyles = makeStyles((theme) => ({
@@ -143,7 +143,7 @@ function PackageDetails(): JSX.Element {
     );
   }
   if (error) {
-    return (<ErrorPage statusCode={404} />);
+    return (<PageNotFound />);
   }
 
   return (
