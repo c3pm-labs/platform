@@ -2,6 +2,7 @@ import {
   makeStyles, Typography, Button,
 } from '@material-ui/core';
 import { Element } from 'react-scroll';
+import Image from 'next/image'
 
 import InfoCard from './InfoCard';
 
@@ -63,7 +64,9 @@ function Demo(): JSX.Element {
           Why c3pm ?
         </Typography>
         <div className={classes.container}>
-          <img className={classes.demoGif} src="/assets/demo.gif" alt="demogif" />
+          <div className={classes.demoGif}>
+            <Image width={861} height={536} src="/assets/demo.gif" alt="demogif" />
+          </div>
           <div className={classes.infoCard}>
             <InfoCard
               title="C++ made easy"

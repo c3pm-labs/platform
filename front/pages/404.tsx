@@ -1,6 +1,7 @@
 import { makeStyles } from '@material-ui/core/styles';
 import { Typography, Hidden } from '@material-ui/core';
 import { useRouter } from 'next/router';
+import Image from 'next/image'
 
 import Layout from 'components/Layout';
 import withApollo from 'utils/withApollo';
@@ -59,10 +60,12 @@ function PageNotFound(): JSX.Element {
       <Head title="c3pm" />
       <div className={classes.Container}>
         <Hidden implementation="css" smUp>
-          <img className={classes.NotFoundSvg} src="/assets/404mini.svg" alt="404" />
+          <div className={classes.NotFoundSvg}>
+            <Image width={550} height={400} src="/assets/404mini.svg" alt="404" />
+          </div>
         </Hidden>
         <Hidden implementation="css" xsDown>
-          <img className={classes.NotFoundSvg} src="/assets/404.svg" alt="404" />
+            <Image className={classes.NotFoundSvg} width={650} height={200} src="/assets/404.svg" alt="404" />
         </Hidden>
         <Typography className={classes.StylePageNotFound} variant="body2">Page Not Found</Typography>
         <div className={classes.InvisibleDiv} />
