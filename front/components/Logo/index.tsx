@@ -1,7 +1,7 @@
 import { Typography } from '@material-ui/core';
 import makeStyles from '@material-ui/core/styles/makeStyles';
 import Link from 'next/link';
-import Image from 'next/image'
+import Image from 'next/image';
 
 function getFontSize(size: string): number {
   if (size === 'xl') {
@@ -16,9 +16,13 @@ function getFontSize(size: string): number {
 
 function getSize(type: string, size: string): { width: number | string; height: number | string} {
   let width: string | number = 'auto';
-  let height: string | number = 'auto';
+  let height = 160;
 
+  if (type === 'classic') {
+    height = 50;
+  }
   if (type === 'mini') {
+    width = 40;
     if (size === 'xl') {
       height = 200;
     } else if (size === 'lg') {
@@ -28,11 +32,12 @@ function getSize(type: string, size: string): { width: number | string; height: 
     } else if (size === 'sm') {
       height = 40;
     } else {
-      height = 'auto';
+      height = 50;
     }
   } else if (size === 'xl') {
-    width = 600;
+    width = 500;
   } else if (size === 'lg') {
+    height = 100;
     width = 300;
   } else if (size === 'md') {
     width = 200;
@@ -78,7 +83,7 @@ const Logo = ({ type = 'classic', size = null, className }: LogoProps): JSX.Elem
       {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
       <a className={classes.link}>
         <div className={classes.logo}>
-          <img src={src} className={className} alt={`${type}-${size} c3pm logo`} width={dimension.width} height={dimension.height} />
+          <Image layout="intrinsic" src={src} className={className} width={dimension.width} height={dimension.height} />
           { type === 'baseline' && (<Typography className={classes.baseline}>C++ Package Manager</Typography>)}
         </div>
       </a>

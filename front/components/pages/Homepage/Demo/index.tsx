@@ -2,7 +2,7 @@ import {
   makeStyles, Typography, Button,
 } from '@material-ui/core';
 import { Element } from 'react-scroll';
-import Image from 'next/image'
+import Image from 'next/image';
 
 import InfoCard from './InfoCard';
 
