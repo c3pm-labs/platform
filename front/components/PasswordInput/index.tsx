@@ -29,6 +29,7 @@ const PasswordInput = (props: PasswordInputProps): JSX.Element => {
   <InputAdornment position="end">
     <IconButton
       aria-label="toggle password visibility"
+      data-testid="iconPasswordVisibility"
       onClick={handleClickShowPassword}
       edge="end"
       className={classes.root}

@@ -9,8 +9,13 @@ module.exports = {
     '**/components/**/*.tsx',
     '**/utils/**/*.ts',
     '**/utils/**/*.tsx',
+    '!**/utils/validation.ts',
+    '!**/utils/theme.ts',
+    '!**/utils/withApollo.tsx',
     '!**/*.stories.tsx',
-    '!**/pages/_document.tsx',
+    '!**/pages/**/*.tsx',
+    '!**/pages/**/*.ts',
+    '!**/components/pages/**/*.tsx',
   ],
   coverageThreshold: {
     global: {

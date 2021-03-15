@@ -48,6 +48,7 @@ exports[`Security 1`] = `
               <button
                 aria-label="toggle password visibility"
                 class="MuiButtonBase-root MuiIconButton-root makeStyles-root-7 MuiIconButton-edgeEnd"
+                data-testid="iconPasswordVisibility"
                 tabindex="0"
                 type="button"
               >
@@ -123,6 +124,7 @@ exports[`Security 1`] = `
               <button
                 aria-label="toggle password visibility"
                 class="MuiButtonBase-root MuiIconButton-root makeStyles-root-7 MuiIconButton-edgeEnd"
+                data-testid="iconPasswordVisibility"
                 tabindex="0"
                 type="button"
               >

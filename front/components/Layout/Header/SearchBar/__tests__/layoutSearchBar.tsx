@@ -1,6 +1,7 @@
 import React from 'react';
 import { MockedProvider } from '@apollo/client/testing';
-import { render } from '@testing-library/react';
+import { render, fireEvent, screen } from '@testing-library/react';
+import userEvent from '@testing-library/user-event'
 
 import SearchBar from '../index';
 
@@ -13,15 +14,20 @@ test('Layout', () => {
   useRouter.mockImplementation(() => ({
     route: '',
     pathname: '',
-    query: '',
+    query: { q: 'math' },
     asPath: '',
   }));
 
-  const { container } = render(
+  const { container, getByTestId } = render(
     <MockedProvider mocks={mocks} addTypename={false}>
       <SearchBar />
     </MockedProvider>,
   );
 
+  const input = screen.getByTestId('SearchBarInput');
+
+  // userEvent.type(input, 'math');
+  // expect(input).toHaveValue('math');
+  fireEvent.submit(input);
   expect(container).toMatchSnapshot();
 });

@@ -4,6 +4,7 @@ exports[`Layout 1`] = `
 <div>
   <form
     action="#"
+    data-testid="SearchBarInput"
   >
     <div
       class="MuiFormControl-root MuiTextField-root MuiFormControl-fullWidth"
@@ -18,7 +19,7 @@ exports[`Layout 1`] = `
           name="search"
           placeholder="search..."
           type="search"
-          value=""
+          value="math"
         />
         <fieldset
           aria-hidden="true"

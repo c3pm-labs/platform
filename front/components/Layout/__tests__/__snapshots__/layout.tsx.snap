@@ -52,6 +52,7 @@ exports[`Layout 1`] = `
         <form
           action="#"
           class="makeStyles-search-4"
+          data-testid="SearchBarInput"
         >
           <div
             class="MuiFormControl-root MuiTextField-root MuiFormControl-fullWidth"
