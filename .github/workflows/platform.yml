@@ -19,7 +19,7 @@ jobs:
     - name: Launch docker compose
       working-directory: ./
       run: |
-        docker-compose -f docker-compose.prod.yml up -d
+        docker-compose -f docker-compose.prod.yml up --build -d
     - name: Install dependencies and test E2E
       working-directory: ./e2e
       run: |
