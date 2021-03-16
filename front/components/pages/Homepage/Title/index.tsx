@@ -57,10 +57,10 @@ function Title(): JSX.Element {
   return (
     <div className={classes.container}>
       <div className={classes.containerMainInfo}>
-        <Hidden implementation="css" mdDown>
+        <Hidden implementation="css" xsDown>
           <Logo type="baseline" size="xl" />
         </Hidden>
-        <Hidden implementation="css" lgUp>
+        <Hidden implementation="css" smUp>
           <Logo type="baseline" size="lg" />
         </Hidden>
         <div className={classes.minSpacingFantom} />

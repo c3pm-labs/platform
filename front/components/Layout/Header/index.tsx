@@ -42,7 +42,7 @@ function Header(): JSX.Element {
     >
       <Toolbar className={classes.container}>
         <Hidden implementation="css" smUp>
-          <Logo type="mini" size="sm" />
+          <Logo type="mini" />
         </Hidden>
         <Hidden implementation="css" xsDown>
           <Logo type="classic" size="sm" />
