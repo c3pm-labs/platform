@@ -24,15 +24,15 @@ jobs:
       working-directory: ./e2e
       run: |
         docker run -p 4569:4569 -d --name s3 gliffy/fake-s3
-    - name: Sleep for 30 seconds
+    - name: Sleep for 10 seconds
       uses: jakejarvis/wait-action@master
       with:
-        time: '15s'
+        time: '10s'
     - name: start test E2E
       working-directory: ./e2e
       run: |
         curl "http://localhost:4569/c3pm-registry-io" -X PUT
         npm ci
-        npm run cypress
+        npm run test
       env:
         CI: true
