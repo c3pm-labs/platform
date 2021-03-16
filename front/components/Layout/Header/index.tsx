@@ -1,4 +1,4 @@
-import { Hidden } from '@material-ui/core';
+import { Hidden, Typography } from '@material-ui/core';
 import useScrollTrigger from '@material-ui/core/useScrollTrigger';
 import { makeStyles } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
@@ -19,6 +19,13 @@ const useStyles = makeStyles((theme) => ({
     justifyContent: 'space-between',
     width: '100%',
   },
+  links: {
+    display: 'flex',
+    justifyContent: 'flex-end',
+    borderBottom: `1px solid ${theme.palette.grey[300]}`,
+    padding: `0px ${theme.spacing(3)}px`,
+    '& > a': { textDecoration: 'none' },
+  },
   search: {
     maxWidth: 480,
     flex: 1,
@@ -27,6 +34,14 @@ const useStyles = makeStyles((theme) => ({
       margin: `0 ${theme.spacing(2)}px`,
     },
   },
+  text: {
+    textDecoration: 'none',
+    fontSize: 14,
+    color: theme.palette.grey[700],
+    textAlign: 'left',
+    margin: '0px 4px',
+  },
+
 }));
 
 function Header(): JSX.Element {
@@ -40,6 +55,23 @@ function Header(): JSX.Element {
       position="sticky"
       color="default"
     >
+      <div className={classes.links}>
+        <a
+          target="_blank"
+          rel="noopener noreferrer"
+          href="https://docs.c3pm.io"
+        >
+          <Typography className={classes.text}>Docs</Typography>
+        </a>
+        <Typography className={classes.text}>•</Typography>
+        <a
+          target="_blank"
+          rel="noopener noreferrer"
+          href="https://github.com/c3pm-labs/"
+        >
+          <Typography className={classes.text}>Github</Typography>
+        </a>
+      </div>
       <Toolbar className={classes.container}>
         <Hidden implementation="css" smUp>
           <Logo type="mini" size="sm" />

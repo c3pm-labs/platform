@@ -53,7 +53,6 @@ const team = [
     name: 'Chloé Bourbion',
     avatar: '37622266?s=460&u=d785567e52d1d10ca755a0ff5c8252ecfd851a15&v=4',
     links: [
-      { name: 'linkedin', link: 'https://www.linkedin.com/in/chlo%C3%A9-bourbion-0a7452156/' },
       { name: 'github', link: 'https://github.com/chloebourbion' },
     ],
   },
