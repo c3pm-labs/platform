@@ -58,13 +58,14 @@ export function useRegister(): (variables: RegisterParams) => Promise<void> {
   });
 }
 
-export function useLogin(): (variables: LoginParams) => Promise<void> {
+export function useLogin(): (variables: LoginParams) => Promise<void | string> {
   const router = useRouter();
-  const [login] = useMutation<{ login: Viewer}, LoginParams>(LOGIN, {
+  const [login, data] = useMutation<{ login: Viewer}, LoginParams>(LOGIN, {
     onError: (e) => {
-      if (e.graphQLErrors[0]?.extensions?.code === 'FORBIDDEN') {
+      if (e.graphQLErrors[0]?.extensions?.code === 'UNAUTHENTICATED') {
         // eslint-disable-next-line no-console
         console.log('Invalid email or password');
+        return ('UNAUTHENTICATED');
       }
     },
     onCompleted: () => {
@@ -78,7 +79,8 @@ export function useLogin(): (variables: LoginParams) => Promise<void> {
     },
   });
 
-  return (async (variables: LoginParams): Promise<void> => {
+  return (async (variables: LoginParams): Promise<void | string > => {
     await login({ variables });
+    console.log('toto',   JSON.stringify(data.error))
   });
 }
