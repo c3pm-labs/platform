@@ -3,7 +3,7 @@ name: Platform CI
 on:
   pull_request:
     paths:
-      - './**'
+      - './'
       - './e2e'
       - .github/workflows/platform.yml
 
@@ -20,14 +20,19 @@ jobs:
       working-directory: ./
       run: |
         docker-compose -f docker-compose.prod.yml up --build -d
-    - name: install dependencies and start test E2E
+    - name: Install docker test E2E
       working-directory: ./e2e
-    - name: Checkout
-      uses: actions/checkout@v2
-    - name: Cypress run
-      uses: cypress-io/github-action@v2
-      run : |
+      run: |
+        docker run -p 4569:4569 -d --name s3 gliffy/fake-s3
+    - name: Sleep for 10 seconds
+      uses: jakejarvis/wait-action@master
+      with:
+        time: '10s'
+    - name: start test E2E
+      working-directory: ./e2e
+      run: |
+        curl "http://localhost:4569/c3pm-registry-io" -X PUT
         npm ci
-        npm test
+        npm run test
       env:
         CI: true
