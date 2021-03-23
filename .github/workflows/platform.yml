@@ -3,6 +3,7 @@ name: Platform CI
 on:
   pull_request:
     - .github/workflows/platform.yml
+    - '**/**'
 
 jobs:
   Test :
