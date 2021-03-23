@@ -1,4 +1,4 @@
-import team from '../team';
+import team from './team';
 
 test('Team', () => {
   expect(team).toEqual(

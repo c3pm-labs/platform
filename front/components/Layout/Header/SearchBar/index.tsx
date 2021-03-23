@@ -32,7 +32,6 @@ function SearchBar({ className }: SearchBarProps): JSX.Element {
           name="search"
           type="search"
           placeholder="search..."
-          // data-testid="SearchBarInput"
         />
       </Form>
     </Formik>
