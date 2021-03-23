@@ -13,7 +13,7 @@
     "storybook": "start-storybook -s ./public -p 6006",
     "build:storybook": "build-storybook -s ./public",
     "build-storybook": "build-storybook",
-    "test": "test:coverage",
+    "test": "jest --coverage",
     "test:coverage": "jest --coverage",
     "test:watch": "jest --watch",
     "test:debug": "node --inspect-brk ./node_modules/jest/bin/jest.js --runInBand --watch"
