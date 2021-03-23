@@ -16,7 +16,7 @@
     "seed": "ts-node prisma/seed.ts"
   },
   "dependencies": {
-    "@prisma/client": "^2.18.0",
+    "@prisma/client": "^2.14.0",
     "@sendgrid/mail": "^7.4.0",
     "apollo-server-express": "^2.19.0",
     "aws-sdk": "^2.828.0",
@@ -63,7 +63,6 @@
     "jest-environment-node": "^26.6.2",
     "nanoid": "^3.1.18",
     "pg": "^8.5.1",
-    "prisma": "^2.18.0",
     "ts-jest": "^26.4.4",
     "ts-node": "9.0.0",
     "ts-node-dev": "1.0.0",
