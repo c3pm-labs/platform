@@ -6,6 +6,7 @@ import {
 } from 'queries';
 
 import { LoginParams, RegisterParams } from 'utils/validation';
+import { useState } from 'react';
 
 export function useViewer(): Viewer | null {
   const { data, loading, error } = useQuery<{ viewer: Viewer}>(VIEWER);
@@ -58,17 +59,24 @@ export function useRegister(): (variables: RegisterParams) => Promise<void> {
   });
 }
 
-export function useLogin(): (variables: LoginParams) => Promise<void | string> {
+interface HandleStatus {
+  type: string;
+  message: string;
+}
+
+export function useLogin(): (variables: LoginParams) => Promise<HandleStatus> {
   const router = useRouter();
-  const [login, data] = useMutation<{ login: Viewer}, LoginParams>(LOGIN, {
+  const [status, setStatus] = useState({type: '', message: ''} as HandleStatus);
+  const [login, error] = useMutation<{ login: Viewer}, LoginParams>(LOGIN, {
     onError: (e) => {
       if (e.graphQLErrors[0]?.extensions?.code === 'UNAUTHENTICATED') {
         // eslint-disable-next-line no-console
-        console.log('Invalid email or password');
-        return ('UNAUTHENTICATED');
+        setStatus({ type: 'error', message: e.graphQLErrors[0]?.extensions?.code });
+        console.log('Invalid email or password', status);
       }
     },
     onCompleted: () => {
+      setStatus({ type: 'success', message: '' });
       router.push('/');
     },
     update: (cache, { data: { login: viewer } }) => {
@@ -79,8 +87,10 @@ export function useLogin(): (variables: LoginParams) => Promise<void | string> {
     },
   });
 
-  return (async (variables: LoginParams): Promise<void | string > => {
+  return (async (variables: LoginParams): Promise<HandleStatus > => {
     await login({ variables });
-    console.log('toto',   JSON.stringify(data.error))
+    console.log('toto', status, error)
+    return (status);
   });
 }
+

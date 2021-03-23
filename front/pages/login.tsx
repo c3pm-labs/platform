@@ -84,6 +84,10 @@ const useStyles = makeStyles((theme) => ({
     color: theme.palette.grey[400],
     marginTop: theme.spacing(4),
   },
+  error: {
+    display: 'flex',
+    justifyContent: 'center',
+  },
   forgotPassword: {
     display: 'flex',
     marginTop: theme.spacing(4),
@@ -131,13 +135,22 @@ function Login(): JSX.Element {
             onSubmit={async (values: LoginParams): Promise<void> => {
               const error = await login(values);
               console.log("error", error);
-              if (error === "UNAUTHENTICATED") {
+              if (error.type === "error") {
                 console.log("coco");
                 setErrorMessage("Invalid email or password");
               }
             }}
           >
             <Form noValidate className={classes.input}>
+              {errorMessage &&
+                <Typography
+                  variant="body2"
+                  color="error"
+                  className={classes.error}
+                >
+                  {errorMessage}
+                </Typography>
+              }
               <TextInput
                 type="text"
                 name="login"
@@ -151,15 +164,6 @@ function Login(): JSX.Element {
                 required
                 fullWidth
               />
-              {errorMessage &&
-                <Typography
-                  variant="body1"
-                  className={classes.text}
-                  color="error"
-                >
-                  {errorMessage}
-                </Typography>
-              }
               <Button
                 color="primary"
                 variant="contained"
