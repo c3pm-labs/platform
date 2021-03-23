@@ -16,6 +16,8 @@ module.exports = {
     '!**/pages/**/*.tsx',
     '!**/pages/**/*.ts',
     '!**/components/pages/**/*.tsx',
+    '!**/components/Layout/**/*.tsx',
+    '!**/components/Head/**/*.tsx',
   ],
   coverageThreshold: {
     global: {

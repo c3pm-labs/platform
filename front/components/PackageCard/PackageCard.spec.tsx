@@ -1,7 +1,7 @@
 import { render } from '@testing-library/react';
 import { Package } from 'types';
 
-import PackageCard from '../index';
+import PackageCard from './index';
 
 test('PackageCard', () => {
   const mockPackage = {
@@ -35,9 +35,10 @@ test('PackageCard', () => {
     },
   };
 
-  const { container } = render(
+  const { getByTestId } = render(
     <PackageCard packageData={mockPackage as Package} />,
   );
 
-  expect(container).toMatchSnapshot();
+  const div = getByTestId('divPackageUser');
+  expect(div).toContainHTML('Fri Jan 01 1999');
 });

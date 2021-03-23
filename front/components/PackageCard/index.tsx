@@ -82,7 +82,7 @@ function PackageCard({ packageData }: PackageCardProps): JSX.Element {
           user={author}
           classes={{ picture: classes.avatar, name: classes.name }}
         />
-        <Typography variant="body2" className={classes.update}>
+        <Typography variant="body2" className={classes.update} data-testid="divPackageUser">
           Last updated on the&nbsp;
           {date.toDateString()}
         </Typography>

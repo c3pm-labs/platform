@@ -2,10 +2,10 @@ import { render } from '@testing-library/react';
 import React from 'react';
 import { Formik, Form } from 'formik';
 
-import TextInput from '../index';
+import TextInput from './index';
 
 test('PasswordInput', () => {
-  const { container } = render(
+  const { getByPlaceholderText } = render(
     <Formik
       initialValues={{ search: '' }}
       // eslint-disable-next-line no-console
@@ -23,11 +23,12 @@ test('PasswordInput', () => {
     </Formik>,
   );
 
-  expect(container).toMatchSnapshot();
+  const input = getByPlaceholderText('search...');
+  expect(input).not.toHaveAttribute('aria-describedby', 'search-helper-text');
 });
 
 test('PasswordInput disableHelperText false', () => {
-  const { container } = render(
+  const { getByPlaceholderText } = render(
     <Formik
       initialValues={{ search: '' }}
       // eslint-disable-next-line no-console
@@ -44,6 +45,7 @@ test('PasswordInput disableHelperText false', () => {
       </Form>
     </Formik>,
   );
-
-  expect(container).toMatchSnapshot();
+  
+  const input = getByPlaceholderText('search...');
+  expect(input).toHaveAttribute('aria-describedby', 'search-helper-text');
 });
