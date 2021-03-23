@@ -25,7 +25,39 @@ jobs:
       uses: cypress-io/github-action@v2
       working-directory: ./e2e
       run : |
+        curl "http://localhost:4569/c3pm-registry-io" -X PUT
         npm ci
         npm test
       env:
         CI: true
+
+
+# jobs:
+#   Test :
+#     runs-on: ubuntu-latest
+#     steps:
+#     - uses: actions/checkout@v2
+#     - name: Set up Node.js
+#       uses: actions/setup-node@v1
+#       with:
+#         node-version: 12.x
+#     - name: Launch docker compose
+#       working-directory: ./
+#       run: |
+#         docker-compose -f docker-compose.prod.yml up --build -d
+#     - name: Install docker test E2E
+#       working-directory: ./e2e
+#       run: |
+#         docker run -p 4569:4569 -d --name s3 gliffy/fake-s3
+#     - name: Sleep for 10 seconds
+#       uses: jakejarvis/wait-action@master
+#       with:
+#         time: '10s'
+#     - name: start test E2E
+#       working-directory: ./e2e
+#       run: |
+#         curl "http://localhost:4569/c3pm-registry-io" -X PUT
+#         npm ci
+#         npm run test
+#       env:
+#         CI: true
