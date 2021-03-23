@@ -10,6 +10,10 @@ export interface Version {
   publishedAt: string;
   description: string;
   readme: string;
+  contributors: string;
+  website: string;
+  repository: string;
+  documentation: string;
   package?: Package;
 }
 

@@ -13,6 +13,11 @@ export const Versions = objectType({
     t.model.readme();
     t.model.publishedAt();
     t.model.version();
+    t.model.repository();
+    t.model.contributors();
+    t.model.documentation();
+    t.model.website();
+    t.model.repository();
   },
 });
 

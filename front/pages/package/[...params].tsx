@@ -186,6 +186,7 @@ function PackageDetails(): JSX.Element {
         <Tabs value={currentTab} onChange={handleChange} aria-label="package tabs" className={classes.tab}>
           <Tab label="Readme" id="package-tab-1" aria-controls="package-tabpanel-1" />
           <Tab label="Versions" id="package-tab-2" aria-controls="package-tabpanel-2" />
+          <Tab label="Infos" id="package-tab-3" aria-controls="package-tabpanel-3" />
         </Tabs>
         <TabPanel value={currentTab} index={0}>
           <MarkdownDisplayer source={data.version.readme} />
@@ -195,6 +196,13 @@ function PackageDetails(): JSX.Element {
             versions={data.version.package.versions}
             packageName={data.version.package.name}
           />
+        </TabPanel>
+        <TabPanel value={currentTab} index={2}>
+          <MarkdownDisplayer source={`#### Contributors: ${data.version.contributors}`} />
+          <MarkdownDisplayer source={`#### Description: ${data.version.description}`} />
+          <MarkdownDisplayer source={`#### Repository: ${data.version.repository}`} />
+          <MarkdownDisplayer source={`#### Official website: ${data.version.website}`} />
+          <MarkdownDisplayer source={`#### Documentation: ${data.version.documentation}`} />
         </TabPanel>
       </div>
     </Layout>

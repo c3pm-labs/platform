@@ -92,6 +92,11 @@ export const PACKAGE_FROM_VERSION = gql`
             description
             version
             readme
+            documentation
+            website
+            description
+            contributors
+            repository
             package {
                 name
                 author {
