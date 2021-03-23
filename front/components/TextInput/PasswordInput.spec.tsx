@@ -45,7 +45,7 @@ test('PasswordInput disableHelperText false', () => {
       </Form>
     </Formik>,
   );
-  
+
   const input = getByPlaceholderText('search...');
   expect(input).toHaveAttribute('aria-describedby', 'search-helper-text');
 });

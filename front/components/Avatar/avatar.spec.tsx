@@ -40,4 +40,3 @@ test('Avatar no user, svg for no user', () => {
   const avatar = getByTestId('user-avatar');
   expect(avatar).toContainHTML('svg');
 });
-

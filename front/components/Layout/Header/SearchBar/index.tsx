@@ -21,7 +21,7 @@ function SearchBar({ className }: SearchBarProps): JSX.Element {
     <Formik
       onSubmit={handleSubmit}
       initialValues={{ search }}
-      >
+    >
       <Form
         className={className}
         data-testid="SearchBarInput"

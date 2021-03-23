@@ -1,7 +1,8 @@
 import React from 'react';
 import { MockedProvider } from '@apollo/client/testing';
-import { render, screen, within } from '@testing-library/react';
-import userEvent from '@testing-library/user-event'
+import { render, screen } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
+
 import Home from './index';
 
 // eslint-disable-next-line
@@ -31,7 +32,7 @@ test('UserCard expandLess', () => {
   );
 
   const button = screen.getByRole('button', {
-    name: /t/i
+    name: /t/i,
   });
   expect(button).not.toHaveAttribute('aria-controls', 'menu-list-grow');
 });
@@ -57,11 +58,9 @@ test('UserCard expandMore', () => {
     </MockedProvider>,
   );
 
-  userEvent.click(screen.getByTestId('user-menu'))
+  userEvent.click(screen.getByTestId('user-menu'));
   const button = screen.getByRole('button', {
-    name: /t/i
+    name: /t/i,
   });
   expect(button).toHaveAttribute('aria-controls', 'menu-list-grow');
 });
-
-
