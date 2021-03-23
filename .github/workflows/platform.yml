@@ -3,6 +3,8 @@ name: Platform CI
 on:
   pull_request:
     paths:
+      - './'
+      - './e2e'
       - .github/workflows/platform.yml
 
 jobs:
