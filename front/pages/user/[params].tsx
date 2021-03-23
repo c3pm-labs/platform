@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import {
   makeStyles, Typography, Box,
 } from '@material-ui/core';
@@ -12,7 +12,6 @@ import Layout from 'components/Layout';
 
 import PageNotFound from '../404';
 import Avatar from '../../components/Avatar';
-import Edit from '../../components/pages/profile/Edit';
 import ProfileInfos from '../../components/pages/profile/ProfileInfos';
 import PackageCard from '../../components/PackageCard';
 
@@ -101,7 +100,6 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 function Profile(): JSX.Element {
-  const [isEdit, setIsEdit] = useState(false);
   const classes = useStyles();
   const router = useRouter();
   const user = useUser({ id: String(router.query.params) });
@@ -127,9 +125,7 @@ function Profile(): JSX.Element {
                 withName={false}
                 classes={{ picture: classes.picture }}
               />
-              {isEdit
-                ? <Edit setIsEdit={setIsEdit} user={user} />
-                : <ProfileInfos setIsEdit={setIsEdit} user={user} />}
+              <ProfileInfos user={user} />
             </Box>
           </div>
           <div className={classes.line} />
@@ -147,7 +143,7 @@ function Profile(): JSX.Element {
                 variant="body1"
                 className={classes.noPackage}
               >
-                You don&apos;t have any packages yet.
+                You don&apos;t have any package yet.
               </Typography>
             ) : (
               <Box display="flex" justifyContent="center" flexDirection="column">

@@ -1,7 +1,6 @@
 import {
   makeStyles, Typography, Hidden,
 } from '@material-ui/core';
-import clsx from 'clsx';
 
 import Logo from 'components/Logo';
 
@@ -21,29 +20,28 @@ const useStyles = makeStyles((theme) => ({
     [theme.breakpoints.down('md')]: {
       fontSize: '0.85em',
     },
-    paddingTop: `${theme.spacing(10)}px`,
-    paddingBottom: `${theme.spacing(5)}px`,
-    paddingLeft: `${theme.spacing(2)}px`,
-    paddingRight: `${theme.spacing(2)}px`,
+    paddingTop: theme.spacing(5),
+    paddingBottom: theme.spacing(5),
+    paddingLeft: theme.spacing(2),
+    paddingRight: theme.spacing(2),
   },
-  containerMainInfo: {
+  content: {
+    width: '100%',
+    alignItems: 'center',
     display: 'flex',
-    minHeight: '55vh',
     flexDirection: 'column',
     justifyContent: 'space-between',
-    alignItems: 'center',
+    marginTop: theme.spacing(8),
   },
-  styleBaseline: {
+  baseline: {
     color: theme.palette.text.primary,
-    fontSize: '2.3em',
-  },
-  styleDefinitionC3PM: {
-    color: theme.palette.grey[700],
     fontSize: '2em',
-  },
-  defaultStyleText: {
+    marginBottom: theme.spacing(2),
     textAlign: 'center',
-    fontWeight: 500,
+  },
+  subtitle: {
+    color: theme.palette.grey[700],
+    fontSize: '1.4em',
   },
   minSpacingFantom: {
     minHeight: '3em',
@@ -56,21 +54,21 @@ function Title(): JSX.Element {
 
   return (
     <div className={classes.container}>
-      <div className={classes.containerMainInfo}>
+      <>
         <Hidden implementation="css" xsDown>
           <Logo type="baseline" size="xl" />
         </Hidden>
         <Hidden implementation="css" smUp>
           <Logo type="baseline" size="lg" />
         </Hidden>
-        <div className={classes.minSpacingFantom} />
-        <Typography className={clsx(classes.styleBaseline, classes.defaultStyleText)}>
+      </>
+      <div className={classes.content}>
+        <Typography className={classes.baseline}>
           Your toolkit to dive into C++ easily
         </Typography>
-        <div className={classes.minSpacingFantom} />
         <ButtonTitle />
       </div>
-      <Typography className={clsx(classes.styleDefinitionC3PM, classes.defaultStyleText)}>
+      <Typography className={classes.subtitle}>
         C++ made easy | Trivial dependency managment | Package sharing
       </Typography>
     </div>

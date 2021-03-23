@@ -36,46 +36,29 @@ const useStyles = makeStyles((theme) => ({
 
 function Footer(): JSX.Element {
   const classes = useStyles();
+  const linkElement = (link: string, name: string) => (
+    <a
+      target="_blank"
+      rel="noopener noreferrer"
+      className={classes.text}
+      href={link}
+    >
+      <Typography className={classes.text}>{name}</Typography>
+    </a>
+  );
 
   return (
     <div className={classes.container}>
       <div className={classes.textContainer}>
         <span>General Information</span>
-        <a
-          href="https://docs.c3pm.io"
-          className={classes.text}
-        >
-          <Typography className={classes.text}>Docs</Typography>
-        </a>
-        <a
-          href="https://github.com/c3pm-labs/"
-          className={classes.text}
-        >
-          <Typography className={classes.text}>Github</Typography>
-        </a>
-        <a
-          href="https://github.com/c3pm-labs/c3pm/releases"
-          className={classes.text}
-        >
-          <Typography className={classes.text}>Releases</Typography>
-        </a>
+        {linkElement('https://docs.c3pm.io', 'Docs')}
+        {linkElement('https://github.com/c3pm-labs/', 'Github')}
+        {linkElement('https://github.com/c3pm-labs/c3pm/releases', 'Releases')}
       </div>
       <div className={classes.textContainer}>
         <span>Contact us</span>
-        <a
-          href="mailto:contact@c3pm.io"
-          className={classes.text}
-        >
-          <Typography className={classes.text}>
-            contact@c3pm.io
-          </Typography>
-        </a>
-        <a
-          href="https://github.com/c3pm-labs/c3pm/issues/new"
-          className={classes.text}
-        >
-          <Typography className={classes.text}>Issues</Typography>
-        </a>
+        {linkElement('mailto:contact@c3pm.io', 'contact@c3pm.io')}
+        {linkElement('https://github.com/c3pm-labs/c3pm/issues/new/choose', 'Submit an issue')}
         {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
         <Link href="/team"><a className={classes.text}>Team</a></Link>
       </div>

@@ -45,6 +45,7 @@ const useStyles = makeStyles((theme) => ({
     outline: 'none',
     padding: 0,
     marginTop: theme.spacing(1),
+    textDecoration: 'none',
   },
 }));
 
@@ -57,6 +58,12 @@ function InfoCard(props: InfoCardProps): JSX.Element {
     textLink,
     link,
   } = props;
+  const isExternalLink = link.match(/^(https:\/\/)/);
+  const styledLink = (
+    <Typography className={classes.textLinkStyle}>
+      {textLink}
+    </Typography>
+  );
 
   return (
     <div className={classes.container}>
@@ -66,15 +73,24 @@ function InfoCard(props: InfoCardProps): JSX.Element {
       <Typography className={classes.descriptionStyle}>
         {description}
       </Typography>
-      <button
-        type="button"
-        className={classes.buttonLink}
-        onClick={() => (router.push({ pathname: link }))}
-      >
-        <Typography className={classes.textLinkStyle}>
-          {textLink}
-        </Typography>
-      </button>
+      {isExternalLink ? (
+        <a
+          target="_blank"
+          rel="noopener noreferrer"
+          href={link}
+          className={classes.buttonLink}
+        >
+          {styledLink}
+        </a>
+      ) : (
+        <button
+          type="button"
+          className={classes.buttonLink}
+          onClick={() => (router.push({ pathname: link }))}
+        >
+          {styledLink}
+        </button>
+      )}
     </div>
   );
 }
