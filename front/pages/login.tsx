@@ -12,8 +12,6 @@ import { LoginParams, loginSchema } from 'utils/validation';
 import TextLink from 'components/TextLink';
 import Logo, { LogoProps } from 'components/Logo';
 import Head from 'components/Head';
-import { useState } from 'react';
-import { ContactPhoneSharp } from '@material-ui/icons';
 
 const useStyles = makeStyles((theme) => ({
   container: {
@@ -97,7 +95,7 @@ const useStyles = makeStyles((theme) => ({
 
 function Login(): JSX.Element {
   const classes = useStyles();
-  const [login, loginError] = useLogin();
+  const { login, loginError } = useLogin();
   const initialValues: LoginParams = { login: '', password: '' };
   const theme = useTheme();
   const matches = useMediaQuery(theme.breakpoints.up('lg'));

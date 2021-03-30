@@ -33,7 +33,12 @@ export function useLogout(): () => Promise<void> {
   });
 }
 
-export function useRegister(): [(variables: RegisterParams) => Promise<void>, MutationResult<{register: Viewer;}>] {
+export interface UseRegisterProps {
+  register: (variables: RegisterParams) => Promise<void>;
+  registerError: MutationResult<{register: Viewer;}>
+}
+
+export function useRegister(): UseRegisterProps {
   const router = useRouter();
   const [register, error] = useMutation<{register: Viewer}, RegisterParams>(REGISTER, {
     onError: (e) => {
@@ -53,16 +58,25 @@ export function useRegister(): [(variables: RegisterParams) => Promise<void>, Mu
     },
   });
 
-  return ([async (variables: RegisterParams): Promise<void> => {
-    await register({ variables });
-  }, error]);
+  return ({
+    register: async (variables: RegisterParams): Promise<void> => {
+      await register({ variables });
+    },
+    registerError: error,
+  });
 }
 
-export function useLogin() : [(variables: LoginParams) => Promise<void>, MutationResult<{login: Viewer;}>] {
+export interface UseLoginProps {
+  login: (variables: LoginParams) => Promise<void>;
+  loginError: MutationResult<{login: Viewer;}>
+}
+
+export function useLogin() : UseLoginProps {
   const router = useRouter();
 
   const [login, error] = useMutation<{ login: Viewer}, LoginParams>(LOGIN, {
     onError: (e) => {
+      // eslint-disable-next-line no-console
       console.log('Invalid email or password', e.graphQLErrors[0]?.extensions?.code);
     },
     onCompleted: () => {
@@ -76,8 +90,10 @@ export function useLogin() : [(variables: LoginParams) => Promise<void>, Mutatio
     },
   });
 
-  return ([async (variables: LoginParams): Promise<void> => {
-    await login({ variables });
-  }, error]);
-};
-
+  return ({
+    login: async (variables: LoginParams): Promise<void> => {
+      await login({ variables });
+    },
+    loginError: error,
+  });
+}

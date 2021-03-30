@@ -9,6 +9,11 @@ export interface ResetProps {
   password: string;
 }
 
+export interface UseForgotProps {
+  forgot: (variables: ForgotParams) => Promise<void>;
+  forgotError: MutationResult<{forgot: User;}>
+}
+
 export function useReset(): (variables: ResetProps) => Promise<void> {
   const [reset] = useMutation<{ reset: User }, ResetProps>(RESET, {
   });
@@ -18,11 +23,14 @@ export function useReset(): (variables: ResetProps) => Promise<void> {
   });
 }
 
-export function useForgot(): [(variables: ForgotParams) => Promise<void>, MutationResult<{forgot: User;}>] {
+export function useForgot(): UseForgotProps {
   const [forgot, error] = useMutation<{ forgot: User }, ForgotParams>(FORGOT, {
   });
 
-  return ([async (variables: ForgotParams): Promise<void> => {
-    await forgot({ variables });
-  }, error]);
+  return ({
+    forgot: async (variables: ForgotParams): Promise<void> => {
+      await forgot({ variables });
+    },
+    forgotError: error,
+  });
 }

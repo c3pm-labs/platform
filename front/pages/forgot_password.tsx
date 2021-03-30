@@ -64,7 +64,7 @@ const useStyles = makeStyles((theme) => ({
 
 function ForgotPassword(): JSX.Element {
   const classes = useStyles();
-  const [forgot, forgotError] = useForgot();
+  const { forgot, forgotError } = useForgot();
   const [emailSent, setEmailSent] = useState(false);
 
   return (

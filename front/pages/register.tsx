@@ -91,7 +91,7 @@ const useStyles = makeStyles((theme) => ({
 
 function Register(): JSX.Element {
   const classes = useStyles();
-  const [register, registerError] = useRegister();
+  const { register, registerError } = useRegister();
 
   const initialValues: RegisterParams = { username: '', email: '', password: '' };
   const theme = useTheme();
