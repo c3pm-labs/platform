@@ -1,4 +1,4 @@
-import { useMutation } from '@apollo/client';
+import { MutationResult, useMutation } from '@apollo/client';
 import { User } from 'types';
 import { FORGOT, RESET } from 'queries';
 
@@ -18,11 +18,11 @@ export function useReset(): (variables: ResetProps) => Promise<void> {
   });
 }
 
-export function useForgot(): (variables: ForgotParams) => Promise<void> {
-  const [forgot] = useMutation<{ forgot: User }, ForgotParams>(FORGOT, {
+export function useForgot(): [(variables: ForgotParams) => Promise<void>, MutationResult<{forgot: User;}>] {
+  const [forgot, error] = useMutation<{ forgot: User }, ForgotParams>(FORGOT, {
   });
 
-  return (async (variables: ForgotParams): Promise<void> => {
+  return ([async (variables: ForgotParams): Promise<void> => {
     await forgot({ variables });
-  });
+  }, error]);
 }

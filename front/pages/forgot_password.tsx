@@ -47,6 +47,11 @@ const useStyles = makeStyles((theme) => ({
       width: '50%',
     },
   },
+  error: {
+    display: 'flex',
+    justifyContent: 'center',
+    marginBottom: theme.spacing(1),
+  },
   button: {
     display: 'flex',
     width: '20%',
@@ -59,7 +64,7 @@ const useStyles = makeStyles((theme) => ({
 
 function ForgotPassword(): JSX.Element {
   const classes = useStyles();
-  const forgot = useForgot();
+  const [forgot, forgotError] = useForgot();
   const [emailSent, setEmailSent] = useState(false);
 
   return (
@@ -101,6 +106,13 @@ function ForgotPassword(): JSX.Element {
         }}
       >
         <Form noValidate className={classes.form}>
+          <Typography
+            variant="body2"
+            color="error"
+            className={classes.error}
+          >
+            {forgotError.error?.message}
+          </Typography>
           <div className={classes.input}>
             <TextInput
               type="text"

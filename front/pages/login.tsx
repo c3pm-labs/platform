@@ -87,6 +87,7 @@ const useStyles = makeStyles((theme) => ({
   error: {
     display: 'flex',
     justifyContent: 'center',
+    marginBottom: theme.spacing(1),
   },
   forgotPassword: {
     display: 'flex',
@@ -96,8 +97,7 @@ const useStyles = makeStyles((theme) => ({
 
 function Login(): JSX.Element {
   const classes = useStyles();
-  const login = useLogin();
-  const [errorMessage, setErrorMessage] = useState('');
+  const [login, loginError] = useLogin();
   const initialValues: LoginParams = { login: '', password: '' };
   const theme = useTheme();
   const matches = useMediaQuery(theme.breakpoints.up('lg'));
@@ -133,24 +133,17 @@ function Login(): JSX.Element {
             initialValues={initialValues}
             validationSchema={loginSchema}
             onSubmit={async (values: LoginParams): Promise<void> => {
-              const error = await login(values);
-              console.log("error", error);
-              if (error.type === "error") {
-                console.log("coco");
-                setErrorMessage("Invalid email or password");
-              }
+              await login(values);
             }}
           >
             <Form noValidate className={classes.input}>
-              {errorMessage &&
-                <Typography
-                  variant="body2"
-                  color="error"
-                  className={classes.error}
-                >
-                  {errorMessage}
-                </Typography>
-              }
+              <Typography
+                variant="body2"
+                color="error"
+                className={classes.error}
+              >
+                {loginError.error?.message}
+              </Typography>
               <TextInput
                 type="text"
                 name="login"

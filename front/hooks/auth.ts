@@ -1,4 +1,4 @@
-import { useMutation, useQuery } from '@apollo/client';
+import { MutationResult, useMutation, useQuery } from '@apollo/client';
 import { useRouter } from 'next/router';
 import { Viewer } from 'types';
 import {
@@ -6,7 +6,6 @@ import {
 } from 'queries';
 
 import { LoginParams, RegisterParams } from 'utils/validation';
-import { useState } from 'react';
 
 export function useViewer(): Viewer | null {
   const { data, loading, error } = useQuery<{ viewer: Viewer}>(VIEWER);
@@ -34,9 +33,9 @@ export function useLogout(): () => Promise<void> {
   });
 }
 
-export function useRegister(): (variables: RegisterParams) => Promise<void> {
+export function useRegister(): [(variables: RegisterParams) => Promise<void>, MutationResult<{register: Viewer;}>] {
   const router = useRouter();
-  const [register] = useMutation<{register: Viewer}, RegisterParams>(REGISTER, {
+  const [register, error] = useMutation<{register: Viewer}, RegisterParams>(REGISTER, {
     onError: (e) => {
       if (e.graphQLErrors[0]?.extensions?.code === 'FORBIDDEN') {
         // eslint-disable-next-line no-console
@@ -54,29 +53,19 @@ export function useRegister(): (variables: RegisterParams) => Promise<void> {
     },
   });
 
-  return (async (variables: RegisterParams): Promise<void> => {
+  return ([async (variables: RegisterParams): Promise<void> => {
     await register({ variables });
-  });
+  }, error]);
 }
 
-interface HandleStatus {
-  type: string;
-  message: string;
-}
-
-export function useLogin(): (variables: LoginParams) => Promise<HandleStatus> {
+export function useLogin() : [(variables: LoginParams) => Promise<void>, MutationResult<{login: Viewer;}>] {
   const router = useRouter();
-  const [status, setStatus] = useState({type: '', message: ''} as HandleStatus);
+
   const [login, error] = useMutation<{ login: Viewer}, LoginParams>(LOGIN, {
     onError: (e) => {
-      if (e.graphQLErrors[0]?.extensions?.code === 'UNAUTHENTICATED') {
-        // eslint-disable-next-line no-console
-        setStatus({ type: 'error', message: e.graphQLErrors[0]?.extensions?.code });
-        console.log('Invalid email or password', status);
-      }
+      console.log('Invalid email or password', e.graphQLErrors[0]?.extensions?.code);
     },
     onCompleted: () => {
-      setStatus({ type: 'success', message: '' });
       router.push('/');
     },
     update: (cache, { data: { login: viewer } }) => {
@@ -87,10 +76,8 @@ export function useLogin(): (variables: LoginParams) => Promise<HandleStatus> {
     },
   });
 
-  return (async (variables: LoginParams): Promise<HandleStatus > => {
+  return ([async (variables: LoginParams): Promise<void> => {
     await login({ variables });
-    console.log('toto', status, error)
-    return (status);
-  });
-}
+  }, error]);
+};
 
