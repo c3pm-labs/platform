@@ -16,11 +16,11 @@ jobs:
         working-directory: ./
         run: |
           docker-compose -f docker-compose.prod.yml up --build -d
-      - name: Install docker test E2E
-        working-directory: ./e2e
       - name: Cypress run
         uses: cypress-io/github-action@v2
+        working-directory: ./e2e
         with:
           browser: chrome
+          command: npm run test
         env:
           CI: true
