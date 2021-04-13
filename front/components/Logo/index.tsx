@@ -69,7 +69,7 @@ const Logo = ({ type = 'classic', size = null, className }: LogoProps): JSX.Elem
       <a className={classes.link}>
         <div className={classes.logo}>
           <Image
-            alt={type+"-"+size +" c3pm logo"}
+            alt={`${type}-${size} c3pm logo`}
             src={src}
             className={className}
             width={dimension.width}
