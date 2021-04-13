@@ -127,8 +127,8 @@ function Register(): JSX.Element {
           <Formik
             initialValues={initialValues}
             validationSchema={registerSchema}
-            onSubmit={(values: RegisterParams): void => {
-              register(values);
+            onSubmit={async (values: RegisterParams): Promise<void> => {
+              await register(values);
             }}
           >
             <Form noValidate className={classes.input}>
