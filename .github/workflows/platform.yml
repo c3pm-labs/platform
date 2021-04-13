@@ -17,8 +17,8 @@ jobs:
         run: |
           docker-compose -f docker-compose.prod.yml up --build -d
       - name: Cypress run
-        uses: cypress-io/github-action@v2
         working-directory: ./e2e
+        uses: cypress-io/github-action@v2
         with:
           browser: chrome
           command: npm run test
