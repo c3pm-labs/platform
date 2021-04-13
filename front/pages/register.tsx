@@ -76,6 +76,11 @@ const useStyles = makeStyles((theme) => ({
     minWidth: 175,
     fontSize: 24,
   },
+  error: {
+    display: 'flex',
+    justifyContent: 'center',
+    marginBottom: theme.spacing(1),
+  },
   login: {
     display: 'flex',
     justifyContent: 'center',
@@ -86,7 +91,7 @@ const useStyles = makeStyles((theme) => ({
 
 function Register(): JSX.Element {
   const classes = useStyles();
-  const register = useRegister();
+  const { register, registerError } = useRegister();
 
   const initialValues: RegisterParams = { username: '', email: '', password: '' };
   const theme = useTheme();
@@ -122,11 +127,18 @@ function Register(): JSX.Element {
           <Formik
             initialValues={initialValues}
             validationSchema={registerSchema}
-            onSubmit={(values: RegisterParams): void => {
-              register(values);
+            onSubmit={async (values: RegisterParams): Promise<void> => {
+              await register(values);
             }}
           >
             <Form noValidate className={classes.input}>
+              <Typography
+                variant="body2"
+                color="error"
+                className={classes.error}
+              >
+                {registerError.error?.message}
+              </Typography>
               <TextInput
                 type="text"
                 name="username"

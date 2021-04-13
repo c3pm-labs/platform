@@ -49,12 +49,15 @@ interface ArgType {
   email: string;
 }
 
-export const Basic = (args: ArgType): JSX.Element => (
-  <PackageCard packageData={{
-    name: args.name,
-    author: { name: args.author, id: '', email: args.email },
-    versions,
-    latest: versions[0],
-  }}
-  />
-);
+export const Basic = (args: ArgType): JSX.Element => {
+  const { name, author, email } = args;
+  return (
+    <PackageCard packageData={{
+      name,
+      author: { name: author, id: '', email },
+      versions,
+      latest: versions[0],
+    }}
+    />
+  );
+};
