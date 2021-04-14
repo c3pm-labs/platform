@@ -14,7 +14,7 @@ test('Avatar T first letter', () => {
   render(<Avatar user={mockupUser} />);
 
   const avatar = screen.getByTestId('user-avatar');
-  expect(avatar.textContent).toEqual('T');
+  expect(avatar).toHaveTextContent('T');
 });
 
 const mockupUser2 = {
@@ -29,7 +29,7 @@ test('Avatar B first letter', () => {
   render(<Avatar user={mockupUser2} />);
 
   const avatar = screen.getByTestId('user-avatar');
-  expect(avatar.textContent).toEqual('B');
+  expect(avatar).toHaveTextContent('B');
 });
 
 const mockupUserNoUser = null;
