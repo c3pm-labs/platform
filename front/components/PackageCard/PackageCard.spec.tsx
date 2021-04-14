@@ -1,4 +1,4 @@
-import { render } from '@testing-library/react';
+import { render, screen } from '@testing-library/react';
 import { Package } from 'types';
 
 import PackageCard from './index';
@@ -35,10 +35,10 @@ test('PackageCard', () => {
     },
   };
 
-  const { getByTestId } = render(
+  render(
     <PackageCard packageData={mockPackage as Package} />,
   );
 
-  const div = getByTestId('divPackageUser');
+  const div = screen.getByTestId('divPackageUser');
   expect(div).toContainHTML('Fri Jan 01 1999');
 });

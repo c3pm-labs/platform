@@ -1,4 +1,4 @@
-import { render } from '@testing-library/react';
+import { render, screen } from '@testing-library/react';
 import React from 'react';
 import userEvent from '@testing-library/user-event';
 import { Formik, Form } from 'formik';
@@ -12,7 +12,7 @@ test('Select', () => {
     { value: 'itagiba', label: 'Itagiba' },
   ];
 
-  const { getByTestId } = render(
+  render(
     <Formik
       initialValues={{ user: options[0].value }}
       // eslint-disable-next-line no-console
@@ -24,7 +24,7 @@ test('Select', () => {
     </Formik>,
   );
 
-  const toggleButton = getByTestId('select');
+  const toggleButton = screen.getByTestId('select');
 
   expect(toggleButton).not.toHaveClass('Mui-focused');
 });
@@ -36,7 +36,7 @@ test('Select open', () => {
     { value: 'itagiba', label: 'Itagiba' },
   ];
 
-  const { getByTestId } = render(
+  render(
     <Formik
       initialValues={{ user: options[0].value }}
       // eslint-disable-next-line no-console
@@ -48,7 +48,7 @@ test('Select open', () => {
     </Formik>,
   );
 
-  const toggleButton = getByTestId('select');
+  const toggleButton = screen.getByTestId('select');
   userEvent.click(toggleButton);
 
   expect(toggleButton).toHaveClass('Mui-focused');

@@ -1,4 +1,4 @@
-import { render } from '@testing-library/react';
+import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import React from 'react';
 import { Form, Formik } from 'formik';
@@ -6,7 +6,7 @@ import { Form, Formik } from 'formik';
 import PasswordInput from '.';
 
 test('PasswordInput toggle visibility', () => {
-  const { getByPlaceholderText, getByTestId } = render(
+  render(
     <Formik
       initialValues={{ password: '' }}
       onSubmit={() => {}}
@@ -17,10 +17,10 @@ test('PasswordInput toggle visibility', () => {
     </Formik>,
   );
 
-  const input = getByPlaceholderText('password');
+  const input = screen.getByPlaceholderText('password');
   expect(input).toHaveAttribute('type', 'password');
 
-  const toggleButton = getByTestId('iconPasswordVisibility');
+  const toggleButton = screen.getByTestId('iconPasswordVisibility');
   userEvent.click(toggleButton);
 
   expect(input).toHaveAttribute('type', 'text');

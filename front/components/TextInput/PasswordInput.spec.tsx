@@ -1,11 +1,11 @@
-import { render } from '@testing-library/react';
+import { render, screen } from '@testing-library/react';
 import React from 'react';
 import { Formik, Form } from 'formik';
 
 import TextInput from './index';
 
 test('PasswordInput', () => {
-  const { getByPlaceholderText } = render(
+  render(
     <Formik
       initialValues={{ search: '' }}
       // eslint-disable-next-line no-console
@@ -23,12 +23,12 @@ test('PasswordInput', () => {
     </Formik>,
   );
 
-  const input = getByPlaceholderText('search...');
+  const input = screen.getByPlaceholderText('search...');
   expect(input).not.toHaveAttribute('aria-describedby', 'search-helper-text');
 });
 
 test('PasswordInput disableHelperText false', () => {
-  const { getByPlaceholderText } = render(
+  render(
     <Formik
       initialValues={{ search: '' }}
       // eslint-disable-next-line no-console
@@ -46,6 +46,6 @@ test('PasswordInput disableHelperText false', () => {
     </Formik>,
   );
 
-  const input = getByPlaceholderText('search...');
+  const input = screen.getByPlaceholderText('search...');
   expect(input).toHaveAttribute('aria-describedby', 'search-helper-text');
 });

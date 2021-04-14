@@ -1,4 +1,4 @@
-import { render } from '@testing-library/react';
+import { render, screen } from '@testing-library/react';
 
 import Avatar from './index';
 
@@ -11,10 +11,10 @@ const mockupUser = {
 };
 
 test('Avatar T first letter', () => {
-  const { getByTestId } = render(<Avatar user={mockupUser} />);
+  render(<Avatar user={mockupUser} />);
 
-  const avatar = getByTestId('user-avatar');
-  expect(avatar).toContainHTML('>T<');
+  const avatar = screen.getByTestId('user-avatar');
+  expect(avatar.textContent).toEqual('T');
 });
 
 const mockupUser2 = {
@@ -26,17 +26,17 @@ const mockupUser2 = {
 };
 
 test('Avatar B first letter', () => {
-  const { getByTestId } = render(<Avatar user={mockupUser2} />);
+  render(<Avatar user={mockupUser2} />);
 
-  const avatar = getByTestId('user-avatar');
-  expect(avatar).toContainHTML('>B<');
+  const avatar = screen.getByTestId('user-avatar');
+  expect(avatar.textContent).toEqual('B');
 });
 
 const mockupUserNoUser = null;
 
 test('Avatar no user, svg for no user', () => {
-  const { getByTestId } = render(<Avatar user={mockupUserNoUser} />);
+  render(<Avatar user={mockupUserNoUser} />);
 
-  const avatar = getByTestId('user-avatar');
+  const avatar = screen.getByTestId('user-avatar');
   expect(avatar).toContainHTML('svg');
 });
