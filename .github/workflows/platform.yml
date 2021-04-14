@@ -1,0 +1,25 @@
+name: Platform CI
+
+on: [push]
+
+jobs:
+  Test :
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Set up Node.js
+        uses: actions/setup-node@v1
+        with:
+          node-version: 12.x
+      - name: Launch docker compose
+        run: |
+          docker-compose -f docker-compose.prod.yml up --build -d
+      - name: Cypress run
+        uses: cypress-io/github-action@v2
+        with:
+          browser: chrome
+          command: npm run test
+          working-directory: ./e2e
+        env:
+          CI: true
