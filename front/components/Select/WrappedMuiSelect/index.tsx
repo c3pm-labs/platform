@@ -62,7 +62,6 @@ function WrappedSelect({ selectOptions, field }: WrappedMuiSelectProps): JSX.Ele
   return (
     <FormControl className={classes.default}>
       <MuiSelect
-        data-testid="select"
         disableUnderline
         IconComponent={ExpandMoreIcon}
         autoWidth={false}

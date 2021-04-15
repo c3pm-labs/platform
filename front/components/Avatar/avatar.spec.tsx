@@ -1,35 +1,22 @@
 import { render, screen } from '@testing-library/react';
+import faker from "faker";
 
 import Avatar from './index';
 
+const username = faker.internet.userName();
 const mockupUser = {
-  id: '414',
-  username: 'Toto',
-  email: 'toto@gmail.com',
-  description: "I'm an example",
+  id: faker.datatype.uuid(),
+  username: username,
+  email: faker.internet.email(),
+  description: faker.lorem.text(),
   packages: [],
 };
 
 test('Avatar T first letter', () => {
   render(<Avatar user={mockupUser} />);
 
-  const avatar = screen.getByTestId('user-avatar');
-  expect(avatar).toHaveTextContent('T');
-});
-
-const mockupUser2 = {
-  id: '414',
-  username: 'Bobo',
-  email: 'bobo@gmail.com',
-  description: "I'm an example",
-  packages: [],
-};
-
-test('Avatar B first letter', () => {
-  render(<Avatar user={mockupUser2} />);
-
-  const avatar = screen.getByTestId('user-avatar');
-  expect(avatar).toHaveTextContent('B');
+  const avatar = screen.getByText(username[0]);
+  expect(avatar).toHaveTextContent(username[0]);
 });
 
 const mockupUserNoUser = null;

@@ -24,7 +24,6 @@ function SearchBar({ className }: SearchBarProps): JSX.Element {
     >
       <Form
         className={className}
-        data-testid="SearchBarInput"
       >
         <TextInput
           disableHelperText

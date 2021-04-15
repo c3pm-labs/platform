@@ -61,7 +61,6 @@ const Button = React.forwardRef(({
       disabled={disabled}
       variant={variant}
       disableElevation
-      data-testid="button"
       ref={ref}
       {...props}
     >

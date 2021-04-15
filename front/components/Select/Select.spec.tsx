@@ -2,45 +2,22 @@ import { render, screen } from '@testing-library/react';
 import React from 'react';
 import userEvent from '@testing-library/user-event';
 import { Formik, Form } from 'formik';
+import faker from "faker";
 
 import Select from './index';
 
-test('Select', () => {
-  const options = [
-    { value: 'gabriel', label: 'Gabriel' },
-    { value: 'clement', label: 'Clément' },
-    { value: 'itagiba', label: 'Itagiba' },
-  ];
-
-  render(
-    <Formik
-      initialValues={{ user: options[0].value }}
-      // eslint-disable-next-line no-console
-      onSubmit={() => console.log('select')}
-    >
-      <Form>
-        <Select name="user" options={options} />
-      </Form>
-    </Formik>,
-  );
-
-  const toggleButton = screen.getByTestId('select');
-
-  expect(toggleButton).not.toHaveClass('Mui-focused');
-});
-
 test('Select open', () => {
   const options = [
-    { value: 'gabriel', label: 'Gabriel' },
-    { value: 'clement', label: 'Clément' },
-    { value: 'itagiba', label: 'Itagiba' },
+    { value: faker.lorem.word(), label: faker.lorem.word() },
+    { value: faker.lorem.word(), label: faker.lorem.word() },
+    { value: faker.lorem.word(), label: faker.lorem.word() },
   ];
 
   render(
     <Formik
       initialValues={{ user: options[0].value }}
       // eslint-disable-next-line no-console
-      onSubmit={() => console.log('select')}
+      onSubmit={() => {return}}
     >
       <Form>
         <Select name="user" options={options} />
@@ -48,8 +25,12 @@ test('Select open', () => {
     </Formik>,
   );
 
-  const toggleButton = screen.getByTestId('select');
+  const lisbox = screen.queryByRole('listbox');
+  expect(lisbox).toBe(null);
+
+  const toggleButton = screen.queryByRole('button');
   userEvent.click(toggleButton);
 
-  expect(toggleButton).toHaveClass('Mui-focused');
+  const lisboxAfterClick = screen.queryByRole('listbox');
+  expect(lisboxAfterClick).toBeDefined();
 });
