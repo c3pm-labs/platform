@@ -1,12 +1,12 @@
 import { render, screen } from '@testing-library/react';
-import faker from "faker";
+import faker from 'faker';
 
 import Avatar from './index';
 
 const username = faker.internet.userName();
 const mockupUser = {
   id: faker.datatype.uuid(),
-  username: username,
+  username,
   email: faker.internet.email(),
   description: faker.lorem.text(),
   packages: [],

@@ -1,17 +1,41 @@
 import React from 'react';
 import { MockedProvider } from '@apollo/client/testing';
-import { render, screen } from '@testing-library/react';
+import { render, screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-import { graphql } from 'msw';
+import faker from 'faker';
+import { VIEWER } from 'queries';
+
 import Home from './index';
 
 // eslint-disable-next-line
 const useRouter = jest.spyOn(require('next/router'), 'useRouter');
-// eslint-disable-next-line
-const useViewer = jest.spyOn(require('hooks/auth'), 'useViewer');
 
-test('UserCard expandLess', () => {
-  const mocks = [];
+const username = faker.internet.userName();
+
+async function quickSleep() {
+  await new Promise((resolve) => {
+    setTimeout(() => { resolve(true); }, 900);
+  });
+}
+
+test('UserCard expandLess', async () => {
+  const mocks = [
+    {
+      request: {
+        query: VIEWER,
+      },
+      result: {
+        data: {
+          viewer: {
+            id: faker.datatype.uuid(),
+            username,
+            email: faker.internet.email(),
+            description: faker.lorem.text(),
+          },
+        },
+      },
+    },
+  ];
 
   useRouter.mockImplementation(() => ({
     route: '',
@@ -20,49 +44,18 @@ test('UserCard expandLess', () => {
     asPath: '',
   }));
 
-  useViewer.mockImplementation(() => ({
-    username: 'toto',
-    email: 'tata',
-  }));
-
-
-  
-  sessionStorage.setItem('is-authenticated', 'toto');
-
-  graphql.query('useViewer', (req, res, ctx) => {
-    const authenticatedUser = sessionStorage.getItem('is-authenticated')
-    if (!authenticatedUser) {
-      // When not authenticated, respond with an error
-      return res(
-        ctx.errors([
-          {
-            message: 'Not authenticated',
-            errorType: 'AuthenticationError',
-          },
-        ]),
-      )
-    }
-    // When authenticated, respond with a query payload
-    return res(
-      ctx.data({
-        user: {
-          username: authenticatedUser,
-          email: 'tata',
-        },
-      }),
-    )
-  })
-
-
   render(
     <MockedProvider mocks={mocks} addTypename={false}>
       <Home />
     </MockedProvider>,
   );
 
+  await waitFor(quickSleep);
+
   const button = screen.getByRole('button', {
-    name: /t/i,
+    name: username[0],
   });
+
   expect(button).not.toHaveAttribute('aria-controls', 'menu-list-grow');
   userEvent.click(screen.getByTestId('user-menu'));
   expect(button).toHaveAttribute('aria-controls', 'menu-list-grow');
