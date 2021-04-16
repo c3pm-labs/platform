@@ -112,8 +112,8 @@ export const PACKAGE_FROM_VERSION = gql`
 `;
 
 export const SEARCH = gql`
-    query search($keyword: String!) {
-        search(keyword: $keyword) {
+    query search($keyword: String, $tags: [String]) {
+        search(keyword: $keyword, tags: $tags) {
             name,
             versions(first: 1000, last: 0) {
                 description,
