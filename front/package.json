@@ -33,6 +33,7 @@
     "@testing-library/react": "^11.2.2",
     "@testing-library/user-event": "^12.8.1",
     "clsx": "^1.1.1",
+    "faker": "^5.5.3",
     "formik": "^2.1.4",
     "graphql": "^15.1.0",
     "lottie-react": "^2.1.0",
