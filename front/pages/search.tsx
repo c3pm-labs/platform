@@ -95,7 +95,7 @@ function Search(): JSX.Element {
   const { q, page = 1 } = router.query;
   const baseIndex = Number(page) * 5 - 5;
   const { data, loading } = useQuery<{ search: Package[] }>(SEARCH, {
-    variables: { keyword: q ? q[0] : '' },
+    variables: { keyword: q },
   });
 
   const numberOfPages = () => {

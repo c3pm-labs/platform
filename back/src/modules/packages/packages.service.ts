@@ -7,6 +7,7 @@ import AWS from 'aws-sdk';
 import { CustomError, ForbiddenError } from '../../utils/errors';
 import { Context } from '../../context';
 import { bufferToStream, streamToString } from '../../utils/function';
+import db from '../../db';
 
 global.fetch = require('node-fetch');
 
@@ -24,13 +25,9 @@ export async function getLatestVersion(ctx: Context, packageName: string): Promi
 }
 
 export async function search(ctx: Context, keyword: string): Promise<Package[]> {
-  return ctx.db.package.findMany({
-    where: {
-      name: {
-        contains: keyword,
-      },
-    },
-  });
+  const queryResult = await db.$queryRaw<Package[]>`SELECT * FROM "Package" WHERE "name" ~* ${keyword} ORDER BY "name" ASC`;
+
+  return queryResult;
 }
 
 export async function getPackage(ctx: Context, name: string): Promise<Package> {
