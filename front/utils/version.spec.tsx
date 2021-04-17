@@ -1,63 +1,17 @@
 import { sortVersion, getLastVersion } from 'utils/version';
 
-test('SortVersion', () => {
-  const initialVersions = [
-    {
-      version: '0.1.5',
-      publishedAt: '10:04:1999',
-      description: 'hot fix',
-      readme: 'blablabla',
-    },
-    {
-      version: '0.2.5',
-      publishedAt: '10:04:1999',
-      description: 'hot fix',
-      readme: 'blablabla',
-    },
-  ];
+import { versionLast, versionOutdated } from './test/builder';
 
-  expect(sortVersion(initialVersions)).toEqual(
-    [
-      {
-        version: '0.2.5',
-        publishedAt: '10:04:1999',
-        description: 'hot fix',
-        readme: 'blablabla',
-      },
-      {
-        version: '0.1.5',
-        publishedAt: '10:04:1999',
-        description: 'hot fix',
-        readme: 'blablabla',
-      },
-    ],
-  );
+test('SortVersion', () => {
+  const initialVersions = [versionOutdated, versionLast];
+
+  expect(sortVersion(initialVersions)).toEqual([versionLast, versionOutdated]);
 });
 
 test('GetLastVersion', () => {
-  const initialVersions = [
-    {
-      version: '0.1.5',
-      publishedAt: '10:04:1999',
-      description: 'hot fix',
-      readme: 'blablabla',
-    },
-    {
-      version: '0.2.5',
-      publishedAt: '10:04:1999',
-      description: 'hot fix',
-      readme: 'blablabla',
-    },
-  ];
+  const initialVersions = [versionOutdated, versionLast];
 
-  expect(getLastVersion(initialVersions)).toEqual(
-    {
-      version: '0.2.5',
-      publishedAt: '10:04:1999',
-      description: 'hot fix',
-      readme: 'blablabla',
-    },
-  );
+  expect(getLastVersion(initialVersions)).toEqual(versionLast);
 });
 
 test('GetLastVersion with versions empty', () => {

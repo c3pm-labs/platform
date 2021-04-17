@@ -29,7 +29,7 @@ overrides: [
 rules:
   react/react-in-jsx-scope: off
   react/jsx-props-no-spreading: off
-  import/no-extraneous-dependencies: [error, {devDependencies: ["**/*.stories.ts", "**/*.stories.tsx"]}]
+  import/no-extraneous-dependencies: [error, {devDependencies: ["**/*.stories.ts", "**/*.stories.tsx", "**/test/**.ts", "**/test/**.tsx"]}]
   import/order: [
     error,
     {

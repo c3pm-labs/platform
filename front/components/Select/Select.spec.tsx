@@ -1,26 +1,21 @@
-import { render, screen } from '@testing-library/react';
 import React from 'react';
 import userEvent from '@testing-library/user-event';
 import { Formik, Form } from 'formik';
-import faker from 'faker';
+
+import { render, screen } from 'utils/test/customRender';
+import { fakeOptions } from 'utils/test/builder';
 
 import Select from './index';
 
 test('Select open', () => {
-  const options = [
-    { value: faker.lorem.word(), label: faker.lorem.word() },
-    { value: faker.lorem.word(), label: faker.lorem.word() },
-    { value: faker.lorem.word(), label: faker.lorem.word() },
-  ];
-
   render(
     <Formik
-      initialValues={{ user: options[0].value }}
+      initialValues={{ user: fakeOptions[0].value }}
       // eslint-disable-next-line no-console
       onSubmit={() => {}}
     >
       <Form>
-        <Select name="user" options={options} />
+        <Select name="user" options={fakeOptions} />
       </Form>
     </Formik>,
   );
@@ -33,4 +28,7 @@ test('Select open', () => {
 
   const lisboxAfterClick = screen.queryByRole('listbox');
   expect(lisboxAfterClick).toBeInTheDocument();
+
+  const menu = screen.queryByRole('presentation');
+  expect(menu).toBeInTheDocument();
 });
