@@ -24,7 +24,7 @@ module.exports = {
       statements: 59,
       branches: 28,
       functions: 59,
-      lines: 65
+      lines: 59
     }
   },
   watchPlugins: [
