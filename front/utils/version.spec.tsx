@@ -1,17 +1,17 @@
 import { sortVersion, getLastVersion } from 'utils/version';
 
-import { versionLast, versionOutdated } from './test/builder';
+import { lastVersion, outdatedVersion } from './test/builder';
 
 test('SortVersion', () => {
-  const initialVersions = [versionOutdated, versionLast];
+  const initialVersions = [outdatedVersion, lastVersion];
 
-  expect(sortVersion(initialVersions)).toEqual([versionLast, versionOutdated]);
+  expect(sortVersion(initialVersions)).toEqual([lastVersion, outdatedVersion]);
 });
 
 test('GetLastVersion', () => {
-  const initialVersions = [versionOutdated, versionLast];
+  const initialVersions = [outdatedVersion, lastVersion];
 
-  expect(getLastVersion(initialVersions)).toEqual(versionLast);
+  expect(getLastVersion(initialVersions)).toEqual(lastVersion);
 });
 
 test('GetLastVersion with versions empty', () => {

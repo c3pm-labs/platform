@@ -43,5 +43,5 @@ const versionBuilder = (version: string, publishedAt: string) => (
 export const fakeUser = userBuilder();
 export const fakeViewer = viewerBuilder(fakeUser);
 export const fakeOptions = optionsBuilder();
-export const versionOutdated = versionBuilder('0.1.5', '10:04:1999');
-export const versionLast = versionBuilder('0.2.5', '18:07:2000');
+export const outdatedVersion = versionBuilder('0.1.5', '10:04:1999');
+export const lastVersion = versionBuilder('0.2.5', '18:07:2000');
