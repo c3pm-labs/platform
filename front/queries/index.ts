@@ -15,12 +15,14 @@ export const USER = gql`
                 versions(first: 1000, last: 0) {
                     version
                     publishedAt
+                    tags
                 }
                 latest {
                     description
                     publishedAt
                     version
-                },
+                    tags
+            },
             }
         }
     }
@@ -92,6 +94,7 @@ export const PACKAGE_FROM_VERSION = gql`
             description
             version
             readme
+            tags
             package {
                 name
                 author {
@@ -101,10 +104,12 @@ export const PACKAGE_FROM_VERSION = gql`
                 versions(first: 1000, last: 0) {
                     version
                     publishedAt
+                    tags
                 }
                 latest {
                     publishedAt
                     version
+                    tags
                 }
             }
         }
@@ -121,6 +126,7 @@ export const SEARCH = gql`
                 readme,
                 publishedAt,
                 version,
+                tags,
             }
             author {
                 username,
@@ -131,6 +137,7 @@ export const SEARCH = gql`
                 readme,
                 publishedAt,
                 version,
+                tags,
             }
         }
     }
