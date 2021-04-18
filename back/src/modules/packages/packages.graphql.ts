@@ -38,7 +38,7 @@ export const PackageQuery = extendType({
       type: Package,
       args: {
         keyword: stringArg(),
-        tags: nullable(list(nullable(stringArg()))),
+        tags: nullable(list(stringArg())),
       },
       resolve(parent, args, ctx) {
         return packagesService.search(ctx, args.keyword, args.tags);

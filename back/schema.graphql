@@ -27,7 +27,7 @@ input PackageWhereUniqueInput {
 
 type Query {
   package(name: String!): Package!
-  search(keyword: String!, tags: [String]): [Package!]!
+  search(keyword: String!, tags: [String!]): [Package!]!
   user(id: String, username: String): User
   version(packageName: String!, version: String): Version!
   viewer: User!

@@ -92,10 +92,10 @@ function Search(): JSX.Element {
   const theme = useTheme();
   const classes = useStyles();
   const isMobile = useMediaQuery(theme.breakpoints.down('xs'));
-  const { q, page = 1 } = router.query;
+  const { q, tags = '', page = 1 } = router.query;
   const baseIndex = Number(page) * 5 - 5;
   const { data, loading } = useQuery<{ search: Package[] }>(SEARCH, {
-    variables: { keyword: q ? q[0] : '' },
+    variables: { keyword: q ?? '', tags: typeof tags === 'string' && tags.length > 0 ? tags.split(';') : [] },
   });
 
   const numberOfPages = () => {

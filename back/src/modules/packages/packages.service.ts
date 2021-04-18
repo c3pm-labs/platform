@@ -23,19 +23,26 @@ export async function getLatestVersion(ctx: Context, packageName: string): Promi
   return versions[0];
 }
 
-export async function search(ctx: Context, keyword: string, tags?: string[]): Promise<Package[]> {
+export async function search(ctx: Context, keyword: string, tags: string[] = [])
+  : Promise<Package[]> {
   return ctx.db.package.findMany({
     where: {
-      name: {
-        contains: keyword,
-      },
-      versions: tags ? {
-        some: {
-          tags: {
-            hasSome: tags,
+      OR: [
+        {
+          name: {
+            contains: keyword,
           },
         },
-      } : undefined,
+        {
+          versions: {
+            some: {
+              tags: {
+                hasSome: tags,
+              },
+            },
+          },
+        },
+      ],
     },
   });
 }
