@@ -27,20 +27,20 @@ export async function search(ctx: Context, keyword: string, tags: string[] = [])
   : Promise<Package[]> {
   return ctx.db.package.findMany({
     where: {
-      OR: [
+      AND: [
         {
           name: {
             contains: keyword,
           },
         },
         {
-          versions: {
+          versions: tags?.length > 0 ? {
             some: {
               tags: {
                 hasSome: tags,
               },
             },
-          },
+          } : undefined,
         },
       ],
     },

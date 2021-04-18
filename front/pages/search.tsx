@@ -8,11 +8,15 @@ import useMediaQuery from '@material-ui/core/useMediaQuery';
 import { Package } from 'types';
 import { useQuery } from '@apollo/client';
 import { SEARCH } from 'queries';
+import clsx from 'clsx';
 
 import withApollo from 'utils/withApollo';
 import Head from 'components/Head';
 import Layout from 'components/Layout';
 import PackageCard from 'components/PackageCard';
+
+import { tagsList } from '../utils/constant';
+import Button from '../components/Button';
 
 const useStyles = makeStyles((theme) => ({
   container: {
@@ -85,6 +89,18 @@ const useStyles = makeStyles((theme) => ({
       backgroundColor: theme.palette.primary.main,
     },
   },
+  tagsContainer: {
+    display: 'flex',
+    justifyContent: 'center',
+    marginTop: theme.spacing(2),
+    flexWrap: 'wrap',
+  },
+  tag: {
+    margin: `0 ${theme.spacing(1)}px`,
+    [theme.breakpoints.down('xs')]: {
+      marginBottom: theme.spacing(1),
+    },
+  },
 }));
 
 function Search(): JSX.Element {
@@ -92,10 +108,12 @@ function Search(): JSX.Element {
   const theme = useTheme();
   const classes = useStyles();
   const isMobile = useMediaQuery(theme.breakpoints.down('xs'));
-  const { q, tags = '', page = 1 } = router.query;
+  // tags is of type string, it has the following format: tag1,tag2,tag3
+  const { q, tags, page = 1 } = router.query;
+  const selectedTags = typeof tags === 'string' && tags.length > 0 ? tags.split(',') : [];
   const baseIndex = Number(page) * 5 - 5;
   const { data, loading } = useQuery<{ search: Package[] }>(SEARCH, {
-    variables: { keyword: q ?? '', tags: typeof tags === 'string' && tags.length > 0 ? tags.split(';') : [] },
+    variables: { keyword: q ?? '', tags: selectedTags },
   });
 
   const numberOfPages = () => {
@@ -114,7 +132,7 @@ function Search(): JSX.Element {
 
       if (packageData) {
         list.push(
-          <div style={{ display: 'flex', flexDirection: 'column' }} key={packageData.name}>
+          <div className={classes.list} key={packageData.name}>
             {idx !== 0 && <div className={classes.line} />}
             <PackageCard packageData={packageData} key={packageData.name} />
           </div>,
@@ -132,6 +150,11 @@ function Search(): JSX.Element {
       </Layout>
     );
   }
+  const searchByTag = (tag: string) => {
+    const isPresent = selectedTags.find((e) => e === tag);
+    const newTags = isPresent ? selectedTags.filter((e) => e !== tag).join(',') : selectedTags.concat(tag).join(',');
+    router.push({ pathname: '/search', query: { q, ...(newTags.length > 0 ? { tags: newTags } : {}), ...(page ? { page } : {}) } });
+  };
 
   return (
     <Layout>
@@ -142,6 +165,16 @@ function Search(): JSX.Element {
           {' '}
           packages found
         </Typography>
+      </div>
+      <div className={classes.tagsContainer}>
+        {tagsList.map((tag) => {
+          const isSelected = selectedTags.find((e) => e === tag);
+          return (
+            <Button onClick={() => searchByTag(tag)} type="button" key={tag} variant={isSelected ? 'contained' : 'outlined'} className={classes.tag}>
+              {tag}
+            </Button>
+          );
+        })}
       </div>
       <div className={classes.container}>
         {packages()}
