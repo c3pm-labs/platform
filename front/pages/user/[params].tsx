@@ -20,7 +20,7 @@ const useStyles = makeStyles((theme) => ({
     display: 'flex',
     [theme.breakpoints.between('md', 'xl')]: {
       flexDirection: 'row',
-      height: '80vh',
+      minHeight: '80vh',
     },
     flexDirection: 'column',
     alignItems: 'flex-start',
@@ -30,9 +30,11 @@ const useStyles = makeStyles((theme) => ({
     justifyContent: 'center',
     flexDirection: 'row',
     alignItems: 'center',
+    marginTop: 40,
     [theme.breakpoints.between('md', 'xl')]: {
       height: '100%',
-      maxWidth: 240,
+      maxWidth: 400,
+      width: '40%',
     },
     [theme.breakpoints.down('md')]: {
       width: '100%',
@@ -47,17 +49,11 @@ const useStyles = makeStyles((theme) => ({
   title: {
     display: 'flex',
     justifyContent: 'center',
-    fontSize: 24,
-  },
-  line: {
     [theme.breakpoints.up('md')]: {
-      width: '1px',
-      height: '60vh',
-      marginTop: 50,
-      marginLeft: '50px',
-      marginRight: '50px',
-      backgroundColor: theme.palette.grey[400],
+      justifyContent: 'flex-start',
     },
+    fontSize: 24,
+    width: '100%',
   },
   packageContainer: {
     width: '100%',
@@ -65,9 +61,16 @@ const useStyles = makeStyles((theme) => ({
     flexGrow: 0.5,
     flexDirection: 'column',
     marginTop: 40,
+    [theme.breakpoints.up('sm')]: {
+      paddingLeft: theme.spacing(1),
+      paddingRight: theme.spacing(1),
+      alignSelf: 'center',
+      width: '60%',
+    },
     [theme.breakpoints.up('md')]: {
       paddingLeft: theme.spacing(1),
       paddingRight: theme.spacing(1),
+      width: '50%',
     },
   },
   packages: {
@@ -117,7 +120,6 @@ function Profile(): JSX.Element {
       <Layout>
         <Head title="c3pm - profile" />
         <Box className={classes.box} p={1} m={1}>
-          <div className={classes.line} />
           <div className={classes.profileContainer}>
             <Box display="flex" alignItems="center" flexDirection="column" p={0} m={0}>
               <Avatar
@@ -128,7 +130,6 @@ function Profile(): JSX.Element {
               <ProfileInfos user={user} />
             </Box>
           </div>
-          <div className={classes.line} />
           <div className={classes.packageContainer}>
             <Box display="flex" justifyContent="center" flexDirection="row">
               <Typography
@@ -149,10 +150,20 @@ function Profile(): JSX.Element {
               <Box display="flex" justifyContent="center" flexDirection="column">
                 <Box>
                   {user && user.packages && user.packages.map((data) => (
-                    <div key={data.name}>
-                      <div className={classes.packages} />
-                      <PackageCard packageData={data} key={data.name} />
-                    </div>
+                    <>
+                      <div key={data.name}>
+                        <div className={classes.packages} />
+                        <PackageCard packageData={data} key={data.name} />
+                      </div>
+                      <div key={data.name}>
+                        <div className={classes.packages} />
+                        <PackageCard packageData={data} key={data.name} />
+                      </div>
+                      <div key={data.name}>
+                        <div className={classes.packages} />
+                        <PackageCard packageData={data} key={data.name} />
+                      </div>
+                    </>
                   ))}
                 </Box>
               </Box>
