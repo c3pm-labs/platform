@@ -150,20 +150,10 @@ function Profile(): JSX.Element {
               <Box display="flex" justifyContent="center" flexDirection="column">
                 <Box>
                   {user && user.packages && user.packages.map((data) => (
-                    <>
-                      <div key={data.name}>
-                        <div className={classes.packages} />
-                        <PackageCard packageData={data} key={data.name} />
-                      </div>
-                      <div key={data.name}>
-                        <div className={classes.packages} />
-                        <PackageCard packageData={data} key={data.name} />
-                      </div>
-                      <div key={data.name}>
-                        <div className={classes.packages} />
-                        <PackageCard packageData={data} key={data.name} />
-                      </div>
-                    </>
+                    <div key={data.name}>
+                      <div className={classes.packages} />
+                      <PackageCard packageData={data} key={data.name} />
+                    </div>
                   ))}
                 </Box>
               </Box>
