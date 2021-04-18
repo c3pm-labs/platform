@@ -8,7 +8,6 @@ import useMediaQuery from '@material-ui/core/useMediaQuery';
 import { Package } from 'types';
 import { useQuery } from '@apollo/client';
 import { SEARCH } from 'queries';
-import clsx from 'clsx';
 
 import withApollo from 'utils/withApollo';
 import Head from 'components/Head';
