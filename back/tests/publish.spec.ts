@@ -27,9 +27,9 @@ describe('publish and search', () => {
       }
   `, user);
 
-  const searchQuery = async (params: { keyword: string }): Promise<any> => ctx.server.graphql(gql`
-      query search($keyword: String!) {
-          search(keyword: $keyword) {
+  const searchQuery = async (params: { keyword: string, tags?: string[] }): Promise<any> => ctx.server.graphql(gql`
+      query search($keyword: String, $tags: [String) {
+          search(keyword: $keyword, tags: $tags) {
               name,
               versions(first: 0, last: 100) {
                   description,

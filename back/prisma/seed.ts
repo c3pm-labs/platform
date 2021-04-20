@@ -27,6 +27,7 @@ Boost is cool
 ctpm add boost
 \`\`\``,
             description: 'boost is cool',
+            tags: ['boost', 'network'],
           },
           {
             version: '2.4.5',
@@ -37,6 +38,7 @@ Boost 2 is really cool
 ctpm add boost
 \`\`\``,
             description: 'boost is cool',
+            tags: ['boost', 'utils'],
           },
         ],
       },

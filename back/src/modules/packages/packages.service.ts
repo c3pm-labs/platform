@@ -23,12 +23,26 @@ export async function getLatestVersion(ctx: Context, packageName: string): Promi
   return versions[0];
 }
 
-export async function search(ctx: Context, keyword: string): Promise<Package[]> {
+export async function search(ctx: Context, keyword: string, tags: string[] = [])
+  : Promise<Package[]> {
   return ctx.db.package.findMany({
     where: {
-      name: {
-        contains: keyword,
-      },
+      AND: [
+        {
+          name: {
+            contains: keyword,
+          },
+        },
+        {
+          versions: tags?.length > 0 ? {
+            some: {
+              tags: {
+                hasSome: tags,
+              },
+            },
+          } : undefined,
+        },
+      ],
     },
   });
 }
@@ -99,6 +113,7 @@ export async function publish(ctx: Context, file: Express.Multer.File): Promise<
               readme: readmeBuffer ?? 'There is no readme for this package',
               description: parsedC3PM.description,
               license: parsedC3PM.license,
+              tags: parsedC3PM.tags,
             },
           },
         },
@@ -122,6 +137,7 @@ export async function publish(ctx: Context, file: Express.Multer.File): Promise<
             readme: readmeBuffer ?? 'There is no readme for this package',
             description: parsedC3PM.description,
             license: parsedC3PM.license,
+            tags: parsedC3PM.tags,
           },
         },
       },

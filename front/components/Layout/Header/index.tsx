@@ -56,6 +56,13 @@ function Header(): JSX.Element {
       color="default"
     >
       <div className={classes.links}>
+      <a
+          rel="noopener noreferrer"
+          href="/explorer"
+        >
+          <Typography className={classes.text}>Explorer</Typography>
+        </a>
+        <Typography className={classes.text}>•</Typography>
         <a
           target="_blank"
           rel="noopener noreferrer"

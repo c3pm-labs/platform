@@ -14,6 +14,9 @@ import Head from 'components/Head';
 import Layout from 'components/Layout';
 import PackageCard from 'components/PackageCard';
 
+import { tagsList } from '../utils/constant';
+import Button from '../components/Button';
+
 const useStyles = makeStyles((theme) => ({
   container: {
     display: 'flex',
@@ -85,6 +88,38 @@ const useStyles = makeStyles((theme) => ({
       backgroundColor: theme.palette.primary.main,
     },
   },
+  tagsContainer: {
+    display: 'flex',
+    justifyContent: 'center',
+    marginTop: theme.spacing(4),
+    flexWrap: 'wrap',
+    flexDirection: 'column',
+  },
+  tags: {
+    display: 'flex',
+    flex: 1,
+    flexDirection: 'column',
+    width: '100%',
+    marginLeft: theme.spacing(8),
+    marginTop: theme.spacing(3),
+  },
+  containerRow: {
+    display: 'flex',
+    flex: 1,
+    flexDirection: 'row',
+    justifyContent: 'flex-start',
+    alignItems: 'flex-start',
+  },
+  linePopular: {
+    width: '30%',
+    justifyContent: 'center',
+    borderBottom: `2px solid ${theme.palette.primary.main}`,
+    transform: 'rotate(270deg)',
+    marginTop: theme.spacing(30),
+    marginRight: theme.spacing(-40),
+    marginLeft: theme.spacing(-10),
+
+  },
 }));
 
 function Search(): JSX.Element {
@@ -92,10 +127,12 @@ function Search(): JSX.Element {
   const theme = useTheme();
   const classes = useStyles();
   const isMobile = useMediaQuery(theme.breakpoints.down('xs'));
-  const { q, page = 1 } = router.query;
+  // tags is of type string, it has the following format: tag1,tag2,tag3
+  const { q, tags, page = 1 } = router.query;
+  const selectedTags = typeof tags === 'string' && tags.length > 0 ? tags.split(',') : [];
   const baseIndex = Number(page) * 5 - 5;
   const { data, loading } = useQuery<{ search: Package[] }>(SEARCH, {
-    variables: { keyword: q ? q[0] : '' },
+    variables: { keyword: q ?? '', tags: selectedTags },
   });
 
   const numberOfPages = () => {
@@ -114,7 +151,7 @@ function Search(): JSX.Element {
 
       if (packageData) {
         list.push(
-          <div style={{ display: 'flex', flexDirection: 'column' }} key={packageData.name}>
+          <div className={classes.list} key={packageData.name}>
             {idx !== 0 && <div className={classes.line} />}
             <PackageCard packageData={packageData} key={packageData.name} />
           </div>,
@@ -132,6 +169,11 @@ function Search(): JSX.Element {
       </Layout>
     );
   }
+  const searchByTag = (tag: string) => {
+    const isPresent = selectedTags.find((e) => e === tag);
+    const newTags = isPresent ? selectedTags.filter((e) => e !== tag).join(',') : selectedTags.concat(tag).join(',');
+    router.push({ pathname: '/search', query: { q, ...(newTags.length > 0 ? { tags: newTags } : {}), ...(page ? { page } : {}) } });
+  };
 
   return (
     <Layout>
@@ -143,9 +185,22 @@ function Search(): JSX.Element {
           packages found
         </Typography>
       </div>
-      <div className={classes.container}>
-        {packages()}
-      </div>
+      <div className={classes.containerRow}>
+        <div className={classes.tagsContainer}>
+          {tagsList.map((tag) => {
+            const isSelected = selectedTags.find((e) => e === tag);
+            return (
+              <Button onClick={() => searchByTag(tag)} type="button" key={tag} color={isSelected ? 'success' : 'primary'} variant='contained' className={classes.tags}>
+                {tag}
+              </Button>
+            );
+          })}
+        </div>
+        <div className={classes.linePopular}></div>
+        <div className={classes.container}>
+          {packages()}
+        </div>
+      </div> 
       {numberOfPages() > 0 && (
         <div className={classes.footer}>
           <Pagination

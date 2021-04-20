@@ -16,7 +16,7 @@ class Server {
     const app = express();
     app.get('/', (req, res) => res.sendStatus(200));
 
-    const ALLOWED_ORIGIN = env.get('ALLOWED_ORIGIN').required().asString();
+    const ALLOWED_ORIGIN = 'http://localhost:3000';//env.get('ALLOWED_ORIGIN').required().asString();
     app.use(cors({
       credentials: true,
       origin: new RegExp(ALLOWED_ORIGIN),
@@ -26,7 +26,7 @@ class Server {
       app.set('trust proxy', 1);
     }
 
-    const SESSION_SECRET = env.get('SESSION_SECRET').required().asString();
+    const SESSION_SECRET = 'toto'; // env.get('SESSION_SECRET').required().asString();
     app.use(session({
       secret: SESSION_SECRET,
       resave: true,
