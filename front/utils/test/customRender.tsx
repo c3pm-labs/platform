@@ -5,7 +5,9 @@ import {
 import { MockedProvider } from '@apollo/client/testing';
 import { VIEWER } from 'queries';
 
-import { fakeViewer } from './builder';
+import { userBuilder, viewerBuilder } from './builder';
+
+export const fakeViewer = viewerBuilder(userBuilder());
 
 // eslint-disable-next-line
 const useRouter = jest.spyOn(require('next/router'), 'useRouter');

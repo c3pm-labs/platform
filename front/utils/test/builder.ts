@@ -1,7 +1,7 @@
 import { build, fake, sequence } from '@jackfranklin/test-data-bot';
 import { User, Version, Viewer } from 'types';
 
-const userBuilder = build<User>({
+export const userBuilder = build<User>({
   fields: {
     id: sequence(),
     username: fake((f) => f.internet.userName()),
@@ -11,11 +11,11 @@ const userBuilder = build<User>({
   },
 });
 
-const viewerBuilder = (user: User) => (
+export const viewerBuilder = (user: User) => (
   build<Viewer>({ fields: user })()
 );
 
-const optionsBuilder = build<Array<{ label: string; value: string }>>({
+export const optionsBuilder = build<Array<{ label: string; value: string }>>({
   fields: [
     { label: '', value: fake((f) => f.lorem.word()) },
     { label: '', value: fake((f) => f.lorem.word()) },
@@ -28,7 +28,7 @@ const optionsBuilder = build<Array<{ label: string; value: string }>>({
   ],
 });
 
-const versionBuilder = (version: string, publishedAt: string) => (
+export const versionBuilder = (version: string, publishedAt: string) => (
   build<Version>({
     fields: {
       version,
@@ -39,9 +39,3 @@ const versionBuilder = (version: string, publishedAt: string) => (
     },
   })()
 );
-
-export const fakeUser = userBuilder();
-export const fakeViewer = viewerBuilder(fakeUser);
-export const fakeOptions = optionsBuilder();
-export const outdatedVersion = versionBuilder('0.1.5', '10:04:1999');
-export const lastVersion = versionBuilder('0.2.5', '18:07:2000');

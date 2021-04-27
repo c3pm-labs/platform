@@ -3,9 +3,11 @@ import userEvent from '@testing-library/user-event';
 import { Formik, Form } from 'formik';
 
 import { render, screen } from 'utils/test/customRender';
-import { fakeOptions } from 'utils/test/builder';
+import { optionsBuilder } from 'utils/test/builder';
 
 import Select from './index';
+
+export const fakeOptions = optionsBuilder();
 
 test('Select open', () => {
   render(

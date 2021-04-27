@@ -68,7 +68,7 @@ function PackageCard({ packageData }: PackageCardProps): JSX.Element {
   return (
     <div className={classes.container} data-testid={`packageCard-${name}`}>
       <div className={classes.top}>
-        <Typography variant="h5">
+        <Typography variant="h5" data-testid={`packageCard-${name}-name`}>
           <TextLink href="/package/[name]" as={`/package/${name}`}>{name}</TextLink>
         </Typography>
         <Typography variant="h5" color="primary" data-testid={`packageCard-${name}-version`}>{latest.version}</Typography>
@@ -82,7 +82,7 @@ function PackageCard({ packageData }: PackageCardProps): JSX.Element {
           user={author}
           classes={{ picture: classes.avatar, name: classes.name }}
         />
-        <Typography variant="body2" className={classes.update} data-testid="divPackageUser">
+        <Typography variant="body2" className={classes.update}>
           Last updated on the&nbsp;
           {date.toDateString()}
         </Typography>
