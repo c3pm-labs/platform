@@ -7,7 +7,7 @@ import { optionsBuilder } from 'utils/test/builder';
 
 import Select from './index';
 
-export const fakeOptions = optionsBuilder();
+const fakeOptions = optionsBuilder();
 
 test('Select open', () => {
   render(

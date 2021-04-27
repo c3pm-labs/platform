@@ -11,7 +11,7 @@ export const userBuilder = build<User>({
   },
 });
 
-export const viewerBuilder = (user: User) => (
+export const viewerBuilder = (user: User): Viewer => (
   build<Viewer>({ fields: user })()
 );
 
@@ -28,7 +28,7 @@ export const optionsBuilder = build<Array<{ label: string; value: string }>>({
   ],
 });
 
-export const versionBuilder = (version: string, publishedAt: string) => (
+export const versionBuilder = (version: string, publishedAt: string): Version => (
   build<Version>({
     fields: {
       version,
