@@ -10,6 +10,7 @@ import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
 import { Version } from 'types';
 import { PACKAGE_FROM_VERSION } from 'queries';
+import { Hidden } from '@material-ui/core';
 
 import InstallButton from 'components/pages/packages/InstallButton';
 import Head from 'components/Head';
@@ -18,11 +19,10 @@ import withApollo from 'utils/withApollo';
 import TabPanel from 'components/pages/packages/TabPanel';
 import MarkdownDisplayer from 'components/pages/packages/MarkdownDisplayer';
 import VersionList from 'components/pages/packages/VersionList';
+import Loader from 'components/Loader';
 
 import PageNotFound from '../404';
 import Avatar from '../../components/Avatar';
-import Loader from 'components/Loader';
-import { Hidden } from '@material-ui/core';
 
 const useStyles = makeStyles((theme) => ({
   container: {
@@ -37,7 +37,7 @@ const useStyles = makeStyles((theme) => ({
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
-    paddingTop: "25%",
+    paddingTop: '25%',
   },
   tab: {
     '& .MuiTab-root': {
@@ -147,10 +147,10 @@ function PackageDetails(): JSX.Element {
         <Head title={packageVersion ? `${packageName} - ${packageVersion}` : packageName} />
         <div className={classes.containerLoadeur}>
           <Hidden implementation="css" smUp>
-            <Loader size="sm"/>
+            <Loader size="sm" />
           </Hidden>
           <Hidden implementation="css" xsDown>
-            <Loader size="xl"/>
+            <Loader size="xl" />
           </Hidden>
         </div>
       </Layout>

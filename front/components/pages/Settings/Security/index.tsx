@@ -8,11 +8,12 @@ import { useMutation } from '@apollo/client';
 import * as yup from 'yup';
 import { Alert } from '@material-ui/lab';
 
+import Loader from 'components/Loader';
+
 import Button from '../../../Button';
 import { useViewer } from '../../../../hooks/auth';
 import { UPDATEPASSWORD } from '../../../../queries';
 import PasswordInput from '../../../PasswordInput';
-import Loader from 'components/Loader';
 
 const useStyles = makeStyles((theme) => ({
   container: {
@@ -29,7 +30,7 @@ const useStyles = makeStyles((theme) => ({
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
-    paddingTop: "18%",
+    paddingTop: '18%',
   },
   form: {
     display: 'flex',
@@ -92,13 +93,13 @@ function Security(): JSX.Element {
     return (
       <div className={classes.containerLoadeur}>
         <Hidden implementation="css" smUp>
-          <Loader size="sm"/>
+          <Loader size="sm" />
         </Hidden>
         <Hidden implementation="css" xsDown>
-          <Loader size="xl"/>
+          <Loader size="xl" />
         </Hidden>
       </div>
-    )
+    );
   }
 
   return (

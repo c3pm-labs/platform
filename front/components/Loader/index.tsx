@@ -1,6 +1,6 @@
 import React from 'react';
-import Lottie from "lottie-react";
-import loaderC3PM from "public/assets/loadeurC3pm.json";
+import Lottie from 'lottie-react';
+import loaderC3PM from 'public/assets/loadeurC3pm.json';
 import { makeStyles } from '@material-ui/core';
 
 function getSize(size: string): { width: string; height: string} {
@@ -33,7 +33,7 @@ const Loader = (props: LoaderProps): JSX.Element => {
     <div className={classes.container}>
       <Lottie className={className} animationData={loaderC3PM} />
     </div>
-  )
+  );
 };
 
 export default Loader;
