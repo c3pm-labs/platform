@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import {
+  Hidden,
   makeStyles, Snackbar,
 } from '@material-ui/core';
 import { Form, Formik } from 'formik';
@@ -11,6 +12,7 @@ import Button from '../../../Button';
 import { useViewer } from '../../../../hooks/auth';
 import { UPDATEPASSWORD } from '../../../../queries';
 import PasswordInput from '../../../PasswordInput';
+import Loader from 'components/Loader';
 
 const useStyles = makeStyles((theme) => ({
   container: {
@@ -21,6 +23,13 @@ const useStyles = makeStyles((theme) => ({
     justifyContent: 'center',
     alignItems: 'center',
     marginBottom: theme.spacing(3),
+  },
+  containerLoadeur: {
+    width: '100%',
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    paddingTop: "18%",
   },
   form: {
     display: 'flex',
@@ -79,7 +88,18 @@ function Security(): JSX.Element {
     newPassword: yup.string().required().min(8),
   });
 
-  if (!viewer) return <div>Loading...</div>;
+  if (!viewer) {
+    return (
+      <div className={classes.containerLoadeur}>
+        <Hidden implementation="css" smUp>
+          <Loader size="sm"/>
+        </Hidden>
+        <Hidden implementation="css" xsDown>
+          <Loader size="xl"/>
+        </Hidden>
+      </div>
+    )
+  }
 
   return (
     <div className={classes.container}>

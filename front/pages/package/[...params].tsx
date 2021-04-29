@@ -21,6 +21,8 @@ import VersionList from 'components/pages/packages/VersionList';
 
 import PageNotFound from '../404';
 import Avatar from '../../components/Avatar';
+import Loader from 'components/Loader';
+import { Hidden } from '@material-ui/core';
 
 const useStyles = makeStyles((theme) => ({
   container: {
@@ -30,7 +32,12 @@ const useStyles = makeStyles((theme) => ({
     [theme.breakpoints.down('xs')]: {
       margin: theme.spacing(2),
     },
-
+  },
+  containerLoadeur: {
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    paddingTop: "25%",
   },
   tab: {
     '& .MuiTab-root': {
@@ -138,7 +145,14 @@ function PackageDetails(): JSX.Element {
     return (
       <Layout>
         <Head title={packageVersion ? `${packageName} - ${packageVersion}` : packageName} />
-        <span>Loading...</span>
+        <div className={classes.containerLoadeur}>
+          <Hidden implementation="css" smUp>
+            <Loader size="sm"/>
+          </Hidden>
+          <Hidden implementation="css" xsDown>
+            <Loader size="xl"/>
+          </Hidden>
+        </div>
       </Layout>
     );
   }

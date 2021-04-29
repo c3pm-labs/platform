@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { makeStyles, Snackbar } from '@material-ui/core';
+import { Hidden, makeStyles, Snackbar } from '@material-ui/core';
 import { Form, Formik } from 'formik';
 import { useMutation } from '@apollo/client';
 import * as yup from 'yup';
@@ -9,6 +9,7 @@ import { Alert } from '@material-ui/lab';
 import { UPDATE } from '../../../../queries';
 import TextInput from '../../../TextInput';
 import Button from '../../../Button';
+import Loader from 'components/Loader';
 
 const useStyles = makeStyles((theme) => ({
   container: {
@@ -20,6 +21,13 @@ const useStyles = makeStyles((theme) => ({
     justifyContent: 'center',
     alignItems: 'center',
     marginBottom: theme.spacing(3),
+  },
+  containerLoadeur: {
+    width: '100%',
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    paddingTop: "18%",
   },
   form: {
     display: 'flex',
@@ -89,7 +97,18 @@ function Profile(): JSX.Element {
     description: yup.string(),
   });
 
-  if (!viewer) return <div>Loading...</div>;
+  if (!viewer) {
+    return (
+      <div className={classes.containerLoadeur}>
+        <Hidden implementation="css" smUp>
+          <Loader size="sm"/>
+        </Hidden>
+        <Hidden implementation="css" xsDown>
+          <Loader size="xl"/>
+        </Hidden>
+      </div>
+    )
+  }
 
   const initialValues = {
     username: viewer?.username,
