@@ -15,8 +15,8 @@ describe('publish and search', () => {
     password: faker.internet.password(),
     username: faker.internet.userName(),
   };
-  const packageName = 'testLib';
-  const keyword = 'test';
+  const packageName = 'Hello';
+  const keyword = 'Hello';
 
   const registerMutation = async (user: { email: string; password: string; username: string }): Promise<any> => ctx.server.graphql(gql`
       mutation Register($email: String!, $username: String!, $password: String!) {
@@ -28,15 +28,16 @@ describe('publish and search', () => {
   `, user);
 
   const searchQuery = async (params: { keyword: string, tags?: string[] }): Promise<any> => ctx.server.graphql(gql`
-      query search($keyword: String, $tags: [String]) {
+      query search($keyword: String!, $tags: [String!]) {
           search(keyword: $keyword, tags: $tags) {
               name,
-              versions(first: 0, last: 100) {
+              versions(first: 1000, last: 0) {
                   description,
                   license,
                   readme,
                   publishedAt,
                   version,
+                  tags,
               }
               author {
                   username,
@@ -47,6 +48,7 @@ describe('publish and search', () => {
                   readme,
                   publishedAt,
                   version,
+                  tags,
               }
           }
       }
@@ -146,14 +148,15 @@ describe('publish and search', () => {
         description: expect.any(String),
         license: expect.any(String),
         readme: expect.any(String),
+        tags: expect.arrayContaining(['hello', 'library']),
         publishedAt: expect.any(String),
         version: '1.0.0',
       },
     }]);
 
-    // publish and search the new latest version
+    // publish and search with tags to get the new latest version
     await publishPackage(api, loginRes.data.apiKey, '/data/lib-2.0.0.tar', packageName, '2.0.0');
-    const newSearchRes = await searchQuery({ keyword });
+    const newSearchRes = await searchQuery({ keyword: '', tags: ['hello', 'library'] });
     expect(newSearchRes.data.search).toEqual([{
       name: packageName,
       versions: expect.any(Array),
@@ -162,6 +165,7 @@ describe('publish and search', () => {
         description: expect.any(String),
         license: expect.any(String),
         readme: expect.any(String),
+        tags: expect.arrayContaining(['hello', 'library']),
         publishedAt: expect.any(String),
         version: '2.0.0',
       },

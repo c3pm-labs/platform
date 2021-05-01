@@ -91,7 +91,7 @@ function PackageCard({ packageData }: PackageCardProps): JSX.Element {
         <Typography color="textPrimary" variant="body1">{latest.description}</Typography>
       </div>
       <div className={classes.tagsContainer}>
-        {latest?.tags?.map((tag) => <span className={classes.tag}>{tag}</span>)}
+        {latest?.tags?.map((tag) => <span key={tag} className={classes.tag}>{tag}</span>)}
       </div>
       <div className={classes.bottom}>
         <Avatar
