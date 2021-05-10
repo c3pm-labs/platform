@@ -204,7 +204,7 @@ function PackageDetails(): JSX.Element {
         </TabPanel>
       </div>
     </Layout>
-  )
+  );
 }
 
 export default withApollo(PackageDetails, { getDataFromTree });
