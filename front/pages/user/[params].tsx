@@ -6,7 +6,7 @@ import { useRouter } from 'next/router';
 import { Status, useUser } from 'hooks/user';
 import { getDataFromTree } from '@apollo/react-ssr';
 
-import withApollo from 'utils/withApollo';
+// import withApollo from 'utils/withApollo';
 import Head from 'components/Head';
 import Layout from 'components/Layout';
 
@@ -14,6 +14,12 @@ import PageNotFound from '../404';
 import Avatar from '../../components/Avatar';
 import ProfileInfos from '../../components/pages/profile/ProfileInfos';
 import PackageCard from '../../components/PackageCard';
+import { addApolloState, initializeApollo } from 'utils/apolloClient';
+import { USER } from 'queries';
+
+import {
+  ApolloClient, InMemoryCache, ApolloProvider, HttpLink,
+} from '@apollo/client';
 
 const useStyles = makeStyles((theme) => ({
   box: {
@@ -102,12 +108,16 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-function Profile(): JSX.Element {
+
+function Profile(props): JSX.Element {
   const classes = useStyles();
   const router = useRouter();
   const user = useUser({ id: String(router.query.params) });
+  // const { user } = props;
 
-  if (user === Status.LOADING) {
+  // console.log("id", id);
+
+  if (!user || user === Status.LOADING) {
     return (<></>);
   }
 
@@ -165,4 +175,21 @@ function Profile(): JSX.Element {
   );
 }
 
-export default withApollo(Profile, { getDataFromTree });
+export async function getServerSideProps(context) {
+  const apolloClient = initializeApollo()
+
+
+
+  // (context.query.params.id);
+
+  await apolloClient.query({
+    query: USER,
+    variables: { id: context.params },
+  })
+
+  return addApolloState(apolloClient, {
+    props: {},
+  })
+}
+
+export default Profile;

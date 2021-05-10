@@ -4,7 +4,7 @@ import { useRouter } from 'next/router';
 import Image from 'next/image';
 
 import Layout from 'components/Layout';
-import withApollo from 'utils/withApollo';
+// import withApollo from 'utils/withApollo';
 import Head from 'components/Head';
 
 const useStyles = makeStyles((theme) => ({
@@ -83,4 +83,4 @@ function PageNotFound(): JSX.Element {
   );
 }
 
-export default withApollo(PageNotFound);
+export default PageNotFound;

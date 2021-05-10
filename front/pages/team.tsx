@@ -6,7 +6,7 @@ import GitHubIcon from '@material-ui/icons/GitHub';
 import LinkedInIcon from '@material-ui/icons/LinkedIn';
 import LinkIcon from '@material-ui/icons/Link';
 
-import withApollo from 'utils/withApollo';
+// import withApollo from 'utils/withApollo';
 import team from 'utils/team';
 import Head from 'components/Head';
 import Layout from 'components/Layout';
@@ -98,4 +98,4 @@ function Team(): JSX.Element {
   );
 }
 
-export default withApollo(Team);
+export default Team;

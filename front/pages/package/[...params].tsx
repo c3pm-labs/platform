@@ -14,7 +14,7 @@ import { PACKAGE_FROM_VERSION } from 'queries';
 import InstallButton from 'components/pages/packages/InstallButton';
 import Head from 'components/Head';
 import Layout from 'components/Layout';
-import withApollo from 'utils/withApollo';
+// import withApollo from 'utils/withApollo';
 import TabPanel from 'components/pages/packages/TabPanel';
 import MarkdownDisplayer from 'components/pages/packages/MarkdownDisplayer';
 import VersionList from 'components/pages/packages/VersionList';
@@ -201,4 +201,4 @@ function PackageDetails(): JSX.Element {
   );
 }
 
-export default withApollo(PackageDetails, { getDataFromTree });
+export default PackageDetails;

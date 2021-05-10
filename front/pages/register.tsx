@@ -5,7 +5,7 @@ import { makeStyles, useTheme } from '@material-ui/core';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
 
 import TextLink from 'components/TextLink';
-import withApollo from 'utils/withApollo';
+// import withApollo from 'utils/withApollo';
 import TextInput from 'components/TextInput';
 import PasswordInput from 'components/PasswordInput';
 import Button from 'components/Button';
@@ -182,4 +182,4 @@ function Register(): JSX.Element {
   );
 }
 
-export default withApollo(Register);
+export default Register;
