@@ -10,7 +10,6 @@ import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
 import { Version } from 'types';
 import { PACKAGE_FROM_VERSION } from 'queries';
-import { Hidden } from '@material-ui/core';
 
 import InstallButton from 'components/pages/packages/InstallButton';
 import Head from 'components/Head';
@@ -19,7 +18,7 @@ import withApollo from 'utils/withApollo';
 import TabPanel from 'components/pages/packages/TabPanel';
 import MarkdownDisplayer from 'components/pages/packages/MarkdownDisplayer';
 import VersionList from 'components/pages/packages/VersionList';
-import Loader from 'components/Loader';
+import WrappedLoader from 'components/WrappedLoader';
 
 import PageNotFound from '../404';
 import Avatar from '../../components/Avatar';
@@ -33,7 +32,7 @@ const useStyles = makeStyles((theme) => ({
       margin: theme.spacing(2),
     },
   },
-  containerLoadeur: {
+  containerLoader: {
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
@@ -66,7 +65,6 @@ const useStyles = makeStyles((theme) => ({
         margin: `${theme.spacing(1)}px 0`,
       },
     },
-
   },
   version: {
     fontWeight: 500,
@@ -131,7 +129,6 @@ function PackageDetails(): JSX.Element {
       version: packageVersion,
     },
   });
-
   const classes = useStyles();
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down('xs'));
@@ -145,13 +142,8 @@ function PackageDetails(): JSX.Element {
     return (
       <Layout>
         <Head title={packageVersion ? `${packageName} - ${packageVersion}` : packageName} />
-        <div className={classes.containerLoadeur}>
-          <Hidden implementation="css" smUp>
-            <Loader size="sm" />
-          </Hidden>
-          <Hidden implementation="css" xsDown>
-            <Loader size="xl" />
-          </Hidden>
+        <div className={classes.containerLoader}>
+          <WrappedLoader />
         </div>
       </Layout>
     );

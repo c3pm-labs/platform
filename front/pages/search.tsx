@@ -1,6 +1,6 @@
 import { getDataFromTree } from '@apollo/react-ssr';
 import {
-  Hidden, makeStyles, Typography, useTheme,
+  makeStyles, Typography, useTheme,
 } from '@material-ui/core';
 import React from 'react';
 import { useRouter } from 'next/router';
@@ -15,7 +15,7 @@ import withApollo from 'utils/withApollo';
 import Head from 'components/Head';
 import Layout from 'components/Layout';
 import PackageCard from 'components/PackageCard';
-import Loader from 'components/Loader';
+import WrappedLoader from 'components/WrappedLoader';
 
 const useStyles = makeStyles((theme) => ({
   container: {
@@ -33,7 +33,7 @@ const useStyles = makeStyles((theme) => ({
       paddingRight: 8,
     },
   },
-  containerLoadeur: {
+  containerLoader: {
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
@@ -137,13 +137,8 @@ function Search(): JSX.Element {
     return (
       <Layout>
         <Head title="Search" />
-        <div className={classes.containerLoadeur}>
-          <Hidden implementation="css" smUp>
-            <Loader size="sm" />
-          </Hidden>
-          <Hidden implementation="css" xsDown>
-            <Loader size="xl" />
-          </Hidden>
+        <div className={classes.containerLoader}>
+          <WrappedLoader />
         </div>
       </Layout>
     );

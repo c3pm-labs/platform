@@ -5,6 +5,9 @@ import {
 import { useRouter } from 'next/router';
 import { Status, useUser } from 'hooks/user';
 import { getDataFromTree } from '@apollo/react-ssr';
+import { USER } from 'queries';
+import { User } from 'types';
+import { NextPage } from 'next';
 
 import withApollo from 'utils/withApollo';
 import Head from 'components/Head';
@@ -102,10 +105,12 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-function Profile(): JSX.Element {
+const Profile: NextPage = (): JSX.Element => {
   const classes = useStyles();
   const router = useRouter();
   const user = useUser({ id: String(router.query.params) });
+
+  if (!user) return (<></>);
 
   if (user === Status.LOADING) {
     return (<></>);
@@ -163,6 +168,17 @@ function Profile(): JSX.Element {
       </Layout>
     </>
   );
-}
+};
+
+Profile.getInitialProps = async (context) => {
+  const { data } = await context.apolloClient.query<{ user: User }>({
+    query: USER,
+    variables: { id: context.query.params },
+  });
+
+  return {
+    props: { user: data },
+  };
+};
 
 export default withApollo(Profile, { getDataFromTree });

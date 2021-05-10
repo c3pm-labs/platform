@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import {
-  Hidden,
   makeStyles, Snackbar,
 } from '@material-ui/core';
 import { Form, Formik } from 'formik';
@@ -8,7 +7,7 @@ import { useMutation } from '@apollo/client';
 import * as yup from 'yup';
 import { Alert } from '@material-ui/lab';
 
-import Loader from 'components/Loader';
+import WrappedLoader from 'components/WrappedLoader';
 
 import Button from '../../../Button';
 import { useViewer } from '../../../../hooks/auth';
@@ -25,7 +24,7 @@ const useStyles = makeStyles((theme) => ({
     alignItems: 'center',
     marginBottom: theme.spacing(3),
   },
-  containerLoadeur: {
+  containerLoader: {
     width: '100%',
     display: 'flex',
     justifyContent: 'center',
@@ -91,13 +90,8 @@ function Security(): JSX.Element {
 
   if (!viewer) {
     return (
-      <div className={classes.containerLoadeur}>
-        <Hidden implementation="css" smUp>
-          <Loader size="sm" />
-        </Hidden>
-        <Hidden implementation="css" xsDown>
-          <Loader size="xl" />
-        </Hidden>
+      <div className={classes.containerLoader}>
+        <WrappedLoader />
       </div>
     );
   }

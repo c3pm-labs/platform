@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
-import { Hidden, makeStyles, Snackbar } from '@material-ui/core';
+import { makeStyles, Snackbar } from '@material-ui/core';
 import { Form, Formik } from 'formik';
 import { useMutation } from '@apollo/client';
 import * as yup from 'yup';
 import { useViewer } from 'hooks/auth';
 import { Alert } from '@material-ui/lab';
 
-import Loader from 'components/Loader';
+import WrappedLoader from 'components/WrappedLoader';
 
 import { UPDATE } from '../../../../queries';
 import TextInput from '../../../TextInput';
@@ -23,7 +23,7 @@ const useStyles = makeStyles((theme) => ({
     alignItems: 'center',
     marginBottom: theme.spacing(3),
   },
-  containerLoadeur: {
+  containerLoader: {
     width: '100%',
     display: 'flex',
     justifyContent: 'center',
@@ -100,13 +100,8 @@ function Profile(): JSX.Element {
 
   if (!viewer) {
     return (
-      <div className={classes.containerLoadeur}>
-        <Hidden implementation="css" smUp>
-          <Loader size="sm" />
-        </Hidden>
-        <Hidden implementation="css" xsDown>
-          <Loader size="xl" />
-        </Hidden>
+      <div className={classes.containerLoader}>
+        <WrappedLoader />
       </div>
     );
   }
