@@ -162,7 +162,7 @@ function Profile(): JSX.Element {
         </Box>
       </Layout>
     </>
-  );
-};
+  )
+}
 
 export default withApollo(Profile, { getDataFromTree });
