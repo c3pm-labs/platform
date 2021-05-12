@@ -6,6 +6,8 @@ import * as yup from 'yup';
 import { useViewer } from 'hooks/auth';
 import { Alert } from '@material-ui/lab';
 
+import WrappedLoader from 'components/WrappedLoader';
+
 import { UPDATE } from '../../../../queries';
 import TextInput from '../../../TextInput';
 import Button from '../../../Button';
@@ -20,6 +22,13 @@ const useStyles = makeStyles((theme) => ({
     justifyContent: 'center',
     alignItems: 'center',
     marginBottom: theme.spacing(3),
+  },
+  containerLoader: {
+    width: '100%',
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    paddingTop: '18%',
   },
   form: {
     display: 'flex',
@@ -89,7 +98,13 @@ function Profile(): JSX.Element {
     description: yup.string(),
   });
 
-  if (!viewer) return <div>Loading...</div>;
+  if (!viewer) {
+    return (
+      <div className={classes.containerLoader}>
+        <WrappedLoader />
+      </div>
+    );
+  }
 
   const initialValues = {
     username: viewer?.username,
