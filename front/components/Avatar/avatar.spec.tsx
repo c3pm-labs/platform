@@ -3,9 +3,9 @@ import { userBuilder } from 'utils/test/builder';
 
 import Avatar from './index';
 
-const fakeUser = userBuilder();
-
 test('Avatar initial username', () => {
-  render(<Avatar user={fakeUser} />);
-  expect(screen.getByText(fakeUser.username[0])).toBeInTheDocument();
+  const user = userBuilder();
+
+  render(<Avatar user={user} />);
+  expect(screen.getByText(user.username[0])).toBeInTheDocument();
 });

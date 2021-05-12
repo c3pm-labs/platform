@@ -13,7 +13,6 @@ test('Select open', () => {
   render(
     <Formik
       initialValues={{ user: fakeOptions[0].value }}
-      // eslint-disable-next-line no-console
       onSubmit={() => {}}
     >
       <Form>

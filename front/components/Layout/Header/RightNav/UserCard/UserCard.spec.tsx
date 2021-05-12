@@ -12,14 +12,7 @@ test('UserCard expandLess', async () => {
     <Home />,
   );
 
-  const buttonRendered = await waitFor(() => {
-    const button = screen.getByRole('button', {
-      name: fakeViewer.username[0],
-    });
-
-    expect(button).toBeInTheDocument();
-    return button;
-  }, { timeout: 3000 });
+  const buttonRendered = await screen.findByRole('button', { name: fakeViewer.username[0] })
 
   expect(buttonRendered).not.toHaveAttribute('aria-controls', 'menu-list-grow');
   userEvent.click(screen.getByTestId('user-menu'));
