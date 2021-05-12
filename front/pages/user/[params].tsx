@@ -112,8 +112,8 @@ const useStyles = makeStyles((theme) => ({
 function Profile(props): JSX.Element {
   const classes = useStyles();
   const router = useRouter();
-  const user = useUser({ id: String(router.query.params) });
-  // const { user } = props;
+  // const user = useUser({ id: String(router.query.params) });
+  const { user } = props;
 
   // console.log("id", id);
 
@@ -178,18 +178,30 @@ function Profile(props): JSX.Element {
 export async function getServerSideProps(context) {
   const apolloClient = initializeApollo()
 
-
+  // const apolloClient = new ApolloClient({
+  //   // ssrMode: true,
+  //   link: new HttpLink({
+  //     uri: process.env.GRAPHQL_URL, // Server URL (must be absolute)
+  //     // credentials: 'include', // Additional fetch() options like `credentials` or `headers`
+  //   }),
+  //   cache: new InMemoryCache(),
+  //   // queryDeduplication: false,
+  // })
 
   // (context.query.params.id);
 
-  await apolloClient.query({
+  const { data } = await apolloClient.query({
     query: USER,
     variables: { id: context.params },
   })
 
-  return addApolloState(apolloClient, {
-    props: {},
-  })
+  return ({
+    props: { user: data.user },
+  });
+
+  // return addApolloState(apolloClient, {
+  //   props: { user: data.user },
+  // })
 }
 
 export default Profile;

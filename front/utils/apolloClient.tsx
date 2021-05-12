@@ -1,6 +1,6 @@
 import { useMemo } from 'react'
 import { ApolloClient, HttpLink, InMemoryCache } from '@apollo/client'
-// import { concatPagination } from '@apollo/client/utilities'
+import { concatPagination } from '@apollo/client/utilities'
 import merge from 'deepmerge'
 import isEqual from 'lodash/isEqual'
 
@@ -13,10 +13,27 @@ function createApolloClient() {
     ssrMode: typeof window === 'undefined',
     link: new HttpLink({
       uri: process.env.GRAPHQL_URL, // Server URL (must be absolute)
-      credentials: 'include', // Additional fetch() options like `credentials` or `headers`
+      credentials: 'same-origin', // Additional fetch() options like `credentials` or `headers`
     }),
-    cache: new InMemoryCache().restore({}),
+    cache: new InMemoryCache({
+      typePolicies: {
+        Query: {
+          fields: {
+            allPosts: concatPagination(),
+          },
+        },
+      },
+    }),
   })
+    
+  //   {
+  //   ssrMode: typeof window === 'undefined',
+  //   link: new HttpLink({
+  //     uri: process.env.GRAPHQL_URL, // Server URL (must be absolute)
+  //     credentials: 'include', // Additional fetch() options like `credentials` or `headers`
+  //   }),
+  //   cache: new InMemoryCache().restore({}),
+  // })
 }
 
 export function initializeApollo(initialState = null) {

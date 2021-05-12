@@ -21,6 +21,7 @@ import VersionList from 'components/pages/packages/VersionList';
 
 import PageNotFound from '../404';
 import Avatar from '../../components/Avatar';
+import { initializeApollo, addApolloState } from 'utils/apolloClient';
 
 const useStyles = makeStyles((theme) => ({
   container: {
@@ -200,5 +201,35 @@ function PackageDetails(): JSX.Element {
     </Layout>
   );
 }
+
+// export async function getServerSideProps(context) {
+//   const apolloClient = initializeApollo()
+
+
+
+//   const packageName = context.params[0];
+//   const packageVersion = (context.params[1] && sermver.valid(context.params[1])) || null;
+
+//   // const { data, loading, error } = useQuery<{ version: Version }>(PACKAGE_FROM_VERSION, {
+//   //   variables: {
+//   //     packageName,
+//   //     version: packageVersion,
+//   //   },
+//   // });
+
+//   // (context.query.params.id);
+
+//   await apolloClient.query({
+//     query: PACKAGE_FROM_VERSION,
+//     variables: {
+//       packageName,
+//       version: packageVersion,
+//     },
+//   })
+
+//   return addApolloState(apolloClient, {
+//     props: {},
+//   })
+// }
 
 export default PackageDetails;
