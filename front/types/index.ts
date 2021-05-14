@@ -3,6 +3,7 @@ export interface Package {
   latest: Version;
   versions: Version[];
   author: User;
+  tags: string[];
 }
 
 export interface Version {
@@ -11,7 +12,6 @@ export interface Version {
   description: string;
   readme: string;
   package?: Package;
-  tags: string[];
 }
 
 export interface User {

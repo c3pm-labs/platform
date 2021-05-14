@@ -31,13 +31,13 @@ describe('publish and search', () => {
       query search($keyword: String!, $tags: [String!]) {
           search(keyword: $keyword, tags: $tags) {
               name,
+              tags,
               versions(first: 1000, last: 0) {
                   description,
                   license,
                   readme,
                   publishedAt,
                   version,
-                  tags,
               }
               author {
                   username,
@@ -48,7 +48,6 @@ describe('publish and search', () => {
                   readme,
                   publishedAt,
                   version,
-                  tags,
               }
           }
       }
@@ -144,11 +143,11 @@ describe('publish and search', () => {
       name: packageName,
       versions: expect.any(Array),
       author: { username: expect.any(String) },
+      tags: expect.arrayContaining(['hello', 'library']),
       latest: {
         description: expect.any(String),
         license: expect.any(String),
         readme: expect.any(String),
-        tags: expect.arrayContaining(['hello', 'library']),
         publishedAt: expect.any(String),
         version: '1.0.0',
       },
@@ -161,11 +160,11 @@ describe('publish and search', () => {
       name: packageName,
       versions: expect.any(Array),
       author: { username: expect.any(String) },
+      tags: expect.arrayContaining(['hello', 'library']),
       latest: {
         description: expect.any(String),
         license: expect.any(String),
         readme: expect.any(String),
-        tags: expect.arrayContaining(['hello', 'library']),
         publishedAt: expect.any(String),
         version: '2.0.0',
       },

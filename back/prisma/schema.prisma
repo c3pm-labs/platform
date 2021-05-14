@@ -23,6 +23,7 @@ model Package {
   author   User      @relation(fields: [authorId], references: [id])
   authorId String
   versions Version[]
+  tags     String[]
 }
 
 model Version {
@@ -33,7 +34,6 @@ model Version {
   description String
   license     String
   publishedAt DateTime @default(now())
-  tags        String[]
 
   @@id([version, packageName])
 }

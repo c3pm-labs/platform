@@ -76,7 +76,7 @@ const useStyles = makeStyles((theme: Theme) => createStyles({
 
 function PackageCard({ packageData }: PackageCardProps): JSX.Element {
   const classes = useStyles({ packageData });
-  const { name, author, latest } = packageData;
+  const { name, author, tags, latest } = packageData;
   const date = new Date(latest.publishedAt);
 
   return (
@@ -91,7 +91,7 @@ function PackageCard({ packageData }: PackageCardProps): JSX.Element {
         <Typography color="textPrimary" variant="body1">{latest.description}</Typography>
       </div>
       <div className={classes.tagsContainer}>
-        {latest?.tags?.map((tag) => <span key={tag} className={classes.tag}>{tag}</span>)}
+        {tags?.map((tag) => <span key={tag} className={classes.tag}>{tag}</span>)}
       </div>
       <div className={classes.bottom}>
         <Avatar

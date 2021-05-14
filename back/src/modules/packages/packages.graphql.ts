@@ -13,7 +13,6 @@ export const Versions = objectType({
     t.model.readme();
     t.model.publishedAt();
     t.model.version();
-    t.model.tags();
   },
 });
 
@@ -22,6 +21,7 @@ export const Package = objectType({
   definition(t) {
     t.model.author();
     t.model.name();
+    t.model.tags();
     t.model.versions();
     t.field('latest', {
       type: 'Version',

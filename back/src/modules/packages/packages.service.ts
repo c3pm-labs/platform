@@ -34,12 +34,8 @@ export async function search(ctx: Context, keyword: string, tags: string[] = [])
           },
         },
         {
-          versions: tags?.length > 0 ? {
-            some: {
-              tags: {
-                hasSome: tags,
-              },
-            },
+          tags: tags?.length > 0 ? {
+            hasSome: tags,
           } : undefined,
         },
       ],
@@ -106,6 +102,7 @@ export async function publish(ctx: Context, file: Express.Multer.File): Promise<
       await ctx.db.package.update({
         where: { name: parsedC3PM.name },
         data: {
+          tags: parsedC3PM.tags,
           versions: {
             create:
             {
@@ -113,7 +110,6 @@ export async function publish(ctx: Context, file: Express.Multer.File): Promise<
               readme: readmeBuffer ?? 'There is no readme for this package',
               description: parsedC3PM.description,
               license: parsedC3PM.license,
-              tags: parsedC3PM.tags,
             },
           },
         },
@@ -130,6 +126,7 @@ export async function publish(ctx: Context, file: Express.Multer.File): Promise<
             id: user.id,
           },
         },
+        tags: parsedC3PM.tags,
         versions: {
           create:
           {
@@ -137,7 +134,6 @@ export async function publish(ctx: Context, file: Express.Multer.File): Promise<
             readme: readmeBuffer ?? 'There is no readme for this package',
             description: parsedC3PM.description,
             license: parsedC3PM.license,
-            tags: parsedC3PM.tags,
           },
         },
       },
