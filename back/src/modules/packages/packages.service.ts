@@ -23,12 +23,22 @@ export async function getLatestVersion(ctx: Context, packageName: string): Promi
   return versions[0];
 }
 
-export async function search(ctx: Context, keyword: string): Promise<Package[]> {
+export async function search(ctx: Context, keyword: string, tags: string[] = [])
+  : Promise<Package[]> {
   return ctx.db.package.findMany({
     where: {
-      name: {
-        contains: keyword,
-      },
+      AND: [
+        {
+          name: {
+            contains: keyword,
+          },
+        },
+        {
+          tags: tags?.length > 0 ? {
+            hasSome: tags,
+          } : undefined,
+        },
+      ],
     },
   });
 }
@@ -92,6 +102,7 @@ export async function publish(ctx: Context, file: Express.Multer.File): Promise<
       await ctx.db.package.update({
         where: { name: parsedC3PM.name },
         data: {
+          tags: parsedC3PM.tags,
           versions: {
             create:
             {
@@ -115,6 +126,7 @@ export async function publish(ctx: Context, file: Express.Multer.File): Promise<
             id: user.id,
           },
         },
+        tags: parsedC3PM.tags,
         versions: {
           create:
           {
