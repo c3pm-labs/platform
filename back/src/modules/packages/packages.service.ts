@@ -4,7 +4,7 @@ import tar from 'tar';
 import YAML from 'yaml';
 import AWS from 'aws-sdk';
 
-import { CustomError, ForbiddenError } from '../../utils/errors';
+import { CustomError, ForbiddenError, UserInputError } from '../../utils/errors';
 import { Context } from '../../context';
 import { bufferToStream, streamToString } from '../../utils/function';
 
@@ -55,6 +55,41 @@ export async function getVersionOrLatest(
     });
   }
   return getLatestVersion(ctx, packageName);
+}
+
+export async function deleteVersion(
+  ctx: Context, packageName: string, version: string,
+): Promise<Version> {
+  console.log('deleteVersion : ', packageName, version);
+  const user = await ctx.session.get();
+  console.log('user : ', user);
+  if (!user) {
+    throw new ForbiddenError('You need to be logged in');
+  }
+
+  const s3 = new AWS.S3({
+    accessKeyId: process.env.REGISTRY_KEY,
+    secretAccessKey: process.env.REGISTRY_SECRET,
+    region: 'fr-par',
+    endpoint: process.env.REGISTRY_URL,
+    s3ForcePathStyle: true,
+  });
+  await s3.deleteObject({
+    Bucket: process.env.REGISTRY_BUCKET_NAME,
+    Key: `${packageName}/${version}`,
+  }).promise();
+
+  return ctx.db.version.delete({
+    where: {
+      version_packageName: {
+        packageName,
+        version,
+        author: {
+          id: user.id,
+        },
+      },
+    },
+  });
 }
 
 export async function publish(ctx: Context, file: Express.Multer.File): Promise<void> {
