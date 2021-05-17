@@ -202,34 +202,32 @@ function PackageDetails(): JSX.Element {
   );
 }
 
-// export async function getServerSideProps(context) {
-//   const apolloClient = initializeApollo()
+export async function getServerSideProps(context) {
+  const apolloClient = initializeApollo()
 
+  const packageName = context.params[0];
+  const packageVersion = (context.params[1] && sermver.valid(context.params[1])) || null;
 
+  // const { data, loading, error } = useQuery<{ version: Version }>(PACKAGE_FROM_VERSION, {
+  //   variables: {
+  //     packageName,
+  //     version: packageVersion,
+  //   },
+  // });
 
-//   const packageName = context.params[0];
-//   const packageVersion = (context.params[1] && sermver.valid(context.params[1])) || null;
+  // (context.query.params.id);
 
-//   // const { data, loading, error } = useQuery<{ version: Version }>(PACKAGE_FROM_VERSION, {
-//   //   variables: {
-//   //     packageName,
-//   //     version: packageVersion,
-//   //   },
-//   // });
+  await apolloClient.query({
+    query: PACKAGE_FROM_VERSION,
+    variables: {
+      packageName,
+      version: packageVersion,
+    },
+  })
 
-//   // (context.query.params.id);
-
-//   await apolloClient.query({
-//     query: PACKAGE_FROM_VERSION,
-//     variables: {
-//       packageName,
-//       version: packageVersion,
-//     },
-//   })
-
-//   return addApolloState(apolloClient, {
-//     props: {},
-//   })
-// }
+  return addApolloState(apolloClient, {
+    props: {},
+  })
+}
 
 export default PackageDetails;
