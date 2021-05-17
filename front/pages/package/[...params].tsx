@@ -111,6 +111,17 @@ const useStyles = makeStyles((theme) => ({
   spaceBetween: {
     justifyContent: 'space-between',
   },
+  tagsContainer: {
+    display: 'flex',
+  },
+  tag: {
+    fontSize: 12,
+    marginRight: 5,
+    color: theme.palette.text.primary,
+    background: 'rgba(0,184,230, 0.3)', // main with opacity
+    borderRadius: theme.shape.borderRadius,
+    padding: 3,
+  },
 }));
 
 function PackageDetails(): JSX.Element {
@@ -165,6 +176,14 @@ function PackageDetails(): JSX.Element {
           </div>
           <div className={classes.description}>{data.version.description}</div>
           <div className={`${classes.line} ${classes.alignCenter}`}>
+            { data.version?.tags?.length > 0 ? (
+              <>
+                <div className={classes.tagsContainer}>
+                  {data.version?.tags?.map((tag) => <span className={classes.tag}>{tag}</span>)}
+                </div>
+                <div className={classes.separator} />
+              </>
+            ) : null}
             <span className={classes.update}>
               Last updated on&nbsp;
               {(new Date(data.version.package.latest.publishedAt)).toDateString()}

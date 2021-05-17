@@ -58,6 +58,20 @@ const useStyles = makeStyles((theme: Theme) => createStyles({
   name: {
     fontSize: 14,
   },
+  tagsContainer: {
+    display: 'flex',
+    flexWrap: 'wrap',
+    width: '100%',
+    justifyContent: 'flex-end',
+  },
+  tag: {
+    fontSize: 12,
+    marginRight: 5,
+    color: theme.palette.text.primary,
+    background: 'rgba(0,184,230, 0.3)', // main with opacity
+    borderRadius: theme.shape.borderRadius,
+    padding: 3,
+  },
 }));
 
 function PackageCard({ packageData }: PackageCardProps): JSX.Element {
@@ -76,14 +90,16 @@ function PackageCard({ packageData }: PackageCardProps): JSX.Element {
       <div style={{ display: 'flex', flexWrap: 'wrap' }}>
         <Typography color="textPrimary" variant="body1">{latest.description}</Typography>
       </div>
-      <Typography color="textPrimary" variant="body1" className={classes.description}>{latest.description}</Typography>
+      <div className={classes.tagsContainer}>
+        {latest?.tags?.map((tag) => <span key={tag} className={classes.tag}>{tag}</span>)}
+      </div>
       <div className={classes.bottom}>
         <Avatar
           user={author}
           classes={{ picture: classes.avatar, name: classes.name }}
         />
         <Typography variant="body2" className={classes.update}>
-          Last updated on the&nbsp;
+          Last updated on&nbsp;
           {date.toDateString()}
         </Typography>
       </div>
