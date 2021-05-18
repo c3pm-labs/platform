@@ -16,6 +16,7 @@ async function main() {
   const boostPkg = await db.package.create({
     data: {
       name: 'boost',
+      tags: ['boost', 'network', 'utils'],
       versions: {
         create: [
           {
@@ -52,6 +53,7 @@ ctpm add boost
   const boostAsio = await db.package.create({
     data: {
       name: 'boost-asio',
+      tags: ['boost-asio', 'network', 'utils'],
       versions: {
         create: [
           {
@@ -63,7 +65,6 @@ Boost Asio is cool
 ctpm add boost-asio
 \`\`\``,
             description: 'boost is cool',
-            tags: ['boost-asio', 'network'],
           },
           {
             version: '2.4.5',
@@ -74,7 +75,6 @@ Boost Asio 2 is really cool
 ctpm add boost-asio
 \`\`\``,
             description: 'boost asio is cool',
-            tags: ['boost-asio', 'network', 'utils'],
           },
         ],
       },
@@ -88,6 +88,7 @@ ctpm add boost-asio
   const sfml = await db.package.create({
     data: {
       name: 'sfml',
+      tags: ['sfml', 'graphics'],
       versions: {
         create: [
           {
@@ -99,7 +100,6 @@ sfml is cool
 ctpm add sfml
 \`\`\``,
             description: 'sfml is cool',
-            tags: ['sfml', 'graphics'],
           },
           {
             version: '2.4.5',
@@ -110,7 +110,6 @@ sfml 2 is really cool
 ctpm add sfml
 \`\`\``,
             description: 'sfml is cool',
-            tags: ['sfml', 'graphics'],
           },
         ],
       },
@@ -124,6 +123,7 @@ ctpm add sfml
   const irrlicht = await db.package.create({
     data: {
       name: 'irrlicht',
+      tags: ['irrlicht', 'graphics'],
       versions: {
         create: [
           {
@@ -135,7 +135,6 @@ irrlicht is cool
 ctpm add irrlicht
 \`\`\``,
             description: 'irrlicht is cool',
-            tags: ['irrlicht', 'graphics'],
           },
           {
             version: '2.4.5',
@@ -146,7 +145,6 @@ irrlicht 2 is really cool
 ctpm add irrlicht
 \`\`\``,
             description: 'irrlicht is cool',
-            tags: ['irrlicht', 'graphics'],
           },
         ],
       },
@@ -160,6 +158,7 @@ ctpm add irrlicht
   const utilsMath = await db.package.create({
     data: {
       name: 'maths',
+      tags: ['maths', 'utils'],
       versions: {
         create: [
           {
@@ -171,7 +170,6 @@ maths is cool
 ctpm add maths
 \`\`\``,
             description: 'maths is cool',
-            tags: ['maths', 'utils'],
           },
           {
             version: '2.4.5',
@@ -182,7 +180,6 @@ maths 2 is really cool
 ctpm add maths
 \`\`\``,
             description: 'maths is cool',
-            tags: ['maths', 'utils'],
           },
         ],
       },
@@ -196,6 +193,7 @@ ctpm add maths
   const utilsString = await db.package.create({
     data: {
       name: 'string',
+      tags: ['string', 'utils'],
       versions: {
         create: [
           {
@@ -207,7 +205,6 @@ string is cool
 ctpm add string
 \`\`\``,
             description: 'string is cool',
-            tags: ['string', 'utils'],
           },
           {
             version: '2.4.5',
@@ -218,7 +215,6 @@ string 2 is really cool
 ctpm add string
 \`\`\``,
             description: 'string is cool',
-            tags: ['string', 'utils'],
           },
         ],
       },

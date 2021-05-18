@@ -25,33 +25,29 @@ export async function getLatestVersion(ctx: Context, packageName: string): Promi
 }
 
 export async function search(ctx: Context, keyword: string, tags: string[] = []): Promise<Package[]> {
-  const queryResult = await db.$queryRaw<Package[]>`SELECT *
-  FROM "Package"
-  WHERE "name" ~* ${keyword} AND 
-  ORDER BY "name" ASC`;
-  return queryResult;
-// export async function search(ctx: Context, keyword: string, tags: string[] = [])
-//   : Promise<Package[]> {
-//   return ctx.db.package.findMany({
-//     where: {
-//       AND: [
-//         {
-//           name: {
-//             contains: keyword,
-//           },
-//         },
-//         {
-//           versions: tags?.length > 0 ? {
-//             some: {
-//               tags: {
-//                 hasSome: tags,
-//               },
-//             },
-//           } : undefined,
-//         },
-//       ],
-//     },
-//   });
+  if (keyword && !tags) {
+    return await db.$queryRaw<Package[]>`
+    SELECT *
+    FROM "Package"
+    WHERE "name" ~* ${keyword}
+    ORDER BY "name" ASC
+    `;
+  } else if (!keyword && tags) {
+    return await db.$queryRaw<Package[]>`
+    SELECT *
+    FROM "Package"
+    WHERE "tags" @> (${tags})
+    ORDER BY "name" ASC
+    `;
+  } else {
+    return await db.$queryRaw<Package[]>`
+    SELECT *
+    FROM "Package"
+    WHERE "name" ~* ${keyword}
+    AND "tags" @> (${tags})
+    ORDER BY "name" ASC
+    `;
+  }
 }
 
 export async function getPackage(ctx: Context, name: string): Promise<Package> {
@@ -113,6 +109,7 @@ export async function publish(ctx: Context, file: Express.Multer.File): Promise<
       await ctx.db.package.update({
         where: { name: parsedC3PM.name },
         data: {
+          tags: parsedC3PM.tags,
           versions: {
             create:
             {
@@ -137,6 +134,7 @@ export async function publish(ctx: Context, file: Express.Multer.File): Promise<
             id: user.id,
           },
         },
+        tags: parsedC3PM.tags,
         versions: {
           create:
           {

@@ -7,6 +7,8 @@ import { useMutation } from '@apollo/client';
 import * as yup from 'yup';
 import { Alert } from '@material-ui/lab';
 
+import WrappedLoader from 'components/WrappedLoader';
+
 import Button from '../../../Button';
 import { useViewer } from '../../../../hooks/auth';
 import { UPDATEPASSWORD } from '../../../../queries';
@@ -21,6 +23,13 @@ const useStyles = makeStyles((theme) => ({
     justifyContent: 'center',
     alignItems: 'center',
     marginBottom: theme.spacing(3),
+  },
+  containerLoader: {
+    width: '100%',
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    paddingTop: '18%',
   },
   form: {
     display: 'flex',
@@ -79,7 +88,13 @@ function Security(): JSX.Element {
     newPassword: yup.string().required().min(8),
   });
 
-  if (!viewer) return <div>Loading...</div>;
+  if (!viewer) {
+    return (
+      <div className={classes.containerLoader}>
+        <WrappedLoader />
+      </div>
+    );
+  }
 
   return (
     <div className={classes.container}>

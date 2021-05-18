@@ -9,6 +9,7 @@ export const USER = gql`
             description,
             packages(first: 1000, last: 0) {
                 name
+                tags
                 author {
                     username
                 }
@@ -21,7 +22,6 @@ export const USER = gql`
                     description
                     publishedAt
                     version
-                    tags
             },
             }
         }
@@ -97,6 +97,7 @@ export const PACKAGE_FROM_VERSION = gql`
             tags
             package {
                 name
+                tags
                 author {
                     username
                     id
@@ -120,6 +121,7 @@ export const SEARCH = gql`
     query search($keyword: String!, $tags: [String!]) {
         search(keyword: $keyword, tags: $tags) {
             name,
+            tags,
             versions(first: 1000, last: 0) {
                 description,
                 license,

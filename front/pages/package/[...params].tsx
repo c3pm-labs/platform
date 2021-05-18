@@ -18,6 +18,7 @@ import withApollo from 'utils/withApollo';
 import TabPanel from 'components/pages/packages/TabPanel';
 import MarkdownDisplayer from 'components/pages/packages/MarkdownDisplayer';
 import VersionList from 'components/pages/packages/VersionList';
+import WrappedLoader from 'components/WrappedLoader';
 
 import PageNotFound from '../404';
 import Avatar from '../../components/Avatar';
@@ -30,7 +31,12 @@ const useStyles = makeStyles((theme) => ({
     [theme.breakpoints.down('xs')]: {
       margin: theme.spacing(2),
     },
-
+  },
+  containerLoader: {
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    paddingTop: '25%',
   },
   tab: {
     '& .MuiTab-root': {
@@ -59,7 +65,6 @@ const useStyles = makeStyles((theme) => ({
         margin: `${theme.spacing(1)}px 0`,
       },
     },
-
   },
   version: {
     fontWeight: 500,
@@ -135,7 +140,6 @@ function PackageDetails(): JSX.Element {
       version: packageVersion,
     },
   });
-
   const classes = useStyles();
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down('xs'));
@@ -149,7 +153,9 @@ function PackageDetails(): JSX.Element {
     return (
       <Layout>
         <Head title={packageVersion ? `${packageName} - ${packageVersion}` : packageName} />
-        <span>Loading...</span>
+        <div className={classes.containerLoader}>
+          <WrappedLoader />
+        </div>
       </Layout>
     );
   }
@@ -176,10 +182,11 @@ function PackageDetails(): JSX.Element {
           </div>
           <div className={classes.description}>{data.version.description}</div>
           <div className={`${classes.line} ${classes.alignCenter}`}>
-            { data.version?.tags?.length > 0 ? (
+            { data.version.package.tags?.length > 0 ? (
               <>
                 <div className={classes.tagsContainer}>
-                  {data.version?.tags?.map((tag) => <span className={classes.tag}>{tag}</span>)}
+                  {data.version.package.tags?.map(
+                    (tag) => <span className={classes.tag}>{tag}</span>)}
                 </div>
                 <div className={classes.separator} />
               </>
