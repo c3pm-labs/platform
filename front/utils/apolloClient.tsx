@@ -1,5 +1,5 @@
 import { useMemo } from 'react'
-import { ApolloClient, HttpLink, InMemoryCache } from '@apollo/client'
+import { ApolloClient, HttpLink, createHttpLink, InMemoryCache } from '@apollo/client'
 import { concatPagination } from '@apollo/client/utilities'
 import merge from 'deepmerge'
 import isEqual from 'lodash/isEqual'
@@ -8,12 +8,26 @@ export const APOLLO_STATE_PROP_NAME = '__APOLLO_STATE__'
 
 let apolloClient
 
+export const isServer = () => typeof window === `undefined`;
+
+const fetchHack = (input, init) => {
+  const shouldRewriteUri = isServer();
+  if (shouldRewriteUri)
+    input = input.replace(process.env.GRAPHQL_URL);
+    // , "http://platform_back:4000/graphql");
+  return fetch(input, init);
+};
+
 function createApolloClient() {
   return new ApolloClient({
-    ssrMode: typeof window === 'undefined',
-    link: new HttpLink({
-      uri: process.env.GRAPHQL_URL, // Server URL (must be absolute)
-      credentials: 'same-origin', // Additional fetch() options like `credentials` or `headers`
+    ssrMode: isServer(),
+    link: createHttpLink({
+      uri:  process.env.GRAPHQL_URL,
+      credentials: 'include',
+      // fetch: fetchHack,
+      // headers: {
+      //   cookie: req.header('Cookie'),
+      // },
     }),
     cache: new InMemoryCache({
       typePolicies: {
@@ -25,29 +39,14 @@ function createApolloClient() {
       },
     }),
   })
-    
-  //   {
-  //   ssrMode: typeof window === 'undefined',
-  //   link: new HttpLink({
-  //     uri: process.env.GRAPHQL_URL, // Server URL (must be absolute)
-  //     credentials: 'include', // Additional fetch() options like `credentials` or `headers`
-  //   }),
-  //   cache: new InMemoryCache().restore({}),
-  // })
 }
 
 export function initializeApollo(initialState = null) {
   const _apolloClient = apolloClient ?? createApolloClient()
 
-  // If your page has Next.js data fetching methods that use Apollo Client, the initial state
-  // gets hydrated here
   if (initialState) {
-    // Get existing cache, loaded during client side data fetching
     const existingCache = _apolloClient.extract()
-
-    // Merge the existing cache into data passed from getStaticProps/getServerSideProps
     const data = merge(initialState, existingCache, {
-      // combine arrays using object equality (like in sets)
       arrayMerge: (destinationArray, sourceArray) => [
         ...sourceArray,
         ...destinationArray.filter((d) =>
@@ -56,12 +55,9 @@ export function initializeApollo(initialState = null) {
       ],
     })
 
-    // Restore the cache with the merged data
     _apolloClient.cache.restore(data)
   }
-  // For SSG and SSR always create a new Apollo Client
-  if (typeof window === 'undefined') return _apolloClient
-  // Create the Apollo Client once in the client
+  if (isServer()) return _apolloClient
   if (!apolloClient) apolloClient = _apolloClient
 
   return _apolloClient
