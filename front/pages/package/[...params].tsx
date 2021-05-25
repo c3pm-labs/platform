@@ -114,17 +114,20 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-function PackageDetails(): JSX.Element {
+function PackageDetails(props): JSX.Element {
   const router = useRouter();
   const packageName = router.query.params[0];
   const packageVersion = (router.query.params[1] && sermver.valid(router.query.params[1])) || null;
 
-  const { data, loading, error } = useQuery<{ version: Version }>(PACKAGE_FROM_VERSION, {
-    variables: {
-      packageName,
-      version: packageVersion,
-    },
-  });
+  // const { data, loading, error } = useQuery<{ version: Version }>(PACKAGE_FROM_VERSION, {
+  //   variables: {
+  //     packageName,
+  //     version: packageVersion,
+  //   },
+  // });
+
+  const { data } = props;
+
 
   const classes = useStyles();
   const theme = useTheme();
@@ -135,15 +138,15 @@ function PackageDetails(): JSX.Element {
     setCurrentTab(newValue);
   };
 
-  if (loading) {
-    return (
-      <Layout>
-        <Head title={packageVersion ? `${packageName} - ${packageVersion}` : packageName} />
-        <span>Loading...</span>
-      </Layout>
-    );
-  }
-  if (error) {
+  // if (loading) {
+  //   return (
+  //     <Layout>
+  //       <Head title={packageVersion ? `${packageName} - ${packageVersion}` : packageName} />
+  //       <span>Loading...</span>
+  //     </Layout>
+  //   );
+  // }
+  if (!data) {
     return (<PageNotFound />);
   }
 
@@ -208,16 +211,7 @@ export async function getServerSideProps(context) {
   const packageName = context.params[0];
   const packageVersion = (context.params[1] && sermver.valid(context.params[1])) || null;
 
-  // const { data, loading, error } = useQuery<{ version: Version }>(PACKAGE_FROM_VERSION, {
-  //   variables: {
-  //     packageName,
-  //     version: packageVersion,
-  //   },
-  // });
-
-  // (context.query.params.id);
-
-  await apolloClient.query({
+  const data = await apolloClient.query({
     query: PACKAGE_FROM_VERSION,
     variables: {
       packageName,
@@ -226,7 +220,7 @@ export async function getServerSideProps(context) {
   })
 
   return addApolloState(apolloClient, {
-    props: {},
+    props: {data},
   })
 }
 

@@ -114,21 +114,6 @@ function Profile(props): JSX.Element {
   // const router = useRouter();
   // const user = useUser({ id: String(router.query.params) });
 
-  // const apolloClient = initializeApollo()
-
-  // setTimeout(async () => {
-  //   try {
-  //     console.log("toto 1", apolloClient);
-  //     const { data } = await apolloClient.query({
-  //       query: USER,
-  //       variables: { id: router.query.params },
-  //     })
-  //     console.log("toto 2", data);
-  //   } catch (err) {
-  //     console.log(err)
-  //   }
-  // }, 1000)
-
   const { user } = props;
 
   console.log("user", user, process.env.GRAPHQL_URL);
@@ -193,41 +178,14 @@ function Profile(props): JSX.Element {
 
 export async function getServerSideProps(context) {
   const apolloClient = initializeApollo()
-
-//   const { data } = await apolloClient.query({
-//     query: USER,
-//     variables: { id: context.params },
-//   }
-
-// try {
-
-  // setTimeout(async () => {
-    // try {
-      const { data } = await apolloClient.query({
-        query: USER,
-        // variables: { id: "ckot3uqno00011todr7pha6jy" },
-        variables: { id: context.params },
-        
-      })
-
-    // } catch (err) {
-    //   console.log(err)
-    // }
-  // }, 5000)
-
+  const { data } = await apolloClient.query({
+    query: USER,
+    variables: { id: context.params },
+    
+  })
   return addApolloState(apolloClient, {
     props: { user: data.user },
   })
-
-// } catch (err) {
-//   console.log(err)
-// }
-
-
-  // return { user: data.user }
-  // return addApolloState(apolloClient, {
-  //   props: { },
-  // })
 }
 
 export default Profile;
