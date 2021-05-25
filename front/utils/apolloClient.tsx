@@ -13,8 +13,7 @@ export const isServer = () => typeof window === `undefined`;
 const fetchHack = (input, init) => {
   const shouldRewriteUri = isServer();
   if (shouldRewriteUri)
-    input = input.replace(process.env.GRAPHQL_URL);
-    // , "http://platform_back:4000/graphql");
+    input = input.replace(process.env.GRAPHQL_URL, "http://back:4000/graphql");
   return fetch(input, init);
 };
 
@@ -24,10 +23,7 @@ function createApolloClient() {
     link: createHttpLink({
       uri:  process.env.GRAPHQL_URL,
       credentials: 'include',
-      // fetch: fetchHack,
-      // headers: {
-      //   cookie: req.header('Cookie'),
-      // },
+      fetch: fetchHack,
     }),
     cache: new InMemoryCache({
       typePolicies: {
