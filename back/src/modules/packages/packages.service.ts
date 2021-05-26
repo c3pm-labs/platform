@@ -69,7 +69,7 @@ export async function getVersionOrLatest(
 
 export async function deleteVersion(
   ctx: Context, packageName: string, version: string,
-): Promise<Version> {
+): Promise<Package> {
   const user = await ctx.session.get();
   const pkg = await ctx.db.package.findUnique({ where: { name: packageName } });
   if (!user || pkg.authorId !== user.id) {
@@ -89,6 +89,7 @@ export async function deleteVersion(
       Key: `${packageName}/${version}`,
     }).promise();
   } catch (e) {
+    // eslint-disable-next-line no-console
     console.error('failed to remove package from registry');
   }
 

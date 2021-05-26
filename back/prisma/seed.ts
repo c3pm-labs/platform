@@ -134,6 +134,36 @@ ctpm add boost-asio
 \`\`\``,
             description: 'boost asio is cool',
           },
+          {
+            version: '2.4.6',
+            license: 'MIT',
+            readme: `# Boost Asio 2
+Boost Asio 2 is really cool
+\`\`\`
+ctpm add boost-asio
+\`\`\``,
+            description: 'boost asio is cool',
+          },
+          {
+            version: '2.4.7',
+            license: 'MIT',
+            readme: `# Boost Asio 2
+Boost Asio 2 is really cool
+\`\`\`
+ctpm add boost-asio
+\`\`\``,
+            description: 'boost asio is cool',
+          },
+          {
+            version: '1.0.0',
+            license: 'MIT',
+            readme: `# Boost Asio 2
+Boost Asio 2 is really cool
+\`\`\`
+ctpm add boost-asio
+\`\`\``,
+            description: 'boost asio is cool',
+          },
         ],
       },
       author: {
