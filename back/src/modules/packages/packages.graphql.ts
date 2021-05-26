@@ -71,13 +71,12 @@ export const PackageMutation = extendType({
   type: 'Mutation',
   definition(t) {
     t.field('deleteVersion', {
-      type: Versions,
+      type: Package,
       args: {
         packageName: stringArg(),
         version: stringArg(),
       },
       resolve(parent, args, ctx) {
-        console.log('gonna delete the version');
         return packagesService.deleteVersion(ctx, args.packageName, args.version);
       },
     });

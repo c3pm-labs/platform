@@ -60,15 +60,11 @@ export async function getVersionOrLatest(
 export async function deleteVersion(
   ctx: Context, packageName: string, version: string,
 ): Promise<Version> {
-  console.log('deleteVersion');
   const user = await ctx.session.get();
-  console.log('user : ', user);
   const pkg = await ctx.db.package.findUnique({ where: { name: packageName } });
-  console.log('pkg : ', pkg);
   if (!user || pkg.authorId !== user.id) {
     throw new ForbiddenError('You need to be logged in');
   }
-  console.log('heyyy');
 
   const s3 = new AWS.S3({
     accessKeyId: process.env.REGISTRY_KEY,
@@ -77,13 +73,16 @@ export async function deleteVersion(
     endpoint: process.env.REGISTRY_URL,
     s3ForcePathStyle: true,
   });
-  console.log('heyyy');
-  await s3.deleteObject({
-    Bucket: process.env.REGISTRY_BUCKET_NAME,
-    Key: `${packageName}/${version}`,
-  }).promise();
+  try {
+    await s3.deleteObject({
+      Bucket: process.env.REGISTRY_BUCKET_NAME,
+      Key: `${packageName}/${version}`,
+    }).promise();
+  } catch (e) {
+    console.error('failed to remove package from registry');
+  }
 
-  return ctx.db.version.delete({
+  await ctx.db.version.delete({
     where: {
       version_packageName: {
         packageName,
@@ -91,6 +90,7 @@ export async function deleteVersion(
       },
     },
   });
+  return pkg;
 }
 
 export async function publish(ctx: Context, file: Express.Multer.File): Promise<void> {

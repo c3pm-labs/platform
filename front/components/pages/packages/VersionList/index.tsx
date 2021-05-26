@@ -5,12 +5,14 @@ import { makeStyles } from '@material-ui/core/styles';
 import { Version, Viewer } from 'types';
 import { Modal } from '@material-ui/core';
 import { useMutation } from '@apollo/client';
+import { useRouter } from 'next/router';
+import semver from 'semver';
 
 import { sortVersion } from 'utils/version';
 
 import { useViewer } from '../../../../hooks/auth';
 import Button from '../../../Button';
-import { DELETE_VERSION, LOGOUT } from '../../../../queries';
+import { DELETE_VERSION, LOGOUT, PACKAGE_FROM_VERSION } from '../../../../queries';
 
 export interface VersionListProps {
   versions: Version[];
@@ -105,9 +107,12 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 function VersionList({ versions, packageName, authorId }: VersionListProps): JSX.Element {
+  const router = useRouter();
+  const packageVersion = (router.query.params[1] && semver.valid(router.query.params[1])) || null;
   const classes = useStyles();
   const viewer = useViewer();
   const [versionToDelete, setVersionToDelete] = useState<Version | null>(null);
+  const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
   const [deleteVersion] = useMutation<{ version: Version}>(DELETE_VERSION, {
     onError: (e) => {
       console.log('ERROR : ', e);
@@ -116,7 +121,12 @@ function VersionList({ versions, packageName, authorId }: VersionListProps): JSX
         console.log('User not logged in');
       }
     },
-    onCompleted: () => setVersionToDelete(null),
+    onCompleted: () => {
+      if (versionToDelete.version === packageVersion) {
+        router.push(`${packageName}`);
+      }
+      setVersionToDelete(null);
+    },
   });
 
   return (
@@ -146,14 +156,26 @@ function VersionList({ versions, packageName, authorId }: VersionListProps): JSX
               { viewer !== null && viewer.id === authorId ? (
                 <>
                   <div className={classes.separator} />
-                  <Button className={classes.delete} onClick={() => setVersionToDelete(v)} type="button" variant="text" color="error" fullWidth={false}>Delete</Button>
+                  <Button
+                    className={classes.delete}
+                    onClick={() => {
+                      setVersionToDelete(v);
+                      setIsModalOpen(true);
+                    }}
+                    type="button"
+                    variant="text"
+                    color="error"
+                    fullWidth={false}
+                  >
+                    Delete
+                  </Button>
                 </>
               ) : null}
             </div>
           </React.Fragment>
         ))}
       </div>
-      { versionToDelete !== null ? (
+      { isModalOpen && versionToDelete !== null ? (
         <Modal
           open
           onClose={() => setVersionToDelete(null)}
@@ -164,7 +186,7 @@ function VersionList({ versions, packageName, authorId }: VersionListProps): JSX
             <h3 id="modal-title">{`Delete ${packageName} - v${semverMajor(versionToDelete?.version)}`}</h3>
             <h4 id="modal-description">{`Are you sure you want to delete ${packageName} - v${semverMajor(versionToDelete?.version)}?`}</h4>
             <div className={classes.row}>
-              <Button color="primary" variant="outlined" onClick={() => setVersionToDelete(null)}>Cancel</Button>
+              <Button color="primary" variant="outlined" onClick={() => setIsModalOpen(false)}>Cancel</Button>
               <Button
                 color="error"
                 variant="contained"
