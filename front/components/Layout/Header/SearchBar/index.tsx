@@ -9,12 +9,11 @@ export interface SearchBarProps {
 
 function SearchBar({ className }: SearchBarProps): JSX.Element {
   const router = useRouter();
-  const search = router.query.q || '';
+  const { q, tags, page = 1 } = router.query;
+  const search = q || '';
 
   function handleSubmit(values: { search: string }): void {
-    if (values.search) {
-      router.push({ pathname: '/search', query: { q: values.search } });
-    }
+    router.push({ pathname: '/search', query: { q: values.search, ...(tags ? { tags } : {}), ...(page ? { page } : {}) } });
   }
 
   return (
