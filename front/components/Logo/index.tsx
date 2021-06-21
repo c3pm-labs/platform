@@ -1,6 +1,7 @@
 import { Typography } from '@material-ui/core';
 import makeStyles from '@material-ui/core/styles/makeStyles';
 import Link from 'next/link';
+import Image from 'next/image';
 
 function getFontSize(size: string): number {
   if (size === 'xl') {
@@ -14,33 +15,23 @@ function getFontSize(size: string): number {
 }
 
 function getSize(type: string, size: string): { width: number | string; height: number | string} {
-  let width: string | number = 'auto';
-  let height: string | number = 'auto';
-
   if (type === 'mini') {
-    if (size === 'xl') {
-      height = 200;
-    } else if (size === 'lg') {
-      height = 100;
-    } else if (size === 'md') {
-      height = 80;
-    } else if (size === 'sm') {
-      height = 40;
-    } else {
-      height = 'auto';
-    }
-  } else if (size === 'xl') {
-    width = 600;
-  } else if (size === 'lg') {
-    width = 300;
-  } else if (size === 'md') {
-    width = 200;
-  } else if (size === 'sm') {
-    width = 100;
-  } else {
-    width = '100%';
+    return ({ width: 30, height: 40 });
   }
-  return ({ width, height });
+
+  if (size === 'xl') {
+    return ({ width: 600, height: 200 });
+  }
+  if (size === 'lg') {
+    return ({ width: 300, height: 100 });
+  }
+  if (size === 'md') {
+    return ({ width: 200, height: 35 });
+  }
+  if (size === 'sm') {
+    return ({ width: 100, height: 35 });
+  }
+  return ({ width: '100%', height: 'auto' });
 }
 
 const useStyles = makeStyles((theme) => ({
@@ -77,7 +68,13 @@ const Logo = ({ type = 'classic', size = null, className }: LogoProps): JSX.Elem
       {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
       <a className={classes.link}>
         <div className={classes.logo}>
-          <img src={src} className={className} alt={`${type}-${size} c3pm logo`} width={dimension.width} height={dimension.height} />
+          <Image
+            alt={`${type}-${size} c3pm logo`}
+            src={src}
+            className={className}
+            width={dimension.width}
+            height={dimension.height}
+          />
           { type === 'baseline' && (<Typography className={classes.baseline}>C++ Package Manager</Typography>)}
         </div>
       </a>

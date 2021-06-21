@@ -82,6 +82,11 @@ const useStyles = makeStyles((theme) => ({
     color: theme.palette.grey[400],
     marginTop: theme.spacing(4),
   },
+  error: {
+    display: 'flex',
+    justifyContent: 'center',
+    marginBottom: theme.spacing(1),
+  },
   forgotPassword: {
     display: 'flex',
     marginTop: theme.spacing(4),
@@ -90,8 +95,7 @@ const useStyles = makeStyles((theme) => ({
 
 function Login(): JSX.Element {
   const classes = useStyles();
-  const login = useLogin();
-
+  const { login, loginError } = useLogin();
   const initialValues: LoginParams = { login: '', password: '' };
   const theme = useTheme();
   const matches = useMediaQuery(theme.breakpoints.up('lg'));
@@ -126,11 +130,18 @@ function Login(): JSX.Element {
           <Formik
             initialValues={initialValues}
             validationSchema={loginSchema}
-            onSubmit={(values: LoginParams): void => {
-              login(values);
+            onSubmit={async (values: LoginParams): Promise<void> => {
+              await login(values);
             }}
           >
             <Form noValidate className={classes.input}>
+              <Typography
+                variant="body2"
+                color="error"
+                className={classes.error}
+              >
+                {loginError.error?.message}
+              </Typography>
               <TextInput
                 type="text"
                 name="login"

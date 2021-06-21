@@ -1,5 +1,5 @@
 import {
-  extendType, objectType, stringArg, nullable,
+  extendType, objectType, stringArg, nullable, list,
 } from 'nexus';
 
 import * as packagesService from './packages.service';
@@ -26,6 +26,7 @@ export const Package = objectType({
   definition(t) {
     t.model.author();
     t.model.name();
+    t.model.tags();
     t.model.versions();
     t.field('latest', {
       type: 'Version',
@@ -43,9 +44,10 @@ export const PackageQuery = extendType({
       type: Package,
       args: {
         keyword: stringArg(),
+        tags: nullable(list(stringArg())),
       },
       resolve(parent, args, ctx) {
-        return packagesService.search(ctx, args.keyword);
+        return packagesService.search(ctx, args.keyword, args.tags);
       },
     });
 
