@@ -11,7 +11,11 @@ export default withApollo(({ initialState, headers }) => new ApolloClient({
       cookie: headers && headers.cookie,
     },
   }),
-  cache: new InMemoryCache().restore(initialState || {}),
+  cache: new InMemoryCache({
+    typePolicies: {
+      Package: { keyFields: ['name'] },
+    },
+  }).restore(initialState || {}),
 }), {
   // eslint-disable-next-line react/prop-types
   render: ({ Page, props }): JSX.Element => (
