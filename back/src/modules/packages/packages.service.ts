@@ -4,7 +4,7 @@ import tar from 'tar';
 import YAML from 'yaml';
 import AWS from 'aws-sdk';
 
-import { CustomError, ForbiddenError, UserInputError } from '../../utils/errors';
+import { CustomError, ForbiddenError } from '../../utils/errors';
 import { Context } from '../../context';
 import { bufferToStream, streamToString } from '../../utils/function';
 
