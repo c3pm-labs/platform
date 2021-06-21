@@ -16,7 +16,7 @@ class Server {
     const app = express();
     app.get('/', (req, res) => res.sendStatus(200));
 
-    const ALLOWED_ORIGIN = 'http://localhost:3000';//env.get('ALLOWED_ORIGIN').required().asString();
+    const ALLOWED_ORIGIN = 'http://localhost:3000';// env.get('ALLOWED_ORIGIN').required().asString();
     app.use(cors({
       credentials: true,
       origin: new RegExp(ALLOWED_ORIGIN),

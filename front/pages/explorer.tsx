@@ -1,14 +1,14 @@
 import { getDataFromTree } from '@apollo/react-ssr';
 import React from 'react';
-import { makeStyles, Typography, Hidden } from '@material-ui/core';
-
-import withApollo from 'utils/withApollo';
-import Layout from 'components/Layout';
-import Button from 'components/Button';
+import { makeStyles, Typography } from '@material-ui/core';
 import { useRouter } from 'next/router';
 import { useQuery } from '@apollo/client';
 import { Package } from 'types';
 import { SEARCH } from 'queries';
+
+import Button from 'components/Button';
+import Layout from 'components/Layout';
+import withApollo from 'utils/withApollo';
 import PackageCard from 'components/PackageCard';
 import Head from 'components/Head';
 import { tagsList } from 'utils/constant';
@@ -73,7 +73,7 @@ const useStyles = makeStyles((theme) => ({
     alignItems: 'flex-start',
     marginTop: theme.spacing(8),
     marginLeft: theme.spacing(4),
-    marginBottom: theme.spacing(1),    
+    marginBottom: theme.spacing(1),
   },
   list: {
     width: '100%',
@@ -164,52 +164,50 @@ function Explorer(): JSX.Element {
   }
 
   return (
-      <Layout>
-        <div className={classes.containerRow}>
+    <Layout>
+      <div className={classes.containerRow}>
         <div className={classes.containerColumn}>
           <div className={classes.lineExplorer}>
             <div className={classes.containerRow}>
               <div className={classes.logo}>
                 <Logo type="mini" size="sm" />
               </div>
-            <div className={classes.containerExplorer}>
+              <div className={classes.containerExplorer}>
                 <Typography
-                    variant="subtitle1"
+                  variant="subtitle1"
                 >
-                    Packages Explorer
+                  Packages Explorer
                 </Typography>
-                </div>
               </div>
             </div>
-            {tagsList.map((tag) => {
-              return (
-                <Button color={'primary'} onClick={() => searchByTag(tag)} type="button" key={tag} variant={'contained'} className={classes.tags} >
-                  {tag}
-                </Button>
-              );
-            })}
+          </div>
+          {tagsList.map((tag) => (
+            <Button color="primary" onClick={() => searchByTag(tag)} type="button" key={tag} variant="contained" className={classes.tags}>
+              {tag}
+            </Button>
+          ))}
         </div>
         <div className={classes.containerColumn}>
           <div className={classes.linePopular}>
-          <div className={classes.containerRow}>
+            <div className={classes.containerRow}>
               <div className={classes.logo}>
                 <Logo type="mini" size="sm" />
               </div>
-            <div className={classes.containerPopular}>
+              <div className={classes.containerPopular}>
                 <Typography
-                    variant="subtitle1"
+                  variant="subtitle1"
                 >
-                    Popular Libraries
+                  Popular Libraries
                 </Typography>
-                </div>
               </div>
+            </div>
 
-            </div>
-            <div className={classes.packages}>
-              {packages()}
-            </div>
           </div>
-          
+          <div className={classes.packages}>
+            {packages()}
+          </div>
+        </div>
+
       </div>
     </Layout>
 

@@ -201,17 +201,17 @@ function Search(): JSX.Element {
           {tagsList.map((tag) => {
             const isSelected = selectedTags.find((e) => e === tag);
             return (
-              <Button onClick={() => searchByTag(tag)} type="button" key={tag} color={isSelected ? 'success' : 'primary'} variant='contained' className={classes.tags}>
+              <Button onClick={() => searchByTag(tag)} type="button" key={tag} color={isSelected ? 'success' : 'primary'} variant="contained" className={classes.tags}>
                 {tag}
               </Button>
             );
           })}
         </div>
-        <div className={classes.linePopular}></div>
+        <div className={classes.linePopular} />
         <div className={classes.container}>
           {packages()}
         </div>
-      </div> 
+      </div>
       {numberOfPages() > 0 && (
         <div className={classes.footer}>
           <Pagination

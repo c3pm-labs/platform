@@ -77,7 +77,7 @@ const useStyles = makeStyles((theme: Theme) => createStyles({
 function PackageCard({ packageData }: PackageCardProps): JSX.Element {
   const classes = useStyles({ packageData });
   const {
-    name, author, tags, latest,
+    name, author, latest,
   } = packageData;
   const date = new Date(latest.publishedAt);
 

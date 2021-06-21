@@ -56,7 +56,7 @@ function Header(): JSX.Element {
       color="default"
     >
       <div className={classes.links}>
-      <a
+        <a
           rel="noopener noreferrer"
           href="/explorer"
         >
