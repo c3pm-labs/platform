@@ -24,30 +24,30 @@ export async function getLatestVersion(ctx: Context, packageName: string): Promi
   return versions[0];
 }
 
-export async function search(ctx: Context, keyword: string, tags: string[] = []): Promise<Package[]> {
+export async function search(keyword: string, tags: string[] = []): Promise<Package[]> {
   if (keyword && !tags) {
-    return await db.$queryRaw<Package[]>`
+    return db.$queryRaw<Package[]>`
     SELECT *
     FROM "Package"
     WHERE "name" ~* ${keyword}
     ORDER BY "name" ASC
     `;
-  } else if (!keyword && tags) {
-    return await db.$queryRaw<Package[]>`
+  }
+  if (!keyword && tags) {
+    return db.$queryRaw<Package[]>`
     SELECT *
     FROM "Package"
     WHERE "tags" @> (${tags})
     ORDER BY "name" ASC
     `;
-  } else {
-    return await db.$queryRaw<Package[]>`
-    SELECT *
-    FROM "Package"
-    WHERE "name" ~* ${keyword}
-    AND "tags" @> (${tags})
-    ORDER BY "name" ASC
-    `;
   }
+  return db.$queryRaw<Package[]>`
+  SELECT *
+  FROM "Package"
+  WHERE "name" ~* ${keyword}
+  AND "tags" @> (${tags})
+  ORDER BY "name" ASC
+  `;
 }
 
 export async function getPackage(ctx: Context, name: string): Promise<Package> {
