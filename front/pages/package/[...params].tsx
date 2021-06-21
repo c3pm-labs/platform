@@ -1,7 +1,7 @@
 import { useQuery } from '@apollo/client';
 import Link from 'next/link';
 import React, { useState } from 'react';
-import sermver from 'semver';
+import semver from 'semver';
 import { useRouter } from 'next/router';
 import { getDataFromTree } from '@apollo/react-ssr';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
@@ -132,7 +132,7 @@ const useStyles = makeStyles((theme) => ({
 function PackageDetails(): JSX.Element {
   const router = useRouter();
   const packageName = router.query.params[0];
-  const packageVersion = (router.query.params[1] && sermver.valid(router.query.params[1])) || null;
+  const packageVersion = (router.query.params[1] && semver.valid(router.query.params[1])) || null;
 
   const { data, loading, error } = useQuery<{ version: Version }>(PACKAGE_FROM_VERSION, {
     variables: {
@@ -217,6 +217,7 @@ function PackageDetails(): JSX.Element {
         </TabPanel>
         <TabPanel value={currentTab} index={1}>
           <VersionList
+            authorId={data.version.package.author.id}
             versions={data.version.package.versions}
             packageName={data.version.package.name}
           />
