@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import semverMajor from 'semver/functions/major';
 import Link from 'next/link';
 import { makeStyles } from '@material-ui/core/styles';
-import { Version, Viewer } from 'types';
+import { Version } from 'types';
 import { Modal } from '@material-ui/core';
 import { useMutation } from '@apollo/client';
 import { useRouter } from 'next/router';
@@ -12,7 +12,7 @@ import { sortVersion } from 'utils/version';
 
 import { useViewer } from '../../../../hooks/auth';
 import Button from '../../../Button';
-import { DELETE_VERSION, LOGOUT, PACKAGE_FROM_VERSION } from '../../../../queries';
+import { DELETE_VERSION } from '../../../../queries';
 
 export interface VersionListProps {
   versions: Version[];
@@ -115,6 +115,7 @@ function VersionList({ versions, packageName, authorId }: VersionListProps): JSX
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
   const [deleteVersion] = useMutation<{ version: Version}>(DELETE_VERSION, {
     onError: (e) => {
+      // eslint-disable-next-line no-console
       console.log('ERROR : ', e);
       if (e.graphQLErrors[0]?.extensions?.code === 'FORBIDDEN') {
         // eslint-disable-next-line no-console
@@ -198,6 +199,7 @@ function VersionList({ versions, packageName, authorId }: VersionListProps): JSX
                       },
                     });
                   } catch (e) {
+                    // eslint-disable-next-line no-console
                     console.log('error : ', e);
                   }
                 }}
