@@ -17,9 +17,20 @@ function SearchBar({ className }: SearchBarProps): JSX.Element {
   }
 
   return (
-    <Formik onSubmit={handleSubmit} initialValues={{ search }}>
-      <Form className={className}>
-        <TextInput disableHelperText fullWidth name="search" type="search" placeholder="search..." />
+    <Formik
+      onSubmit={handleSubmit}
+      initialValues={{ search }}
+    >
+      <Form
+        className={className}
+      >
+        <TextInput
+          disableHelperText
+          fullWidth
+          name="search"
+          type="search"
+          placeholder="search..."
+        />
       </Form>
     </Formik>
   );

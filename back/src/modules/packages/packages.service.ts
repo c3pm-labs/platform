@@ -106,6 +106,7 @@ export async function publish(ctx: Context, file: Express.Multer.File): Promise<
       await ctx.db.package.update({
         where: { name: parsedC3PM.name },
         data: {
+          tags: parsedC3PM.tags,
           versions: {
             create:
             {
@@ -130,6 +131,7 @@ export async function publish(ctx: Context, file: Express.Multer.File): Promise<
             id: user.id,
           },
         },
+        tags: parsedC3PM.tags,
         versions: {
           create:
           {

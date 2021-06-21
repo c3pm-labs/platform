@@ -18,6 +18,7 @@ type Package {
   author: User!
   latest: Version!
   name: String!
+  tags: [String!]!
   versions(after: VersionWhereUniqueInput, before: VersionWhereUniqueInput, first: Int!, last: Int!): [Version!]!
 }
 

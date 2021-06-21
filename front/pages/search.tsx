@@ -1,5 +1,7 @@
 import { getDataFromTree } from '@apollo/react-ssr';
-import { makeStyles, Typography, useTheme } from '@material-ui/core';
+import {
+  makeStyles, Typography, useTheme,
+} from '@material-ui/core';
 import React from 'react';
 import { useRouter } from 'next/router';
 import Pagination from '@material-ui/lab/Pagination';
@@ -13,6 +15,7 @@ import withApollo from 'utils/withApollo';
 import Head from 'components/Head';
 import Layout from 'components/Layout';
 import PackageCard from 'components/PackageCard';
+import WrappedLoader from 'components/WrappedLoader';
 
 import { tagsList } from '../utils/constant';
 import Button from '../components/Button';
@@ -32,6 +35,12 @@ const useStyles = makeStyles((theme) => ({
       paddingLeft: 8,
       paddingRight: 8,
     },
+  },
+  containerLoader: {
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    paddingTop: '25%',
   },
   resultBar: {
     display: 'flex',
@@ -165,7 +174,9 @@ function Search(): JSX.Element {
     return (
       <Layout>
         <Head title="Search" />
-        <span>Loading...</span>
+        <div className={classes.containerLoader}>
+          <WrappedLoader />
+        </div>
       </Layout>
     );
   }
