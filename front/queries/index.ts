@@ -153,6 +153,31 @@ export const FORGOT = gql`
     }
 `;
 
+export const DELETE_VERSION = gql`
+    mutation deleteVersion($packageName: String!, $version: String!) {
+        deleteVersion(packageName: $packageName, version: $version) {
+            name,
+            versions(first: 1000, last: 0) {
+                description,
+                license,
+                readme,
+                publishedAt,
+                version,
+            }
+            author {
+                username,
+            }
+            latest {
+                description,
+                license,
+                readme,
+                publishedAt,
+                version,
+            }
+        }
+    }
+`;
+
 export const RESET = gql`
     mutation resetPassword($token: String!, $password: String!) {
         resetPassword(token: $token, password: $password) {

@@ -69,3 +69,19 @@ export const PackageQuery = extendType({
     });
   },
 });
+
+export const PackageMutation = extendType({
+  type: 'Mutation',
+  definition(t) {
+    t.field('deleteVersion', {
+      type: Package,
+      args: {
+        packageName: stringArg(),
+        version: stringArg(),
+      },
+      resolve(parent, args, ctx) {
+        return packagesService.deleteVersion(ctx, args.packageName, args.version);
+      },
+    });
+  },
+});

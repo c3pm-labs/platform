@@ -74,6 +74,43 @@ export async function getVersionOrLatest(
   return getLatestVersion(ctx, packageName);
 }
 
+export async function deleteVersion(
+  ctx: Context, packageName: string, version: string,
+): Promise<Package> {
+  const user = await ctx.session.get();
+  const pkg = await ctx.db.package.findUnique({ where: { name: packageName } });
+  if (!user || pkg.authorId !== user.id) {
+    throw new ForbiddenError('You need to be logged in');
+  }
+
+  const s3 = new AWS.S3({
+    accessKeyId: process.env.REGISTRY_KEY,
+    secretAccessKey: process.env.REGISTRY_SECRET,
+    region: 'fr-par',
+    endpoint: process.env.REGISTRY_URL,
+    s3ForcePathStyle: true,
+  });
+  try {
+    await s3.deleteObject({
+      Bucket: process.env.REGISTRY_BUCKET_NAME,
+      Key: `${packageName}/${version}`,
+    }).promise();
+  } catch (e) {
+    // eslint-disable-next-line no-console
+    console.error('failed to remove package from registry');
+  }
+
+  await ctx.db.version.delete({
+    where: {
+      version_packageName: {
+        packageName,
+        version,
+      },
+    },
+  });
+  return pkg;
+}
+
 export async function publish(ctx: Context, file: Express.Multer.File): Promise<void> {
   let c3pmBuffer;
   let readmeBuffer;

@@ -1,7 +1,7 @@
 import { User } from '@prisma/client';
 import { hash, compare } from 'bcryptjs';
 
-import { UserInputError } from '../../utils/errors';
+import { ForbiddenError, UserInputError } from '../../utils/errors';
 import { Context } from '../../context';
 
 export interface FindUserParams {
@@ -33,6 +33,10 @@ export async function updateUser(ctx: Context, {
 }: UpdateUserParams): Promise<User> {
   if (!username && !email && !description) {
     throw new UserInputError('Require one argument');
+  }
+  const user = await ctx.session.get();
+  if (!user) {
+    throw new ForbiddenError('You need to be logged in');
   }
   return ctx.db.user.update({
     where: {
