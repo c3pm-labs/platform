@@ -100,14 +100,34 @@ const useStyles = makeStyles((theme) => ({
   tagsContainer: {
     display: 'flex',
     justifyContent: 'center',
-    marginTop: theme.spacing(2),
+    marginTop: theme.spacing(4),
     flexWrap: 'wrap',
+    flexDirection: 'column',
   },
-  tag: {
-    margin: `0 ${theme.spacing(1)}px`,
-    [theme.breakpoints.down('xs')]: {
-      marginBottom: theme.spacing(1),
-    },
+  tags: {
+    display: 'flex',
+    flex: 1,
+    flexDirection: 'column',
+    width: '100%',
+    marginLeft: theme.spacing(8),
+    marginTop: theme.spacing(3),
+  },
+  containerRow: {
+    display: 'flex',
+    flex: 1,
+    flexDirection: 'row',
+    justifyContent: 'flex-start',
+    alignItems: 'flex-start',
+  },
+  linePopular: {
+    width: '30%',
+    justifyContent: 'center',
+    borderBottom: `2px solid ${theme.palette.primary.main}`,
+    transform: 'rotate(270deg)',
+    marginTop: theme.spacing(30),
+    marginRight: theme.spacing(-40),
+    marginLeft: theme.spacing(-10),
+
   },
 }));
 
@@ -176,18 +196,21 @@ function Search(): JSX.Element {
           packages found
         </Typography>
       </div>
-      <div className={classes.tagsContainer}>
-        {tagsList.map((tag) => {
-          const isSelected = selectedTags.find((e) => e === tag);
-          return (
-            <Button onClick={() => searchByTag(tag)} type="button" key={tag} variant={isSelected ? 'contained' : 'outlined'} className={classes.tag}>
-              {tag}
-            </Button>
-          );
-        })}
-      </div>
-      <div className={classes.container}>
-        {packages()}
+      <div className={classes.containerRow}>
+        <div className={classes.tagsContainer}>
+          {tagsList.map((tag) => {
+            const isSelected = selectedTags.find((e) => e === tag);
+            return (
+              <Button onClick={() => searchByTag(tag)} type="button" key={tag} color={isSelected ? 'success' : 'primary'} variant="contained" className={classes.tags}>
+                {tag}
+              </Button>
+            );
+          })}
+        </div>
+        <div className={classes.linePopular} />
+        <div className={classes.container}>
+          {packages()}
+        </div>
       </div>
       {numberOfPages() > 0 && (
         <div className={classes.footer}>

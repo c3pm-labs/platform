@@ -182,11 +182,10 @@ function PackageDetails(): JSX.Element {
           </div>
           <div className={classes.description}>{data.version.description}</div>
           <div className={`${classes.line} ${classes.alignCenter}`}>
-            { data.version.package.tags?.length > 0 ? (
+            { data.version?.tags?.length > 0 ? (
               <>
                 <div className={classes.tagsContainer}>
-                  {data.version.package.tags?.map(
-                    (tag) => <span className={classes.tag}>{tag}</span>)}
+                  {data.version?.tags?.map((tag) => <span className={classes.tag}>{tag}</span>)}
                 </div>
                 <div className={classes.separator} />
               </>

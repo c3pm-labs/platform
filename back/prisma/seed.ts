@@ -1,5 +1,4 @@
 /* eslint-disable no-console */
-
 import { PrismaClient } from '@prisma/client';
 
 const db = new PrismaClient();
@@ -12,7 +11,6 @@ async function main() {
       password: '$2a$10$pCEPFTJPFaCFTJ9WYjbSD.QvACtcpkSigridFBGpYRmUdF5jR16IW', // demodemo
     },
   });
-
   const boostPkg = await db.package.create({
     data: {
       name: 'boost',
@@ -28,6 +26,7 @@ Boost is cool
 ctpm add boost
 \`\`\``,
             description: 'boost is cool',
+            tags: ['boost', 'network', 'utils'],
           },
           {
             version: '2.4.5',
@@ -38,6 +37,7 @@ Boost 2 is really cool
 ctpm add boost
 \`\`\``,
             description: 'boost is cool',
+            tags: ['boost', 'utils', 'network'],
           },
           {
             version: '2.4.6',
@@ -107,7 +107,6 @@ ctpm add boost
     },
   });
   console.log(boostPkg);
-
   const boostAsio = await db.package.create({
     data: {
       name: 'boost-asio',
@@ -155,7 +154,7 @@ ctpm add boost-asio
             description: 'boost asio is cool',
           },
           {
-            version: '1.0.0',
+            version: '3.0.0',
             license: 'MIT',
             readme: `# Boost Asio 2
 Boost Asio 2 is really cool
@@ -172,7 +171,6 @@ ctpm add boost-asio
     },
   });
   console.log(boostAsio);
-
   const sfml = await db.package.create({
     data: {
       name: 'sfml',
@@ -207,7 +205,6 @@ ctpm add sfml
     },
   });
   console.log(sfml);
-
   const irrlicht = await db.package.create({
     data: {
       name: 'irrlicht',
@@ -242,7 +239,6 @@ ctpm add irrlicht
     },
   });
   console.log(irrlicht);
-
   const utilsMath = await db.package.create({
     data: {
       name: 'maths',
@@ -277,7 +273,6 @@ ctpm add maths
     },
   });
   console.log(utilsMath);
-
   const utilsString = await db.package.create({
     data: {
       name: 'string',
@@ -313,7 +308,6 @@ ctpm add string
   });
   console.log(utilsString);
 }
-
 main()
   .catch(console.error)
   .finally(() => db.$disconnect());

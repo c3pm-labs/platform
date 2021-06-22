@@ -34,8 +34,12 @@ export async function search(ctx: Context, keyword: string, tags: string[] = [])
           },
         },
         {
-          tags: tags?.length > 0 ? {
-            hasSome: tags,
+          versions: tags?.length > 0 ? {
+            some: {
+              tags: {
+                hasSome: tags,
+              },
+            },
           } : undefined,
         },
       ],
@@ -147,6 +151,7 @@ export async function publish(ctx: Context, file: Express.Multer.File): Promise<
               readme: readmeBuffer ?? 'There is no readme for this package',
               description: parsedC3PM.description,
               license: parsedC3PM.license,
+              tags: parsedC3PM.tags,
             },
           },
         },
@@ -171,6 +176,7 @@ export async function publish(ctx: Context, file: Express.Multer.File): Promise<
             readme: readmeBuffer ?? 'There is no readme for this package',
             description: parsedC3PM.description,
             license: parsedC3PM.license,
+            tags: parsedC3PM.tags,
           },
         },
       },

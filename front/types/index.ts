@@ -12,6 +12,7 @@ export interface Version {
   description: string;
   readme: string;
   package?: Package;
+  tags: string[];
 }
 
 export interface User {

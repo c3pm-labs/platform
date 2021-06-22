@@ -86,7 +86,7 @@ function Demo(): JSX.Element {
               title="Package sharing"
               description="c3pm is, before all, a package manager. You can share a reusable piece of code with the entire community!"
               textLink="Browse packages"
-              link="/search"
+              link="/explorer"
             />
           </div>
         </div>

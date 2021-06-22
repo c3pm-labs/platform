@@ -87,6 +87,10 @@ Cypress.Commands.add('assertHome', () => {
   cy.url().should('eq', `${Cypress.config().baseUrl}/`);
 });
 
+Cypress.Commands.add('assertExplorer', () => {
+  cy.url().should('eq', `${Cypress.config().baseUrl}/explorer`);
+});
+
 Cypress.Commands.add('assertLogin', () => {
   cy.url().should('eq', `${Cypress.config().baseUrl}/login`);
 });
@@ -94,6 +98,11 @@ Cypress.Commands.add('assertLogin', () => {
 Cypress.Commands.add('assertRegister', () => {
   cy.url().should('eq', `${Cypress.config().baseUrl}/register`);
 });
+
+Cypress.Commands.add('assertTags', () => {
+  cy.url().should('eq', `${Cypress.config().baseUrl}/search?q=&tags=network&page=1`);
+});
+
 
 Cypress.Commands.add('checkAuthCookie', () => {
   cy.getCookies()

@@ -13,6 +13,7 @@ export const Versions = objectType({
     t.model.readme();
     t.model.publishedAt();
     t.model.version();
+    t.model.tags();
   },
 });
 
