@@ -254,7 +254,7 @@ function PackageDetails(): JSX.Element {
               </div>
               <div>
                 <LanguageIcon />
-                <a>{data.version.package.website}</a>
+                <a href={data.version.package.website}>Visit our website !</a>
               </div>
             </div>
           </div>
