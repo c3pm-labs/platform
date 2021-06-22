@@ -10,6 +10,10 @@ import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
 import { Version } from 'types';
 import { PACKAGE_FROM_VERSION } from 'queries';
+import MenuBookIcon from '@material-ui/icons/MenuBook';
+import PeopleIcon from '@material-ui/icons/People';
+import CodeIcon from '@material-ui/icons/Code';
+import LanguageIcon from '@material-ui/icons/Language';
 
 import InstallButton from 'components/pages/packages/InstallButton';
 import Head from 'components/Head';
@@ -127,6 +131,25 @@ const useStyles = makeStyles((theme) => ({
     borderRadius: theme.shape.borderRadius,
     padding: 3,
   },
+  readmeContainer: {
+    display: 'flex',
+    justifyContent: 'space-between',
+    flexDirection: 'row',
+    alignItems: 'flex-start',
+    width: '100%',
+    '& #readme-displayer': {
+      width: '80%',
+    },
+    '& #info-displayer': {
+      width: '20%',
+      display: 'flex',
+      flexDirection: 'column',
+      alignItems: 'flex-start',
+      paddingLeft: 20,
+      borderLeft: `1px solid ${theme.palette.grey[300]}`,
+      marginLeft: 20,
+    },
+  },
 }));
 
 function PackageDetails(): JSX.Element {
@@ -186,7 +209,7 @@ function PackageDetails(): JSX.Element {
               <>
                 <div className={classes.tagsContainer}>
                   {data.version.package.tags?.map(
-                    (tag) => <span className={classes.tag}>{tag}</span>)}
+                    (tag) => <span className={classes.tag} key={tag}>{tag}</span>)}
                 </div>
                 <div className={classes.separator} />
               </>
@@ -212,23 +235,35 @@ function PackageDetails(): JSX.Element {
         <Tabs value={currentTab} onChange={handleChange} aria-label="package tabs" className={classes.tab}>
           <Tab label="Readme" id="package-tab-1" aria-controls="package-tabpanel-1" />
           <Tab label="Versions" id="package-tab-2" aria-controls="package-tabpanel-2" />
-          <Tab label="Infos" id="package-tab-3" aria-controls="package-tabpanel-3" />
         </Tabs>
         <TabPanel value={currentTab} index={0}>
-          <MarkdownDisplayer source={data.version.readme} />
+          <div className={classes.readmeContainer}>
+            <MarkdownDisplayer source={data.version.readme} />
+            <div id="info-displayer">
+              <div>
+                <MenuBookIcon />
+                <a href={data.version.package.documentation}>documentation</a>
+              </div>
+              <div>
+                <CodeIcon />
+                {data.version.package.repository}
+              </div>
+              <div>
+                <PeopleIcon />
+                {data.version.package.contributors.join(' - ')}
+              </div>
+              <div>
+                <LanguageIcon />
+                <a>{data.version.package.website}</a>
+              </div>
+            </div>
+          </div>
         </TabPanel>
         <TabPanel value={currentTab} index={1}>
           <VersionList
             versions={data.version.package.versions}
             packageName={data.version.package.name}
           />
-        </TabPanel>
-        <TabPanel value={currentTab} index={2}>
-          <MarkdownDisplayer source={`#### Contributors: ${data.version.contributors}`} />
-          <MarkdownDisplayer source={`#### Description: ${data.version.description}`} />
-          <MarkdownDisplayer source={`#### Repository: ${data.version.repository}`} />
-          <MarkdownDisplayer source={`#### Official website: ${data.version.website}`} />
-          <MarkdownDisplayer source={`#### Documentation: ${data.version.documentation}`} />
         </TabPanel>
       </div>
     </Layout>

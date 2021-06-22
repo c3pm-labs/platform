@@ -4,6 +4,10 @@ export interface Package {
   versions: Version[];
   author: User;
   tags: string[];
+  contributors: string[];
+  documentation: string;
+  website: string;
+  repository: string;
 }
 
 export interface Version {
@@ -11,10 +15,6 @@ export interface Version {
   publishedAt: string;
   description: string;
   readme: string;
-  contributors: string;
-  website: string;
-  repository: string;
-  documentation: string;
   package?: Package;
 }
 

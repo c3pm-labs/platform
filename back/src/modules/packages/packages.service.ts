@@ -103,6 +103,10 @@ export async function publish(ctx: Context, file: Express.Multer.File): Promise<
         where: { name: parsedC3PM.name },
         data: {
           tags: parsedC3PM.tags,
+          contributors: parsedC3PM.contributors,
+          documentation: parsedC3PM.documentation,
+          website: parsedC3PM.website,
+          repository: parsedC3PM.repository,
           versions: {
             create:
             {
@@ -110,10 +114,6 @@ export async function publish(ctx: Context, file: Express.Multer.File): Promise<
               readme: readmeBuffer ?? 'There is no readme for this package',
               description: parsedC3PM.description,
               license: parsedC3PM.license,
-              contributors: parsedC3PM.contributors,
-              documentation: parsedC3PM.documentation,
-              website: parsedC3PM.website,
-              repository: parsedC3PM.repository,
             },
           },
         },
@@ -131,6 +131,10 @@ export async function publish(ctx: Context, file: Express.Multer.File): Promise<
           },
         },
         tags: parsedC3PM.tags,
+        contributors: parsedC3PM.contributors,
+        documentation: parsedC3PM.documentation,
+        website: parsedC3PM.website,
+        repository: parsedC3PM.repository,
         versions: {
           create:
           {
@@ -138,10 +142,6 @@ export async function publish(ctx: Context, file: Express.Multer.File): Promise<
             readme: readmeBuffer ?? 'There is no readme for this package',
             description: parsedC3PM.description,
             license: parsedC3PM.license,
-            contributors: parsedC3PM.contributors,
-            documentation: parsedC3PM.documentation,
-            website: parsedC3PM.website,
-            repository: parsedC3PM.repository,
           },
         },
       },

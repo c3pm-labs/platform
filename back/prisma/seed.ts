@@ -156,6 +156,9 @@ ctpm add irrlicht
   const utilsMath = await db.package.create({
     data: {
       name: 'maths',
+      contributors: ['chloebourbion', 'minabarry'],
+      website: 'github.com/c3pm-labs/c3pm',
+      documentation: 'https://docs.c3pm.io/docs/getting_started/install',
       tags: ['maths', 'utils'],
       versions: {
         create: [
