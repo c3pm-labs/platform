@@ -13,7 +13,7 @@ describe('search', () => {
   it('should redirect on result page and show all packages', () => {
     cy.visit('/');
     cy.findByPlaceholderText(/search\.\.\./i).type('{enter}');
-    cy.findByTestId('number-of-packages').contains('4');
+    cy.findByTestId('number-of-packages').contains('6');
   });
   it('should redirect on result page, click on tag and show correct package', () => {
     cy.visit('/');
