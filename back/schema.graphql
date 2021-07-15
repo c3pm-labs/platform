@@ -49,6 +49,7 @@ type Version {
   package: Package!
   publishedAt: DateTime!
   readme: String!
+  tags: [String!]!
   version: String!
 }
 

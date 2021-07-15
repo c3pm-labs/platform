@@ -34,6 +34,7 @@ model Version {
   description String
   license     String
   publishedAt DateTime @default(now())
+  tags        String[]
 
   @@id([version, packageName])
 }
