@@ -23,6 +23,10 @@ export const Package = objectType({
     t.model.name();
     t.model.tags();
     t.model.versions();
+    t.model.repository();
+    t.model.contributors();
+    t.model.documentation();
+    t.model.website();
     t.field('latest', {
       type: 'Version',
       resolve(pkg, _args, ctx) {

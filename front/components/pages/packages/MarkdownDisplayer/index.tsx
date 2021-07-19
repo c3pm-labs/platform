@@ -68,7 +68,7 @@ JSX.Element {
   const classes = useStyles();
 
   return (
-    <div className={classes.readme}>
+    <div className={classes.readme} id="readme-displayer">
       <ReactMarkdown source={source} className={className} escapeHtml={escapeHtml} />
     </div>
   );
