@@ -175,7 +175,6 @@ function PackageDetails(): JSX.Element {
         <Tabs value={currentTab} onChange={handleChange} aria-label="package tabs" className={classes.tab}>
           <Tab label="Readme" id="package-tab-1" aria-controls="package-tabpanel-1" />
           <Tab label="Versions" id="package-tab-2" aria-controls="package-tabpanel-2" />
-          <Tab label="Versions" id="package-tab-2" aria-controls="package-tabpanel-2" />
         </Tabs>
         <TabPanel value={currentTab} index={0}>
           <MarkdownDisplayer source={data.version.readme} />
