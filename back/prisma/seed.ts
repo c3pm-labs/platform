@@ -17,6 +17,7 @@ async function main() {
     data: {
       name: 'boost',
       tags: ['boost', 'network', 'utils'],
+      contributors: ['boost', 'network', 'utils'],
       versions: {
         create: [
           {
@@ -52,6 +53,7 @@ ctpm add boost
     data: {
       name: 'boost-asio',
       tags: ['boost-asio', 'network', 'utils'],
+      repository: 'super/lien/vers/mon/repo',
       versions: {
         create: [
           {
@@ -87,6 +89,8 @@ ctpm add boost-asio
     data: {
       name: 'sfml',
       tags: ['sfml', 'graphics'],
+      documentation: 'https://docs.c3pm.io/docs/getting_started/install',
+      repository: 'super/lien/vers/mon/repo',
       versions: {
         create: [
           {
@@ -122,6 +126,9 @@ ctpm add sfml
     data: {
       name: 'irrlicht',
       tags: ['irrlicht', 'graphics'],
+      website: 'github.com/c3pm-labs/c3pm',
+      documentation: 'https://docs.c3pm.io/docs/getting_started/install',
+      repository: 'super/lien/vers/mon/repo',
       versions: {
         create: [
           {
@@ -159,6 +166,7 @@ ctpm add irrlicht
       contributors: ['chloebourbion', 'minabarry'],
       website: 'github.com/c3pm-labs/c3pm',
       documentation: 'https://docs.c3pm.io/docs/getting_started/install',
+      repository: 'super/lien/vers/mon/repo',
       tags: ['maths', 'utils'],
       versions: {
         create: [
@@ -195,6 +203,8 @@ ctpm add maths
     data: {
       name: 'string',
       tags: ['string', 'utils'],
+      repository: 'super/lien/vers/mon/repo',
+      documentation: 'https://docs.c3pm.io/docs/getting_started/install',
       versions: {
         create: [
           {

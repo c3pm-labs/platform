@@ -1,5 +1,4 @@
 import { useQuery } from '@apollo/client';
-import Link from 'next/link';
 import React, { useState } from 'react';
 import sermver from 'semver';
 import { useRouter } from 'next/router';
@@ -10,12 +9,7 @@ import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
 import { Version } from 'types';
 import { PACKAGE_FROM_VERSION } from 'queries';
-import MenuBookIcon from '@material-ui/icons/MenuBook';
-import PeopleIcon from '@material-ui/icons/People';
-import CodeIcon from '@material-ui/icons/Code';
-import LanguageIcon from '@material-ui/icons/Language';
 
-import InstallButton from 'components/pages/packages/InstallButton';
 import Head from 'components/Head';
 import Layout from 'components/Layout';
 import withApollo from 'utils/withApollo';
@@ -25,7 +19,7 @@ import VersionList from 'components/pages/packages/VersionList';
 import WrappedLoader from 'components/WrappedLoader';
 
 import PageNotFound from '../404';
-import Avatar from '../../components/Avatar';
+import Presentation from "../../components/pages/packages/Presentation";
 
 const useStyles = makeStyles((theme) => ({
   container: {
@@ -137,20 +131,9 @@ const useStyles = makeStyles((theme) => ({
     flexDirection: 'row',
     alignItems: 'flex-start',
     width: '100%',
-    '& #readme-displayer': {
-      width: '80%',
-    },
-    '& #info-displayer': {
-      width: '20%',
-      display: 'flex',
-      flexDirection: 'column',
-      alignItems: 'flex-start',
-      paddingLeft: 20,
-      borderLeft: `1px solid ${theme.palette.grey[300]}`,
-      marginLeft: 20,
-    },
   },
-}));
+}
+));
 
 function PackageDetails(): JSX.Element {
   const router = useRouter();
@@ -164,8 +147,6 @@ function PackageDetails(): JSX.Element {
     },
   });
   const classes = useStyles();
-  const theme = useTheme();
-  const isMobile = useMediaQuery(theme.breakpoints.down('xs'));
   const [currentTab, setCurrentTab] = useState<number>(0);
 
   const handleChange = (event, newValue) => {
@@ -190,74 +171,15 @@ function PackageDetails(): JSX.Element {
     <Layout>
       <Head title={packageVersion ? `${packageName} - ${packageVersion}` : packageName} />
       <div className={classes.container}>
-        <div className={classes.header}>
-          <div className={`${classes.spaceBetween} ${classes.line}`}>
-            <div className={`${classes.widthAuto} ${!isMobile && classes.line}`}>
-              <h1 data-testid="name">{data.version.package.name}</h1>
-              <span className={classes.version} data-testid="version">
-                v
-                {data.version.version}
-              </span>
-            </div>
-            {!isMobile && (
-              <InstallButton packageName={data.version.package.name} />
-            )}
-          </div>
-          <div className={classes.description}>{data.version.description}</div>
-          <div className={`${classes.line} ${classes.alignCenter}`}>
-            { data.version.package.tags?.length > 0 ? (
-              <>
-                <div className={classes.tagsContainer}>
-                  {data.version.package.tags?.map(
-                    (tag) => <span className={classes.tag} key={tag}>{tag}</span>)}
-                </div>
-                <div className={classes.separator} />
-              </>
-            ) : null}
-            <span className={classes.update}>
-              Last updated on&nbsp;
-              {(new Date(data.version.package.latest.publishedAt)).toDateString()}
-            </span>
-            <div className={classes.separator} />
-            <Link href="/user/[id]" as={`/user/${data.version.package.author.id}`} passHref>
-              {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
-              <a className={classes.avatar} data-testid="author">
-                <Avatar
-                  user={data.version.package.author}
-                  classes={
-                    { container: classes.avatar, picture: classes.picture, name: classes.name }
-                  }
-                />
-              </a>
-            </Link>
-          </div>
-        </div>
+        <Presentation version={data.version} />
+
         <Tabs value={currentTab} onChange={handleChange} aria-label="package tabs" className={classes.tab}>
           <Tab label="Readme" id="package-tab-1" aria-controls="package-tabpanel-1" />
           <Tab label="Versions" id="package-tab-2" aria-controls="package-tabpanel-2" />
+          <Tab label="Versions" id="package-tab-2" aria-controls="package-tabpanel-2" />
         </Tabs>
         <TabPanel value={currentTab} index={0}>
-          <div className={classes.readmeContainer}>
-            <MarkdownDisplayer source={data.version.readme} />
-            <div id="info-displayer">
-              <div>
-                <MenuBookIcon />
-                <a href={data.version.package.documentation}>documentation</a>
-              </div>
-              <div>
-                <CodeIcon />
-                {data.version.package.repository}
-              </div>
-              <div>
-                <PeopleIcon />
-                {data.version.package.contributors.join(' - ')}
-              </div>
-              <div>
-                <LanguageIcon />
-                <a href={data.version.package.website}>Visit our website !</a>
-              </div>
-            </div>
-          </div>
+          <MarkdownDisplayer source={data.version.readme} />
         </TabPanel>
         <TabPanel value={currentTab} index={1}>
           <VersionList
