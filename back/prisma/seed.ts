@@ -40,6 +40,66 @@ ctpm add boost
 \`\`\``,
             description: 'boost is cool',
           },
+          {
+            version: '2.4.6',
+            license: 'MIT',
+            readme: `# Boost 2
+Boost 2 is really cool
+\`\`\`
+ctpm add boost
+\`\`\``,
+            description: 'boost is cool',
+          },
+          {
+            version: '2.4.10',
+            license: 'MIT',
+            readme: `# Boost 2
+Boost 2 is really cool
+\`\`\`
+ctpm add boost
+\`\`\``,
+            description: 'boost is cool',
+          },
+          {
+            version: '2.10.5',
+            license: 'MIT',
+            readme: `# Boost 2
+Boost 2 is really cool
+\`\`\`
+ctpm add boost
+\`\`\``,
+            description: 'boost is cool',
+          },
+          {
+            version: '4.4.5',
+            license: 'MIT',
+            readme: `# Boost 2
+Boost 2 is really cool
+\`\`\`
+ctpm add boost
+\`\`\``,
+            description: 'boost is cool',
+          },
+          {
+            version: '4.4.6',
+            license: 'MIT',
+            readme: `# Boost 2
+Boost 2 is really cool
+\`\`\`
+ctpm add boost
+\`\`\``,
+            description: 'boost is cool',
+          },
+          {
+            version: '6.4.5',
+            license: 'MIT',
+            readme: `# Boost 2
+Boost 2 is really cool
+\`\`\`
+ctpm add boost
+\`\`\``,
+            description: 'boost is cool',
+          },
         ],
       },
       author: {
@@ -68,6 +128,36 @@ ctpm add boost-asio
           },
           {
             version: '2.4.5',
+            license: 'MIT',
+            readme: `# Boost Asio 2
+Boost Asio 2 is really cool
+\`\`\`
+ctpm add boost-asio
+\`\`\``,
+            description: 'boost asio is cool',
+          },
+          {
+            version: '2.4.6',
+            license: 'MIT',
+            readme: `# Boost Asio 2
+Boost Asio 2 is really cool
+\`\`\`
+ctpm add boost-asio
+\`\`\``,
+            description: 'boost asio is cool',
+          },
+          {
+            version: '2.4.7',
+            license: 'MIT',
+            readme: `# Boost Asio 2
+Boost Asio 2 is really cool
+\`\`\`
+ctpm add boost-asio
+\`\`\``,
+            description: 'boost asio is cool',
+          },
+          {
+            version: '1.0.0',
             license: 'MIT',
             readme: `# Boost Asio 2
 Boost Asio 2 is really cool

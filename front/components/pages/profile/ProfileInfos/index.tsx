@@ -40,10 +40,7 @@ const useStyles = makeStyles((theme) => ({
 const ProfileInfos = ({ user }: ProfileInfosProps): JSX.Element => {
   const router = useRouter();
   const classes = useStyles();
-  const CheckUser = (): boolean => {
-    const viewer = useViewer();
-    return viewer && user.email === viewer.email;
-  };
+  const viewer = useViewer();
 
   return (
     <>
@@ -76,7 +73,7 @@ const ProfileInfos = ({ user }: ProfileInfosProps): JSX.Element => {
         {user && user.packages && user.packages.length > 1 ? 's ' : ' '}
         uploaded
       </Typography>
-      {CheckUser()
+      {viewer && user.email === viewer.email
         ? (
           <Button
             color="primary"
