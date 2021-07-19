@@ -58,10 +58,15 @@ function Avatar(props: AvatarProps): JSX.Element {
     classes,
     withName = true,
   } = props;
+
   const styles = useStyles({ name: user?.username ?? '' });
   const containerClass = clsx(styles.container, classes?.container);
   const pictureClass = clsx(styles.picture, classes?.picture);
   const nameClass = clsx(styles.name, classes?.name);
+
+  if (!user) {
+    return null;
+  }
 
   return (
     <div className={containerClass}>

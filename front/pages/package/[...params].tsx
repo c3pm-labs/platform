@@ -1,7 +1,7 @@
 import { useQuery } from '@apollo/client';
 import Link from 'next/link';
 import React, { useState } from 'react';
-import sermver from 'semver';
+import semver from 'semver';
 import { useRouter } from 'next/router';
 import { getDataFromTree } from '@apollo/react-ssr';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
@@ -18,6 +18,7 @@ import withApollo from 'utils/withApollo';
 import TabPanel from 'components/pages/packages/TabPanel';
 import MarkdownDisplayer from 'components/pages/packages/MarkdownDisplayer';
 import VersionList from 'components/pages/packages/VersionList';
+import WrappedLoader from 'components/WrappedLoader';
 
 import PageNotFound from '../404';
 import Avatar from '../../components/Avatar';
@@ -30,7 +31,12 @@ const useStyles = makeStyles((theme) => ({
     [theme.breakpoints.down('xs')]: {
       margin: theme.spacing(2),
     },
-
+  },
+  containerLoader: {
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    paddingTop: '25%',
   },
   tab: {
     '& .MuiTab-root': {
@@ -59,7 +65,6 @@ const useStyles = makeStyles((theme) => ({
         margin: `${theme.spacing(1)}px 0`,
       },
     },
-
   },
   version: {
     fontWeight: 500,
@@ -111,12 +116,23 @@ const useStyles = makeStyles((theme) => ({
   spaceBetween: {
     justifyContent: 'space-between',
   },
+  tagsContainer: {
+    display: 'flex',
+  },
+  tag: {
+    fontSize: 12,
+    marginRight: 5,
+    color: theme.palette.text.primary,
+    background: 'rgba(0,184,230, 0.3)', // main with opacity
+    borderRadius: theme.shape.borderRadius,
+    padding: 3,
+  },
 }));
 
 function PackageDetails(): JSX.Element {
   const router = useRouter();
   const packageName = router.query.params[0];
-  const packageVersion = (router.query.params[1] && sermver.valid(router.query.params[1])) || null;
+  const packageVersion = (router.query.params[1] && semver.valid(router.query.params[1])) || null;
 
   const { data, loading, error } = useQuery<{ version: Version }>(PACKAGE_FROM_VERSION, {
     variables: {
@@ -124,7 +140,6 @@ function PackageDetails(): JSX.Element {
       version: packageVersion,
     },
   });
-
   const classes = useStyles();
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down('xs'));
@@ -138,7 +153,9 @@ function PackageDetails(): JSX.Element {
     return (
       <Layout>
         <Head title={packageVersion ? `${packageName} - ${packageVersion}` : packageName} />
-        <span>Loading...</span>
+        <div className={classes.containerLoader}>
+          <WrappedLoader />
+        </div>
       </Layout>
     );
   }
@@ -165,6 +182,15 @@ function PackageDetails(): JSX.Element {
           </div>
           <div className={classes.description}>{data.version.description}</div>
           <div className={`${classes.line} ${classes.alignCenter}`}>
+            { data.version.package.tags?.length > 0 ? (
+              <>
+                <div className={classes.tagsContainer}>
+                  {data.version.package.tags?.map(
+                    (tag) => <span className={classes.tag}>{tag}</span>)}
+                </div>
+                <div className={classes.separator} />
+              </>
+            ) : null}
             <span className={classes.update}>
               Last updated on&nbsp;
               {(new Date(data.version.package.latest.publishedAt)).toDateString()}
@@ -192,6 +218,7 @@ function PackageDetails(): JSX.Element {
         </TabPanel>
         <TabPanel value={currentTab} index={1}>
           <VersionList
+            authorId={data.version.package.author.id}
             versions={data.version.package.versions}
             packageName={data.version.package.name}
           />

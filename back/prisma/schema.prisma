@@ -23,6 +23,7 @@ model Package {
   author   User      @relation(fields: [authorId], references: [id])
   authorId String
   versions Version[]
+  tags     String[]
 }
 
 model Version {

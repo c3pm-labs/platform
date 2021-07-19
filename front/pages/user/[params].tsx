@@ -77,24 +77,6 @@ const useStyles = makeStyles((theme) => ({
     display: 'flex',
     marginTop: theme.spacing(1),
   },
-  select: {
-    display: 'flex',
-    justifyContent: 'flex-end',
-    marginTop: theme.spacing(16),
-  },
-  edit: {
-    display: 'flex',
-    fontSize: 24,
-  },
-  save: {
-    display: 'flex',
-    minWidth: 100,
-  },
-  cancel: {
-    display: 'flex',
-    minWidth: 100,
-    marginLeft: theme.spacing(1),
-  },
   noPackage: {
     fontSize: 14,
     textAlign: 'center',

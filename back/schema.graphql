@@ -5,6 +5,7 @@
 scalar DateTime
 
 type Mutation {
+  deleteVersion(packageName: String!, version: String!): Package!
   forgotPassword(email: String!): User!
   login(login: String!, password: String!): User!
   logout: User!
@@ -18,6 +19,7 @@ type Package {
   author: User!
   latest: Version!
   name: String!
+  tags: [String!]!
   versions(after: VersionWhereUniqueInput, before: VersionWhereUniqueInput, first: Int!, last: Int!): [Version!]!
 }
 
@@ -27,7 +29,7 @@ input PackageWhereUniqueInput {
 
 type Query {
   package(name: String!): Package!
-  search(keyword: String!): [Package!]!
+  search(keyword: String!, tags: [String!]): [Package!]!
   user(id: String, username: String): User
   version(packageName: String!, version: String): Version!
   viewer: User!

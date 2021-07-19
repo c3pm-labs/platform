@@ -6,6 +6,8 @@ import * as yup from 'yup';
 import { useViewer } from 'hooks/auth';
 import { Alert } from '@material-ui/lab';
 
+import WrappedLoader from 'components/WrappedLoader';
+
 import { UPDATE } from '../../../../queries';
 import TextInput from '../../../TextInput';
 import Button from '../../../Button';
@@ -20,6 +22,13 @@ const useStyles = makeStyles((theme) => ({
     justifyContent: 'center',
     alignItems: 'center',
     marginBottom: theme.spacing(3),
+  },
+  containerLoader: {
+    width: '100%',
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    paddingTop: '18%',
   },
   form: {
     display: 'flex',
@@ -89,7 +98,13 @@ function Profile(): JSX.Element {
     description: yup.string(),
   });
 
-  if (!viewer) return <div>Loading...</div>;
+  if (!viewer) {
+    return (
+      <div className={classes.containerLoader}>
+        <WrappedLoader />
+      </div>
+    );
+  }
 
   const initialValues = {
     username: viewer?.username,
@@ -120,7 +135,7 @@ function Profile(): JSX.Element {
               placeholder="username"
               fullWidth
             />
-            <Button type="submit" variant="contained" color="primary" className={classes.button} data-testId="save-username">
+            <Button type="submit" variant="contained" color="primary" className={classes.button} data-testid="save-username">
               Save
             </Button>
           </div>
@@ -132,7 +147,7 @@ function Profile(): JSX.Element {
               placeholder="email"
               fullWidth
             />
-            <Button type="submit" variant="contained" color="primary" className={classes.button} data-testId="save-email">
+            <Button type="submit" variant="contained" color="primary" className={classes.button} data-testid="save-email">
               Save
             </Button>
           </div>
@@ -147,14 +162,14 @@ function Profile(): JSX.Element {
               disableHelperText
               rows={6}
             />
-            <Button type="submit" variant="contained" color="primary" className={classes.button} data-testId="save-description">
+            <Button type="submit" variant="contained" color="primary" className={classes.button} data-testid="save-description">
               Save
             </Button>
           </div>
         </Form>
       </Formik>
       <Snackbar open={isOpen} autoHideDuration={6000} onClose={() => setIsOpen(false)} anchorOrigin={{ vertical: 'top', horizontal: 'right' }}>
-        <Alert onClose={() => setIsOpen(false)} severity={snackbar.type} data-testId="alert">
+        <Alert onClose={() => setIsOpen(false)} severity={snackbar.type} data-testid="alert">
           {snackbar.message}
         </Alert>
       </Snackbar>
