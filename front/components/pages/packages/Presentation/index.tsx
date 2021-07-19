@@ -143,7 +143,7 @@ export interface PresentationProps {
   version: Version
 }
 
-const Presentation = ({ version } : PresentationProps) => {
+const Presentation = ({ version } : PresentationProps): JSX.Element => {
   const classes = useStyles();
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down('xs'));

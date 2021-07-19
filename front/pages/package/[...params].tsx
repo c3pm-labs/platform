@@ -3,8 +3,7 @@ import React, { useState } from 'react';
 import sermver from 'semver';
 import { useRouter } from 'next/router';
 import { getDataFromTree } from '@apollo/react-ssr';
-import { makeStyles, useTheme } from '@material-ui/core/styles';
-import useMediaQuery from '@material-ui/core/useMediaQuery';
+import { makeStyles } from '@material-ui/core/styles';
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
 import { Version } from 'types';
@@ -19,7 +18,7 @@ import VersionList from 'components/pages/packages/VersionList';
 import WrappedLoader from 'components/WrappedLoader';
 
 import PageNotFound from '../404';
-import Presentation from "../../components/pages/packages/Presentation";
+import Presentation from '../../components/pages/packages/Presentation';
 
 const useStyles = makeStyles((theme) => ({
   container: {
