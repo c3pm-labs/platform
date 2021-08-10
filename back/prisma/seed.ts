@@ -157,7 +157,7 @@ ctpm add boost-asio
             description: 'boost asio is cool',
           },
           {
-            version: '1.0.0',
+            version: '1.2.0',
             license: 'MIT',
             readme: `# Boost Asio 2
 Boost Asio 2 is really cool
