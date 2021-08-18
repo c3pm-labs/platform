@@ -79,7 +79,6 @@ npx prisma studio
 Make sure the environment variables are correctly set, then build
 and start the application:
 ```bash
-npm ci
 npm run build
 npm start
 ```
