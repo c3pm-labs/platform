@@ -98,6 +98,10 @@ export const PACKAGE_FROM_VERSION = gql`
             package {
                 name
                 tags
+                documentation
+                website
+                contributors
+                repository
                 author {
                     username
                     id
