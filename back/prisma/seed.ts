@@ -29,6 +29,7 @@ Boost is cool
 ctpm add boost
 \`\`\``,
             description: 'boost is cool',
+            tags: ['boost', 'network', 'utils'],
           },
           {
             version: '2.4.5',
@@ -39,6 +40,7 @@ Boost 2 is really cool
 ctpm add boost
 \`\`\``,
             description: 'boost is cool',
+            tags: ['boost', 'utils', 'network'],
           },
           {
             version: '2.4.6',
@@ -157,7 +159,7 @@ ctpm add boost-asio
             description: 'boost asio is cool',
           },
           {
-            version: '1.2.0',
+            version: '3.0.0',
             license: 'MIT',
             readme: `# Boost Asio 2
 Boost Asio 2 is really cool

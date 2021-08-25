@@ -31,6 +31,7 @@ export const optionsBuilder = build<Array<{ label: string; value: string }>>({
 export const versionBuilder = (version: string, publishedAt: string): Version => (
   build<Version>({
     fields: {
+      tags: [],
       version,
       publishedAt,
       description: fake((f) => f.lorem.text()),

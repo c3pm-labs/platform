@@ -7,6 +7,7 @@ import AWS from 'aws-sdk';
 import { CustomError, ForbiddenError } from '../../utils/errors';
 import { Context } from '../../context';
 import { bufferToStream, streamToString } from '../../utils/function';
+import db from '../../db';
 
 global.fetch = require('node-fetch');
 
@@ -23,24 +24,30 @@ export async function getLatestVersion(ctx: Context, packageName: string): Promi
   return versions[0];
 }
 
-export async function search(ctx: Context, keyword: string, tags: string[] = [])
-  : Promise<Package[]> {
-  return ctx.db.package.findMany({
-    where: {
-      AND: [
-        {
-          name: {
-            contains: keyword,
-          },
-        },
-        {
-          tags: tags?.length > 0 ? {
-            hasSome: tags,
-          } : undefined,
-        },
-      ],
-    },
-  });
+export async function search(keyword: string, tags: string[] = []): Promise<Package[]> {
+  if (keyword && !tags) {
+    return db.$queryRaw<Package[]>`
+    SELECT *
+    FROM "Package"
+    WHERE "name" ~* ${keyword}
+    ORDER BY "name" ASC
+    `;
+  }
+  if (!keyword && tags) {
+    return db.$queryRaw<Package[]>`
+    SELECT *
+    FROM "Package"
+    WHERE "tags" @> (${tags})
+    ORDER BY "name" ASC
+    `;
+  }
+  return db.$queryRaw<Package[]>`
+  SELECT *
+  FROM "Package"
+  WHERE "name" ~* ${keyword}
+  AND "tags" @> (${tags})
+  ORDER BY "name" ASC
+  `;
 }
 
 export async function getPackage(ctx: Context, name: string): Promise<Package> {
@@ -151,6 +158,7 @@ export async function publish(ctx: Context, file: Express.Multer.File): Promise<
               readme: readmeBuffer ?? 'There is no readme for this package',
               description: parsedC3PM.description,
               license: parsedC3PM.license,
+              tags: parsedC3PM.tags,
             },
           },
         },
@@ -179,6 +187,7 @@ export async function publish(ctx: Context, file: Express.Multer.File): Promise<
             readme: readmeBuffer ?? 'There is no readme for this package',
             description: parsedC3PM.description,
             license: parsedC3PM.license,
+            tags: parsedC3PM.tags,
           },
         },
       },

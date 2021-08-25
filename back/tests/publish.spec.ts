@@ -38,6 +38,7 @@ describe('publish and search', () => {
                   readme,
                   publishedAt,
                   version,
+                  tags,
               }
               author {
                   username,
@@ -48,6 +49,7 @@ describe('publish and search', () => {
                   readme,
                   publishedAt,
                   version,
+                  tags,
               }
           }
       }
@@ -148,6 +150,7 @@ describe('publish and search', () => {
         description: expect.any(String),
         license: expect.any(String),
         readme: expect.any(String),
+        tags: expect.arrayContaining(['hello', 'library']),
         publishedAt: expect.any(String),
         version: '1.0.0',
       },
@@ -165,6 +168,7 @@ describe('publish and search', () => {
         description: expect.any(String),
         license: expect.any(String),
         readme: expect.any(String),
+        tags: expect.arrayContaining(['hello', 'library']),
         publishedAt: expect.any(String),
         version: '2.0.0',
       },

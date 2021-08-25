@@ -13,6 +13,7 @@ export const Versions = objectType({
     t.model.readme();
     t.model.publishedAt();
     t.model.version();
+    t.model.tags();
   },
 });
 
@@ -45,8 +46,8 @@ export const PackageQuery = extendType({
         keyword: stringArg(),
         tags: nullable(list(stringArg())),
       },
-      resolve(parent, args, ctx) {
-        return packagesService.search(ctx, args.keyword, args.tags);
+      resolve(parent, args) {
+        return packagesService.search(args.keyword, args.tags);
       },
     });
 

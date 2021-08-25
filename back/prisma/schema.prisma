@@ -31,13 +31,14 @@ model Package {
 }
 
 model Version {
-  package       Package  @relation(fields: [packageName], references: [name])
-  packageName   String
-  version       String
-  readme        String
-  description   String
-  license       String
-  publishedAt   DateTime @default(now())
+  package     Package  @relation(fields: [packageName], references: [name])
+  packageName String
+  version     String
+  readme      String
+  description String
+  license     String
+  publishedAt DateTime @default(now())
+  tags        String[]
 
   @@id([version, packageName])
 }
