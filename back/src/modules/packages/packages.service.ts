@@ -122,7 +122,7 @@ export async function publish(ctx: Context, file: Express.Multer.File): Promise<
     },
   });
   const parseReadme = new tar.Parse({
-    filter: (path: string) => path.match(/(.+\/|^)(README\.md)$/)?.length > 0,
+    filter: (path: string) => path.match(/(.+\/[^\\]|^)(README\.md)$/)?.length > 0,
     onentry: async (entry: NodeJS.ReadableStream) => {
       readmeBuffer = await streamToString(entry);
     },
@@ -132,7 +132,6 @@ export async function publish(ctx: Context, file: Express.Multer.File): Promise<
   await bufferToStream(file.buffer).pipe(parseReadme);
 
   const parsedC3PM = YAML.parse(c3pmBuffer);
-  bufferToStream(file.buffer).pipe(parseReadme);
 
   const user = await ctx.session.get();
   const currentPackage = await ctx.db.package.findUnique({
