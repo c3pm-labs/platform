@@ -1,5 +1,6 @@
 import { Formik, Form } from 'formik';
 import { useRouter } from 'next/router';
+import { useTranslation } from 'next-i18next';
 
 import TextInput from 'components/TextInput';
 
@@ -9,6 +10,7 @@ export interface SearchBarProps {
 
 function SearchBar({ className }: SearchBarProps): JSX.Element {
   const router = useRouter();
+  const { t } = useTranslation('common');
   const { q, tags, page = 1 } = router.query;
   const search = q || '';
 
@@ -29,7 +31,7 @@ function SearchBar({ className }: SearchBarProps): JSX.Element {
           fullWidth
           name="search"
           type="search"
-          placeholder="search..."
+          placeholder={`${t('search')}...`}
         />
       </Form>
     </Formik>

@@ -1,0 +1,30 @@
+{
+    "buttons": {
+        "getStarted": "Commencer",
+        "learn": "En apprendre plus",
+        "install": "Installer c3pm",
+        "login": "Connexion",
+        "register": "S'enregistrer"
+    },
+    "search": "rechercher",
+    "home": {
+        "why": "Pourquoi c3pm ?",
+        "title": "Ton toolkit pour plonger facilement dans le C++",
+        "easy": "C++ rendu facile",
+        "trivial": "Gestion de dépendances triviale",
+        "sharing": "Partage de paquets",
+        "easyDescription": "Avec c3pm, commencez votre projet cross-plateform avec 0 configuration. Cela n'a jamais été aussi simple !",
+        "trivialDescription": "c3pm s'occupe de toute votre gestion de dépendances ! Plus besoin de passer des heures à installer une simple librairie: une seule commande et c'est partis !",
+        "sharingDescription": "c3pm est, avant tout, un gestionnaire de paquets. Vous pouvez partagez n'importe quel pièce de code avec la communauté !",
+        "easyLink": "En aprendre plus sur c3pm",
+        "trivialLink": "Voir la documentation complète",
+        "sharingLink": "Explorer les paquets"
+    },
+    "footer": {
+        "general": "Informations générales",
+        "contact": "Nous contacter",
+        "releases": "Sorties",
+        "issue": "Nous remonter un problème",
+        "team": "L'équipe"
+    }
+}

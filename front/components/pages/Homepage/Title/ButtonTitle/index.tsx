@@ -4,6 +4,7 @@ import {
 import clsx from 'clsx';
 import Link from 'next/link';
 import { Link as ScrollLink } from 'react-scroll';
+import { useTranslation } from 'next-i18next';
 
 const useStyles = makeStyles((theme) => ({
   containerButton: {
@@ -37,6 +38,7 @@ const useStyles = makeStyles((theme) => ({
 
 function ButtonTitle(): JSX.Element {
   const classes = useStyles();
+  const { t } = useTranslation('common');
 
   return (
     <div className={classes.containerButton}>
@@ -53,7 +55,7 @@ function ButtonTitle(): JSX.Element {
               classes.defaultStyleButton,
             )}
           >
-            Get started
+            {t('buttons.getStarted')}
           </Typography>
         </Button>
       </Link>
@@ -77,7 +79,7 @@ function ButtonTitle(): JSX.Element {
               classes.defaultStyleButton,
             )}
           >
-            Learn More
+            {t('buttons.learn')}
           </Typography>
         </Button>
       </ScrollLink>

@@ -1,6 +1,7 @@
 import {
   makeStyles, Typography, Hidden,
 } from '@material-ui/core';
+import { useTranslation } from 'next-i18next';
 
 import Logo from 'components/Logo';
 
@@ -51,6 +52,7 @@ const useStyles = makeStyles((theme) => ({
 
 function Title(): JSX.Element {
   const classes = useStyles();
+  const { t } = useTranslation('common');
 
   return (
     <div className={classes.container}>
@@ -64,12 +66,12 @@ function Title(): JSX.Element {
       </>
       <div className={classes.content}>
         <Typography className={classes.baseline}>
-          Your toolkit to dive into C++ easily
+          {t('home.title')}
         </Typography>
         <ButtonTitle />
       </div>
       <Typography className={classes.subtitle}>
-        C++ made easy | Trivial dependency managment | Package sharing
+        {t('home.easy')} | {t('home.trivial')} | {t('home.sharing')}
       </Typography>
     </div>
   );

@@ -3,6 +3,7 @@ import {
 } from '@material-ui/core';
 import { Element } from 'react-scroll';
 import Image from 'next/image';
+import { useTranslation } from 'next-i18next';
 
 import InfoCard from './InfoCard';
 
@@ -58,12 +59,13 @@ const useStyles = makeStyles((theme) => ({
 
 function Demo(): JSX.Element {
   const classes = useStyles();
+  const { t } = useTranslation('common');
 
   return (
     <Element name="whyc3pm">
       <div id="whyc3pm">
         <Typography className={classes.title}>
-          Why c3pm ?
+          {t('home.why')}
         </Typography>
         <div className={classes.container}>
           <div className={classes.demoGif}>
@@ -71,21 +73,21 @@ function Demo(): JSX.Element {
           </div>
           <div className={classes.infoCard}>
             <InfoCard
-              title="C++ made easy"
-              description="With c3pm, start your cross-platform project with 0 configuration. It has never been so simple!"
-              textLink="Learn more about c3pm"
+              title={t('home.easy')}
+              description={t('home.easyDescription')}
+              textLink={t('home.easyLink')}
               link="https://docs.c3pm.io/docs/about"
             />
             <InfoCard
-              title="Trivial Dependency management"
-              description="c3pm will manage the dependencies for you! No more hours spent installing a simple library: one command and you’re good to go!"
-              textLink="View full documentation"
+              title={t('home.trivial')}
+              description={t('home.trivialDescription')}
+              textLink={t('home.trivialLink')}
               link="https://docs.c3pm.io/"
             />
             <InfoCard
-              title="Package sharing"
-              description="c3pm is, before all, a package manager. You can share a reusable piece of code with the entire community!"
-              textLink="Browse packages"
+              title={t('home.sharing')}
+              description={t('home.sharingDescription')}
+              textLink={t('home.sharingLink')}
               link="/search"
             />
           </div>
@@ -97,7 +99,7 @@ function Demo(): JSX.Element {
             size="large"
           >
             <Typography className={classes.startLearningButton}>
-              Install c3pm
+              {t('buttons.install')}
             </Typography>
           </Button>
         </a>

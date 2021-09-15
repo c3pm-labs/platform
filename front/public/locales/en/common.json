@@ -1,0 +1,30 @@
+{
+    "buttons": {
+        "getStarted": "Get started",
+        "learn": "Learn More",
+        "install": "Install c3pm",
+        "login": "Sign in",
+        "register": "Sign up"
+    },
+    "search": "search",
+    "home": {
+        "why": "Why c3pm?",
+        "easy": "C++ made easy",
+        "trivial": "Trivial dependency managment",
+        "sharing": "Package sharing",
+        "title": "Your toolkit to dive into C++ easily",
+        "easyDescription": "With c3pm, start your cross-platform project with 0 configuration. It has never been so simple!",
+        "trivialDescription": "c3pm will manage the dependencies for you! No more hours spent installing a simple library: one command and you’re good to go!",
+        "sharingDescription": "c3pm is, before all, a package manager. You can share a reusable piece of code with the entire community!",
+        "easyLink": "Learn more about c3pm",
+        "trivialLink": "View full documentation",
+        "sharingLink": "Browse packages"
+    },
+    "footer": {
+        "general": "General informations",
+        "contact": "Contact us",
+        "releases": "Releases",
+        "issue": "Submit an issue",
+        "team": "Team"
+    }
+}
