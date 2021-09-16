@@ -26,7 +26,9 @@
         "register": "S'enregistrer",
         "edit": "Modifier"
     },
+    "found": "paquets trouvés",
     "search": "rechercher",
+    "lastUpdated": "Modifié pour la dernière fois le",
      "login": {
         "welcome": "Bon retour !",
         "emailOrUsername": "email ou pseudo",

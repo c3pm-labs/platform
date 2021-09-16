@@ -26,7 +26,9 @@
         "register": "Sign up",
         "edit": "Edit"
     },
+    "found": "packages found",
     "search": "search",
+    "lastUpdated": "Last updated on",
     "login": {
         "welcome": "Welcome back!",
         "emailOrUsername": "email or username",

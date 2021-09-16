@@ -1,15 +1,17 @@
-import { getDataFromTree } from '@apollo/react-ssr';
 import {
   makeStyles, Typography, useTheme,
 } from '@material-ui/core';
 import React from 'react';
 import { useRouter } from 'next/router';
 import Pagination from '@material-ui/lab/Pagination';
+import { useTranslation } from 'next-i18next';
 import PaginationItem from '@material-ui/lab/PaginationItem';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
 import { Package } from 'types';
 import { useQuery } from '@apollo/client';
 import { SEARCH } from 'queries';
+import type { NextPage, GetStaticProps } from 'next';
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 
 import Head from 'components/Head';
 import Layout from 'components/Layout';
@@ -110,11 +112,12 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-function Search(): JSX.Element {
+const Search: NextPage = () => {
   const router = useRouter();
   const theme = useTheme();
   const classes = useStyles();
   const isMobile = useMediaQuery(theme.breakpoints.down('xs'));
+  const { t } = useTranslation('common');
   // tags is of type string, it has the following format: tag1,tag2,tag3
   const { q, tags, page = 1 } = router.query;
   const selectedTags = typeof tags === 'string' && tags.length > 0 ? tags.split(',') : [];
@@ -159,6 +162,7 @@ function Search(): JSX.Element {
       </Layout>
     );
   }
+
   const searchByTag = (tag: string) => {
     const isPresent = selectedTags.find((e) => e === tag);
     const newTags = isPresent ? selectedTags.filter((e) => e !== tag).join(',') : selectedTags.concat(tag).join(',');
@@ -172,7 +176,7 @@ function Search(): JSX.Element {
         <Typography variant="body1" data-testid="number-of-packages">
           {data ? data.search.length : 0}
           {' '}
-          packages found
+          {t('found')}
         </Typography>
       </div>
       <div className={classes.tagsContainer}>
@@ -208,5 +212,13 @@ function Search(): JSX.Element {
     </Layout>
   );
 }
+
+export const getStaticProps: GetStaticProps = async ({ locale }) => {
+  return {
+    props: {
+      ...(await serverSideTranslations(locale as string, ['common'])),
+    },
+  };
+};
 
 export default Search;
