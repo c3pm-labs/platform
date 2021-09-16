@@ -20,7 +20,7 @@ const useStyles = makeStyles((theme) => ({
 function RightNav(): JSX.Element {
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down('xs'));
-  const viewer = false;
+  const viewer = useViewer();
   const classes = useStyles();
   const { t } = useTranslation('common');
 

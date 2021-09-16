@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { Hidden, makeStyles } from '@material-ui/core';
 
-import withApollo from 'utils/withApollo';
 import Layout from 'components/Layout';
 import Menu from 'components/pages/Settings/Menu';
 import Options from 'components/pages/Settings/Menu/utils';
@@ -73,4 +72,4 @@ function Settings(): JSX.Element {
   );
 }
 
-export default withApollo(Settings);
+export default Settings;

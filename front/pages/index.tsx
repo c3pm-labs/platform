@@ -4,7 +4,6 @@ import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 
 import Layout from 'components/Layout';
 
-import withApollo from 'utils/withApollo';
 import Head from 'components/Head';
 import Homepage from 'components/pages/Homepage';
 

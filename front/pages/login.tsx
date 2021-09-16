@@ -4,7 +4,6 @@ import { useLogin } from 'hooks/auth';
 import { makeStyles, useTheme } from '@material-ui/core';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
 
-import withApollo from 'utils/withApollo';
 import TextInput from 'components/TextInput';
 import PasswordInput from 'components/PasswordInput';
 import Button from 'components/Button';
@@ -179,4 +178,4 @@ function Login(): JSX.Element {
   );
 }
 
-export default withApollo(Login);
+export default Login;

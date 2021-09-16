@@ -6,7 +6,6 @@ import { useRouter } from 'next/router';
 import { Status, useUser } from 'hooks/user';
 import { getDataFromTree } from '@apollo/react-ssr';
 
-import withApollo from 'utils/withApollo';
 import Head from 'components/Head';
 import Layout from 'components/Layout';
 
@@ -147,4 +146,4 @@ function Profile(): JSX.Element {
   );
 }
 
-export default withApollo(Profile, { getDataFromTree });
+export default Profile;

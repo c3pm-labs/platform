@@ -11,7 +11,6 @@ import { Package } from 'types';
 import { useQuery } from '@apollo/client';
 import { SEARCH } from 'queries';
 
-import withApollo from 'utils/withApollo';
 import Head from 'components/Head';
 import Layout from 'components/Layout';
 import PackageCard from 'components/PackageCard';
@@ -210,4 +209,4 @@ function Search(): JSX.Element {
   );
 }
 
-export default withApollo(Search, { getDataFromTree });
+export default Search;
