@@ -3,6 +3,9 @@ import Typography from '@material-ui/core/Typography';
 import { useLogin } from 'hooks/auth';
 import { makeStyles, useTheme } from '@material-ui/core';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
+import { useTranslation } from 'next-i18next';
+import type { NextPage, GetStaticProps } from 'next';
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 
 import TextInput from 'components/TextInput';
 import PasswordInput from 'components/PasswordInput';
@@ -92,7 +95,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-function Login(): JSX.Element {
+const Login: NextPage = () => {
   const classes = useStyles();
   const { login, loginError } = useLogin();
   const initialValues: LoginParams = { login: '', password: '' };
@@ -100,6 +103,7 @@ function Login(): JSX.Element {
   const matches = useMediaQuery(theme.breakpoints.up('lg'));
   const isDesktop = useMediaQuery(theme.breakpoints.up('md'));
   const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
+  const { t } = useTranslation('common');
 
   const getSize = (): LogoProps['size'] => {
     if (isMobile) {
@@ -124,7 +128,7 @@ function Login(): JSX.Element {
             variant="subtitle1"
             className={classes.text}
           >
-            Welcome back!
+            {t('login.welcome')}
           </Typography>
           <Formik
             initialValues={initialValues}
@@ -139,18 +143,18 @@ function Login(): JSX.Element {
                 color="error"
                 className={classes.error}
               >
-                {loginError.error?.message}
+                {t(loginError.error?.message)}
               </Typography>
               <TextInput
                 type="text"
                 name="login"
-                label="email or username"
+                label= {t('login.emailOrUsername')}
                 required
                 fullWidth
               />
               <PasswordInput
                 name="password"
-                label="password"
+                label= {t('login.password')}
                 required
                 fullWidth
               />
@@ -160,22 +164,31 @@ function Login(): JSX.Element {
                 type="submit"
                 fullWidth
               >
-                Sign in
+                {t('buttons.login')}
               </Button>
             </Form>
           </Formik>
-          <TextLink className={classes.forgotPassword} href="/forgot_password">Forgot password?</TextLink>
+          <TextLink className={classes.forgotPassword} href="/forgot_password">{t('login.forgot')}</TextLink>
           <Typography
             variant="caption"
             className={classes.register}
           >
-            Don&apos;t have an account?&nbsp;
-            <TextLink href="/register">Sign Up</TextLink>
+            {t('login.account')}
+            <TextLink href="/register">{t('buttons.register')}</TextLink>
           </Typography>
         </div>
       </div>
     </>
   );
 }
+
+export const getStaticProps: GetStaticProps = async ({ locale }) => {
+  return {
+    props: {
+      ...(await serverSideTranslations(locale as string, ['common'])),
+    },
+  };
+};
+
 
 export default Login;

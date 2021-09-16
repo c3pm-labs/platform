@@ -1,12 +1,40 @@
 {
+    "packages": "Packages",
+    "errors": {
+        "emailOrUsername": "Email or username is required",
+        "username": "Username is required",
+        "email": "Email is required",
+        "invalidEmail": "Email is invalid",
+        "password": "Password is required",
+        "invalidPassword": "Password is too short, 8 characters minimum",
+        "confirmation": "Enter password confirmation",
+        "samePassword": "Passwords must match"
+    },
+    "profile": {
+        "noPackage": "You don't have any package yet.",
+        "package": "package",
+        "uploaded": "uploaded"
+    },
     "buttons": {
+        "profile": "Profile",
+        "settings": "Settings",
+        "logout": "Sign out",
         "getStarted": "Get started",
         "learn": "Learn More",
         "install": "Install c3pm",
         "login": "Sign in",
-        "register": "Sign up"
+        "register": "Sign up",
+        "edit": "Edit"
     },
     "search": "search",
+    "login": {
+        "welcome": "Welcome back!",
+        "emailOrUsername": "email or username",
+        "password": "password",
+        "forgot": "Forgot password?",
+        "account": "Don't have an account? ",
+        "register": "Sign Up"
+    },
     "home": {
         "why": "Why c3pm?",
         "easy": "C++ made easy",

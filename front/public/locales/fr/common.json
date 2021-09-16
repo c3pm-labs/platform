@@ -1,15 +1,43 @@
 {
+    "packages": "Paquets",
+    "errors": {
+        "emailOrUsername": "Email ou pseudo obligatoire",
+        "username": "Pseudo obligatoire",
+        "email": "Email obligatoire",
+        "invalidEmail": "Email invalide",
+        "password": "Mot de passe obligatoire",
+        "invalidPassword": "Mot de passe trop court, 8 characters minimum",
+        "confirmation": "Entrez la confirmation du mot de passe",
+        "samePassword": "Les mots de passes doivent être identiques"
+    },
+     "profile": {
+        "noPackage": "Vous n'avez pas encore de paquets.",
+        "package": "paquet",
+        "uploaded": "publiés"
+    },
     "buttons": {
+        "profile": "Profil",
+        "settings": "Options",
+        "logout": "Déconnexion",
         "getStarted": "Commencer",
         "learn": "En apprendre plus",
         "install": "Installer c3pm",
         "login": "Connexion",
-        "register": "S'enregistrer"
+        "register": "S'enregistrer",
+        "edit": "Modifier"
     },
     "search": "rechercher",
+     "login": {
+        "welcome": "Bon retour !",
+        "emailOrUsername": "email ou pseudo",
+        "password": "mot de passe",
+        "forgot": "Mot de passe oublié ?",
+        "account": "Pas encore de compte ? ",
+        "register": "S'enregistrer"
+    },
     "home": {
         "why": "Pourquoi c3pm ?",
-        "title": "Ton toolkit pour plonger facilement dans le C++",
+        "title": "Ton outil pour plonger facilement dans le C++",
         "easy": "C++ rendu facile",
         "trivial": "Gestion de dépendances triviale",
         "sharing": "Partage de paquets",

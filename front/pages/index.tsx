@@ -1,4 +1,3 @@
-import { getDataFromTree } from '@apollo/react-ssr';
 import type { NextPage, GetStaticProps } from 'next';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 

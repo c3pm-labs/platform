@@ -4,7 +4,9 @@ import {
 } from '@material-ui/core';
 import { useRouter } from 'next/router';
 import { Status, useUser } from 'hooks/user';
-import { getDataFromTree } from '@apollo/react-ssr';
+import type { NextPage, GetStaticProps } from 'next';
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
+import { useTranslation } from 'next-i18next';
 
 import Head from 'components/Head';
 import Layout from 'components/Layout';
@@ -83,10 +85,11 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-function Profile(): JSX.Element {
+const Profile: NextPage = () => {
   const classes = useStyles();
   const router = useRouter();
   const user = useUser({ id: String(router.query.params) });
+  const { t } = useTranslation('common');
 
   if (user === Status.LOADING) {
     return (<></>);
@@ -117,7 +120,7 @@ function Profile(): JSX.Element {
                 variant="subtitle1"
                 className={classes.title}
               >
-                Packages
+                {t('packages')}
               </Typography>
             </Box>
             {user.packages.length === 0 ? (
@@ -125,7 +128,7 @@ function Profile(): JSX.Element {
                 variant="body1"
                 className={classes.noPackage}
               >
-                You don&apos;t have any package yet.
+                {t('profile.noPackage')}
               </Typography>
             ) : (
               <Box display="flex" justifyContent="center" flexDirection="column">
@@ -145,5 +148,13 @@ function Profile(): JSX.Element {
     </>
   );
 }
+
+export const getServerSideProps: GetStaticProps = async ({ locale }) => {
+  return {
+    props: {
+      ...(await serverSideTranslations(locale as string, ['common'])),
+    },
+  };
+};
 
 export default Profile;
