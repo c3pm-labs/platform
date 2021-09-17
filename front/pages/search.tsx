@@ -180,7 +180,7 @@ function Search(): JSX.Element {
         {tagsList.map((tag) => {
           const isSelected = selectedTags.find((e) => e === tag);
           return (
-            <Button onClick={() => searchByTag(tag)} type="button" key={tag} variant={isSelected ? 'contained' : 'outlined'} className={classes.tag}>
+            <Button data-testId={`button-${tag}`} onClick={() => searchByTag(tag)} type="button" key={tag} variant={isSelected ? 'contained' : 'outlined'} className={classes.tag}>
               {tag}
             </Button>
           );
