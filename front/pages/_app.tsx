@@ -1,10 +1,23 @@
 import Head from 'next/head';
-import { useEffect } from 'react';
+import { ReactNode, useEffect, useMemo } from 'react';
 import { AppProps } from 'next/app';
-import { ThemeProvider } from '@material-ui/core/styles';
+import { ThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';
 
-import theme from 'utils/theme';
+import { ColorThemeProvider, useColorTheme } from '../utils/colorTheme';
+import { getDesignTokens } from '../utils/theme';
+
+function Theme({ children }: { children: ReactNode }) {
+  const [colorTheme] = useColorTheme();
+
+  const appTheme = useMemo(() => createMuiTheme(getDesignTokens(colorTheme)), [colorTheme]);
+
+  return (
+    <ThemeProvider theme={appTheme}>
+      {children}
+    </ThemeProvider>
+  );
+}
 
 function App({ Component, pageProps }: AppProps): JSX.Element {
   useEffect(() => {
@@ -16,15 +29,17 @@ function App({ Component, pageProps }: AppProps): JSX.Element {
   });
 
   return (
-    <ThemeProvider theme={theme}>
-      <Head>
-        <title>c3pm</title>
-        <meta name="viewport" content="minimum-scale=1, initial-scale=1, width=device-width" />
-        <script type="text/javascript" src="//script.crazyegg.com/pages/scripts/0106/8707.js" async />
-      </Head>
-      <CssBaseline />
-      <Component {...pageProps} />
-    </ThemeProvider>
+    <ColorThemeProvider>
+      <Theme>
+        <Head>
+          <title>c3pm</title>
+          <meta name="viewport" content="minimum-scale=1, initial-scale=1, width=device-width" />
+          <script type="text/javascript" src="//script.crazyegg.com/pages/scripts/0106/8707.js" async />
+        </Head>
+        <CssBaseline />
+        <Component {...pageProps} />
+      </Theme>
+    </ColorThemeProvider>
   );
 }
 

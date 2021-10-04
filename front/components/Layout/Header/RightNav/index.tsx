@@ -1,8 +1,12 @@
 import useMediaQuery from '@material-ui/core/useMediaQuery';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
 import { useViewer } from 'hooks/auth';
+import IconButton from '@material-ui/core/IconButton';
+import LightIcon from '@material-ui/icons/WbSunny';
+import DarkIcon from '@material-ui/icons/Brightness2';
 
 import ButtonLink from 'components/ButtonLink';
+import { useColorTheme } from 'utils/colorTheme';
 
 import MobileMenu from './MobileMenu';
 import UserCard from './UserCard';
@@ -21,6 +25,7 @@ function RightNav(): JSX.Element {
   const isMobile = useMediaQuery(theme.breakpoints.down('xs'));
   const viewer = useViewer();
   const classes = useStyles();
+  const [colorTheme, toggleTheme] = useColorTheme();
 
   if (isMobile) {
     return (
@@ -32,6 +37,11 @@ function RightNav(): JSX.Element {
     <>
       { viewer ? (<UserCard />) : (
         <div>
+          <IconButton color="primary" onClick={toggleTheme}>
+            {
+              colorTheme === 'light' ? <DarkIcon /> : <LightIcon />
+            }
+          </IconButton>
           <ButtonLink href="/login" className={classes.marginRight} variant="outlined">
             Sign in
           </ButtonLink>
