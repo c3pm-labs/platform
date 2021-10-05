@@ -36,12 +36,12 @@ const useStyles = makeStyles((theme) => ({
     textOverflow: 'ellipsis',
     overflow: 'hidden',
     maxWidth: '155px',
-  }
+  },
 }));
 
 function InstallButton({ packageName }: InstallButtonProps): JSX.Element {
   const classes = useStyles();
-  const [isCopied, setIsCopied] = useState(false)
+  const [isCopied, setIsCopied] = useState(false);
   const [tooltipTitle, setTooltipTitle] = useState<string>('copy');
 
   const addCmd = `ctpm add ${packageName}`;
@@ -65,11 +65,13 @@ function InstallButton({ packageName }: InstallButtonProps): JSX.Element {
           {addCmd}
         </div>
         {
-          isCopied ? 
-            <div className={classes.container}>
-              <Lottie loop={false} animationData={checkCopied} />
-            </div>
-          : null
+          isCopied
+            ? (
+              <div className={classes.container}>
+                <Lottie loop={false} animationData={checkCopied} />
+              </div>
+            )
+            : null
         }
       </button>
     </Tooltip>
