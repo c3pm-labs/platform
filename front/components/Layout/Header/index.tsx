@@ -1,3 +1,4 @@
+import { useContext } from 'react';
 import { Hidden, Typography } from '@material-ui/core';
 import useScrollTrigger from '@material-ui/core/useScrollTrigger';
 import { makeStyles } from '@material-ui/core/styles';
@@ -6,6 +7,8 @@ import Toolbar from '@material-ui/core/Toolbar';
 
 import RightNav from 'components/Layout/Header/RightNav';
 import Logo from 'components/Logo';
+import ContactForm from 'components/forms/ContactForm';
+import { ModalContext } from 'utils/contexts/modalContext';
 
 import SearchBar from './SearchBar';
 
@@ -41,12 +44,20 @@ const useStyles = makeStyles((theme) => ({
     textAlign: 'left',
     margin: '0px 4px',
   },
-
+  contactText: {
+    fontSize: 14,
+    color: theme.palette.grey[700],
+    cursor: 'pointer',
+    '&:hover': {
+      textDecoration: 'underline',
+    },
+  },
 }));
 
 function Header(): JSX.Element {
   const classes = useStyles();
   const elevationTrigger = useScrollTrigger({ threshold: 10, disableHysteresis: true });
+  const { modalDispatch } = useContext(ModalContext);
 
   return (
     <AppBar
@@ -71,6 +82,15 @@ function Header(): JSX.Element {
         >
           <Typography className={classes.text}>Github</Typography>
         </a>
+        <Typography className={classes.text}>•</Typography>
+        <Typography
+          className={classes.contactText}
+          onClick={() => {
+            modalDispatch({ open: true, children: <ContactForm /> });
+          }}
+        >
+          Nous contacter
+        </Typography>
       </div>
       <Toolbar className={classes.container}>
         <Hidden implementation="css" smUp>

@@ -23,6 +23,12 @@ export const forgotSchema = Yup.object().shape({
 
 export type ForgotParams = Yup.InferType<typeof forgotSchema>;
 
+export const contactFormSchema = Yup.object().shape({
+  firstName: Yup.string().required('Firstname is required'),
+  email: Yup.string().email('Email is invalid').required('Email is required'),
+  message: Yup.string().required('Message is required'),
+});
+
 export const resetSchema = Yup.object().shape({
   password: Yup.string()
     .required('No password provided.')
