@@ -89,7 +89,7 @@ function Header(): JSX.Element {
             modalDispatch({ open: true, children: <ContactForm /> });
           }}
         >
-          Nous contacter
+          Contact us
         </Typography>
       </div>
       <Toolbar className={classes.container}>

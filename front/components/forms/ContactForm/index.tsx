@@ -1,13 +1,11 @@
-import { useContext, useEffect } from 'react';
+import { useContext } from 'react';
 import { makeStyles, Typography } from '@material-ui/core';
-import { useMutation } from '@apollo/client';
 import { Form, Formik } from 'formik';
 
 import Button from 'components/Button';
 import TextInput from 'components/TextInput';
 import { contactFormSchema } from 'utils/validation';
 import { ModalContext } from 'utils/contexts/modalContext';
-// import { SEND_CONTACT_EMAIL } from 'queries/contact.queries';
 
 const useStyles = makeStyles((theme) => ({
   container: {
@@ -88,8 +86,6 @@ type ContactParams = {
 const ContactForm = (): JSX.Element => {
   const classes = useStyles();
   const { modalDispatch } = useContext(ModalContext);
-  // const {sendContactEmail} = useMutation(SEND_CONTACT_EMAIL);
-
   const initialValues: ContactParams = {
     firstName: '',
     lastName: '',
@@ -106,7 +102,7 @@ const ContactForm = (): JSX.Element => {
         initialValues={initialValues}
         validationSchema={contactFormSchema}
         onSubmit={async (values): Promise<void> => {
-        //   await sendContactEmail({ variables: { input: { ...values } } });
+          // TODO Call Backend mutation
           modalDispatch({ open: false, children: <></> });
         }}
       >
@@ -156,7 +152,10 @@ const ContactForm = (): JSX.Element => {
               className={classes.button}
               color="primary"
               variant="outlined"
-              type="submit"
+              type="button"
+              onClick={() => {
+                modalDispatch({ open: false, children: <></> });
+              }}
               fullWidth
             >
               Cancel
