@@ -1,8 +1,10 @@
+import { ThemeOptions } from '@material-ui/core';
+
 export type PaletteMode = 'dark' | 'light';
 
-export const getDesignTokens = (mode: PaletteMode) => ({
+export const getDesignTokens = (mode: PaletteMode): ThemeOptions => ({
   palette: {
-    mode,
+    type: mode,
     ...(mode === 'light'
       ? {
         primary: {

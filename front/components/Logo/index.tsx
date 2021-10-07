@@ -2,7 +2,6 @@ import { Typography } from '@material-ui/core';
 import makeStyles from '@material-ui/core/styles/makeStyles';
 import Link from 'next/link';
 import Image from 'next/image';
-import { useColorTheme } from '../../utils/colorTheme';
 
 function getFontSize(size: string): number {
   if (size === 'xl') {
@@ -63,7 +62,6 @@ const Logo = ({ type = 'classic', size = null, className }: LogoProps): JSX.Elem
   const classes = useStyles({ size });
   const src = type === 'mini' ? '/assets/c3pm_3.png' : '/assets/c3pm.png';
   const dimension = getSize(type, size);
-  const [mode] = useColorTheme()
 
   return (
     <Link href="/">
