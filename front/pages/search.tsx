@@ -19,6 +19,8 @@ import WrappedLoader from 'components/WrappedLoader';
 
 import { tagsList } from '../utils/constant';
 import Button from '../components/Button';
+import clsx from 'clsx';
+import ResultBar from 'components/ResultBar';
 
 const useStyles = makeStyles((theme) => ({
   container: {
@@ -41,20 +43,6 @@ const useStyles = makeStyles((theme) => ({
     justifyContent: 'center',
     alignItems: 'center',
     paddingTop: '25%',
-  },
-  resultBar: {
-    display: 'flex',
-    width: '100%',
-    backgroundColor: theme.palette.primary.main,
-    fontSize: '20px',
-    color: 'white',
-    [theme.breakpoints.up('sm')]: {
-      padding: '2px 0',
-      paddingLeft: '5%',
-    },
-    [theme.breakpoints.down('xs')]: {
-      justifyContent: 'center',
-    },
   },
   line: {
     width: '100%',
@@ -115,6 +103,7 @@ function Search(): JSX.Element {
   const router = useRouter();
   const theme = useTheme();
   const classes = useStyles();
+  const resultBarStyle = clsx(classes.resultBar, classes.resultBarSize);
   const isMobile = useMediaQuery(theme.breakpoints.down('xs'));
   // tags is of type string, it has the following format: tag1,tag2,tag3
   const { q, tags, page = 1 } = router.query;
@@ -169,13 +158,7 @@ function Search(): JSX.Element {
   return (
     <Layout>
       <Head title="Search" />
-      <div className={classes.resultBar}>
-        <Typography variant="body1" data-testid="number-of-packages">
-          {data ? data.search.length : 0}
-          {' '}
-          packages found
-        </Typography>
-      </div>
+      <ResultBar nbPackage={data ? data.search.length : 0} />
       <div className={classes.tagsContainer}>
         {tagsList.map((tag) => {
           const isSelected = selectedTags.find((e) => e === tag);
