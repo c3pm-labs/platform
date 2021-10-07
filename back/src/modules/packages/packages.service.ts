@@ -24,7 +24,11 @@ export async function getLatestVersion(ctx: Context, packageName: string): Promi
   return versions[0];
 }
 
-export async function search(keyword: string, tags: string[] = []): Promise<Package[]> {
+export async function search(s: string): Promise<Package[]> {
+  const tags = s.match(/tag:([^ ]+)/g)?.map((rawTag) => rawTag.replace('tag:', ''));
+
+  const keyword = tags?.reduce((acc, tag) => acc.replace(`tag:${tag}`, '').trim(), s)?.trim() ?? s;
+
   if (keyword && !tags) {
     return db.$queryRaw<Package[]>`
     SELECT *
@@ -38,6 +42,13 @@ export async function search(keyword: string, tags: string[] = []): Promise<Pack
     SELECT *
     FROM "Package"
     WHERE "tags" @> (${tags})
+    ORDER BY "name" ASC
+    `;
+  }
+  if (!keyword && !tags) {
+    return db.$queryRaw<Package[]>`
+    SELECT *
+    FROM "Package"
     ORDER BY "name" ASC
     `;
   }
@@ -152,13 +163,13 @@ export async function publish(ctx: Context, file: Express.Multer.File): Promise<
           repository: parsedC3PM.repository,
           versions: {
             create:
-            {
-              version: parsedC3PM.version,
-              readme: readmeBuffer ?? 'There is no readme for this package',
-              description: parsedC3PM.description,
-              license: parsedC3PM.license,
-              tags: parsedC3PM.tags,
-            },
+              {
+                version: parsedC3PM.version,
+                readme: readmeBuffer ?? 'There is no readme for this package',
+                description: parsedC3PM.description,
+                license: parsedC3PM.license,
+                tags: parsedC3PM.tags,
+              },
           },
         },
       });
@@ -181,13 +192,13 @@ export async function publish(ctx: Context, file: Express.Multer.File): Promise<
         repository: parsedC3PM.repository,
         versions: {
           create:
-          {
-            version: parsedC3PM.version,
-            readme: readmeBuffer ?? 'There is no readme for this package',
-            description: parsedC3PM.description,
-            license: parsedC3PM.license,
-            tags: parsedC3PM.tags,
-          },
+            {
+              version: parsedC3PM.version,
+              readme: readmeBuffer ?? 'There is no readme for this package',
+              description: parsedC3PM.description,
+              license: parsedC3PM.license,
+              tags: parsedC3PM.tags,
+            },
         },
       },
     });
