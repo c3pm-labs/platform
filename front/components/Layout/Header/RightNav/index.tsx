@@ -18,6 +18,11 @@ const useStyles = makeStyles((theme) => ({
   marginRight: {
     marginRight: theme.spacing(3),
   },
+  container: {
+    display: 'flex',
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
 }));
 
 function RightNav(): JSX.Element {
@@ -34,14 +39,14 @@ function RightNav(): JSX.Element {
   }
 
   return (
-    <>
+    <div className={classes.container}>
+      <IconButton color="primary" onClick={toggleTheme}>
+        {
+          colorTheme === 'light' ? <DarkIcon /> : <LightIcon />
+        }
+      </IconButton>
       { viewer ? (<UserCard />) : (
         <div>
-          <IconButton color="primary" onClick={toggleTheme}>
-            {
-              colorTheme === 'light' ? <DarkIcon /> : <LightIcon />
-            }
-          </IconButton>
           <ButtonLink href="/login" className={classes.marginRight} variant="outlined">
             Sign in
           </ButtonLink>
@@ -50,7 +55,7 @@ function RightNav(): JSX.Element {
           </ButtonLink>
         </div>
       )}
-    </>
+    </div>
   );
 }
 

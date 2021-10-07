@@ -43,6 +43,7 @@ const useStyles = makeStyles((theme) => ({
     borderBottomLeftRadius: theme.shape.borderRadius,
     borderBottomRightRadius: theme.shape.borderRadius,
     width: 150,
+    color: 'black',
   },
   option: {
     borderTop: `1px solid ${theme.palette.grey[300]}`,

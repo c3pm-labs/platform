@@ -4,9 +4,10 @@ import { makeStyles } from '@material-ui/core/styles';
 import Header from './Header';
 import Footer from './Footer';
 
-const useStyles = makeStyles(() => ({
+const useStyles = makeStyles((theme) => ({
   container: {
     minHeight: '100vh',
+    backgroundColor: theme.palette.background.default,
   },
 }));
 

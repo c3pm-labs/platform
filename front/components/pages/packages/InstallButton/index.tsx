@@ -21,6 +21,7 @@ const useStyles = makeStyles((theme) => ({
     overflow: 'hidden',
     textOverflow: 'ellipsis',
     textAlign: 'left',
+    color: theme.palette.text.primary,
   },
 }));
 

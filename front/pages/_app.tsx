@@ -1,5 +1,5 @@
 import Head from 'next/head';
-import { ReactNode, useEffect, useMemo } from 'react';
+import React, { ReactNode, useEffect, useMemo } from 'react';
 import { AppProps } from 'next/app';
 import { ThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';

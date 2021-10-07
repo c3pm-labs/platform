@@ -9,7 +9,7 @@ const useStyles = makeStyles((theme) => ({
     justifyContent: 'space-around',
     width: '100%',
     minHeight: '6em',
-    backgroundColor: theme.palette.grey[100],
+    backgroundColor: theme.palette.background.default,
     borderTop: `1px solid ${theme.palette.grey[200]}`,
     paddingTop: theme.spacing(3),
     paddingBottom: theme.spacing(3),
