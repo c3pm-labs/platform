@@ -1,6 +1,6 @@
 import { getDataFromTree } from '@apollo/react-ssr';
 import {
-  makeStyles, Typography, useTheme,
+  makeStyles, useTheme,
 } from '@material-ui/core';
 import React from 'react';
 import { useRouter } from 'next/router';
@@ -16,11 +16,10 @@ import Head from 'components/Head';
 import Layout from 'components/Layout';
 import PackageCard from 'components/PackageCard';
 import WrappedLoader from 'components/WrappedLoader';
+import PackageFoundBar from 'components/PackageFoundBar';
 
 import { tagsList } from '../utils/constant';
 import Button from '../components/Button';
-import clsx from 'clsx';
-import ResultBar from 'components/ResultBar';
 
 const useStyles = makeStyles((theme) => ({
   container: {
@@ -103,7 +102,6 @@ function Search(): JSX.Element {
   const router = useRouter();
   const theme = useTheme();
   const classes = useStyles();
-  const resultBarStyle = clsx(classes.resultBar, classes.resultBarSize);
   const isMobile = useMediaQuery(theme.breakpoints.down('xs'));
   // tags is of type string, it has the following format: tag1,tag2,tag3
   const { q, tags, page = 1 } = router.query;
@@ -158,7 +156,7 @@ function Search(): JSX.Element {
   return (
     <Layout>
       <Head title="Search" />
-      <ResultBar nbPackage={data ? data.search.length : 0} />
+      <PackageFoundBar nbPackage={data ? data.search.length : 0} />
       <div className={classes.tagsContainer}>
         {tagsList.map((tag) => {
           const isSelected = selectedTags.find((e) => e === tag);

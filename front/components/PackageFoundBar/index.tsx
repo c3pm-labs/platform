@@ -2,7 +2,6 @@ import {
   makeStyles, Typography,
 } from '@material-ui/core';
 import React, { useEffect, useState } from 'react';
-
 import clsx from 'clsx';
 
 const useStyles = makeStyles((theme) => ({
@@ -35,24 +34,27 @@ export interface ResultBarProps {
 
 function ResultBar(props: ResultBarProps): JSX.Element {
   const classes = useStyles();
-  const [progessValue, setProgessValue] = useState(0)
-  const [textNbPackage, setTextNbPackage] = useState('')
+  const { nbPackage } = props;
+  const [progessValue, setProgessValue] = useState(0);
+  const [textNbPackage, setTextNbPackage] = useState('');
   const resultBarStyle = clsx(classes.resultBar, classes.resultBarSize);
   useEffect(() => {
-    process.nextTick(() => (setProgessValue(100)))
+    process.nextTick(() => (setProgessValue(100)));
     setTimeout(() => {
-      setTextNbPackage(props.nbPackage + ' ' + 'packages found');
+      setTextNbPackage(`${nbPackage} packages found`);
     }, 1000);
-  }, [])
+  }, [nbPackage]);
 
   return (
-    <div className={resultBarStyle} style={{paddingLeft: `${!progessValue ? 0 : 5}%`, width: `${progessValue}%`}}>
+    <div className={resultBarStyle} style={{ paddingLeft: `${!progessValue ? 0 : 5}%`, width: `${progessValue}%` }}>
       {
-        progessValue ?
+        progessValue
+          ? (
             <Typography variant="body1" data-testid="number-of-packages">
               {textNbPackage}
             </Typography>
-        : null
+          )
+          : null
       }
     </div>
   );
