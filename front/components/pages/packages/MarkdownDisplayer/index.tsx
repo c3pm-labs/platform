@@ -15,7 +15,7 @@ const useStyles = makeStyles((theme) => ({
     borderRadius: theme.shape.borderRadius,
     padding: theme.spacing(4),
     marginTop: theme.spacing(4),
-      '& > *': {
+    '& > *': {
       fontFamily: 'Segoe UI,Helvetica, Arial, sans-serif',
       fontSize: 16,
       overflowWrap: 'break-word',
