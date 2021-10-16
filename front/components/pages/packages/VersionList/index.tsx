@@ -8,8 +8,6 @@ import { useMutation } from '@apollo/client';
 import { useRouter } from 'next/router';
 import semver from 'semver';
 
-import { sortVersion } from 'utils/version';
-
 import { useViewer } from '../../../../hooks/auth';
 import Button from '../../../Button';
 import { DELETE_VERSION } from '../../../../queries';
@@ -19,8 +17,6 @@ export interface VersionListProps {
   packageName: string;
   authorId: string;
 }
-
-
 
 const useStyles = makeStyles((theme) => ({
   versions: {
@@ -132,10 +128,9 @@ function VersionList({ versions, packageName, authorId }: VersionListProps): JSX
     },
   });
 
-  const sortedVersions = (versions).map((v: Version, i, array) => {
-    return (
-      <div key={v.version}>
-        {(i === 0 || semverMajor(v.version) !== semverMajor(array[i - 1].version))
+  const sortedVersions = (versions).map((v: Version, i, array) => (
+    <div key={v.version}>
+      {(i === 0 || semverMajor(v.version) !== semverMajor(array[i - 1].version))
           && (
             <h2 className={classes.title}>
               v
@@ -143,39 +138,38 @@ function VersionList({ versions, packageName, authorId }: VersionListProps): JSX
               :
             </h2>
           )}
-        <div className={classes.row}>
-          <Link href="/package/[...params]" as={`/package/${packageName}/${v.version}`}>
-            {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
-            <a data-testid={`link-to-v${v.version}`}>
-              <span className={classes.versionName}>{v.version}</span>
-              <div className={classes.separator} />
-              <span className={classes.versionDate}>
-                {new Date(v.publishedAt).toDateString()}
-              </span>
-            </a>
-          </Link>
-          { viewer !== null && viewer.id === authorId ? (
-            <>
-              <div className={classes.separator} />
-              <Button
-                className={classes.delete}
-                onClick={() => {
-                  setVersionToDelete(v);
-                  setIsModalOpen(true);
-                }}
-                type="button"
-                variant="text"
-                color="error"
-                fullWidth={false}
-              >
-                Delete
-              </Button>
-            </>
-          ) : null}
-        </div>
+      <div className={classes.row}>
+        <Link href="/package/[...params]" as={`/package/${packageName}/${v.version}`}>
+          {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
+          <a data-testid={`link-to-v${v.version}`}>
+            <span className={classes.versionName}>{v.version}</span>
+            <div className={classes.separator} />
+            <span className={classes.versionDate}>
+              {new Date(v.publishedAt).toDateString()}
+            </span>
+          </a>
+        </Link>
+        { viewer !== null && viewer.id === authorId ? (
+          <>
+            <div className={classes.separator} />
+            <Button
+              className={classes.delete}
+              onClick={() => {
+                setVersionToDelete(v);
+                setIsModalOpen(true);
+              }}
+              type="button"
+              variant="text"
+              color="error"
+              fullWidth={false}
+            >
+              Delete
+            </Button>
+          </>
+        ) : null}
       </div>
-    )
-  })
+    </div>
+  ));
 
   return (
     <>

@@ -10,7 +10,7 @@ const useStyles = makeStyles((theme) => ({
   add: {
     fontFamily: 'SFMono-Regular, Consolas, Liberation Mono, Menlo, monospace',
     fontSize: 12,
-    border: `none`,
+    border: 'none',
     background: '#FFFFFF',
     boxShadow: '0px 4px 15px rgba(0, 0, 0, 0.12)',
     borderRadius: theme.shape.borderRadius,
