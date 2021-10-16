@@ -24,7 +24,6 @@ const useStyles = makeStyles((theme) => ({
   container: {
     display: 'flex',
     flexDirection: 'column',
-    // margin: `${theme.spacing(2)}px ${theme.spacing(3)}px`,
   },
   containerLoader: {
     display: 'flex',
