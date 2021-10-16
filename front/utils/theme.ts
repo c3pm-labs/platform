@@ -18,9 +18,12 @@ const theme = createMuiTheme({
       focus: '#00B8E6',
       active: '#00B8E6',
     },
+    background: {
+      default: '#fcfcfc',
+    },
   },
   shape: {
-    borderRadius: 5,
+    borderRadius: 25,
   },
   breakpoints: {
     values: {

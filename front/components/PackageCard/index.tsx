@@ -12,12 +12,13 @@ export interface PackageCardProps {
 const useStyles = makeStyles((theme: Theme) => createStyles({
   container: {
     minHeight: '8rem',
-    border: `1px solid ${theme.palette.primary.main}`,
-    borderRadius: theme.shape.borderRadius,
-    padding: theme.spacing(1.5),
+    padding: theme.spacing(3),
     display: 'flex',
     flexDirection: 'column',
     justifyContent: 'space-between',
+    background: '#FFFFFF',
+    boxShadow: '0px 4px 15px rgba(0, 0, 0, 0.12)',
+    borderRadius: theme.shape.borderRadius,
     [theme.breakpoints.up('sm')]: {
       minWidth: '500px',
     },
@@ -31,6 +32,7 @@ const useStyles = makeStyles((theme: Theme) => createStyles({
     alignItems: 'flex-start',
     '& h5': {
       fontSize: 18,
+      fontWeight: 'bold',
     },
     marginBottom: theme.spacing(1),
   },
@@ -49,6 +51,7 @@ const useStyles = makeStyles((theme: Theme) => createStyles({
   description: {
     lineHeight: 1.2,
     fontSize: 14,
+    fontWeight: 400,
   },
   avatar: {
     width: 30,
