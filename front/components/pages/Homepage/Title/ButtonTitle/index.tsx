@@ -3,12 +3,15 @@ import {
 } from '@material-ui/core';
 import clsx from 'clsx';
 import Link from 'next/link';
+import ButtonLink from 'components/ButtonLink';
+import TextLink from 'components/TextLink';
+
 import { Link as ScrollLink } from 'react-scroll';
 
 const useStyles = makeStyles((theme) => ({
   containerButton: {
     display: 'flex',
-    flexDirection: 'row',
+    flexDirection: 'column',
     justifyContent: 'space-between',
     alignItems: 'center',
   },
@@ -33,6 +36,12 @@ const useStyles = makeStyles((theme) => ({
     minHeight: '1.5em',
     minWidth: '1.5em',
   },
+  getStarted: {
+    minWidth: '15em',
+  },
+  learnMore: {
+    color: theme.palette.secondary.main,
+  }
 }));
 
 function ButtonTitle(): JSX.Element {
@@ -45,6 +54,7 @@ function ButtonTitle(): JSX.Element {
           color="primary"
           variant="contained"
           size="large"
+          className={classes.getStarted}
         >
           <Typography
             className={clsx(
@@ -65,21 +75,11 @@ function ButtonTitle(): JSX.Element {
         spy
         hashSpy
       >
-        <Button
-          variant="outlined"
-          size="large"
-          className={classes.overRideColorLearnMoreButton}
-        >
-          <Typography
-            className={clsx(
-              classes.leanMoreButton,
-              classes.defaultStyleText,
-              classes.defaultStyleButton,
-            )}
-          >
-            Learn More
+        <TextLink className={classes.learnMore} href="">
+          <Typography>
+            Learn more
           </Typography>
-        </Button>
+        </TextLink>
       </ScrollLink>
     </div>
   );

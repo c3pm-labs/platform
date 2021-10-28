@@ -5,19 +5,29 @@ import { Element } from 'react-scroll';
 import Image from 'next/image';
 
 import InfoCard from './InfoCard';
+import TextLink from 'components/TextLink';
 
 const useStyles = makeStyles((theme) => ({
   container: {
     display: 'flex',
+    justifyContent: 'space-between',
+    flexDirection: 'column',
+    minHeight: '92vh',
+    paddingTop: theme.spacing(8),
+    paddingBottom: theme.spacing(8),
+  },
+  containerArgument: {
+    display: 'flex',
     flexDirection: 'row',
     justifyContent: 'space-evenly',
     alignItems: 'center',
-    padding: `${theme.spacing(2)}px 0px`,
     [theme.breakpoints.down('sm')]: {
       fontSize: '0.95em',
       flexDirection: 'column',
       padding: `${theme.spacing(2)}px ${theme.spacing(1)}px`,
     },
+    marginLeft: theme.spacing(2),
+    marginRight: theme.spacing(2),
   },
   demoGif: {
     maxWidth: '700px',
@@ -36,24 +46,45 @@ const useStyles = makeStyles((theme) => ({
     alignItems: 'baseline',
     maxWidth: 450,
   },
-  button: {
+  containerButton: {
+    display: 'flex',
+    flexDirection: 'column',
+    [theme.breakpoints.down('sm')]: {
+      marginTop: theme.spacing(2),
+    },
+  },
+  containerButtonInstallC3pm: {
     display: 'flex',
     justifyContent: 'center',
     textDecoration: 'none',
-    marginBottom: theme.spacing(8),
+    marginBottom: theme.spacing(2.5),
+  },
+  ButtonInstallC3pm: {
+    width: '15em',
   },
   startLearningButton: {
     textAlign: 'center',
     fontWeight: 500,
     color: 'white',
     fontSize: '1.2em',
+    width: '10em',
   },
   title: {
     textAlign: 'center',
     fontWeight: 500,
     color: theme.palette.text.primary,
     fontSize: '2.1em',
+    [theme.breakpoints.down('sm')]: {
+      marginBottom: theme.spacing(2),
+    },
   },
+  containerReadTheDocumentaion: {
+    display: 'flex',
+    justifyContent: 'center',
+  },
+  textReadTheDocumentaion: {
+    color: theme.palette.secondary.main,
+  }
 }));
 
 function Demo(): JSX.Element {
@@ -61,11 +92,11 @@ function Demo(): JSX.Element {
 
   return (
     <Element name="whyc3pm">
-      <div id="whyc3pm">
+      <div id="whyc3pm" className={classes.container}>
         <Typography className={classes.title}>
-          Why c3pm ?
+          Why you should use c3pm ?
         </Typography>
-        <div className={classes.container}>
+        <div className={classes.containerArgument}>
           <div className={classes.demoGif}>
             <Image width={861} height={536} src="/assets/demo.gif" alt="demogif" />
           </div>
@@ -90,18 +121,27 @@ function Demo(): JSX.Element {
             />
           </div>
         </div>
-        <a className={classes.button} href="https://docs.c3pm.io/docs/getting_started/install" target="_blank" rel="noopener noreferrer">
-          <Button
-            color="primary"
-            variant="contained"
-            size="large"
-          >
-            <Typography className={classes.startLearningButton}>
-              Install c3pm
-            </Typography>
-          </Button>
-        </a>
-
+        <div className={classes.containerButton}>
+          <a className={classes.containerButtonInstallC3pm} href="https://docs.c3pm.io/docs/getting_started/install" target="_blank" rel="noopener noreferrer">
+            <Button
+              color="primary"
+              variant="contained"
+              size="large"
+              className={classes.ButtonInstallC3pm}
+            >
+              <Typography className={classes.startLearningButton}>
+                Install c3pm
+              </Typography>
+            </Button>
+          </a>
+          <div className={classes.containerReadTheDocumentaion}>
+            <TextLink className={classes.textReadTheDocumentaion} href="">
+              <Typography>
+                Read the documentation
+              </Typography>
+            </TextLink>
+          </div>
+        </div>
       </div>
     </Element>
   );
