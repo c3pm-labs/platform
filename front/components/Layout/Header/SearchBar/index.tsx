@@ -27,9 +27,9 @@ function SearchBar({ className }: SearchBarProps): JSX.Element {
         <TextInput
           disableHelperText
           fullWidth
-          name="search"
-          type="search"
-          placeholder="search..."
+          name="browse packages"
+          type="browse packages"
+          placeholder="browse packages..."
         />
       </Form>
     </Formik>
