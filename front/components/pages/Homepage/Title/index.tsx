@@ -1,10 +1,10 @@
 import {
   makeStyles, Typography, Hidden,
 } from '@material-ui/core';
-import SearchBar from 'components/Layout/Header/SearchBar';
-
-import Logo from 'components/Logo';
 import React from 'react';
+
+import SearchBar from 'components/Layout/Header/SearchBar';
+import Logo from 'components/Logo';
 
 import ButtonTitle from './ButtonTitle';
 
@@ -78,7 +78,7 @@ const useStyles = makeStyles((theme) => ({
     display: 'flex',
     justifyContent: 'center',
     width: '100%',
-  }
+  },
 }));
 
 function Title(): JSX.Element {
@@ -99,7 +99,7 @@ function Title(): JSX.Element {
           </Typography>
           <div className={classes.containerAbsoluteSearchBar}>
             <div className={classes.containerSearchBar}>
-              <SearchBar className={classes.searchBar}/>
+              <SearchBar className={classes.searchBar} />
             </div>
           </div>
         </div>

@@ -40,8 +40,8 @@ const useStyles = makeStyles((theme) => ({
       padding: 0,
     },
     backgroundColor: theme.palette.grey[200],
-    borderBottomLeftRadius: theme.shape.borderRadius,
-    borderBottomRightRadius: theme.shape.borderRadius,
+    borderBottomLeftRadius: '15px',
+    borderBottomRightRadius: '15px',
     width: 150,
   },
   option: {

@@ -4,8 +4,9 @@ import {
 import { Element } from 'react-scroll';
 import Image from 'next/image';
 
-import InfoCard from './InfoCard';
 import TextLink from 'components/TextLink';
+
+import InfoCard from './InfoCard';
 
 const useStyles = makeStyles((theme) => ({
   container: {
@@ -84,7 +85,7 @@ const useStyles = makeStyles((theme) => ({
   },
   textReadTheDocumentaion: {
     color: theme.palette.secondary.main,
-  }
+  },
 }));
 
 function Demo(): JSX.Element {
@@ -135,7 +136,7 @@ function Demo(): JSX.Element {
             </Button>
           </a>
           <div className={classes.containerReadTheDocumentaion}>
-            <TextLink className={classes.textReadTheDocumentaion} href="">
+            <TextLink className={classes.textReadTheDocumentaion} href="https://docs.c3pm.io/">
               <Typography>
                 Read the documentation
               </Typography>
