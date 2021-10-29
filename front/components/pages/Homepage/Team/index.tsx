@@ -5,6 +5,7 @@ import TwitterIcon from '@material-ui/icons/Twitter';
 import GitHubIcon from '@material-ui/icons/GitHub';
 import LinkedInIcon from '@material-ui/icons/LinkedIn';
 import LinkIcon from '@material-ui/icons/Link';
+
 import team from 'utils/team';
 
 const useStyles = makeStyles((theme) => ({

@@ -3,10 +3,9 @@ import {
 } from '@material-ui/core';
 import clsx from 'clsx';
 import Link from 'next/link';
-import ButtonLink from 'components/ButtonLink';
-import TextLink from 'components/TextLink';
-
 import { Link as ScrollLink } from 'react-scroll';
+
+import TextLink from 'components/TextLink';
 
 const useStyles = makeStyles((theme) => ({
   containerButton: {
@@ -41,7 +40,7 @@ const useStyles = makeStyles((theme) => ({
   },
   learnMore: {
     color: theme.palette.secondary.main,
-  }
+  },
 }));
 
 function ButtonTitle(): JSX.Element {
