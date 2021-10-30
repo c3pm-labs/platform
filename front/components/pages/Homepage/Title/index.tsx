@@ -99,7 +99,10 @@ function Title(): JSX.Element {
           </Typography>
           <div className={classes.containerAbsoluteSearchBar}>
             <div className={classes.containerSearchBar}>
-              <SearchBar className={classes.searchBar} />
+              <SearchBar
+                className={classes.searchBar}
+                placeholder="browse packages now !"
+              />
             </div>
           </div>
         </div>

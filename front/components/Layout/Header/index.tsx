@@ -62,7 +62,10 @@ function Header(): JSX.Element {
         <Hidden implementation="css" xsDown>
           <Logo type="classic" size="sm" />
         </Hidden>
-        <SearchBar className={classes.search} />
+        <SearchBar
+          className={classes.search}
+          placeholder="browse packages..."
+        />
         <RightNav />
       </Toolbar>
     </AppBar>
