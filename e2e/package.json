@@ -13,11 +13,11 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@testing-library/cypress": "^7.0.2",
     "axios": "^0.21.1",
     "cypress": "^6.0.1",
     "form-data": "^3.0.0",
-    "test-data-bot": "^0.8.0",
-    "@testing-library/cypress": "^7.0.2"
+    "test-data-bot": "^0.8.0"
   },
   "devDependencies": {
     "@typescript-eslint/eslint-plugin": "^3.10.1",
