@@ -89,8 +89,8 @@ function PackageCard({ packageData }: PackageCardProps): JSX.Element {
         </Typography>
         <Typography variant="h5" color="primary" data-testid={`packageCard-${name}-version`}>{latest.version}</Typography>
       </div>
-      <div style={{ display: 'flex', flexWrap: 'wrap' }}>
-        <Typography color="textPrimary" variant="body1">{latest.description}</Typography>
+      <div style={{ display: 'flex', flexWrap: 'wrap', overflowWrap: 'break-word' }}>
+        <Typography color="textPrimary" variant="body1" style={{ width: '100%' }}>{latest.description}</Typography>
       </div>
       <div className={classes.tagsContainer}>
         {tags?.map((tag) => <span key={tag} className={classes.tag}>{tag}</span>)}
