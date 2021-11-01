@@ -5,6 +5,7 @@
 scalar DateTime
 
 type Mutation {
+  contactUs(email: String!, firstname: String!, lastname: String, message: String!): User!
   deleteVersion(packageName: String!, version: String!): Package!
   forgotPassword(email: String!): User!
   login(login: String!, password: String!): User!

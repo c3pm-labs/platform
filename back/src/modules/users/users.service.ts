@@ -1,4 +1,5 @@
 import { User } from '@prisma/client';
+import sgMail from '@sendgrid/mail';
 import { hash, compare } from 'bcryptjs';
 
 import { ForbiddenError, UserInputError } from '../../utils/errors';
@@ -70,4 +71,27 @@ export async function updatePassword(ctx: Context, params: UpdatePasswordParams)
       password: newHashedPassword,
     },
   });
+}
+
+export interface ContactUsParams {
+  firstname?: string;
+  lastname?: string;
+  email?: string;
+  message?: string;
+}
+
+export async function contactUs(ctx: Context, { ...props }: ContactUsParams): Promise<User | null> {
+  try {
+    sgMail.setApiKey(process.env.SENDGRID_API_KEY);
+    await sgMail.send({
+      from: props.email,
+      to: 'contact@c3pm.io',
+      subject: `Contact from ${props.firstname} ${props.lastname}`,
+      text: props.message,
+    });
+    return null;
+  } catch (e) {
+    console.log(e);
+    throw new ForbiddenError('Error in contact');
+  }
 }
