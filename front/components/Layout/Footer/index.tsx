@@ -1,6 +1,5 @@
 import { makeStyles } from '@material-ui/core/styles';
 import { Typography } from '@material-ui/core';
-import Link from 'next/link';
 
 const useStyles = makeStyles((theme) => ({
   container: {
@@ -59,8 +58,6 @@ function Footer(): JSX.Element {
         <span>Contact us</span>
         {linkElement('mailto:contact@c3pm.io', 'contact@c3pm.io')}
         {linkElement('https://github.com/c3pm-labs/c3pm/issues/new/choose', 'Submit an issue')}
-        {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
-        <Link href="/team"><a className={classes.text}>Team</a></Link>
       </div>
     </div>
   );

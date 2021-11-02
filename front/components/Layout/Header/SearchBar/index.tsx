@@ -5,9 +5,14 @@ import TextInput from 'components/TextInput';
 
 export interface SearchBarProps {
   className?: string;
+  placeholder: string;
 }
 
-function SearchBar({ className }: SearchBarProps): JSX.Element {
+function SearchBar(props: SearchBarProps): JSX.Element {
+  const {
+    className,
+    placeholder,
+  } = props;
   const router = useRouter();
   const { q, tags, page = 1 } = router.query;
   const search = q || '';
@@ -29,7 +34,7 @@ function SearchBar({ className }: SearchBarProps): JSX.Element {
           fullWidth
           name="search"
           type="search"
-          placeholder="search..."
+          placeholder={placeholder}
         />
       </Form>
     </Formik>

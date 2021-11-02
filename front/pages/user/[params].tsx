@@ -24,17 +24,39 @@ const useStyles = makeStyles((theme) => ({
     },
     flexDirection: 'column',
     alignItems: 'flex-start',
+    justifyContent: 'center',
+  },
+  packagesContainer: {
+    paddingLeft: theme.spacing(4),
+    paddingRight: theme.spacing(4),
+    paddingBottom: theme.spacing(2),
+  },
+  profileContainerPadding: {
+    width: '25%',
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    [theme.breakpoints.down('md')]: {
+      width: '100%',
+      paddingLeft: theme.spacing(4),
+      paddingRight: theme.spacing(4),
+    },
   },
   profileContainer: {
     display: 'flex',
     justifyContent: 'center',
     flexDirection: 'row',
     alignItems: 'center',
-    marginTop: 40,
+    paddingBottom: theme.spacing(8),
+    paddingTop: theme.spacing(8),
+    background: 'linear-gradient(197.6deg, rgba(38, 179, 239, 0.2) 0.93%, rgba(255, 112, 68, 0.2) 98.91%)',
+    boxShadow: '0px 4px 15px rgba(0, 0, 0, 0.12)',
+    borderRadius: theme.shape.borderRadius,
     [theme.breakpoints.between('md', 'xl')]: {
       height: '100%',
+      marginTop: theme.spacing(20),
       maxWidth: 400,
-      width: '40%',
+      width: '100%',
     },
     [theme.breakpoints.down('md')]: {
       width: '100%',
@@ -50,31 +72,35 @@ const useStyles = makeStyles((theme) => ({
     display: 'flex',
     justifyContent: 'center',
     [theme.breakpoints.up('md')]: {
+      paddingLeft: theme.spacing(4),
       justifyContent: 'flex-start',
     },
-    fontSize: 24,
+    [theme.breakpoints.down('md')]: {
+      marginTop: theme.spacing(3),
+    },
+    fontSize: '1.25em',
+    fontWeight: 500,
     width: '100%',
   },
   packageContainer: {
     width: '100%',
     display: 'flex',
+    justifyContent: 'center',
     flexGrow: 0.5,
     flexDirection: 'column',
-    marginTop: 40,
     [theme.breakpoints.up('sm')]: {
-      paddingLeft: theme.spacing(1),
-      paddingRight: theme.spacing(1),
-      alignSelf: 'center',
-      width: '60%',
+      padding: theme.spacing(4),
+      width: '100%',
     },
     [theme.breakpoints.up('md')]: {
-      paddingLeft: theme.spacing(1),
-      paddingRight: theme.spacing(1),
       width: '50%',
     },
   },
   packages: {
     display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    width: '100%',
     marginTop: theme.spacing(1),
   },
   noPackage: {
@@ -102,15 +128,17 @@ function Profile(): JSX.Element {
       <Layout>
         <Head title="c3pm - profile" />
         <Box className={classes.box} p={1} m={1}>
-          <div className={classes.profileContainer}>
-            <Box display="flex" alignItems="center" flexDirection="column" p={0} m={0}>
-              <Avatar
-                user={user}
-                withName={false}
-                classes={{ picture: classes.picture }}
-              />
-              <ProfileInfos user={user} />
-            </Box>
+          <div className={classes.profileContainerPadding}>
+            <div className={classes.profileContainer}>
+              <Box display="flex" alignItems="center" flexDirection="column" p={0} m={0}>
+                <Avatar
+                  user={user}
+                  withName={false}
+                  classes={{ picture: classes.picture }}
+                />
+                <ProfileInfos user={user} />
+              </Box>
+            </div>
           </div>
           <div className={classes.packageContainer}>
             <Box display="flex" justifyContent="center" flexDirection="row">
@@ -118,7 +146,7 @@ function Profile(): JSX.Element {
                 variant="subtitle1"
                 className={classes.title}
               >
-                Packages
+                Your packages
               </Typography>
             </Box>
             {user.packages.length === 0 ? (
@@ -134,7 +162,9 @@ function Profile(): JSX.Element {
                   {user && user.packages && user.packages.map((data) => (
                     <div key={data.name}>
                       <div className={classes.packages} />
-                      <PackageCard packageData={data} key={data.name} />
+                      <div className={classes.packagesContainer}>
+                        <PackageCard packageData={data} key={data.name} />
+                      </div>
                     </div>
                   ))}
                 </Box>

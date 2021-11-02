@@ -41,11 +41,22 @@ const useStyles = makeStyles((theme) => ({
     },
   },
   header: {
+    background: 'linear-gradient(100.51deg, rgba(0, 184, 230, 0.14) 45.2%, rgba(255, 112, 68, 0.2) 79.05%)',
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'baseline',
     justifyContent: 'space-between',
-    marginBottom: theme.spacing(2),
+    [theme.breakpoints.up('sm')]: {
+      paddingLeft: theme.spacing(20),
+      paddingRight: theme.spacing(20),
+      paddingTop: theme.spacing(1),
+      paddingBottom: theme.spacing(1),
+      marginBottom: theme.spacing(4),
+    },
+    [theme.breakpoints.down('xs')]: {
+      paddingLeft: theme.spacing(2),
+      paddingRight: theme.spacing(2),
+    },
     '& h1': {
       color: theme.palette.primary.main,
       margin: `${theme.spacing(2)}px ${theme.spacing(1)}px ${theme.spacing(2)}px 0`,
