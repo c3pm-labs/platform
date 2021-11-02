@@ -58,6 +58,16 @@ export async function getPackage(ctx: Context, name: string): Promise<Package> {
   });
 }
 
+export async function getPopularPackages(ctx: Context): Promise<Package[]> {
+  return ctx.db.package.findMany({
+    orderBy: [
+      {
+        downloads: 'desc',
+      },
+    ],
+  });
+}
+
 export async function getVersionOrLatest(
   ctx: Context, packageName: string, version?: string,
 ): Promise<Version> {
@@ -109,6 +119,22 @@ export async function deleteVersion(
     },
   });
   return pkg;
+}
+
+export async function countDownloads(ctx: Context, packageName: string): Promise<Package> {
+  const pkg = await ctx.db.package.findUnique({ where: { name: packageName } });
+  let updatedPkg;
+  try {
+    updatedPkg = await ctx.db.package.update({
+      where: { name: packageName },
+      data: {
+        downloads: pkg.downloads + 1,
+      },
+    });
+  } catch (e) {
+    throw new ForbiddenError('Couldn\'t update downloads count');
+  }
+  return updatedPkg;
 }
 
 export async function publish(ctx: Context, file: Express.Multer.File): Promise<void> {

@@ -1,5 +1,6 @@
 import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
 import { Typography } from '@material-ui/core';
+import clsx from 'clsx';
 
 import Avatar from '../Avatar';
 import { Package } from '../../types';
@@ -7,6 +8,7 @@ import TextLink from '../TextLink';
 
 export interface PackageCardProps {
   packageData: Package;
+  discover?: string;
 }
 
 const useStyles = makeStyles((theme: Theme) => createStyles({
@@ -20,7 +22,7 @@ const useStyles = makeStyles((theme: Theme) => createStyles({
     boxShadow: '0px 4px 15px rgba(0, 0, 0, 0.12)',
     borderRadius: theme.shape.borderRadius,
     [theme.breakpoints.up('sm')]: {
-      minWidth: '500px',
+      minWidth: '600px',
     },
     [theme.breakpoints.down('xs')]: {
       maxWidth: '100%',
@@ -69,18 +71,24 @@ const useStyles = makeStyles((theme: Theme) => createStyles({
   },
   tag: {
     fontSize: 12,
+    fontWeight: 'bold',
     marginRight: 5,
     color: theme.palette.text.primary,
     background: 'rgba(0,184,230, 0.3)', // main with opacity
     borderRadius: theme.shape.borderRadius,
-    padding: 3,
+    padding: '3px 6px',
+  },
+  downloads: {
+    borderRadius: 7,
+    padding: '2px 8px',
+    color: 'white',
   },
 }));
 
-function PackageCard({ packageData }: PackageCardProps): JSX.Element {
+function PackageCard({ packageData, discover = undefined }: PackageCardProps): JSX.Element {
   const classes = useStyles({ packageData });
   const {
-    name, author, tags, latest,
+    name, author, tags, latest, downloads,
   } = packageData;
   const date = new Date(latest.publishedAt);
 
@@ -88,15 +96,31 @@ function PackageCard({ packageData }: PackageCardProps): JSX.Element {
     <div className={classes.container} data-testid={`packageCard-${name}`}>
       <div className={classes.top}>
         <Typography variant="h5" data-testid={`packageCard-${name}-name`}>
-          <TextLink href="/package/[name]" as={`/package/${name}`}>{name}</TextLink>
+          <TextLink href="/package/[name]" as={`/package/${name}/${latest.version}`}>
+            {name}
+            <span style={{ fontSize: 14 }}>
+              {' v'}
+              {latest.version}
+            </span>
+          </TextLink>
         </Typography>
-        <Typography variant="h5" color="primary" data-testid={`packageCard-${name}-version`}>{latest.version}</Typography>
+        <div className={discover ? clsx(classes.downloads, discover) : classes.description}>
+          {!discover ? '🔥' : null}
+          {downloads}
+          {discover
+            ? (
+              <span style={{ fontSize: 10 }}>
+                {' '}
+                downloads
+              </span>
+            ) : null}
+        </div>
       </div>
       <div style={{ display: 'flex', flexWrap: 'wrap', overflowWrap: 'break-word' }}>
         <Typography color="textPrimary" variant="body1" style={{ width: '100%' }}>{latest.description}</Typography>
       </div>
       <div className={classes.tagsContainer}>
-        {tags?.map((tag) => <span key={tag} className={classes.tag}>{tag}</span>)}
+        {tags?.map((tag) => <span key={`tag-${tag}-${name}`} className={classes.tag}>{tag}</span>)}
       </div>
       <div className={classes.bottom}>
         <Avatar

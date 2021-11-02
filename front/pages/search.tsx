@@ -18,9 +18,6 @@ import PackageCard from 'components/PackageCard';
 import WrappedLoader from 'components/WrappedLoader';
 import PackageFoundBar from 'components/PackageFoundBar';
 
-import { tagsList } from '../utils/constant';
-import Button from '../components/Button';
-
 const useStyles = makeStyles((theme) => ({
   container: {
     display: 'flex',
@@ -43,16 +40,6 @@ const useStyles = makeStyles((theme) => ({
     alignItems: 'center',
     paddingTop: '25%',
   },
-  line: {
-    width: '100%',
-    height: '1px',
-    margin: '20px 0',
-    [theme.breakpoints.down('xs')]: {
-      height: 0,
-      margin: '10px 0',
-    },
-    backgroundColor: theme.palette.grey[400],
-  },
   footer: {
     display: 'flex',
     flexDirection: 'column',
@@ -65,6 +52,7 @@ const useStyles = makeStyles((theme) => ({
     flexDirection: 'column',
     width: '70%',
     maxWidth: 600,
+    margin: '10px 0',
     [theme.breakpoints.down('sm')]: {
       width: '100%',
     },
@@ -128,7 +116,6 @@ function Search(): JSX.Element {
       if (packageData) {
         list.push(
           <div className={classes.list} key={packageData.name}>
-            {idx !== 0 && <div className={classes.line} />}
             <PackageCard packageData={packageData} key={packageData.name} />
           </div>,
         );
@@ -147,26 +134,11 @@ function Search(): JSX.Element {
       </Layout>
     );
   }
-  const searchByTag = (tag: string) => {
-    const isPresent = selectedTags.find((e) => e === tag);
-    const newTags = isPresent ? selectedTags.filter((e) => e !== tag).join(',') : selectedTags.concat(tag).join(',');
-    router.push({ pathname: '/search', query: { q, ...(newTags.length > 0 ? { tags: newTags } : {}), ...(page ? { page } : {}) } });
-  };
 
   return (
     <Layout>
       <Head title="Search" />
       <PackageFoundBar nbPackage={data ? data.search.length : 0} />
-      <div className={classes.tagsContainer}>
-        {tagsList.map((tag) => {
-          const isSelected = selectedTags.find((e) => e === tag);
-          return (
-            <Button onClick={() => searchByTag(tag)} type="button" key={tag} variant={isSelected ? 'contained' : 'outlined'} className={classes.tag}>
-              {tag}
-            </Button>
-          );
-        })}
-      </div>
       <div className={classes.container}>
         {packages()}
       </div>

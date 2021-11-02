@@ -7,7 +7,8 @@ import clsx from 'clsx';
 const useStyles = makeStyles((theme) => ({
   resultBar: {
     display: 'flex',
-    backgroundColor: theme.palette.primary.main,
+    width: '100%',
+    background: 'linear-gradient(90.03deg, rgba(0, 184, 230, 0.6) 12.8%, rgba(255, 112, 68, 0.29) 89.18%)',
     fontSize: '20px',
     color: 'white',
     maxHeight: '30px',

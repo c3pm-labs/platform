@@ -22,4 +22,11 @@ packagesController.post('/publish', upload.any(), async (req, res) => {
   res.status(200).end();
 });
 
+packagesController.post('/countDownloads', async (req, res) => {
+  const ctx = createContext({ db, req });
+
+  await packagesService.countDownloads(ctx, req.body.packageName);
+  res.status(200).end();
+});
+
 export default packagesController;
