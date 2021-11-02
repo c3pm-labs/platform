@@ -4,19 +4,19 @@ const theme = createMuiTheme({
   palette: {
     type: 'light',
     primary: {
-      main: '#00b8e6',
+      main: '#34A0CE',
     },
     success: {
       main: '#2AC940',
     },
     text: {
       primary: '#333',
-      secondary: '#E0E0E0',
+      secondary: '#f6fbfe',
       disabled: '#BDBDBD',
     },
     action: {
-      focus: '#00B8E6',
-      active: '#00B8E6',
+      focus: '#34A0CE',
+      active: '#34A0CE',
     },
   },
   shape: {

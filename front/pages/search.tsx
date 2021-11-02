@@ -1,6 +1,6 @@
 import { getDataFromTree } from '@apollo/react-ssr';
 import {
-  makeStyles, Typography, useTheme,
+  makeStyles, useTheme,
 } from '@material-ui/core';
 import React from 'react';
 import { useRouter } from 'next/router';
@@ -16,6 +16,7 @@ import Head from 'components/Head';
 import Layout from 'components/Layout';
 import PackageCard from 'components/PackageCard';
 import WrappedLoader from 'components/WrappedLoader';
+import PackageFoundBar from 'components/PackageFoundBar';
 
 import { tagsList } from '../utils/constant';
 import Button from '../components/Button';
@@ -41,20 +42,6 @@ const useStyles = makeStyles((theme) => ({
     justifyContent: 'center',
     alignItems: 'center',
     paddingTop: '25%',
-  },
-  resultBar: {
-    display: 'flex',
-    width: '100%',
-    backgroundColor: theme.palette.primary.main,
-    fontSize: '20px',
-    color: 'white',
-    [theme.breakpoints.up('sm')]: {
-      padding: '2px 0',
-      paddingLeft: '5%',
-    },
-    [theme.breakpoints.down('xs')]: {
-      justifyContent: 'center',
-    },
   },
   line: {
     width: '100%',
@@ -169,13 +156,7 @@ function Search(): JSX.Element {
   return (
     <Layout>
       <Head title="Search" />
-      <div className={classes.resultBar}>
-        <Typography variant="body1" data-testid="number-of-packages">
-          {data ? data.search.length : 0}
-          {' '}
-          packages found
-        </Typography>
-      </div>
+      <PackageFoundBar nbPackage={data ? data.search.length : 0} />
       <div className={classes.tagsContainer}>
         {tagsList.map((tag) => {
           const isSelected = selectedTags.find((e) => e === tag);
