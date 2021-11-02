@@ -56,5 +56,75 @@
         "releases": "Releases",
         "issue": "Submit an issue",
         "team": "Team"
+    },
+    "tos": {
+        "title": "Terms of service",
+        "abreviation": "TOS",
+        "user": "the User",
+        "intro": {
+            "1": "The purpose of these terms of service (known as ",
+            "2": ") is to provide a legal framework for the terms and conditions under which c3pm makes the site and its services available and to define the conditions of access and use of the services by ",
+            "3": ". These TOS are available on the site under the heading ",
+            "4": "Any registration or use of the site implies the acceptance without any reserve or restriction of these TOS by the user. When registering on the site via the Registration Form, each user expressly accepts the present TOS by checking the box preceding the following text: \"I acknowledge having read and understood the TOS and I accept them\". In case of non-acceptance of the TOS stipulated in the present contract, the User must renounce to the access of the services proposed by the site. https://c3pm.io reserves the right to modify unilaterally and at any time the contents of the present TOS."
+        },
+        "1": {
+            "title": "1 – The legal notices",
+            "2": "Email adress : contact@c3pm.com."
+        },
+        "2": {
+            "title": "2 – Site access",
+            "1": "The site https://c3pm.io allows the User free access to the following services:",
+            "2": "- Search and share packages containing C++ code.",
+            "3": "- Share (\"Packages\"), download packages, view their documentation.",
+            "4": "The site is accessible free of charge anywhere to any User with Internet access. All costs incurred by the User to access the service (computer hardware, software, Internet connection, etc.) are at the User's expense. The non-member User does not have access to the reserved services. To do so, they must register by filling out the form. By agreeing to register for the reserved services, the member User agrees to provide truthful and accurate information regarding his civil status and contact details, including his email address.",
+            "5": "To access all the services, the User must then identify himself using his login and password that he determined during his registration.",
+            "6": "Any User member who is regularly registered may also request to be removed from the list by going to the dedicated page on his personal space. This will be effective within a reasonable time. Any event due to a case of absolute necessity having for consequence a dysfunction of the site or server and subject to any interruption or modification in case of maintenance, does not engage the responsibility of https://c3pm.io. In these cases, the User agrees not to hold the editor responsible for any interruption or suspension of service, even without notice.",
+            "7": "The User has the possibility to contact the site by email at the email address of the editor communicated in ARTICLE 1."
+        },
+        "3": {
+            "title": "3 – Data collection",
+            "1": "The site ensures the User a collection and processing of personal information in compliance with the law n°78-17 of January 6, 1978 relating to data processing, files and freedoms. The site is currently being declared to the CNIL",
+            "2": "In accordance with the French Data Protection Act of January 6, 1978, the User has the right to access, rectify, delete and oppose his or her personal data, which he or she may exercise via his or her personal space."
+        },
+        "4": {
+            "title": "4 – Intellectual Property Rights",
+            "1": "The brands, logos, signs as well as all the contents of the site (texts, images, sound...) are protected by the Code of the intellectual property and more particularly by the copyright.",
+            "2": "The c3pm trademark is a registered trademark of c3pm SAS and any representation and/or reproduction and/or exploitation of this trademark, in whole or in part, of any kind whatsoever, is strictly prohibited.",
+            "3": "The User must request prior authorization from the site for any reproduction, publication or copy of the various contents. The User agrees to use the contents of the site in a strictly private context, any use for commercial and advertising purposes is strictly prohibited.",
+            "4": "Any total or partial representation of this site by any process whatsoever, without the express permission of the operator of the website would constitute an infringement punishable by Article L 335-2 and following of the Code of Intellectual Property.",
+            "5": "It is recalled in accordance with Article L122-5 of the Code of Intellectual Property that the User who reproduces, copies or publishes the protected content must cite the author and its source."
+        },
+        "5": {
+            "title": "5 – Responsibility",
+            "1": "The sources of the information published on the site https://c3pm.io are deemed reliable but the site does not guarantee that it is free of defects, errors or omissions by virtue of its collaborative dimension.",
+            "2": "The information communicated is presented as an indication and general without contractual value. Despite regular updates, the site https://c3pm.io cannot be held responsible for changes in administrative and legal provisions occurring after publication. Similarly, the site cannot be held responsible for the use and interpretation of the information contained therein.",
+            "3": "The User is responsible for keeping his/her password secret. Any disclosure of the password, in whatever form, is prohibited. The User assumes all risks related to the use of his/her login and password. The site declines any responsibility.",
+            "4": "The site https://c3pm.io cannot be held responsible for possible viruses that could infect the computer or any computer equipment of the Internet user, following use, access or downloading from this site.",
+            "5": "The responsibility of the site cannot be engaged in the event of force majeure or the unforeseeable and insurmountable fact of a third party."
+        },
+        "6": {
+            "title": "6 – Hypertext links",
+            "1": "Hypertext links may be present on the site. The User is informed that by clicking on these links, he will leave the site https://c3pm.io. The latter has no control over the web pages to which these links lead and cannot, under any circumstances, be held responsible for their content."
+        },
+        "7": {
+            "title": "7 – Cookies",
+            "1": "The User is informed that during his visits to the site, a cookie may be automatically installed on his browser.",
+            "2": "Cookies are small files that are temporarily stored on the hard drive of the User's computer by your browser and are necessary for the use of the https://c3pm.io website. Cookies do not contain personal information and cannot be used to identify anyone. A cookie contains a unique identifier, randomly generated and therefore anonymous. Some cookies expire at the end of the User's visit, others remain.",
+            "3": "The information contained in the cookies is used to improve the site https://c3pm.io and by browsing the site, the User accepts them.",
+            "4": "However, the User must give his consent to the use of certain cookies. In the absence of acceptance, the User is informed that certain functionalities or pages may be refused.",
+            "5": "The User may deactivate these cookies by using the settings in his or her browser software."
+        },
+        "8": {
+            "title": "8 – Publication by the User",
+            "1": "The site allows members to publish the following content: code, documentation, packages",
+            "2": "In his publications, the member commits himself to respect the rules of the Netiquette (rules of good conduct of the Internet) and the rules of law in force. The site may exercise moderation on the publications and reserves the right to refuse to put them online, without having to justify this to the member.",
+            "3": "The member remains the owner of all his intellectual property rights. However, by publishing a publication on the site, he/she transfers to the publishing company the non-exclusive and free right to represent, reproduce, adapt, modify, disseminate and distribute his/her publication, directly or through an authorized third party, throughout the world, on any medium (digital or physical), for the duration of the intellectual property. In particular, the Member grants the right to use his or her publication on the Internet and on mobile telephone networks.",
+            "4": "Any content put online by the User is his or her sole responsibility. The User undertakes not to put content online that could harm the interests of third parties. Any legal action taken by an injured third party against the site will be borne by the User. The User's content may be removed or modified by the site at any time and for any reason, without notice."
+        },
+        "9": {
+            "title": "9 – Applicable law and jurisdiction",
+            "1": "French law applies to this contract. In the event of failure to resolve a dispute between the parties amicably, the French courts will have exclusive jurisdiction.",
+            "2": "For any question relating to the application of the present GCU, you can join the editor to the coordinates registered in the ARTICLE 1."
+        }
     }
 }

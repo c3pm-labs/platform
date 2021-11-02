@@ -1,8 +1,9 @@
 import { makeStyles } from '@material-ui/core/styles';
 import { Typography } from '@material-ui/core';
 import { useTranslation } from 'next-i18next';
-
 import Link from 'next/link';
+
+import TextLink from 'components/TextLink';
 
 const useStyles = makeStyles((theme) => ({
   container: {
@@ -58,6 +59,9 @@ function Footer(): JSX.Element {
         {linkElement('https://docs.c3pm.io', 'Docs')}
         {linkElement('https://github.com/c3pm-labs/', 'Github')}
         {linkElement('https://github.com/c3pm-labs/c3pm/releases', t('footer.releases'))}
+        <TextLink className={classes.text} href="/tos">
+          {t('tos.title')}
+        </TextLink>
       </div>
       <div className={classes.textContainer}>
         <span>{t('footer.contact')}</span>
