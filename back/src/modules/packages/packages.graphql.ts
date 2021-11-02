@@ -13,6 +13,7 @@ export const Versions = objectType({
     t.model.readme();
     t.model.publishedAt();
     t.model.version();
+    t.model.tags();
   },
 });
 
@@ -23,6 +24,10 @@ export const Package = objectType({
     t.model.name();
     t.model.tags();
     t.model.versions();
+    t.model.repository();
+    t.model.contributors();
+    t.model.documentation();
+    t.model.website();
     t.model.downloads();
     t.field('latest', {
       type: 'Version',
@@ -42,8 +47,8 @@ export const PackageQuery = extendType({
         keyword: stringArg(),
         tags: nullable(list(stringArg())),
       },
-      resolve(parent, args, ctx) {
-        return packagesService.search(ctx, args.keyword, args.tags);
+      resolve(parent, args) {
+        return packagesService.search(args.keyword, args.tags);
       },
     });
 

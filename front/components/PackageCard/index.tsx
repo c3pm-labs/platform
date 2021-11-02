@@ -113,8 +113,8 @@ function PackageCard({ packageData, discover = undefined }: PackageCardProps): J
             ) : null}
         </div>
       </div>
-      <div style={{ display: 'flex', flexWrap: 'wrap' }}>
-        <Typography color="textPrimary" variant="body1">{latest.description}</Typography>
+      <div style={{ display: 'flex', flexWrap: 'wrap', overflowWrap: 'break-word' }}>
+        <Typography color="textPrimary" variant="body1" style={{ width: '100%' }}>{latest.description}</Typography>
       </div>
       <div className={classes.tagsContainer}>
         {tags?.map((tag) => <span key={`tag-${tag}-${name}`} className={classes.tag}>{tag}</span>)}

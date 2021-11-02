@@ -29,6 +29,7 @@ Network is cool
 ctpm add network
 \`\`\``,
             description: 'network is cool',
+            tags: ['network', 'utils'],
           },
           {
             version: '2.4.5',
@@ -113,6 +114,7 @@ ctpm add network
     data: {
       name: 'network-asio',
       downloads: 162,
+      repository: 'super/lien/vers/mon/repo',
       tags: ['network-asio', 'network', 'utils'],
       versions: {
         create: [
@@ -180,6 +182,8 @@ ctpm add network-asio
       name: 'graphics',
       downloads: 298,
       tags: ['graphics', 'graphics'],
+      documentation: 'https://docs.c3pm.io/docs/getting_started/install',
+      repository: 'super/lien/vers/mon/repo',
       versions: {
         create: [
           {
@@ -216,6 +220,9 @@ ctpm add graphics
       name: 'irrlicht-audio',
       downloads: 85,
       tags: ['irrlicht-audio', 'graphics'],
+      website: 'github.com/c3pm-labs/c3pm',
+      documentation: 'https://docs.c3pm.io/docs/getting_started/install',
+      repository: 'super/lien/vers/mon/repo',
       versions: {
         create: [
           {
@@ -251,6 +258,10 @@ ctpm add irrlicht-audio
     data: {
       name: 'maths',
       downloads: 12,
+      contributors: ['chloebourbion', 'minabarry'],
+      website: 'github.com/c3pm-labs/c3pm',
+      documentation: 'https://docs.c3pm.io/docs/getting_started/install',
+      repository: 'super/lien/vers/mon/repo',
       tags: ['maths', 'utils'],
       versions: {
         create: [
@@ -288,6 +299,8 @@ ctpm add maths
       name: 'string',
       downloads: 12,
       tags: ['string', 'utils'],
+      repository: 'super/lien/vers/mon/repo',
+      documentation: 'https://docs.c3pm.io/docs/getting_started/install',
       versions: {
         create: [
           {

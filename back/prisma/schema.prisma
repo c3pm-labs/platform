@@ -19,12 +19,16 @@ model User {
 }
 
 model Package {
-  name      String    @id
-  author    User      @relation(fields: [authorId], references: [id])
-  authorId  String
-  versions  Version[]
-  tags      String[]
-  downloads Int       @default(0)
+  name          String    @id
+  author        User      @relation(fields: [authorId], references: [id])
+  authorId      String
+  versions      Version[]
+  tags          String[]
+  contributors  String[]
+  documentation String    @default("")
+  website       String    @default("")
+  repository    String    @default("")
+  downloads     Int       @default(0)
 }
 
 model Version {
@@ -35,6 +39,7 @@ model Version {
   description String
   license     String
   publishedAt DateTime @default(now())
+  tags        String[]
 
   @@id([version, packageName])
 }

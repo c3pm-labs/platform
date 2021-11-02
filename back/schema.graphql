@@ -18,10 +18,14 @@ type Mutation {
 type Package {
   author: User!
   downloads: Int!
+  contributors: [String!]!
+  documentation: String!
   latest: Version!
   name: String!
+  repository: String!
   tags: [String!]!
   versions(after: VersionWhereUniqueInput, before: VersionWhereUniqueInput, first: Int!, last: Int!): [Version!]!
+  website: String!
 }
 
 input PackageWhereUniqueInput {
@@ -51,6 +55,7 @@ type Version {
   package: Package!
   publishedAt: DateTime!
   readme: String!
+  tags: [String!]!
   version: String!
 }
 
