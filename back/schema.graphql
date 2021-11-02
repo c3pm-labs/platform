@@ -17,6 +17,7 @@ type Mutation {
 
 type Package {
   author: User!
+  downloads: Int!
   latest: Version!
   name: String!
   tags: [String!]!
@@ -28,6 +29,7 @@ input PackageWhereUniqueInput {
 }
 
 type Query {
+  discover: [Package!]!
   package(name: String!): Package!
   search(keyword: String!, tags: [String!]): [Package!]!
   user(id: String, username: String): User

@@ -118,6 +118,7 @@ export const SEARCH = gql`
         search(keyword: $keyword, tags: $tags) {
             name,
             tags,
+            downloads,
             versions(first: 1000, last: 0) {
                 description,
                 license,
@@ -125,6 +126,26 @@ export const SEARCH = gql`
                 publishedAt,
                 version,
             }
+            author {
+                username,
+            }
+            latest {
+                description,
+                license,
+                readme,
+                publishedAt,
+                version,
+            }
+        }
+    }
+`;
+
+export const DISCOVER = gql`
+    query discover {
+        discover {
+            name,
+            downloads,
+            tags,
             author {
                 username,
             }

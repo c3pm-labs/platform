@@ -13,91 +13,92 @@ async function main() {
     },
   });
 
-  const boostPkg = await db.package.create({
+  const networkPkg = await db.package.create({
     data: {
-      name: 'boost',
-      tags: ['boost', 'network', 'utils'],
+      name: 'network',
+      tags: ['network', 'utils'],
+      downloads: 134,
       versions: {
         create: [
           {
             version: '1.0.0',
             license: 'MIT',
-            readme: `# Boost
-Boost is cool
+            readme: `# Network
+Network is cool
 \`\`\`
-ctpm add boost
+ctpm add network
 \`\`\``,
-            description: 'boost is cool',
+            description: 'network is cool',
           },
           {
             version: '2.4.5',
             license: 'MIT',
-            readme: `# Boost 2
-Boost 2 is really cool
+            readme: `# Network 2
+Network 2 is really cool
 \`\`\`
-ctpm add boost
+ctpm add network
 \`\`\``,
-            description: 'boost is cool',
+            description: 'network is cool',
           },
           {
             version: '2.4.6',
             license: 'MIT',
-            readme: `# Boost 2
-Boost 2 is really cool
+            readme: `# Network 2
+Network 2 is really cool
 \`\`\`
-ctpm add boost
+ctpm add network
 \`\`\``,
-            description: 'boost is cool',
+            description: 'network is cool',
           },
           {
             version: '2.4.10',
             license: 'MIT',
-            readme: `# Boost 2
-Boost 2 is really cool
+            readme: `# Network 2
+Network 2 is really cool
 \`\`\`
-ctpm add boost
+ctpm add network
 \`\`\``,
-            description: 'boost is cool',
+            description: 'network is cool',
           },
           {
             version: '2.10.5',
             license: 'MIT',
-            readme: `# Boost 2
-Boost 2 is really cool
+            readme: `# Network 2
+Network 2 is really cool
 \`\`\`
-ctpm add boost
+ctpm add network
 \`\`\``,
-            description: 'boost is cool',
+            description: 'network is cool',
           },
           {
             version: '4.4.5',
             license: 'MIT',
-            readme: `# Boost 2
-Boost 2 is really cool
+            readme: `# Network 2
+Network 2 is really cool
 \`\`\`
-ctpm add boost
+ctpm add network
 \`\`\``,
-            description: 'boost is cool',
+            description: 'network is cool',
           },
           {
             version: '4.4.6',
             license: 'MIT',
-            readme: `# Boost 2
-Boost 2 is really cool
+            readme: `# Network 2
+Network 2 is really cool
 \`\`\`
-ctpm add boost
+ctpm add network
 \`\`\``,
-            description: 'boost is cool',
+            description: 'network is cool',
           },
           {
             version: '6.4.5',
             license: 'MIT',
-            readme: `# Boost 2
-Boost 2 is really cool
+            readme: `# Network 2
+Network 2 is really cool
 \`\`\`
-ctpm add boost
+ctpm add network
 \`\`\``,
-            description: 'boost is cool',
+            description: 'network is cool',
           },
         ],
       },
@@ -106,63 +107,64 @@ ctpm add boost
       },
     },
   });
-  console.log(boostPkg);
+  console.log(networkPkg);
 
-  const boostAsio = await db.package.create({
+  const networkAsio = await db.package.create({
     data: {
-      name: 'boost-asio',
-      tags: ['boost-asio', 'network', 'utils'],
+      name: 'network-asio',
+      downloads: 162,
+      tags: ['network-asio', 'network', 'utils'],
       versions: {
         create: [
           {
             version: '1.0.0',
             license: 'MIT',
-            readme: `# Boost Asio
-Boost Asio is cool
+            readme: `# Network Asio
+Network Asio is cool
 \`\`\`
-ctpm add boost-asio
+ctpm add network-asio
 \`\`\``,
-            description: 'boost is cool',
+            description: 'network is cool',
           },
           {
             version: '2.4.5',
             license: 'MIT',
-            readme: `# Boost Asio 2
-Boost Asio 2 is really cool
+            readme: `# Network Asio 2
+Network Asio 2 is really cool
 \`\`\`
-ctpm add boost-asio
+ctpm add network-asio
 \`\`\``,
-            description: 'boost asio is cool',
+            description: 'network asio is cool',
           },
           {
             version: '2.4.6',
             license: 'MIT',
-            readme: `# Boost Asio 2
-Boost Asio 2 is really cool
+            readme: `# Network Asio 2
+Network Asio 2 is really cool
 \`\`\`
-ctpm add boost-asio
+ctpm add network-asio
 \`\`\``,
-            description: 'boost asio is cool',
+            description: 'network asio is cool',
           },
           {
             version: '2.4.7',
             license: 'MIT',
-            readme: `# Boost Asio 2
-Boost Asio 2 is really cool
+            readme: `# Network Asio 2
+Network Asio 2 is really cool
 \`\`\`
-ctpm add boost-asio
+ctpm add network-asio
 \`\`\``,
-            description: 'boost asio is cool',
+            description: 'network asio is cool',
           },
           {
             version: '1.0.2',
             license: 'MIT',
-            readme: `# Boost Asio 2
-Boost Asio 2 is really cool
+            readme: `# Network Asio 2
+Network Asio 2 is really cool
 \`\`\`
-ctpm add boost-asio
+ctpm add network-asio
 \`\`\``,
-            description: 'boost asio is cool',
+            description: 'network asio is cool',
           },
         ],
       },
@@ -171,33 +173,34 @@ ctpm add boost-asio
       },
     },
   });
-  console.log(boostAsio);
+  console.log(networkAsio);
 
-  const sfml = await db.package.create({
+  const graphics = await db.package.create({
     data: {
-      name: 'sfml',
-      tags: ['sfml', 'graphics'],
+      name: 'graphics',
+      downloads: 298,
+      tags: ['graphics', 'graphics'],
       versions: {
         create: [
           {
             version: '1.0.0',
             license: 'MIT',
-            readme: `# sfml
-sfml is cool
+            readme: `# graphics
+graphics is cool
 \`\`\`
-ctpm add sfml
+ctpm add graphics
 \`\`\``,
-            description: 'sfml is cool',
+            description: 'graphics is cool',
           },
           {
             version: '2.4.5',
             license: 'MIT',
-            readme: `# sfml 2
-sfml 2 is really cool
+            readme: `# graphics 2
+graphics 2 is really cool
 \`\`\`
-ctpm add sfml
+ctpm add graphics
 \`\`\``,
-            description: 'sfml is cool',
+            description: 'graphics is cool',
           },
         ],
       },
@@ -206,33 +209,34 @@ ctpm add sfml
       },
     },
   });
-  console.log(sfml);
+  console.log(graphics);
 
-  const irrlicht = await db.package.create({
+  const irrlichtAudio = await db.package.create({
     data: {
-      name: 'irrlicht',
-      tags: ['irrlicht', 'graphics'],
+      name: 'irrlicht-audio',
+      downloads: 85,
+      tags: ['irrlicht-audio', 'graphics'],
       versions: {
         create: [
           {
             version: '1.0.0',
             license: 'MIT',
-            readme: `# irrlicht
-irrlicht is cool
+            readme: `# irrlicht-audio
+irrlicht-audio is cool
 \`\`\`
-ctpm add irrlicht
+ctpm add irrlicht-audio
 \`\`\``,
-            description: 'irrlicht is cool',
+            description: 'irrlicht-audio is cool',
           },
           {
             version: '2.4.5',
             license: 'MIT',
-            readme: `# irrlicht 2
-irrlicht 2 is really cool
+            readme: `# irrlicht-audio 2
+irrlicht-audio 2 is really cool
 \`\`\`
-ctpm add irrlicht
+ctpm add irrlicht-audio
 \`\`\``,
-            description: 'irrlicht is cool',
+            description: 'irrlicht-audio is cool',
           },
         ],
       },
@@ -241,11 +245,12 @@ ctpm add irrlicht
       },
     },
   });
-  console.log(irrlicht);
+  console.log(irrlichtAudio);
 
   const utilsMath = await db.package.create({
     data: {
       name: 'maths',
+      downloads: 12,
       tags: ['maths', 'utils'],
       versions: {
         create: [
@@ -281,6 +286,7 @@ ctpm add maths
   const utilsString = await db.package.create({
     data: {
       name: 'string',
+      downloads: 12,
       tags: ['string', 'utils'],
       versions: {
         create: [

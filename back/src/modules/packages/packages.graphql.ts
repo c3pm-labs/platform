@@ -23,6 +23,7 @@ export const Package = objectType({
     t.model.name();
     t.model.tags();
     t.model.versions();
+    t.model.downloads();
     t.field('latest', {
       type: 'Version',
       resolve(pkg, _args, ctx) {
@@ -53,6 +54,14 @@ export const PackageQuery = extendType({
       },
       resolve(parent, args, ctx) {
         return packagesService.getPackage(ctx, args.name);
+      },
+    });
+
+    t.list.field('discover', {
+      type: Package,
+      args: {},
+      resolve(parent, args, ctx) {
+        return packagesService.getPopularPackages(ctx);
       },
     });
 

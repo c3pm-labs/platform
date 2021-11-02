@@ -105,6 +105,5 @@ Cypress.Commands.add('checkAuthCookie', () => {
 
 Cypress.Commands.add('checkPackageCard', ({ name, version, author }) => {
   cy.findByTestId(`packageCard-${name}`).should('exist').contains(author);
-  cy.findByTestId(`packageCard-${name}-name`).contains(name).should('have.prop', 'href', `${Cypress.config().baseUrl}/package/${name}`);
-  cy.findByTestId(`packageCard-${name}-version`).contains(version);
+  cy.findByTestId(`packageCard-${name}-name`).contains(`${name}.${version}`).should('have.prop', 'href', `${Cypress.config().baseUrl}/package/${name}/${version}`);
 });

@@ -19,11 +19,12 @@ model User {
 }
 
 model Package {
-  name     String    @id
-  author   User      @relation(fields: [authorId], references: [id])
-  authorId String
-  versions Version[]
-  tags     String[]
+  name      String    @id
+  author    User      @relation(fields: [authorId], references: [id])
+  authorId  String
+  versions  Version[]
+  tags      String[]
+  downloads Int       @default(0)
 }
 
 model Version {
