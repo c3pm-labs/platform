@@ -13,6 +13,7 @@ const useStyles = makeStyles((theme) => ({
     flexDirection: 'column',
     justifyContent: 'space-between',
     alignItems: 'center',
+    marginTop: theme.spacing(2),
   },
   getStartedButton: {
     color: 'white',

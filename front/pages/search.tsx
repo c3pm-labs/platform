@@ -1,6 +1,6 @@
 import { getDataFromTree } from '@apollo/react-ssr';
 import {
-  makeStyles, Typography, useTheme,
+  makeStyles, useTheme,
 } from '@material-ui/core';
 import React from 'react';
 import { useRouter } from 'next/router';
@@ -16,6 +16,7 @@ import Head from 'components/Head';
 import Layout from 'components/Layout';
 import PackageCard from 'components/PackageCard';
 import WrappedLoader from 'components/WrappedLoader';
+import PackageFoundBar from 'components/PackageFoundBar';
 
 const useStyles = makeStyles((theme) => ({
   container: {
@@ -38,20 +39,6 @@ const useStyles = makeStyles((theme) => ({
     justifyContent: 'center',
     alignItems: 'center',
     paddingTop: '25%',
-  },
-  resultBar: {
-    display: 'flex',
-    width: '100%',
-    background: 'linear-gradient(90.03deg, rgba(0, 184, 230, 0.6) 12.8%, rgba(255, 112, 68, 0.29) 89.18%)',
-    fontSize: '20px',
-    color: 'white',
-    [theme.breakpoints.up('sm')]: {
-      padding: '2px 0',
-      paddingLeft: '5%',
-    },
-    [theme.breakpoints.down('xs')]: {
-      justifyContent: 'center',
-    },
   },
   footer: {
     display: 'flex',
@@ -151,13 +138,7 @@ function Search(): JSX.Element {
   return (
     <Layout>
       <Head title="Search" />
-      <div className={classes.resultBar}>
-        <Typography variant="body1" data-testid="number-of-packages">
-          {data ? data.search.length : 0}
-          {' '}
-          packages found
-        </Typography>
-      </div>
+      <PackageFoundBar nbPackage={data ? data.search.length : 0} />
       <div className={classes.container}>
         {packages()}
       </div>

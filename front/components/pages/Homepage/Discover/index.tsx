@@ -16,12 +16,15 @@ const useStyles = makeStyles((theme) => ({
     flexDirection: 'column',
     alignItems: 'center',
     justifyContent: 'center',
+    background: 'linear-gradient(124.57deg, rgba(38, 179, 239, 0.2) 37.9%, rgba(255, 112, 68, 0.2) 74.33%)',
+    padding: '50px 0',
   },
   packageList: {
     display: 'flex',
     alignItems: 'center',
     width: '100%',
     flexDirection: 'column',
+    margin: '15px 0',
   },
   subtitle: {
     color: theme.palette.text.primary,
@@ -30,7 +33,7 @@ const useStyles = makeStyles((theme) => ({
   },
   dl: {
     padding: '2px 14px',
-    margin: '10px 0',
+    margin: '5px 0',
   },
   red: { background: '#FF7044' },
   orange: { background: '#FFA844' },

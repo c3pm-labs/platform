@@ -22,7 +22,7 @@ const useStyles = makeStyles((theme) => ({
     [theme.breakpoints.down('md')]: {
       fontSize: '0.85em',
     },
-    paddingBottom: theme.spacing(10),
+    paddingBottom: theme.spacing(6),
   },
   content: {
     width: '100%',
@@ -44,6 +44,7 @@ const useStyles = makeStyles((theme) => ({
     fontSize: '1.4em',
     paddingLeft: theme.spacing(2),
     paddingRight: theme.spacing(2),
+    marginTop: theme.spacing(3),
     textAlign: 'center',
   },
   minSpacingFantom: {

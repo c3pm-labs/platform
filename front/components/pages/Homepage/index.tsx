@@ -1,7 +1,9 @@
+import DiscordButton from 'components/DiscordButton';
+
 import Title from './Title';
 import Demo from './Demo';
-import Discover from './Discover';
 import Team from './Team';
+import Discover from './Discover';
 
 function Homepage(): JSX.Element {
   return (
@@ -10,6 +12,7 @@ function Homepage(): JSX.Element {
       <Demo />
       <Discover />
       <Team />
+      <DiscordButton />
     </>
   );
 }
