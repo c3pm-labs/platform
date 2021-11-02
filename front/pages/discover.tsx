@@ -68,7 +68,7 @@ const useStyles = makeStyles((theme) => ({
   yellow: { background: '#fcc623' },
 }));
 
-function Home(): JSX.Element {
+function Discover(): JSX.Element {
   const classes = useStyles();
   const {
     data, loading,
@@ -152,4 +152,4 @@ function Home(): JSX.Element {
   );
 }
 
-export default withApollo(Home, { getDataFromTree });
+export default withApollo(Discover, { getDataFromTree });

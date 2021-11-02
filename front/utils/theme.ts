@@ -6,6 +6,9 @@ const theme = createMuiTheme({
     primary: {
       main: '#00b8e6',
     },
+    secondary: {
+      main: '#FF7044',
+    },
     success: {
       main: '#2AC940',
     },
@@ -18,9 +21,12 @@ const theme = createMuiTheme({
       focus: '#00B8E6',
       active: '#00B8E6',
     },
+    background: {
+      default: '#fcfcfc',
+    },
   },
   shape: {
-    borderRadius: 5,
+    borderRadius: 25,
   },
   breakpoints: {
     values: {

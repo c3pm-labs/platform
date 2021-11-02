@@ -17,9 +17,9 @@ type Mutation {
 
 type Package {
   author: User!
-  downloads: Int!
   contributors: [String!]!
   documentation: String!
+  downloads: Int!
   latest: Version!
   name: String!
   repository: String!

@@ -17,9 +17,6 @@ import Layout from 'components/Layout';
 import PackageCard from 'components/PackageCard';
 import WrappedLoader from 'components/WrappedLoader';
 
-import { tagsList } from '../utils/constant';
-import Button from '../components/Button';
-
 const useStyles = makeStyles((theme) => ({
   container: {
     display: 'flex',
@@ -45,7 +42,7 @@ const useStyles = makeStyles((theme) => ({
   resultBar: {
     display: 'flex',
     width: '100%',
-    backgroundColor: theme.palette.primary.main,
+    background: 'linear-gradient(90.03deg, rgba(0, 184, 230, 0.6) 12.8%, rgba(255, 112, 68, 0.29) 89.18%)',
     fontSize: '20px',
     color: 'white',
     [theme.breakpoints.up('sm')]: {
@@ -55,16 +52,6 @@ const useStyles = makeStyles((theme) => ({
     [theme.breakpoints.down('xs')]: {
       justifyContent: 'center',
     },
-  },
-  line: {
-    width: '100%',
-    height: '1px',
-    margin: '20px 0',
-    [theme.breakpoints.down('xs')]: {
-      height: 0,
-      margin: '10px 0',
-    },
-    backgroundColor: theme.palette.grey[400],
   },
   footer: {
     display: 'flex',
@@ -78,6 +65,7 @@ const useStyles = makeStyles((theme) => ({
     flexDirection: 'column',
     width: '70%',
     maxWidth: 600,
+    margin: '10px 0',
     [theme.breakpoints.down('sm')]: {
       width: '100%',
     },
@@ -141,7 +129,6 @@ function Search(): JSX.Element {
       if (packageData) {
         list.push(
           <div className={classes.list} key={packageData.name}>
-            {idx !== 0 && <div className={classes.line} />}
             <PackageCard packageData={packageData} key={packageData.name} />
           </div>,
         );
@@ -160,11 +147,6 @@ function Search(): JSX.Element {
       </Layout>
     );
   }
-  const searchByTag = (tag: string) => {
-    const isPresent = selectedTags.find((e) => e === tag);
-    const newTags = isPresent ? selectedTags.filter((e) => e !== tag).join(',') : selectedTags.concat(tag).join(',');
-    router.push({ pathname: '/search', query: { q, ...(newTags.length > 0 ? { tags: newTags } : {}), ...(page ? { page } : {}) } });
-  };
 
   return (
     <Layout>
@@ -175,16 +157,6 @@ function Search(): JSX.Element {
           {' '}
           packages found
         </Typography>
-      </div>
-      <div className={classes.tagsContainer}>
-        {tagsList.map((tag) => {
-          const isSelected = selectedTags.find((e) => e === tag);
-          return (
-            <Button data-testId={`button-${tag}`} onClick={() => searchByTag(tag)} type="button" key={tag} variant={isSelected ? 'contained' : 'outlined'} className={classes.tag}>
-              {tag}
-            </Button>
-          );
-        })}
       </div>
       <div className={classes.container}>
         {packages()}
