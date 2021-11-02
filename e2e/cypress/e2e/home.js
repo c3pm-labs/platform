@@ -7,11 +7,6 @@ describe('home page', () => {
     cy.findByText(/sign up/i).click().assertRegister();
     cy.visit('/');
     cy.findByPlaceholderText(/browse packages\.\.\./i).type('toto\n').url().should('eq', `${Cypress.config().baseUrl}/search?q=toto&page=1`);
-    // cy.findByPlaceholderText(/browse packages now !/i).type('toto\n')
-    // cy.findByTestId('formSearch-browsePackagesNavbar').submit()
-    // .url().should('eq', `${Cypress.config().baseUrl}/search?q=&page=1`);
-    
-    // .url().should('eq', `${Cypress.config().baseUrl}/search?q=&page=1`);
     cy.findByAltText(/classic-sm c3pm logo/i).click().assertHome();
   });
 
