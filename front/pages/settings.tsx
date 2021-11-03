@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import { Hidden, makeStyles } from '@material-ui/core';
+import { GetStaticProps } from 'next';
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 
 import Layout from 'components/Layout';
 import Menu from 'components/pages/Settings/Menu';
@@ -7,8 +9,6 @@ import Options from 'components/pages/Settings/Menu/utils';
 import Profile from 'components/pages/Settings/Profile';
 import Security from 'components/pages/Settings/Security';
 import BackButton from 'components/pages/Settings/BackButton';
-import { GetStaticProps } from "next";
-import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 
 const useStyles = makeStyles((theme) => ({
   container: {

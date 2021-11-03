@@ -1,7 +1,6 @@
 import { Formik, Form } from 'formik';
 import { useRouter } from 'next/router';
 import { useTranslation } from 'next-i18next';
-import { ReactElement } from 'react';
 
 import TextInput from 'components/TextInput';
 
@@ -13,7 +12,7 @@ export interface SearchBarProps {
 function SearchBar(props: SearchBarProps): JSX.Element {
   const {
     className,
-    dataTestId
+    dataTestId,
   } = props;
   const router = useRouter();
   const { t } = useTranslation('common');
