@@ -20,6 +20,7 @@ const useStyles = makeStyles(() => ({
   title: {
     textAlign: 'center',
     padding: '1.5rem',
+    fontSize: 30,
   },
   text: {
     marginBottom: '0.5rem',
@@ -73,7 +74,7 @@ const TosAccordion = ({
     <Accordion
       summary={(
         <div className={classes.summaryWrapper}>
-          <Typography variant="h4">{summaryText}</Typography>
+          <Typography variant="h4" style={{ fontSize: 20 }}>{summaryText}</Typography>
           <div className={classes.arrowContainer}>
             <Image height={20} src="/icons/arrowDown.svg" width={20} />
           </div>
