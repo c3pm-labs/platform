@@ -25,40 +25,36 @@ export async function getLatestVersion(ctx: Context, packageName: string): Promi
 }
 
 export async function search(s: string): Promise<Package[]> {
-  const tags = s.match(/tag:([^ ]+)/g)?.map((rawTag) => rawTag.replace('tag:', ''));
+  const tags = s.match(/tag:([^ ]+)/g)?.map((rawTag) => rawTag.replace('tag:', '')) || [];
+  const authors = s.match(/author:([^ ]+)/g)?.map((rawTag) => rawTag.replace('author:', '')) || [];
 
-  const keyword = tags?.reduce((acc, tag) => acc.replace(`tag:${tag}`, '').trim(), s)?.trim() ?? s;
+  const keywordWithoutTags = tags?.reduce((acc, tag) => acc.replace(`tag:${tag}`, '').trim(), s)?.trim() ?? s;
+  const keywordWithoutAuthors = authors?.reduce((acc, author) => acc.replace(`author:${author}`, '').trim(), keywordWithoutTags)?.trim() ?? keywordWithoutTags;
 
-  if (keyword && !tags) {
-    return db.$queryRaw<Package[]>`
-    SELECT *
-    FROM "Package"
-    WHERE "name" ~* ${keyword}
-    ORDER BY "name" ASC
-    `;
-  }
-  if (!keyword && tags) {
-    return db.$queryRaw<Package[]>`
-    SELECT *
-    FROM "Package"
-    WHERE "tags" @> (${tags})
-    ORDER BY "name" ASC
-    `;
-  }
-  if (!keyword && !tags) {
-    return db.$queryRaw<Package[]>`
-    SELECT *
-    FROM "Package"
-    ORDER BY "name" ASC
-    `;
-  }
-  return db.$queryRaw<Package[]>`
-  SELECT *
-  FROM "Package"
-  WHERE "name" ~* ${keyword}
-  AND "tags" @> (${tags})
-  ORDER BY "name" ASC
-  `;
+  const keyword = keywordWithoutAuthors;
+
+  return db.package.findMany({
+    where: {
+      name: {
+        contains: keyword,
+      },
+      tags: {
+        hasEvery: tags,
+      },
+      ...(authors.length > 0 ? {
+        OR: authors.map((author) => ({
+          author: {
+            username: {
+              contains: author,
+            },
+          },
+        })),
+      } : {}),
+    },
+    orderBy: {
+      name: 'asc',
+    },
+  });
 }
 
 export async function getPackage(ctx: Context, name: string): Promise<Package> {
