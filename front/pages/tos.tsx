@@ -8,7 +8,7 @@ import Layout from 'components/Layout';
 import Accordion from 'components/Accordion';
 import CustomDivider from 'components/CustomDivider';
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles(() => ({
   container: {
     display: 'flex',
     justifyContent: 'center',
