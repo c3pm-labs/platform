@@ -1,16 +1,19 @@
 import { Formik, Form } from 'formik';
 import { useRouter } from 'next/router';
 import { useTranslation } from 'next-i18next';
+import { ReactElement } from 'react';
 
 import TextInput from 'components/TextInput';
 
 export interface SearchBarProps {
   className?: string;
+  dataTestId?: string;
 }
 
 function SearchBar(props: SearchBarProps): JSX.Element {
   const {
     className,
+    dataTestId
   } = props;
   const router = useRouter();
   const { t } = useTranslation('common');
@@ -30,6 +33,7 @@ function SearchBar(props: SearchBarProps): JSX.Element {
         className={className}
       >
         <TextInput
+          data-testid={dataTestId}
           disableHelperText
           fullWidth
           name="search"

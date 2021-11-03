@@ -65,6 +65,7 @@ function Header(): JSX.Element {
         </Hidden>
         <LanguageMenu />
         <SearchBar
+          dataTestId="search-header"
           className={classes.search}
         />
         <RightNav />

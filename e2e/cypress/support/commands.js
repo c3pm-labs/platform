@@ -84,7 +84,7 @@ Cypress.Commands.add('logout', () => {
 });
 
 Cypress.Commands.add('assertHome', () => {
-  cy.url().should('eq', `${Cypress.config().baseUrl}/`);
+  cy.url().should('eq', `${Cypress.config().baseUrl}`);
 });
 
 Cypress.Commands.add('assertLogin', () => {

@@ -7,6 +7,8 @@ import Options from 'components/pages/Settings/Menu/utils';
 import Profile from 'components/pages/Settings/Profile';
 import Security from 'components/pages/Settings/Security';
 import BackButton from 'components/pages/Settings/BackButton';
+import { GetStaticProps } from "next";
+import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 
 const useStyles = makeStyles((theme) => ({
   container: {
@@ -71,5 +73,13 @@ function Settings(): JSX.Element {
     </Layout>
   );
 }
+
+export const getStaticProps: GetStaticProps = async ({ locale }) => (
+  {
+    props: {
+      ...(await serverSideTranslations(locale as string, ['common'])),
+    },
+  }
+);
 
 export default Settings;
