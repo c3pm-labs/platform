@@ -35,11 +35,7 @@ const useStyles = makeStyles((theme) => createStyles({
   },
 }));
 
-type LanguageMenuProps = {
-  className: string;
-};
-
-const LanguageMenu = ({ className }: LanguageMenuProps): JSX.Element => {
+const LanguageMenu = (): JSX.Element => {
   const classes = useStyles();
   const router = useRouter();
   const { asPath } = useRouter();
@@ -73,7 +69,7 @@ const LanguageMenu = ({ className }: LanguageMenuProps): JSX.Element => {
   };
 
   return (
-    <div className={className}>
+    <>
       <List className={classes.padding} component="nav">
         <ListItem
           aria-haspopup="true"
@@ -114,7 +110,7 @@ const LanguageMenu = ({ className }: LanguageMenuProps): JSX.Element => {
           </MenuItem>
         </Link>
       </Menu>
-    </div>
+    </>
   );
 };
 
