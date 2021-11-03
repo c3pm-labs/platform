@@ -72,12 +72,6 @@ const useStyles = makeStyles((theme) => ({
       backgroundColor: theme.palette.primary.main,
     },
   },
-  tagsContainer: {
-    display: 'flex',
-    justifyContent: 'center',
-    marginTop: theme.spacing(2),
-    flexWrap: 'wrap',
-  },
   tag: {
     margin: `0 ${theme.spacing(1)}px`,
     [theme.breakpoints.down('xs')]: {
@@ -91,12 +85,10 @@ const Search: NextPage = () => {
   const theme = useTheme();
   const classes = useStyles();
   const isMobile = useMediaQuery(theme.breakpoints.down('xs'));
-  // tags is of type string, it has the following format: tag1,tag2,tag3
-  const { q, tags, page = 1 } = router.query;
-  const selectedTags = typeof tags === 'string' && tags.length > 0 ? tags.split(',') : [];
+  const { q, page = 1 } = router.query;
   const baseIndex = Number(page) * 5 - 5;
   const { data, loading } = useQuery<{ search: Package[] }>(SEARCH, {
-    variables: { keyword: q ?? '', tags: selectedTags },
+    variables: { keyword: q ?? '' },
   });
 
   const numberOfPages = () => {

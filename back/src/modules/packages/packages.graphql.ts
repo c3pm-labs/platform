@@ -48,7 +48,7 @@ export const PackageQuery = extendType({
         tags: nullable(list(stringArg())),
       },
       resolve(parent, args) {
-        return packagesService.search(args.keyword, args.tags);
+        return packagesService.search(args.keyword);
       },
     });
 

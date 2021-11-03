@@ -14,12 +14,6 @@ import { DISCOVER } from '../queries';
 import Loader from '../components/Loader';
 import { Package } from '../types';
 
-const about = {
-  total: 18,
-  dl: 307,
-  edited: 56,
-};
-
 const useStyles = makeStyles((theme) => ({
   container: {
     display: 'flex',
@@ -91,7 +85,7 @@ const Discover: NextPage = () => {
           {t('discover.currently')}
           <span className={classes.highlight}>
             {' '}
-            {about.total}
+            {data.discover.length}
           </span>
           {' '}
           {t('discover.publishedPackages')}

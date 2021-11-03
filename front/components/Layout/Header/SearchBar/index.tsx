@@ -27,6 +27,7 @@ function SearchBar(props: SearchBarProps): JSX.Element {
     <Formik
       onSubmit={handleSubmit}
       initialValues={{ search }}
+      enableReinitialize
     >
       <Form
         className={className}
