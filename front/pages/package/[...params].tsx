@@ -7,6 +7,8 @@ import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
 import { Version } from 'types';
 import { PACKAGE_FROM_VERSION } from 'queries';
+import type { NextPage, GetServerSideProps } from 'next';
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 
 import Head from 'components/Head';
 import Layout from 'components/Layout';
@@ -137,7 +139,7 @@ const useStyles = makeStyles((theme) => ({
 }
 ));
 
-function PackageDetails(): JSX.Element {
+const PackageDetails: NextPage = () => {
   const router = useRouter();
   const packageName = router.query.params[0];
   const packageVersion = (router.query.params[1] && semver.valid(router.query.params[1])) || null;
@@ -194,5 +196,13 @@ function PackageDetails(): JSX.Element {
     </Layout>
   );
 }
+
+export const getServerSideProps:  GetServerSideProps = async ({ locale }) => (
+  {
+    props: {
+      ...(await serverSideTranslations(locale as string, ['common'])),
+    },
+  }
+);
 
 export default PackageDetails;

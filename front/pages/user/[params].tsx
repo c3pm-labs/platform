@@ -4,7 +4,7 @@ import {
 } from '@material-ui/core';
 import { useRouter } from 'next/router';
 import { Status, useUser } from 'hooks/user';
-import type { NextPage, GetStaticProps } from 'next';
+import type { NextPage, GetServerSideProps } from 'next';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import { useTranslation } from 'next-i18next';
 
@@ -178,9 +178,10 @@ const Profile: NextPage = () => {
   );
 };
 
-export const getStaticProps: GetStaticProps = async ({ locale }) => (
+export const getServerSideProps:  GetServerSideProps = async ({ locale }) => (
   {
     props: {
+      ssrUser: '',
       ...(await serverSideTranslations(locale as string, ['common'])),
     },
   }

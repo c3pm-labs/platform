@@ -66,7 +66,6 @@ function Header(): JSX.Element {
         <LanguageMenu />
         <SearchBar
           className={classes.search}
-          placeholder="browse packages..."
         />
         <RightNav />
       </Toolbar>
