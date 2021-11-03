@@ -38,7 +38,6 @@ function SearchBar(props: SearchBarProps): JSX.Element {
           fullWidth
           name="search"
           type="search"
-          spellcheck={false}
           placeholder={`${t('search')}...`}
         />
       </Form>
