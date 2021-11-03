@@ -178,7 +178,7 @@ const Profile: NextPage = () => {
   );
 };
 
-export const getServerSideProps:  GetServerSideProps = async ({ locale }) => (
+export const getServerSideProps: GetServerSideProps = async ({ locale }) => (
   {
     props: {
       ssrUser: '',

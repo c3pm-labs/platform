@@ -195,9 +195,9 @@ const PackageDetails: NextPage = () => {
       </div>
     </Layout>
   );
-}
+};
 
-export const getServerSideProps:  GetServerSideProps = async ({ locale }) => (
+export const getServerSideProps: GetServerSideProps = async ({ locale }) => (
   {
     props: {
       ...(await serverSideTranslations(locale as string, ['common'])),
