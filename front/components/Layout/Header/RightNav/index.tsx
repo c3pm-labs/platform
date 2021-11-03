@@ -1,6 +1,7 @@
 import useMediaQuery from '@material-ui/core/useMediaQuery';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
 import { useViewer } from 'hooks/auth';
+import { useTranslation } from 'next-i18next';
 
 import ButtonLink from 'components/ButtonLink';
 
@@ -21,6 +22,7 @@ function RightNav(): JSX.Element {
   const isMobile = useMediaQuery(theme.breakpoints.down('xs'));
   const viewer = useViewer();
   const classes = useStyles();
+  const { t } = useTranslation('common');
 
   if (isMobile) {
     return (
@@ -33,10 +35,10 @@ function RightNav(): JSX.Element {
       { viewer ? (<UserCard />) : (
         <div>
           <ButtonLink href="/login" className={classes.marginRight} variant="outlined">
-            Sign in
+            {t('buttons.login')}
           </ButtonLink>
           <ButtonLink href="/register" variant="contained">
-            Sign up
+            {t('buttons.register')}
           </ButtonLink>
         </div>
       )}

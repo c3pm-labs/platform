@@ -2,6 +2,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import { Typography } from '@material-ui/core';
 import { useQuery } from '@apollo/client';
 import Link from 'next/link';
+import { useTranslation } from 'next-i18next';
 
 import { Package } from '../../../../types';
 import { DISCOVER } from '../../../../queries';
@@ -43,6 +44,7 @@ const useStyles = makeStyles((theme) => ({
 
 function Discover(): JSX.Element {
   const classes = useStyles();
+  const { t } = useTranslation('common');
   const {
     data, loading,
   } = useQuery<{ discover: Package[] }>(DISCOVER);
@@ -54,7 +56,7 @@ function Discover(): JSX.Element {
   return (
     <div className={classes.container}>
       <Typography className={classes.subtitle}>
-        Discover the trending packages 🔥
+        {t('discover.trending')}
       </Typography>
       <div className={classes.packageList}>
         {data.discover.slice(0, 3).map((p, i) => {
@@ -71,7 +73,7 @@ function Discover(): JSX.Element {
         })}
       </div>
       <Link href="/discover">
-        <Button variant="contained" color="primary">Discover all</Button>
+        <Button variant="contained" color="primary">{t('buttons.discover')}</Button>
       </Link>
     </div>
   );

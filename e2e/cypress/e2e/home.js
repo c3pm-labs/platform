@@ -6,7 +6,7 @@ describe('home page', () => {
     cy.visit('/');
     cy.findByText(/sign up/i).click().assertRegister();
     cy.visit('/');
-    cy.findByPlaceholderText(/browse packages\.\.\./i).type('toto\n').url().should('eq', `${Cypress.config().baseUrl}/search?q=toto&page=1`);
+    cy.findByTestId('search-header').type('toto\n').url().should('eq', `${Cypress.config().baseUrl}/search?q=toto&page=1`);
     cy.findByAltText(/classic-sm c3pm logo/i).click().assertHome();
   });
 

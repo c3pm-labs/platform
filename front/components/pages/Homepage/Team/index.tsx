@@ -5,6 +5,7 @@ import TwitterIcon from '@material-ui/icons/Twitter';
 import GitHubIcon from '@material-ui/icons/GitHub';
 import LinkedInIcon from '@material-ui/icons/LinkedIn';
 import LinkIcon from '@material-ui/icons/Link';
+import { useTranslation } from 'next-i18next';
 
 import team from 'utils/team';
 
@@ -74,6 +75,7 @@ const useStyles = makeStyles((theme) => ({
 
 function Team(): JSX.Element {
   const classes = useStyles();
+  const { t } = useTranslation('common');
 
   const icons = {
     github: <GitHubIcon className={classes.icon} style={{ color: '#000' }} />,
@@ -86,7 +88,7 @@ function Team(): JSX.Element {
   return (
     <div className={classes.container}>
       <Typography className={classes.subtitle}>
-        Our Team
+        {t('home.team')}
       </Typography>
       <div className={classes.containerProfile}>
         {team.map((member) => (

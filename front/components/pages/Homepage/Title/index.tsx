@@ -1,6 +1,7 @@
 import {
   makeStyles, Typography, Hidden,
 } from '@material-ui/core';
+import { useTranslation } from 'next-i18next';
 import React from 'react';
 
 import SearchBar from 'components/Layout/Header/SearchBar';
@@ -84,6 +85,7 @@ const useStyles = makeStyles((theme) => ({
 
 function Title(): JSX.Element {
   const classes = useStyles();
+  const { t } = useTranslation('common');
 
   return (
     <div className={classes.container}>
@@ -96,20 +98,23 @@ function Title(): JSX.Element {
             <Logo type="baseline" size="lg" />
           </Hidden>
           <Typography className={classes.baseline}>
-            Your toolkit to dive into C++ easily
+            {t('home.title')}
           </Typography>
           <div className={classes.containerAbsoluteSearchBar}>
             <div className={classes.containerSearchBar}>
               <SearchBar
                 className={classes.searchBar}
-                placeholder="browse packages now !"
               />
             </div>
           </div>
         </div>
       </div>
       <Typography className={classes.subtitle}>
-        C++ made easy | Trivial dependency managment | Package sharing
+        {t('home.easy')}
+        |
+        {t('home.trivial')}
+        |
+        {t('home.sharing')}
       </Typography>
       <ButtonTitle />
     </div>

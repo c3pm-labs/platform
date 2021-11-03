@@ -1,6 +1,7 @@
 import {
   makeStyles, Typography,
 } from '@material-ui/core';
+import { useTranslation } from 'next-i18next';
 import React, { useEffect, useState } from 'react';
 import clsx from 'clsx';
 
@@ -36,15 +37,17 @@ export interface ResultBarProps {
 function ResultBar(props: ResultBarProps): JSX.Element {
   const classes = useStyles();
   const { nbPackage } = props;
+  const { t } = useTranslation('common');
   const [progessValue, setProgessValue] = useState(0);
   const [textNbPackage, setTextNbPackage] = useState('');
   const resultBarStyle = clsx(classes.resultBar, classes.resultBarSize);
+
   useEffect(() => {
     process.nextTick(() => (setProgessValue(100)));
     setTimeout(() => {
-      setTextNbPackage(`${nbPackage} packages found`);
+      setTextNbPackage(`${nbPackage} ${t('found')}`);
     }, 1000);
-  }, [nbPackage]);
+  }, [nbPackage, t]);
 
   return (
     <div className={resultBarStyle} style={{ paddingLeft: `${!progessValue ? 0 : 5}%`, width: `${progessValue}%` }}>

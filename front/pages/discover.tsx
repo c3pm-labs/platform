@@ -1,10 +1,11 @@
-import { getDataFromTree } from '@apollo/react-ssr';
 import { makeStyles } from '@material-ui/core';
 import { useQuery } from '@apollo/client';
 import Link from 'next/link';
+import type { NextPage, GetStaticProps } from 'next';
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
+import { useTranslation } from 'next-i18next';
 
 import Layout from 'components/Layout';
-import withApollo from 'utils/withApollo';
 import Head from 'components/Head';
 
 import Button from '../components/Button';
@@ -68,8 +69,9 @@ const useStyles = makeStyles((theme) => ({
   yellow: { background: '#fcc623' },
 }));
 
-function Discover(): JSX.Element {
+const Discover: NextPage = () => {
   const classes = useStyles();
+  const { t } = useTranslation('common');
   const {
     data, loading,
   } = useQuery<{ discover: Package[] }>(DISCOVER);
@@ -84,25 +86,25 @@ function Discover(): JSX.Element {
     <Layout>
       <Head title="c3pm" />
       <div className={classes.container}>
-        <h1 className={classes.title}>Discover all packages 🔍</h1>
+        <h1 className={classes.title}>{t('discover.all')}</h1>
         <span className={classes.subTitle}>
-          c3pm currently has
+          {t('discover.currently')}
           <span className={classes.highlight}>
             {' '}
             {about.total}
           </span>
           {' '}
-          published packages! 🎉
+          {t('discover.publishedPackages')}
         </span>
         <Link href="/search?q=&page=1">
-          <Button variant="outlined" className={classes.button}> See them all</Button>
+          <Button variant="outlined" className={classes.button}>{t('discover.see')}</Button>
         </Link>
       </div>
       <div className={classes.about}>
         <div className={classes.info}>i</div>
         <div>
 
-          <span>On c3pm we have:</span>
+          <span>{t('discover.weHave')}</span>
           <br />
           <span>
             -
@@ -110,10 +112,10 @@ function Discover(): JSX.Element {
             <span className={classes.highlight}>
               {data.discover.length}
               {' '}
-              published
+              {t('discover.published')}
               {' '}
             </span>
-            packages
+            {t('discover.packages')}
           </span>
           <br />
           <span>
@@ -122,15 +124,15 @@ function Discover(): JSX.Element {
             <span className={classes.highlight}>
               {totalDownloads}
               {' '}
-              downloaded
+              {t('discover.downloaded')}
               {' '}
             </span>
-            packages
+            {t('discover.packages')}
           </span>
         </div>
       </div>
       <div className={classes.container}>
-        <h1 className={classes.title}>Discover our trending packages 🔥</h1>
+        <h1 className={classes.title}>{t('discover.trending')}</h1>
         <div className={classes.packageList}>
           {data.discover.map((p, i) => {
             const getColor = () => {
@@ -145,11 +147,17 @@ function Discover(): JSX.Element {
             );
           })}
         </div>
-
       </div>
-
     </Layout>
   );
-}
+};
 
-export default withApollo(Discover, { getDataFromTree });
+export const getStaticProps: GetStaticProps = async ({ locale }) => (
+  {
+    props: {
+      ...(await serverSideTranslations(locale as string, ['common'])),
+    },
+  }
+);
+
+export default Discover;

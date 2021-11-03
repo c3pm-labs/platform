@@ -4,7 +4,6 @@ import { useRouter } from 'next/router';
 import { useReset } from 'hooks/forgot_password';
 import Typography from '@material-ui/core/Typography';
 
-import withApollo from 'utils/withApollo';
 import Button from 'components/Button';
 import Head from 'components/Head';
 import Logo from 'components/Logo';
@@ -122,4 +121,4 @@ function ResetPassword(): JSX.Element {
   );
 }
 
-export default withApollo(ResetPassword);
+export default ResetPassword;

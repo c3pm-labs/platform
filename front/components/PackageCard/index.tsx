@@ -1,5 +1,7 @@
 import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
 import { Typography } from '@material-ui/core';
+import { useTranslation } from 'next-i18next';
+import { useRouter } from 'next/router';
 import clsx from 'clsx';
 
 import Avatar from '../Avatar';
@@ -87,6 +89,8 @@ const useStyles = makeStyles((theme: Theme) => createStyles({
 
 function PackageCard({ packageData, discover = undefined }: PackageCardProps): JSX.Element {
   const classes = useStyles({ packageData });
+  const router = useRouter();
+  const { t } = useTranslation('common');
   const {
     name, author, tags, latest, downloads,
   } = packageData;
@@ -110,8 +114,7 @@ function PackageCard({ packageData, discover = undefined }: PackageCardProps): J
           {discover
             ? (
               <span style={{ fontSize: 10 }}>
-                {' '}
-                downloads
+                {t('downloads')}
               </span>
             ) : null}
         </div>
@@ -128,8 +131,9 @@ function PackageCard({ packageData, discover = undefined }: PackageCardProps): J
           classes={{ picture: classes.avatar, name: classes.name }}
         />
         <Typography variant="body2" className={classes.update}>
-          Last updated on&nbsp;
-          {date.toDateString()}
+          {t('lastUpdated')}
+          &nbsp;
+          {router.locale === 'en' ? date.toDateString() : date.toLocaleDateString()}
         </Typography>
       </div>
     </div>

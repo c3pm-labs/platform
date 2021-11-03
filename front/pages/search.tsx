@@ -1,4 +1,3 @@
-import { getDataFromTree } from '@apollo/react-ssr';
 import {
   makeStyles, useTheme,
 } from '@material-ui/core';
@@ -10,8 +9,9 @@ import useMediaQuery from '@material-ui/core/useMediaQuery';
 import { Package } from 'types';
 import { useQuery } from '@apollo/client';
 import { SEARCH } from 'queries';
+import type { NextPage, GetStaticProps } from 'next';
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 
-import withApollo from 'utils/withApollo';
 import Head from 'components/Head';
 import Layout from 'components/Layout';
 import PackageCard from 'components/PackageCard';
@@ -86,7 +86,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-function Search(): JSX.Element {
+const Search: NextPage = () => {
   const router = useRouter();
   const theme = useTheme();
   const classes = useStyles();
@@ -161,6 +161,13 @@ function Search(): JSX.Element {
       )}
     </Layout>
   );
-}
+};
 
-export default withApollo(Search, { getDataFromTree });
+export const getStaticProps: GetStaticProps = async ({ locale }) => (
+  {
+    props: {
+      ...(await serverSideTranslations(locale as string, ['common'])),
+    },
+  }
+);
+export default Search;

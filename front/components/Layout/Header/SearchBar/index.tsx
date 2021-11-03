@@ -1,19 +1,21 @@
 import { Formik, Form } from 'formik';
 import { useRouter } from 'next/router';
+import { useTranslation } from 'next-i18next';
 
 import TextInput from 'components/TextInput';
 
 export interface SearchBarProps {
   className?: string;
-  placeholder: string;
+  dataTestId?: string;
 }
 
 function SearchBar(props: SearchBarProps): JSX.Element {
   const {
     className,
-    placeholder,
+    dataTestId,
   } = props;
   const router = useRouter();
+  const { t } = useTranslation('common');
   const { q, tags, page = 1 } = router.query;
   const search = q || '';
 
@@ -30,11 +32,12 @@ function SearchBar(props: SearchBarProps): JSX.Element {
         className={className}
       >
         <TextInput
+          data-testid={dataTestId}
           disableHelperText
           fullWidth
           name="search"
           type="search"
-          placeholder={placeholder}
+          placeholder={`${t('search')}...`}
         />
       </Form>
     </Formik>
