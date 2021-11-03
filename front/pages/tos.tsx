@@ -74,7 +74,7 @@ const TosAccordion = ({
     <Accordion
       summary={(
         <div className={classes.summaryWrapper}>
-          <Typography variant="h4">{summaryText}</Typography>
+          <Typography variant="h4" style={{ fontSize: 20 }}>{summaryText}</Typography>
           <div className={classes.arrowContainer}>
             <Image height={20} src="/icons/arrowDown.svg" width={20} />
           </div>
