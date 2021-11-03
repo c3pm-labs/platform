@@ -32,7 +32,7 @@ const sortKeys = {
 };
 
 export async function search(s: string): Promise<Package[]> {
-  const parameters = s.match(/[a-zA-Z-]+:[a-zA-Z-]+/g)?.reduce((acc, match) => {
+  const parameters: any = s.match(/[a-zA-Z-]+:[a-zA-Z-]+/g)?.reduce((acc, match) => {
     const [key, value] = match.split(':');
     return { ...acc, [key]: [...(acc[key] ?? []), value] };
   }, {}) ?? {};
