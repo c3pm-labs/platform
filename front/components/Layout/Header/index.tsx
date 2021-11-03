@@ -1,4 +1,4 @@
-import { Hidden, Typography } from '@material-ui/core';
+import { Hidden } from '@material-ui/core';
 import useScrollTrigger from '@material-ui/core/useScrollTrigger';
 import { makeStyles } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
@@ -8,6 +8,7 @@ import RightNav from 'components/Layout/Header/RightNav';
 import Logo from 'components/Logo';
 
 import SearchBar from './SearchBar';
+import LanguageMenu from './LanguageMenu';
 
 const useStyles = makeStyles((theme) => ({
   appBar: {
@@ -55,23 +56,6 @@ function Header(): JSX.Element {
       position="sticky"
       color="default"
     >
-      <div className={classes.links}>
-        <a
-          target="_blank"
-          rel="noopener noreferrer"
-          href="https://docs.c3pm.io"
-        >
-          <Typography className={classes.text}>Docs</Typography>
-        </a>
-        <Typography className={classes.text}>•</Typography>
-        <a
-          target="_blank"
-          rel="noopener noreferrer"
-          href="https://github.com/c3pm-labs/"
-        >
-          <Typography className={classes.text}>Github</Typography>
-        </a>
-      </div>
       <Toolbar className={classes.container}>
         <Hidden implementation="css" smUp>
           <Logo type="mini" />
@@ -79,7 +63,11 @@ function Header(): JSX.Element {
         <Hidden implementation="css" xsDown>
           <Logo type="classic" size="sm" />
         </Hidden>
-        <SearchBar className={classes.search} />
+        <LanguageMenu />
+        <SearchBar
+          dataTestId="search-header"
+          className={classes.search}
+        />
         <RightNav />
       </Toolbar>
     </AppBar>

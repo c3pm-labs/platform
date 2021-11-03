@@ -1,5 +1,5 @@
 {
-  "baseUrl": "http://localhost:3000",
+  "baseUrl": "http://localhost:3000/en",
   "integrationFolder": "cypress/e2e",
   "port": 5000,
   "env": {

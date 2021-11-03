@@ -2,16 +2,16 @@ import { useQuery } from '@apollo/client';
 import React, { useState } from 'react';
 import semver from 'semver';
 import { useRouter } from 'next/router';
-import { getDataFromTree } from '@apollo/react-ssr';
 import { makeStyles } from '@material-ui/core/styles';
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
 import { Version } from 'types';
 import { PACKAGE_FROM_VERSION } from 'queries';
+import type { NextPage, GetServerSideProps } from 'next';
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 
 import Head from 'components/Head';
 import Layout from 'components/Layout';
-import withApollo from 'utils/withApollo';
 import TabPanel from 'components/pages/packages/TabPanel';
 import MarkdownDisplayer from 'components/pages/packages/MarkdownDisplayer';
 import VersionList from 'components/pages/packages/VersionList';
@@ -24,10 +24,6 @@ const useStyles = makeStyles((theme) => ({
   container: {
     display: 'flex',
     flexDirection: 'column',
-    margin: `${theme.spacing(2)}px ${theme.spacing(3)}px`,
-    [theme.breakpoints.down('xs')]: {
-      margin: theme.spacing(2),
-    },
   },
   containerLoader: {
     display: 'flex',
@@ -61,6 +57,15 @@ const useStyles = makeStyles((theme) => ({
       [theme.breakpoints.down('xs')]: {
         margin: `${theme.spacing(1)}px 0`,
       },
+    },
+  },
+  containerBody: {
+    [theme.breakpoints.up('sm')]: {
+      paddingLeft: theme.spacing(20),
+      paddingRight: theme.spacing(20),
+    },
+    [theme.breakpoints.down('xs')]: {
+      margin: theme.spacing(2),
     },
   },
   version: {
@@ -134,7 +139,7 @@ const useStyles = makeStyles((theme) => ({
 }
 ));
 
-function PackageDetails(): JSX.Element {
+const PackageDetails: NextPage = () => {
   const router = useRouter();
   const packageName = router.query.params[0];
   const packageVersion = (router.query.params[1] && semver.valid(router.query.params[1])) || null;
@@ -171,24 +176,33 @@ function PackageDetails(): JSX.Element {
       <Head title={packageVersion ? `${packageName} - ${packageVersion}` : packageName} />
       <div className={classes.container}>
         <Presentation version={data.version} />
-
-        <Tabs value={currentTab} onChange={handleChange} aria-label="package tabs" className={classes.tab}>
-          <Tab label="Readme" id="package-tab-1" aria-controls="package-tabpanel-1" />
-          <Tab label="Versions" id="package-tab-2" aria-controls="package-tabpanel-2" />
-        </Tabs>
-        <TabPanel value={currentTab} index={0}>
-          <MarkdownDisplayer source={data.version.readme} />
-        </TabPanel>
-        <TabPanel value={currentTab} index={1}>
-          <VersionList
-            authorId={data.version.package.author.id}
-            versions={data.version.package.versions}
-            packageName={data.version.package.name}
-          />
-        </TabPanel>
+        <div className={classes.containerBody}>
+          <Tabs value={currentTab} onChange={handleChange} aria-label="package tabs" className={classes.tab}>
+            <Tab label="Readme" id="package-tab-1" aria-controls="package-tabpanel-1" />
+            <Tab label="Versions" id="package-tab-2" aria-controls="package-tabpanel-2" />
+          </Tabs>
+          <TabPanel value={currentTab} index={0}>
+            <MarkdownDisplayer source={data.version.readme} />
+          </TabPanel>
+          <TabPanel value={currentTab} index={1}>
+            <VersionList
+              authorId={data.version.package.author.id}
+              versions={data.version.package.versions}
+              packageName={data.version.package.name}
+            />
+          </TabPanel>
+        </div>
       </div>
     </Layout>
   );
-}
+};
 
-export default withApollo(PackageDetails, { getDataFromTree });
+export const getServerSideProps: GetServerSideProps = async ({ locale }) => (
+  {
+    props: {
+      ...(await serverSideTranslations(locale as string, ['common'])),
+    },
+  }
+);
+
+export default PackageDetails;

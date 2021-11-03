@@ -19,6 +19,7 @@ type Package {
   author: User!
   contributors: [String!]!
   documentation: String!
+  downloads: Int!
   latest: Version!
   name: String!
   repository: String!
@@ -32,6 +33,7 @@ input PackageWhereUniqueInput {
 }
 
 type Query {
+  discover: [Package!]!
   package(name: String!): Package!
   search(keyword: String!, tags: [String!]): [Package!]!
   user(id: String, username: String): User

@@ -28,6 +28,7 @@ model Package {
   documentation String    @default("")
   website       String    @default("")
   repository    String    @default("")
+  downloads     Int       @default(0)
 }
 
 model Version {

@@ -24,14 +24,20 @@ export async function getLatestVersion(ctx: Context, packageName: string): Promi
   return versions[0];
 }
 
+const sortKeys = {
+  'name-asc': { name: 'asc' },
+  'name-desc': { name: 'desc' },
+  'downloads-asc': { downloads: 'asc' },
+  'downloads-desc': { downloads: 'desc' },
+};
+
 export async function search(s: string): Promise<Package[]> {
-  const tags = s.match(/tag:([^ ]+)/g)?.map((rawTag) => rawTag.replace('tag:', '')) || [];
-  const authors = s.match(/author:([^ ]+)/g)?.map((rawTag) => rawTag.replace('author:', '')) || [];
+  const parameters = s.match(/[a-zA-Z-]+:[a-zA-Z-]+/g)?.reduce((acc, match) => {
+    const [key, value] = match.split(':');
+    return { ...acc, [key]: [...(acc[key] ?? []), value] };
+  }, {}) ?? {};
 
-  const keywordWithoutTags = tags?.reduce((acc, tag) => acc.replace(`tag:${tag}`, '').trim(), s)?.trim() ?? s;
-  const keywordWithoutAuthors = authors?.reduce((acc, author) => acc.replace(`author:${author}`, '').trim(), keywordWithoutTags)?.trim() ?? keywordWithoutTags;
-
-  const keyword = keywordWithoutAuthors;
+  const keyword = s.replace(/[a-zA-Z-]+:[a-zA-Z-]+/g, '').trim();
 
   return db.package.findMany({
     where: {
@@ -39,21 +45,19 @@ export async function search(s: string): Promise<Package[]> {
         contains: keyword,
       },
       tags: {
-        hasEvery: tags,
+        hasEvery: parameters.tag ?? [],
       },
-      ...(authors.length > 0 ? {
-        OR: authors.map((author) => ({
+      ...(parameters.author?.length > 0 ? {
+        OR: parameters.author.map((author) => ({
           author: {
             username: {
-              contains: author,
+              equals: author,
             },
           },
         })),
       } : {}),
     },
-    orderBy: {
-      name: 'asc',
-    },
+    orderBy: sortKeys[parameters.sort ?? 'downloads-desc'],
   });
 }
 
@@ -62,6 +66,16 @@ export async function getPackage(ctx: Context, name: string): Promise<Package> {
     where: {
       name,
     },
+  });
+}
+
+export async function getPopularPackages(ctx: Context): Promise<Package[]> {
+  return ctx.db.package.findMany({
+    orderBy: [
+      {
+        downloads: 'desc',
+      },
+    ],
   });
 }
 
@@ -116,6 +130,22 @@ export async function deleteVersion(
     },
   });
   return pkg;
+}
+
+export async function countDownloads(ctx: Context, packageName: string): Promise<Package> {
+  const pkg = await ctx.db.package.findUnique({ where: { name: packageName } });
+  let updatedPkg;
+  try {
+    updatedPkg = await ctx.db.package.update({
+      where: { name: packageName },
+      data: {
+        downloads: pkg.downloads + 1,
+      },
+    });
+  } catch (e) {
+    throw new ForbiddenError('Couldn\'t update downloads count');
+  }
+  return updatedPkg;
 }
 
 export async function publish(ctx: Context, file: Express.Multer.File): Promise<void> {
