@@ -1,46 +1,42 @@
 /* eslint-disable react/display-name */
 import { useState } from 'react';
-
 import { makeStyles, createStyles } from '@material-ui/core/styles';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
 import MenuItem from '@material-ui/core/MenuItem';
 import Menu from '@material-ui/core/Menu';
-
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 
-const useStyles = makeStyles((theme) =>
-  createStyles({
-    root: {
-      '&:hover': {
-        backgroundColor: 'none !important',
-      },
+const useStyles = makeStyles((theme) => createStyles({
+  root: {
+    '&:hover': {
+      backgroundColor: 'none !important',
     },
-    dense: {
-      color: 'black',
-      backgroundColor: 'transparent !important',
+  },
+  dense: {
+    color: 'black',
+    backgroundColor: 'transparent !important',
+  },
+  padding: {
+    padding: 0,
+  },
+  button: {
+    border: `1px solid ${theme.palette.primary.main}`,
+    borderRadius: '15px',
+    '&:hover': {
+      backgroundColor: theme.palette.primary.main,
+      textColor: 'white',
     },
-    padding: {
-      padding: 0,
-    },
-    button: {
-      border: `1px solid ${theme.palette.primary.main}`,
-      borderRadius: '15px',
-      '&:hover': {
-        backgroundColor: theme.palette.primary.main,
-        textColor: 'white',
-      },
-    },
-    paper: {
-      top: '60px !important',
-    },
-  }),
-);
+  },
+  paper: {
+    top: '60px !important',
+  },
+}));
 
 type LanguageMenuProps = {
-  className?: string;
+  className: string;
 };
 
 const LanguageMenu = ({ className }: LanguageMenuProps): JSX.Element => {

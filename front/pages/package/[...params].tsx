@@ -2,7 +2,6 @@ import { useQuery } from '@apollo/client';
 import React, { useState } from 'react';
 import semver from 'semver';
 import { useRouter } from 'next/router';
-import { getDataFromTree } from '@apollo/react-ssr';
 import { makeStyles } from '@material-ui/core/styles';
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
@@ -11,7 +10,6 @@ import { PACKAGE_FROM_VERSION } from 'queries';
 
 import Head from 'components/Head';
 import Layout from 'components/Layout';
-import withApollo from 'utils/client';
 import TabPanel from 'components/pages/packages/TabPanel';
 import MarkdownDisplayer from 'components/pages/packages/MarkdownDisplayer';
 import VersionList from 'components/pages/packages/VersionList';

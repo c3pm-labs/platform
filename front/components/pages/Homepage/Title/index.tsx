@@ -82,7 +82,7 @@ const useStyles = makeStyles((theme) => ({
     width: '100%',
   },
 }));
-//  {t('home.title')}
+
 function Title(): JSX.Element {
   const classes = useStyles();
   const { t } = useTranslation('common');
@@ -104,14 +104,17 @@ function Title(): JSX.Element {
             <div className={classes.containerSearchBar}>
               <SearchBar
                 className={classes.searchBar}
-                placeholder={t('home.sharingLink')}
               />
             </div>
           </div>
         </div>
       </div>
       <Typography className={classes.subtitle}>
-        {t('home.easy')} | {t('home.trivial')} | {t('home.sharing')}
+        {t('home.easy')}
+        |
+        {t('home.trivial')}
+        |
+        {t('home.sharing')}
       </Typography>
       <ButtonTitle />
     </div>

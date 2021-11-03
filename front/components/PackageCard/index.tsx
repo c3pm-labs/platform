@@ -131,7 +131,8 @@ function PackageCard({ packageData, discover = undefined }: PackageCardProps): J
           classes={{ picture: classes.avatar, name: classes.name }}
         />
         <Typography variant="body2" className={classes.update}>
-          {t('lastUpdated')}&nbsp;
+          {t('lastUpdated')}
+          &nbsp;
           {router.locale === 'en' ? date.toDateString() : date.toLocaleDateString()}
         </Typography>
       </div>

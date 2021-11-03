@@ -148,13 +148,13 @@ const Login: NextPage = () => {
               <TextInput
                 type="text"
                 name="login"
-                label= {t('login.emailOrUsername')}
+                label={t('login.emailOrUsername')}
                 required
                 fullWidth
               />
               <PasswordInput
                 name="password"
-                label= {t('login.password')}
+                label={t('login.password')}
                 required
                 fullWidth
               />
@@ -180,15 +180,14 @@ const Login: NextPage = () => {
       </div>
     </>
   );
-}
+};
 
-export const getStaticProps: GetStaticProps = async ({ locale }) => {
-  return {
+export const getStaticProps: GetStaticProps = async ({ locale }) => (
+  {
     props: {
       ...(await serverSideTranslations(locale as string, ['common'])),
     },
-  };
-};
-
+  }
+);
 
 export default Login;

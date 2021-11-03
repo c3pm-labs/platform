@@ -47,7 +47,7 @@ function ResultBar(props: ResultBarProps): JSX.Element {
     setTimeout(() => {
       setTextNbPackage(`${nbPackage} ${t('found')}`);
     }, 1000);
-  }, [nbPackage]);
+  }, [nbPackage, t]);
 
   return (
     <div className={resultBarStyle} style={{ paddingLeft: `${!progessValue ? 0 : 5}%`, width: `${progessValue}%` }}>

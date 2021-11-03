@@ -4,7 +4,6 @@ import {
 import React from 'react';
 import { useRouter } from 'next/router';
 import Pagination from '@material-ui/lab/Pagination';
-import { useTranslation } from 'next-i18next';
 import PaginationItem from '@material-ui/lab/PaginationItem';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
 import { Package } from 'types';
@@ -92,7 +91,6 @@ const Search: NextPage = () => {
   const theme = useTheme();
   const classes = useStyles();
   const isMobile = useMediaQuery(theme.breakpoints.down('xs'));
-  const { t } = useTranslation('common');
   // tags is of type string, it has the following format: tag1,tag2,tag3
   const { q, tags, page = 1 } = router.query;
   const selectedTags = typeof tags === 'string' && tags.length > 0 ? tags.split(',') : [];
@@ -163,14 +161,13 @@ const Search: NextPage = () => {
       )}
     </Layout>
   );
-}
+};
 
-export const getStaticProps: GetStaticProps = async ({ locale }) => {
-  return {
+export const getStaticProps: GetStaticProps = async ({ locale }) => (
+  {
     props: {
       ...(await serverSideTranslations(locale as string, ['common'])),
     },
-  };
-};
-
+  }
+);
 export default Search;

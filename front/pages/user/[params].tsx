@@ -176,14 +176,14 @@ const Profile: NextPage = () => {
       </Layout>
     </>
   );
-}
+};
 
-export const getServerSideProps: GetStaticProps = async ({ locale }) => {
-  return {
+export const getStaticProps: GetStaticProps = async ({ locale }) => (
+  {
     props: {
       ...(await serverSideTranslations(locale as string, ['common'])),
     },
-  };
-};
+  }
+);
 
 export default Profile;

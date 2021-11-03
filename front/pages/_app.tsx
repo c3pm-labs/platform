@@ -19,8 +19,8 @@ function App({ Component, pageProps }: AppProps): JSX.Element {
   });
 
   return (
-  <ApolloProvider client={client}>
-    <ThemeProvider theme={theme}>
+    <ApolloProvider client={client}>
+      <ThemeProvider theme={theme}>
         <Head>
           <title>c3pm</title>
           <meta name="viewport" content="minimum-scale=1, initial-scale=1, width=device-width" />
@@ -29,7 +29,7 @@ function App({ Component, pageProps }: AppProps): JSX.Element {
         <CssBaseline />
         <Component {...pageProps} />
       </ThemeProvider>
-  </ApolloProvider>
+    </ApolloProvider>
   );
 }
 

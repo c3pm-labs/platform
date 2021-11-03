@@ -2,11 +2,11 @@ import { makeStyles } from '@material-ui/core';
 import { useQuery } from '@apollo/client';
 import Link from 'next/link';
 import type { NextPage, GetStaticProps } from 'next';
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
+import { useTranslation } from 'next-i18next';
 
 import Layout from 'components/Layout';
 import Head from 'components/Head';
-import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
-import { useTranslation } from 'next-i18next';
 
 import Button from '../components/Button';
 import PackageCard from '../components/PackageCard';
@@ -147,19 +147,17 @@ const Discover: NextPage = () => {
             );
           })}
         </div>
-
       </div>
     </Layout>
   );
-}
+};
 
-export const getStaticProps: GetStaticProps = async ({ locale }) => {
-  return {
+export const getStaticProps: GetStaticProps = async ({ locale }) => (
+  {
     props: {
       ...(await serverSideTranslations(locale as string, ['common'])),
     },
-  };
-};
-
+  }
+);
 
 export default Discover;
