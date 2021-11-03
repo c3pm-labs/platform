@@ -14,12 +14,8 @@ const useStyles = makeStyles((theme) => ({
     justifyContent: 'center',
     alignItems: 'center',
     flexDirection: 'column',
-    padding: '3rem',
-    position: 'relative',
-    zIndex: 1,
-    [theme.breakpoints.down('md')]: {
-      paddingBottom: '450px',
-    },
+    paddingBottom: '5rem',
+    background: 'linear-gradient(124.57deg, rgba(38, 179, 239, 0.2) 37.9%, rgba(255, 112, 68, 0.2) 74.33%)',
   },
   title: {
     textAlign: 'center',
@@ -59,9 +55,6 @@ const useStyles = makeStyles((theme) => ({
     webkitBackdropFilter: 'blur(57.558px)',
     borderRadius: '6px',
     maxWidth: '680px',
-  },
-  box: {
-    height: '350px',
   },
 }));
 
@@ -244,7 +237,6 @@ const Tos: NextPage = () => {
           </TosAccordion>
         </div>
       </div>
-      <div className={classes.box} />
     </Layout>
   );
 };
