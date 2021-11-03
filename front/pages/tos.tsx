@@ -20,6 +20,7 @@ const useStyles = makeStyles(() => ({
   title: {
     textAlign: 'center',
     padding: '1.5rem',
+    fontSize: 30,
   },
   text: {
     marginBottom: '0.5rem',
