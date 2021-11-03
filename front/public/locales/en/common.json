@@ -41,9 +41,9 @@
     },
     "home": {
         "why": "Why c3pm?",
-        "easy": "C++ made easy",
-        "trivial": "Trivial dependency managment",
-        "sharing": "Package sharing",
+        "easy": "C++ made easy ",
+        "trivial": " Trivial dependency managment ",
+        "sharing": " Package sharing",
         "title": "Your toolkit to dive into C++ easily",
         "easyDescription": "With c3pm, start your cross-platform project with 0 configuration. It has never been so simple!",
         "trivialDescription": "c3pm will manage the dependencies for you! No more hours spent installing a simple library: one command and you’re good to go!",
@@ -51,7 +51,9 @@
         "easyLink": "Learn more about c3pm",
         "trivialLink": "View full documentation",
         "sharingLink": "Browse packages",
-        "read": "Read the documentation"
+        "read": "Read the documentation",
+        "team": "Our team"
+
     },
     "discover": {
         "all": "Discover all packages  🔍",
