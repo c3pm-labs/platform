@@ -6,9 +6,14 @@ import TextInput from 'components/TextInput';
 
 export interface SearchBarProps {
   className?: string;
+  placeholder: string;
 }
 
-function SearchBar({ className }: SearchBarProps): JSX.Element {
+function SearchBar(props: SearchBarProps): JSX.Element {
+  const {
+    className,
+    placeholder,
+  } = props;
   const router = useRouter();
   const { t } = useTranslation('common');
   const { q, tags, page = 1 } = router.query;

@@ -24,10 +24,6 @@ const useStyles = makeStyles((theme) => ({
   container: {
     display: 'flex',
     flexDirection: 'column',
-    margin: `${theme.spacing(2)}px ${theme.spacing(3)}px`,
-    [theme.breakpoints.down('xs')]: {
-      margin: theme.spacing(2),
-    },
   },
   containerLoader: {
     display: 'flex',
@@ -61,6 +57,15 @@ const useStyles = makeStyles((theme) => ({
       [theme.breakpoints.down('xs')]: {
         margin: `${theme.spacing(1)}px 0`,
       },
+    },
+  },
+  containerBody: {
+    [theme.breakpoints.up('sm')]: {
+      paddingLeft: theme.spacing(20),
+      paddingRight: theme.spacing(20),
+    },
+    [theme.breakpoints.down('xs')]: {
+      margin: theme.spacing(2),
     },
   },
   version: {
@@ -171,21 +176,22 @@ function PackageDetails(): JSX.Element {
       <Head title={packageVersion ? `${packageName} - ${packageVersion}` : packageName} />
       <div className={classes.container}>
         <Presentation version={data.version} />
-
-        <Tabs value={currentTab} onChange={handleChange} aria-label="package tabs" className={classes.tab}>
-          <Tab label="Readme" id="package-tab-1" aria-controls="package-tabpanel-1" />
-          <Tab label="Versions" id="package-tab-2" aria-controls="package-tabpanel-2" />
-        </Tabs>
-        <TabPanel value={currentTab} index={0}>
-          <MarkdownDisplayer source={data.version.readme} />
-        </TabPanel>
-        <TabPanel value={currentTab} index={1}>
-          <VersionList
-            authorId={data.version.package.author.id}
-            versions={data.version.package.versions}
-            packageName={data.version.package.name}
-          />
-        </TabPanel>
+        <div className={classes.containerBody}>
+          <Tabs value={currentTab} onChange={handleChange} aria-label="package tabs" className={classes.tab}>
+            <Tab label="Readme" id="package-tab-1" aria-controls="package-tabpanel-1" />
+            <Tab label="Versions" id="package-tab-2" aria-controls="package-tabpanel-2" />
+          </Tabs>
+          <TabPanel value={currentTab} index={0}>
+            <MarkdownDisplayer source={data.version.readme} />
+          </TabPanel>
+          <TabPanel value={currentTab} index={1}>
+            <VersionList
+              authorId={data.version.package.author.id}
+              versions={data.version.package.versions}
+              packageName={data.version.package.name}
+            />
+          </TabPanel>
+        </div>
       </div>
     </Layout>
   );

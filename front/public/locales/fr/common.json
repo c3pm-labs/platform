@@ -1,5 +1,6 @@
 {
     "packages": "Paquets",
+    "downloads": " téléchargements",
     "errors": {
         "emailOrUsername": "Email ou pseudo obligatoire",
         "username": "Pseudo obligatoire",
@@ -24,7 +25,8 @@
         "install": "Installer c3pm",
         "login": "Connexion",
         "register": "S'enregistrer",
-        "edit": "Modifier"
+        "edit": "Modifier",
+        "discover": "Tout découvrir"
     },
     "found": "paquets trouvés",
     "search": "rechercher",
@@ -48,7 +50,19 @@
         "sharingDescription": "c3pm est, avant tout, un gestionnaire de paquets. Vous pouvez partagez n'importe quel pièce de code avec la communauté !",
         "easyLink": "En aprendre plus sur c3pm",
         "trivialLink": "Voir la documentation complète",
-        "sharingLink": "Explorer les paquets"
+        "sharingLink": "Explorer les paquets",
+        "read": "Lire la documentation"
+    },
+    "discover": {
+        "all": "Découvre tous nos paquets 🔍",
+        "publishedPackages": "paquets publiées ! 🎉",
+        "see": " Tout voir",
+        "published": "publiés",
+        "packages": "paquets",
+        "downloaded": "téléchargés",
+        "weHave": "Sur c3pm nous avons:",
+        "currently": "c3pm actuellement",
+        "trending": "Découvre nos paquets tendances 🔥"
     },
     "footer": {
         "general": "Informations générales",

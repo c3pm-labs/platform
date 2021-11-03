@@ -1,5 +1,5 @@
 import {
-  makeStyles, Typography, useTheme,
+  makeStyles, useTheme,
 } from '@material-ui/core';
 import React from 'react';
 import { useRouter } from 'next/router';
@@ -17,9 +17,7 @@ import Head from 'components/Head';
 import Layout from 'components/Layout';
 import PackageCard from 'components/PackageCard';
 import WrappedLoader from 'components/WrappedLoader';
-
-import { tagsList } from '../utils/constant';
-import Button from '../components/Button';
+import PackageFoundBar from 'components/PackageFoundBar';
 
 const useStyles = makeStyles((theme) => ({
   container: {
@@ -43,30 +41,6 @@ const useStyles = makeStyles((theme) => ({
     alignItems: 'center',
     paddingTop: '25%',
   },
-  resultBar: {
-    display: 'flex',
-    width: '100%',
-    backgroundColor: theme.palette.primary.main,
-    fontSize: '20px',
-    color: 'white',
-    [theme.breakpoints.up('sm')]: {
-      padding: '2px 0',
-      paddingLeft: '5%',
-    },
-    [theme.breakpoints.down('xs')]: {
-      justifyContent: 'center',
-    },
-  },
-  line: {
-    width: '100%',
-    height: '1px',
-    margin: '20px 0',
-    [theme.breakpoints.down('xs')]: {
-      height: 0,
-      margin: '10px 0',
-    },
-    backgroundColor: theme.palette.grey[400],
-  },
   footer: {
     display: 'flex',
     flexDirection: 'column',
@@ -79,6 +53,7 @@ const useStyles = makeStyles((theme) => ({
     flexDirection: 'column',
     width: '70%',
     maxWidth: 600,
+    margin: '10px 0',
     [theme.breakpoints.down('sm')]: {
       width: '100%',
     },
@@ -143,7 +118,6 @@ const Search: NextPage = () => {
       if (packageData) {
         list.push(
           <div className={classes.list} key={packageData.name}>
-            {idx !== 0 && <div className={classes.line} />}
             <PackageCard packageData={packageData} key={packageData.name} />
           </div>,
         );
@@ -163,32 +137,10 @@ const Search: NextPage = () => {
     );
   }
 
-  const searchByTag = (tag: string) => {
-    const isPresent = selectedTags.find((e) => e === tag);
-    const newTags = isPresent ? selectedTags.filter((e) => e !== tag).join(',') : selectedTags.concat(tag).join(',');
-    router.push({ pathname: '/search', query: { q, ...(newTags.length > 0 ? { tags: newTags } : {}), ...(page ? { page } : {}) } });
-  };
-
   return (
     <Layout>
       <Head title="Search" />
-      <div className={classes.resultBar}>
-        <Typography variant="body1" data-testid="number-of-packages">
-          {data ? data.search.length : 0}
-          {' '}
-          {t('found')}
-        </Typography>
-      </div>
-      <div className={classes.tagsContainer}>
-        {tagsList.map((tag) => {
-          const isSelected = selectedTags.find((e) => e === tag);
-          return (
-            <Button onClick={() => searchByTag(tag)} type="button" key={tag} variant={isSelected ? 'contained' : 'outlined'} className={classes.tag}>
-              {tag}
-            </Button>
-          );
-        })}
-      </div>
+      <PackageFoundBar nbPackage={data ? data.search.length : 0} />
       <div className={classes.container}>
         {packages()}
       </div>

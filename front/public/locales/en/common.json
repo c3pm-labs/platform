@@ -1,5 +1,6 @@
 {
     "packages": "Packages",
+    "downloads": " downloads",
     "errors": {
         "emailOrUsername": "Email or username is required",
         "username": "Username is required",
@@ -23,6 +24,7 @@
         "learn": "Learn More",
         "install": "Install c3pm",
         "login": "Sign in",
+        "discover": "Discover all",
         "register": "Sign up",
         "edit": "Edit"
     },
@@ -48,7 +50,19 @@
         "sharingDescription": "c3pm is, before all, a package manager. You can share a reusable piece of code with the entire community!",
         "easyLink": "Learn more about c3pm",
         "trivialLink": "View full documentation",
-        "sharingLink": "Browse packages"
+        "sharingLink": "Browse packages",
+        "read": "Read the documentation"
+    },
+    "discover": {
+        "all": "Discover all packages  🔍",
+        "publishedPackages": "published packages! 🎉",
+        "see": " See them all",
+        "published": "published",
+        "packages": "packages",
+        "downloaded": "downloaded",
+        "weHave": "On c3pm we have:",
+        "currently": "c3pm currently has",
+        "trending": "Discover our trending packages 🔥"
     },
     "footer": {
         "general": "General informations",

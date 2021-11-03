@@ -58,6 +58,16 @@ export async function getPackage(ctx: Context, name: string): Promise<Package> {
   });
 }
 
+export async function getPopularPackages(ctx: Context): Promise<Package[]> {
+  return ctx.db.package.findMany({
+    orderBy: [
+      {
+        downloads: 'desc',
+      },
+    ],
+  });
+}
+
 export async function getVersionOrLatest(
   ctx: Context, packageName: string, version?: string,
 ): Promise<Version> {
@@ -111,6 +121,22 @@ export async function deleteVersion(
   return pkg;
 }
 
+export async function countDownloads(ctx: Context, packageName: string): Promise<Package> {
+  const pkg = await ctx.db.package.findUnique({ where: { name: packageName } });
+  let updatedPkg;
+  try {
+    updatedPkg = await ctx.db.package.update({
+      where: { name: packageName },
+      data: {
+        downloads: pkg.downloads + 1,
+      },
+    });
+  } catch (e) {
+    throw new ForbiddenError('Couldn\'t update downloads count');
+  }
+  return updatedPkg;
+}
+
 export async function publish(ctx: Context, file: Express.Multer.File): Promise<void> {
   let c3pmBuffer;
   let readmeBuffer;
@@ -122,7 +148,7 @@ export async function publish(ctx: Context, file: Express.Multer.File): Promise<
     },
   });
   const parseReadme = new tar.Parse({
-    filter: (path: string) => path.match(/(.+\/|^)(README\.md)$/)?.length > 0,
+    filter: (path: string) => path.match(/(.+\/[^\\]|^)(README\.md)$/)?.length > 0,
     onentry: async (entry: NodeJS.ReadableStream) => {
       readmeBuffer = await streamToString(entry);
     },
@@ -132,7 +158,6 @@ export async function publish(ctx: Context, file: Express.Multer.File): Promise<
   await bufferToStream(file.buffer).pipe(parseReadme);
 
   const parsedC3PM = YAML.parse(c3pmBuffer);
-  bufferToStream(file.buffer).pipe(parseReadme);
 
   const user = await ctx.session.get();
   const currentPackage = await ctx.db.package.findUnique({

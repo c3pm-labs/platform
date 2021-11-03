@@ -1,5 +1,5 @@
 import { makeStyles } from '@material-ui/core/styles';
-import { Avatar } from '@material-ui/core';
+import { Avatar, Typography } from '@material-ui/core';
 import LanguageIcon from '@material-ui/icons/Language';
 import TwitterIcon from '@material-ui/icons/Twitter';
 import GitHubIcon from '@material-ui/icons/GitHub';
@@ -7,11 +7,16 @@ import LinkedInIcon from '@material-ui/icons/LinkedIn';
 import LinkIcon from '@material-ui/icons/Link';
 
 import team from 'utils/team';
-import Head from 'components/Head';
-import Layout from 'components/Layout';
 
 const useStyles = makeStyles((theme) => ({
   container: {
+    display: 'flex',
+    minHeight: '92vh',
+    flexDirection: 'column',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  containerProfile: {
     display: 'flex',
     flexWrap: 'wrap',
     alignItems: 'center',
@@ -60,6 +65,11 @@ const useStyles = makeStyles((theme) => ({
     height: 20,
     width: 20,
   },
+  subtitle: {
+    color: theme.palette.text.primary,
+    fontSize: '1.4em',
+    fontWeight: 600,
+  },
 }));
 
 function Team(): JSX.Element {
@@ -74,9 +84,11 @@ function Team(): JSX.Element {
   };
 
   return (
-    <Layout>
-      <Head title="Team" />
-      <div className={classes.container}>
+    <div className={classes.container}>
+      <Typography className={classes.subtitle}>
+        Our Team
+      </Typography>
+      <div className={classes.containerProfile}>
         {team.map((member) => (
           <div key={member.name} className={classes.profileCard}>
             <Avatar alt="member avatar" src={`https://avatars2.githubusercontent.com/u/${member.avatar}`} className={classes.avatar} />
@@ -93,7 +105,7 @@ function Team(): JSX.Element {
           </div>
         ))}
       </div>
-    </Layout>
+    </div>
   );
 }
 
