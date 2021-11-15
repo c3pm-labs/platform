@@ -1,7 +1,6 @@
 import { makeStyles } from '@material-ui/core/styles';
 import { Typography } from '@material-ui/core';
 import { useTranslation } from 'next-i18next';
-import Link from 'next/link';
 
 import TextLink from 'components/TextLink';
 
@@ -67,8 +66,6 @@ function Footer(): JSX.Element {
         <span>{t('footer.contact')}</span>
         {linkElement('mailto:contact@c3pm.io', 'contact@c3pm.io')}
         {linkElement('https://github.com/c3pm-labs/c3pm/issues/new/choose', t('footer.issue'))}
-        {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
-        <Link href="/team"><a className={classes.text}>{t('footer.team')}</a></Link>
       </div>
     </div>
   );
