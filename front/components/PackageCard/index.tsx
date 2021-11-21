@@ -95,12 +95,13 @@ function PackageCard({ packageData, discover = undefined }: PackageCardProps): J
     name, author, tags, latest, downloads,
   } = packageData;
   const date = new Date(latest.publishedAt);
+  const url = `/package/${name}/${latest.version}`;
 
   return (
     <div className={classes.container} data-testid={`packageCard-${name}`}>
       <div className={classes.top}>
         <Typography variant="h5" data-testid={`packageCard-${name}-name`}>
-          <TextLink href="/package/[name]" as={`/package/${name}`}>
+          <TextLink href={url} as={url}>
             {name}
             <span style={{ fontSize: 14 }}>
               {' v'}
