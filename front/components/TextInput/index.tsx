@@ -7,7 +7,6 @@ const useStyles = makeStyles({
   root: {
     margin: 0,
   },
-
 });
 
 export interface TextInputProps {
@@ -53,9 +52,3 @@ const TextInput = ({ disableHelperText = false, name, ...props }: TextInputProps
     />
   );
 };
-
-export default TextInput;
-function TextStyle(color: any, white: any): React.CSSProperties {
-  throw new Error('Function not implemented.');
-}
-
