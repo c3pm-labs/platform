@@ -52,3 +52,5 @@ const TextInput = ({ disableHelperText = false, name, ...props }: TextInputProps
     />
   );
 };
+
+export default TextInput;
