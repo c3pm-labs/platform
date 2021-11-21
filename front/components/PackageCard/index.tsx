@@ -100,7 +100,7 @@ function PackageCard({ packageData, discover = undefined }: PackageCardProps): J
     <div className={classes.container} data-testid={`packageCard-${name}`}>
       <div className={classes.top}>
         <Typography variant="h5" data-testid={`packageCard-${name}-name`}>
-          <TextLink href="/package/[name]" as={`/package/${name}/${latest.version}`}>
+          <TextLink href="/package/[name]" as={`/package/${name}`}>
             {name}
             <span style={{ fontSize: 14 }}>
               {' v'}
