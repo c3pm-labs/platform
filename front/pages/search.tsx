@@ -145,7 +145,7 @@ const Search: NextPage = () => {
                 {...item}
                 className={classes.numberButton}
                 component="a"
-                href={`/search?q=${q}&page=${item.page}`}
+                href={`/search?q=${q ?? ''}&page=${item.page}`}
               />
             )}
           />
