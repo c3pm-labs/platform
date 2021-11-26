@@ -23,6 +23,7 @@ function formatError(err: GraphQLError): Error {
     return new UserInputError(originalError.message);
   }
 
+  console.error('Internal server error:', originalError);
   return new Error('Internal server error');
 }
 
