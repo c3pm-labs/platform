@@ -84,12 +84,6 @@ const useStyles = makeStyles((theme) => ({
     fontSize: 12,
     fontWeight: 'normal',
   },
-  avatar: {
-    display: 'flex',
-    alignItems: 'center',
-    textDecoration: 'none',
-    cursor: 'pointer',
-  },
   picture: {
     height: 30,
     width: 30,

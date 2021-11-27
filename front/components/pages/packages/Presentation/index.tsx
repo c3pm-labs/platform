@@ -196,7 +196,7 @@ const Presentation = ({ version } : PresentationProps): JSX.Element => {
           classes={
             { container: classes.avatar, picture: classes.picture, name: classes.name }
           }
-          data-testid="author"
+          testId="author"
         />
       </div>
       { gotMetaData ? (
