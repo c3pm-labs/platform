@@ -2,7 +2,7 @@ import {
   makeStyles, Typography, Hidden,
 } from '@material-ui/core';
 import { useTranslation } from 'next-i18next';
-import React from 'react';
+import React, { useState } from 'react';
 
 import SearchBar from 'components/Layout/Header/SearchBar';
 import Logo from 'components/Logo';
@@ -85,6 +85,7 @@ const useStyles = makeStyles((theme) => ({
 
 function Title(): JSX.Element {
   const classes = useStyles();
+  const [seeMore, setSeeMore] = useState(false);
   const { t } = useTranslation('common');
 
   return (
@@ -105,6 +106,15 @@ function Title(): JSX.Element {
               <SearchBar
                 className={classes.searchBar}
               />
+            </div>
+            <div className={classes.containerSearchBar}>
+              {seeMore ? (
+                <>
+                  <span>you can filter your search by "author" or "tag" like this: tag:utils.\nYou can chain multiple filters.</span>
+                  <span>you can sort your search by downloads or name like this: sort:downloads-asc</span>
+                  <span onClick={() => setSeeMore(false)}>see less</span>
+                </>
+              ) : <span onClick={() => setSeeMore(true)}>see more about the searchbar options</span>}
             </div>
           </div>
         </div>

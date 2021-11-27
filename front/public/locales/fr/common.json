@@ -29,7 +29,7 @@
         "discover": "Tout découvrir"
     },
     "found": "paquets trouvés",
-    "search": "rechercher",
+    "search": "nomDuPaquet tag:network author:superdev",
     "lastUpdated": "Modifié pour la dernière fois le",
      "login": {
         "welcome": "Bon retour !",

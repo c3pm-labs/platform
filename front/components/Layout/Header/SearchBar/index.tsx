@@ -38,7 +38,7 @@ function SearchBar(props: SearchBarProps): JSX.Element {
           fullWidth
           name="search"
           type="search"
-          placeholder={`${t('search')}...`}
+          placeholder={t('search')}
         />
       </Form>
     </Formik>

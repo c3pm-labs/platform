@@ -29,7 +29,7 @@
         "edit": "Edit"
     },
     "found": "packages found",
-    "search": "search",
+    "search": "packageName tag:network author:superdev",
     "lastUpdated": "Last updated on",
     "login": {
         "welcome": "Welcome back!",
