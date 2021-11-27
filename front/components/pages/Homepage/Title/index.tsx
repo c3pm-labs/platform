@@ -45,7 +45,7 @@ const useStyles = makeStyles((theme) => ({
     fontSize: '1.4em',
     paddingLeft: theme.spacing(2),
     paddingRight: theme.spacing(2),
-    marginTop: theme.spacing(3),
+    marginTop: theme.spacing(7),
     textAlign: 'center',
   },
   minSpacingFantom: {
@@ -73,13 +73,22 @@ const useStyles = makeStyles((theme) => ({
   },
   containerAbsoluteSearchBar: {
     position: 'absolute',
-    bottom: '-18px',
+    bottom: '-35px',
     width: '100%',
   },
   containerSearchBar: {
     display: 'flex',
-    justifyContent: 'center',
+    flexDirection: 'column',
     width: '100%',
+    alignItems: 'center',
+  },
+  seeMore: {
+    border: 'none',
+    background: 'transparent',
+    fontSize: 11,
+    outlined: 'none',
+    textDecoration: 'underline',
+    color: theme.palette.primary.main,
   },
 }));
 
@@ -106,15 +115,15 @@ function Title(): JSX.Element {
               <SearchBar
                 className={classes.searchBar}
               />
-            </div>
-            <div className={classes.containerSearchBar}>
-              {seeMore ? (
-                <>
-                  <span>you can filter your search by "author" or "tag" like this: tag:utils.\nYou can chain multiple filters.</span>
-                  <span>you can sort your search by downloads or name like this: sort:downloads-asc</span>
-                  <span onClick={() => setSeeMore(false)}>see less</span>
-                </>
-              ) : <span onClick={() => setSeeMore(true)}>see more about the searchbar options</span>}
+              <a
+                target="_blank"
+                rel="noopener noreferrer"
+                href="https://docs.c3pm.io/help/searchbar"
+                className={classes.seeMore}
+              >
+                {t('home.seeMore')}
+
+              </a>
             </div>
           </div>
         </div>
