@@ -118,7 +118,7 @@ function Title(): JSX.Element {
               <a
                 target="_blank"
                 rel="noopener noreferrer"
-                href="https://docs.c3pm.io/help/searchbar"
+                href="https://docs.c3pm.io/docs/help/searchbar"
                 className={classes.seeMore}
               >
                 {t('home.seeMore')}
