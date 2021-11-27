@@ -23,6 +23,8 @@ function formatError(err: GraphQLError): Error {
     return new UserInputError(originalError.message);
   }
 
+  // eslint-disable-next-line no-console
+  console.error('Internal server error:', originalError);
   return new Error('Internal server error');
 }
 
