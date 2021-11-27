@@ -16,11 +16,11 @@ function SearchBar(props: SearchBarProps): JSX.Element {
   } = props;
   const router = useRouter();
   const { t } = useTranslation('common');
-  const { q, tags, page = 1 } = router.query;
+  const { q, tags } = router.query;
   const search = q || '';
 
   function handleSubmit(values: { search: string }): void {
-    router.push({ pathname: '/search', query: { q: values.search, ...(tags ? { tags } : {}), ...(page ? { page } : {}) } });
+    router.push({ pathname: '/search', query: { q: values.search, ...(tags ? { tags } : {}), page: 1 } });
   }
 
   return (

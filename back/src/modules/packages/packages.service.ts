@@ -39,25 +39,46 @@ export async function search(s: string): Promise<Package[]> {
 
   const keyword = s.replace(/[a-zA-Z-]+:[a-zA-Z-]+/g, '').trim();
 
+  let orderBy = sortKeys[parameters.sort ?? 'downloads-desc'];
+
+  if (keyword && !parameters.sort) {
+    orderBy = {
+      _relevance: {
+        fields: ['name'],
+        search: keyword,
+        sort: 'asc',
+      },
+    };
+  }
+
   return db.package.findMany({
     where: {
-      name: {
-        contains: keyword,
-      },
-      tags: {
-        hasEvery: parameters.tag ?? [],
-      },
-      ...(parameters.author?.length > 0 ? {
-        OR: parameters.author.map((author) => ({
-          author: {
-            username: {
-              equals: author,
-            },
+      AND: [
+        {
+          OR: [
+            { name: { contains: keyword } },
+            { versions: { some: { description: { contains: keyword } } } },
+          ],
+        },
+        {
+          tags: {
+            hasEvery: parameters.tag ?? [],
           },
-        })),
-      } : {}),
+        },
+        {
+          ...(parameters.author?.length > 0 ? {
+            OR: parameters.author.map((author) => ({
+              author: {
+                username: {
+                  equals: author,
+                },
+              },
+            })),
+          } : {}),
+        },
+      ],
     },
-    orderBy: sortKeys[parameters.sort ?? 'downloads-desc'],
+    orderBy,
   });
 }
 

@@ -49,17 +49,13 @@ function Discover(): JSX.Element {
     data, loading,
   } = useQuery<{ discover: Package[] }>(DISCOVER);
 
-  if (loading || !data) {
-    return <Loader />;
-  }
-
   return (
     <div className={classes.container}>
       <Typography className={classes.subtitle}>
         {t('discover.trending')}
       </Typography>
       <div className={classes.packageList}>
-        {data.discover.slice(0, 3).map((p, i) => {
+        {loading || !data ? (<Loader size="xl" />) : (data.discover.slice(0, 3).map((p, i) => {
           const getColor = () => {
             if (i <= data.discover.length / 3) return classes.red;
             if (i >= (data.discover.length / 3) * 2) return classes.yellow;
@@ -70,7 +66,7 @@ function Discover(): JSX.Element {
               <PackageCard packageData={p} discover={getColor()} />
             </div>
           );
-        })}
+        }))}
       </div>
       <Link href="/discover">
         <Button variant="contained" color="primary">{t('buttons.discover')}</Button>
