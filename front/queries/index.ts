@@ -137,6 +137,7 @@ export const SEARCH = gql`
             }
             author {
                 username,
+                id,
             }
             latest {
                 description,

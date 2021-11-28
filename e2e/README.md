@@ -10,4 +10,4 @@ docker run -p 4569:4569 -d --name s3 gliffy/fake-s3
 curl "http://localhost:4569/c3pm-registry-io" -X PUT
 ```
 
-Then you can run the test by doing `npm run cypress` or `npm run cypress:dev` if you want the web interface
+Then you can run the test by doing `npm run test` or `npm run test:dev` if you want the web interface

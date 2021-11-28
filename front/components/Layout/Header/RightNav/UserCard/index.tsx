@@ -102,6 +102,7 @@ function UserCard(): JSX.Element {
           classes={{ picture: classes.avatar }}
           user={viewer}
           withName={false}
+          linkToProfile={false}
         />
         {open ? <ExpandLess /> : <ExpandMore />}
       </button>
