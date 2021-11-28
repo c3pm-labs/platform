@@ -39,6 +39,13 @@
         "account": "Don't have an account? ",
         "register": "Sign Up"
     },
+    "register": {
+        "title": "Join the team",
+        "username": "username",
+        "email": "email",
+        "account": "Already have an account? ",
+        "password": "password"
+    },
     "home": {
         "why": "Why c3pm?",
         "easy": "C++ made easy ",

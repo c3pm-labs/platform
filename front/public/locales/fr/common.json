@@ -37,7 +37,14 @@
         "password": "mot de passe",
         "forgot": "Mot de passe oublié ?",
         "account": "Pas encore de compte ? ",
-        "register": "S'enregistrer"
+        "register": " S'enregistrer"
+    },
+     "register": {
+        "title": "Rejoins l'équipe",
+        "username": "pseudonyme",
+        "email": "email",
+        "account": "Tu as déjà un compte ? ",
+        "password": "mot de passe"
     },
     "home": {
         "why": "Pourquoi c3pm ?",

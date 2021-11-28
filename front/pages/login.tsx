@@ -137,7 +137,7 @@ const Login: NextPage = () => {
               await login(values);
             }}
           >
-            <Form noValidate className={classes.input}>
+            <Form className={classes.input}>
               <Typography
                 variant="body2"
                 color="error"
@@ -174,7 +174,10 @@ const Login: NextPage = () => {
             className={classes.register}
           >
             {t('login.account')}
-            <TextLink href="/register">{t('buttons.register')}</TextLink>
+          <Typography noWrap>
+            &nbsp;
+          </Typography>
+          <TextLink href="/register">{t('buttons.register')}</TextLink>
           </Typography>
         </div>
       </div>
