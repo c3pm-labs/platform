@@ -174,10 +174,10 @@ const Login: NextPage = () => {
             className={classes.register}
           >
             {t('login.account')}
-          <Typography noWrap>
-            &nbsp;
-          </Typography>
-          <TextLink href="/register">{t('buttons.register')}</TextLink>
+            <Typography noWrap>
+              &nbsp;
+            </Typography>
+            <TextLink href="/register">{t('buttons.register')}</TextLink>
           </Typography>
         </div>
       </div>

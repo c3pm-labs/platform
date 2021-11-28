@@ -74,7 +74,7 @@ const Settings: NextPage = () => {
       </Hidden>
     </Layout>
   );
-}
+};
 
 export const getStaticProps: GetStaticProps = async ({ locale }) => (
   {

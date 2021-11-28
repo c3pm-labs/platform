@@ -186,7 +186,7 @@ const Register: NextPage = () => {
       </div>
     </>
   );
-}
+};
 
 export const getStaticProps: GetStaticProps = async ({ locale }) => (
   {
