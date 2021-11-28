@@ -17,20 +17,22 @@ import ProfileInfos from '../../components/pages/profile/ProfileInfos';
 import PackageCard from '../../components/PackageCard';
 
 const useStyles = makeStyles((theme) => ({
-  box: {
+  container: {
     display: 'flex',
     [theme.breakpoints.between('md', 'xl')]: {
       flexDirection: 'row',
       minHeight: '80vh',
+      padding: 0,
+      marginTop: 40,
     },
     flexDirection: 'column',
     alignItems: 'flex-start',
     justifyContent: 'center',
+    padding: 30,
+    marginTop: 40,
   },
   packagesContainer: {
-    paddingLeft: theme.spacing(4),
-    paddingRight: theme.spacing(4),
-    paddingBottom: theme.spacing(2),
+    paddingBottom: theme.spacing(3),
   },
   profileContainerPadding: {
     width: '25%',
@@ -39,8 +41,6 @@ const useStyles = makeStyles((theme) => ({
     alignItems: 'center',
     [theme.breakpoints.down('md')]: {
       width: '100%',
-      paddingLeft: theme.spacing(4),
-      paddingRight: theme.spacing(4),
     },
   },
   profileContainer: {
@@ -55,7 +55,6 @@ const useStyles = makeStyles((theme) => ({
     borderRadius: theme.shape.borderRadius,
     [theme.breakpoints.between('md', 'xl')]: {
       height: '100%',
-      marginTop: theme.spacing(20),
       maxWidth: 400,
       width: '100%',
     },
@@ -89,12 +88,17 @@ const useStyles = makeStyles((theme) => ({
     justifyContent: 'center',
     flexGrow: 0.5,
     flexDirection: 'column',
+    marginTop: 50,
     [theme.breakpoints.up('sm')]: {
-      padding: theme.spacing(4),
       width: '100%',
     },
     [theme.breakpoints.up('md')]: {
+      margin: '0 30px',
+    },
+    [theme.breakpoints.up('lg')]: {
+      marginTop: 0,
       width: '50%',
+      marginLeft: 40,
     },
   },
   packages: {
@@ -102,12 +106,10 @@ const useStyles = makeStyles((theme) => ({
     justifyContent: 'center',
     alignItems: 'center',
     width: '100%',
-    marginTop: theme.spacing(1),
   },
   noPackage: {
     fontSize: 14,
-    textAlign: 'center',
-    marginTop: theme.spacing(2),
+    textAlign: 'left',
   },
 }));
 
@@ -128,7 +130,7 @@ const Profile: NextPage = () => {
     <>
       <Layout>
         <Head title="c3pm - profile" />
-        <Box className={classes.box} p={1} m={1}>
+        <div className={classes.container}>
           <div className={classes.profileContainerPadding}>
             <div className={classes.profileContainer}>
               <Box display="flex" alignItems="center" flexDirection="column" p={0} m={0}>
@@ -142,14 +144,6 @@ const Profile: NextPage = () => {
             </div>
           </div>
           <div className={classes.packageContainer}>
-            <Box display="flex" justifyContent="center" flexDirection="row">
-              <Typography
-                variant="subtitle1"
-                className={classes.title}
-              >
-                {t('packages')}
-              </Typography>
-            </Box>
             {user.packages.length === 0 ? (
               <Typography
                 variant="body1"
@@ -172,7 +166,7 @@ const Profile: NextPage = () => {
               </Box>
             )}
           </div>
-        </Box>
+        </div>
       </Layout>
     </>
   );
