@@ -56,6 +56,7 @@ export interface AvatarProps {
   };
   user: User;
   withName?: boolean
+  linkToProfile?: boolean
   testId?: string
 }
 
@@ -65,6 +66,7 @@ function Avatar(props: AvatarProps): JSX.Element {
     classes,
     withName = true,
     testId,
+    linkToProfile = true,
   } = props;
 
   const styles = useStyles({ name: user?.username ?? '' });
@@ -76,24 +78,28 @@ function Avatar(props: AvatarProps): JSX.Element {
     return null;
   }
 
-  return (
+  const avatar = (
+    <div className={containerClass}>
+      <MuiAvatar
+        data-testid="user-avatar"
+        alt="user-avatar"
+        src=""
+        className={pictureClass}
+      >
+        {user?.username?.[0].toUpperCase()}
+      </MuiAvatar>
+      { withName && <Typography className={nameClass} variant="body1">{user?.username}</Typography> }
+    </div>
+  );
+
+  return (linkToProfile ? (
     <Link href="/user/[id]" as={`/user/${user.id}`} passHref>
       {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
       <a data-testId={testId ?? ''} className={styles.link}>
-        <div className={containerClass}>
-          <MuiAvatar
-            data-testid="user-avatar"
-            alt="user-avatar"
-            src=""
-            className={pictureClass}
-          >
-            {user?.username?.[0].toUpperCase()}
-          </MuiAvatar>
-          { withName && <Typography className={nameClass} variant="body1">{user?.username}</Typography> }
-        </div>
+        {avatar}
       </a>
     </Link>
-  );
+  ) : avatar);
 }
 
 export default Avatar;
