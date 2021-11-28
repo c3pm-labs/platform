@@ -3,6 +3,7 @@ import {
   makeStyles, Typography,
 } from '@material-ui/core';
 import clsx from 'clsx';
+import { useTranslation } from 'next-i18next';
 
 import Options from '../utils';
 
@@ -80,6 +81,7 @@ function Onglet(props: OngletsProps): JSX.Element {
     setIsMenu,
   } = props;
   const classes = useStyles();
+  const { t } = useTranslation('common');
   const [isFocus, setIsFocus] = useState(false);
 
   useEffect(() => {
@@ -98,7 +100,7 @@ function Onglet(props: OngletsProps): JSX.Element {
       </div>
       <div className={classes.containerTile}>
         <Typography className={classes.greyOptions}>
-          {title}
+          {t(title)}
         </Typography>
       </div>
     </button>

@@ -5,6 +5,7 @@ import { useMutation } from '@apollo/client';
 import * as yup from 'yup';
 import { useViewer } from 'hooks/auth';
 import { Alert } from '@material-ui/lab';
+import { useTranslation } from 'next-i18next';
 
 import WrappedLoader from 'components/WrappedLoader';
 
@@ -79,6 +80,7 @@ type SnackBarState = {
 function Profile(): JSX.Element {
   const classes = useStyles();
   const viewer = useViewer();
+  const { t } = useTranslation('common');
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const [snackbar, setSnackbar] = useState<SnackBarState>({ type: 'success' });
   const [update] = useMutation(UPDATE, {
@@ -87,7 +89,7 @@ function Profile(): JSX.Element {
       setIsOpen(true);
     },
     onCompleted: () => {
-      setSnackbar({ type: 'success', message: 'Infos successfully updated!' });
+      setSnackbar({ type: 'success', message: t('settings.success') });
       setIsOpen(true);
     },
   });
@@ -127,43 +129,43 @@ function Profile(): JSX.Element {
         }}
       >
         <Form className={classes.form}>
-          <span className={classes.title}>Username :</span>
+          <span className={classes.title}>{t('settings.profile.username')}</span>
           <div className={classes.line}>
             <TextInput
               type="text"
               name="username"
-              placeholder="username"
+              placeholder={t('settings.profile.usernameP')}
               fullWidth
             />
             <Button type="submit" variant="contained" color="primary" className={classes.button} data-testid="save-username">
-              Save
+              {t('buttons.save')}
             </Button>
           </div>
-          <span className={classes.title}>Email :</span>
+          <span className={classes.title}>{t('settings.profile.email')}</span>
           <div className={classes.line}>
             <TextInput
               type="email"
               name="email"
-              placeholder="email"
+              placeholder={t('settings.profile.emailP')}
               fullWidth
             />
             <Button type="submit" variant="contained" color="primary" className={classes.button} data-testid="save-email">
-              Save
+              {t('buttons.save')}
             </Button>
           </div>
-          <span className={classes.title}>Description :</span>
+          <span className={classes.title}>{t('settings.profile.description')}</span>
           <div className={classes.column}>
             <TextInput
               type="text"
               name="description"
-              placeholder="description"
+              placeholder={t('settings.profile.descriptionP')}
               fullWidth
               multiline
               disableHelperText
               rows={6}
             />
             <Button type="submit" variant="contained" color="primary" className={classes.button} data-testid="save-description">
-              Save
+              {t('buttons.save')}
             </Button>
           </div>
         </Form>
