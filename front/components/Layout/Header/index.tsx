@@ -8,7 +8,6 @@ import RightNav from 'components/Layout/Header/RightNav';
 import Logo from 'components/Logo';
 
 import SearchBar from './SearchBar';
-import LanguageMenu from './LanguageMenu';
 
 const useStyles = makeStyles((theme) => ({
   appBar: {
@@ -63,7 +62,6 @@ function Header(): JSX.Element {
         <Hidden implementation="css" xsDown>
           <Logo type="classic" size="sm" />
         </Hidden>
-        <LanguageMenu />
         <SearchBar
           dataTestId="search-header"
           className={classes.search}
