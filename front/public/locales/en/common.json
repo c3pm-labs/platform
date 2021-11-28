@@ -29,7 +29,7 @@
         "edit": "Edit"
     },
     "found": "packages found",
-    "search": "search",
+    "search": "packageName tag:network author:superdev",
     "lastUpdated": "Last updated on",
     "login": {
         "welcome": "Welcome back!",
@@ -42,6 +42,7 @@
     "home": {
         "why": "Why c3pm?",
         "easy": "C++ made easy ",
+        "seeMore": "see more about the searchbar options",
         "trivial": " Trivial dependency managment ",
         "sharing": " Package sharing",
         "title": "Your toolkit to dive into C++ easily",

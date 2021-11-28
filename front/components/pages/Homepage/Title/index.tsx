@@ -2,7 +2,7 @@ import {
   makeStyles, Typography, Hidden,
 } from '@material-ui/core';
 import { useTranslation } from 'next-i18next';
-import React from 'react';
+import React, { useState } from 'react';
 
 import SearchBar from 'components/Layout/Header/SearchBar';
 import Logo from 'components/Logo';
@@ -45,7 +45,7 @@ const useStyles = makeStyles((theme) => ({
     fontSize: '1.4em',
     paddingLeft: theme.spacing(2),
     paddingRight: theme.spacing(2),
-    marginTop: theme.spacing(3),
+    marginTop: theme.spacing(7),
     textAlign: 'center',
   },
   minSpacingFantom: {
@@ -73,18 +73,28 @@ const useStyles = makeStyles((theme) => ({
   },
   containerAbsoluteSearchBar: {
     position: 'absolute',
-    bottom: '-18px',
+    bottom: '-35px',
     width: '100%',
   },
   containerSearchBar: {
     display: 'flex',
-    justifyContent: 'center',
+    flexDirection: 'column',
     width: '100%',
+    alignItems: 'center',
+  },
+  seeMore: {
+    border: 'none',
+    background: 'transparent',
+    fontSize: 11,
+    outlined: 'none',
+    textDecoration: 'underline',
+    color: theme.palette.primary.main,
   },
 }));
 
 function Title(): JSX.Element {
   const classes = useStyles();
+  const [seeMore, setSeeMore] = useState(false);
   const { t } = useTranslation('common');
 
   return (
@@ -105,6 +115,15 @@ function Title(): JSX.Element {
               <SearchBar
                 className={classes.searchBar}
               />
+              <a
+                target="_blank"
+                rel="noopener noreferrer"
+                href="https://docs.c3pm.io/docs/help/searchbar"
+                className={classes.seeMore}
+              >
+                {t('home.seeMore')}
+
+              </a>
             </div>
           </div>
         </div>
