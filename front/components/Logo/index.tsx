@@ -2,6 +2,7 @@ import { Typography } from '@material-ui/core';
 import makeStyles from '@material-ui/core/styles/makeStyles';
 import Link from 'next/link';
 import Image from 'next/image';
+import { useTheme } from '@material-ui/core/styles';
 
 function getFontSize(size: string): number {
   if (size === 'xl') {
@@ -56,11 +57,19 @@ export interface LogoProps {
   type?: 'classic' | 'mini' | 'baseline';
   size?: 'sm' | 'md' | 'lg' | 'xl' | null;
   className?: string;
+  theme?: 'light' | 'dark'
 }
 
-const Logo = ({ type = 'classic', size = null, className }: LogoProps): JSX.Element => {
+const Logo = ({
+  type = 'classic', size = null, className, theme = 'light',
+}: LogoProps): JSX.Element => {
   const classes = useStyles({ size });
-  const src = type === 'mini' ? '/assets/c3pm_3.png' : '/assets/c3pm.png';
+  const chooseLogo = () => {
+    const src = type === 'mini' ? '/assets/c3pm_3' : '/assets/c3pm';
+
+    return theme === 'light' ? `${src}.png` : `${src}_white.png`;
+  };
+  const src = chooseLogo();
   const dimension = getSize(type, size);
 
   return (

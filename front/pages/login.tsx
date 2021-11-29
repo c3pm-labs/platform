@@ -120,7 +120,7 @@ const Login: NextPage = () => {
       <Head title="c3pm - login" />
       <div className={classes.container}>
         <div className={classes.rowContainer}>
-          <Logo type={isDesktop ? 'baseline' : 'classic'} size={getSize()} />
+          <Logo type={isDesktop ? 'baseline' : 'classic'} size={getSize()} theme={theme.palette.type} />
         </div>
         <div className={classes.line} />
         <div className={classes.formContainer}>

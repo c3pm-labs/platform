@@ -113,7 +113,7 @@ function Register(): JSX.Element {
       <Head title="c3pm - register" />
       <div className={classes.container}>
         <div className={classes.rowContainer}>
-          <Logo type={isDesktop ? 'baseline' : 'classic'} size={getSize()} />
+          <Logo type={isDesktop ? 'baseline' : 'classic'} size={getSize()} theme={theme.palette.type} />
         </div>
         <div className={classes.line} />
         <div className={classes.formContainer}>
