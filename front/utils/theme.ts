@@ -31,10 +31,10 @@ export const getDesignTokens = (mode: PaletteMode): ThemeOptions => ({
       }
       : {
         primary: {
-          main: '#00b8e6',
+          main: '#34A0CE',
         },
         secondary: {
-          main: '#333',
+          main: '#ff7044',
         },
         success: {
           main: '#2AC940',

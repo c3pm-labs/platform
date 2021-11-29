@@ -20,7 +20,7 @@ const useStyles = makeStyles((theme: Theme) => createStyles({
     display: 'flex',
     flexDirection: 'column',
     justifyContent: 'space-between',
-    backgroundColor: theme.palette.type === 'light' ? theme.palette.background.default : theme.palette.secondary.main,
+    backgroundColor: theme.palette.type === 'light' ? theme.palette.background.default : '#333',
     boxShadow: '0px 4px 15px rgba(0, 0, 0, 0.12)',
     borderRadius: theme.shape.borderRadius,
     [theme.breakpoints.up('sm')]: {
