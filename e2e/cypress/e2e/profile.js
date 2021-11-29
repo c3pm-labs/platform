@@ -6,7 +6,6 @@ describe('profile', () => {
       cy.visit(`/user/${user.id}`);
 
       cy.findByText(user.username).should('exist');
-      cy.findByText(user.email).should('exist');
       cy.findByText('0 package uploaded').should('exist');
     });
   });

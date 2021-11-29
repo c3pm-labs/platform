@@ -4,7 +4,6 @@ import { makeStyles } from '@material-ui/core';
 import Typography from '@material-ui/core/Typography';
 import { useForgot } from 'hooks/forgot_password';
 
-import withApollo from 'utils/withApollo';
 import TextInput from 'components/TextInput';
 import Button from 'components/Button';
 import Head from 'components/Head';
@@ -137,4 +136,4 @@ function ForgotPassword(): JSX.Element {
   );
 }
 
-export default withApollo(ForgotPassword);
+export default ForgotPassword;

@@ -1,17 +1,23 @@
-import { getDataFromTree } from '@apollo/react-ssr';
+import type { NextPage, GetStaticProps } from 'next';
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 
 import Layout from 'components/Layout';
-import withApollo from 'utils/withApollo';
 import Head from 'components/Head';
 import Homepage from 'components/pages/Homepage';
 
-function Home(): JSX.Element {
-  return (
-    <Layout>
-      <Head title="c3pm" />
-      <Homepage />
-    </Layout>
-  );
-}
+const Home: NextPage = () => (
+  <Layout>
+    <Head title="c3pm" />
+    <Homepage />
+  </Layout>
+);
 
-export default withApollo(Home, { getDataFromTree });
+export const getStaticProps: GetStaticProps = async ({ locale }) => (
+  {
+    props: {
+      ...(await serverSideTranslations(locale as string, ['common'])),
+    },
+  }
+);
+
+export default Home;

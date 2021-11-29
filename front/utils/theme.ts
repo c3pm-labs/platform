@@ -8,25 +8,25 @@ export const getDesignTokens = (mode: PaletteMode): ThemeOptions => ({
     ...(mode === 'light'
       ? {
         primary: {
-          main: '#00b8e6',
+          main: '#34A0CE',
         },
         secondary: {
-          main: '#f0f5f9',
+          main: '#FF7044',
         },
         success: {
           main: '#2AC940',
         },
-        background: {
-          default: '#ffffff',
-        },
         text: {
           primary: '#333',
-          secondary: '#E0E0E0',
+          secondary: '#BDBDBD',
           disabled: '#BDBDBD',
         },
         action: {
-          focus: '#00B8E6',
-          active: '#00B8E6',
+          focus: '#34A0CE',
+          active: '#34A0CE',
+        },
+        background: {
+          default: '#fcfcfc',
         },
       }
       : {
@@ -34,13 +34,13 @@ export const getDesignTokens = (mode: PaletteMode): ThemeOptions => ({
           main: '#00b8e6',
         },
         secondary: {
-          main: '#191919',
+          main: '#333',
         },
         success: {
           main: '#2AC940',
         },
         background: {
-          default: '#333',
+          default: '#191919',
         },
         text: {
           primary: '#ffffff',
@@ -54,7 +54,7 @@ export const getDesignTokens = (mode: PaletteMode): ThemeOptions => ({
       }),
   },
   shape: {
-    borderRadius: 5,
+    borderRadius: 25,
   },
   breakpoints: {
     values: {

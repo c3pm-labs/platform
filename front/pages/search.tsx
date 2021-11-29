@@ -1,6 +1,5 @@
-import { getDataFromTree } from '@apollo/react-ssr';
 import {
-  makeStyles, Typography, useTheme,
+  makeStyles, useTheme,
 } from '@material-ui/core';
 import React from 'react';
 import { useRouter } from 'next/router';
@@ -10,15 +9,14 @@ import useMediaQuery from '@material-ui/core/useMediaQuery';
 import { Package } from 'types';
 import { useQuery } from '@apollo/client';
 import { SEARCH } from 'queries';
+import type { NextPage, GetStaticProps } from 'next';
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 
-import withApollo from 'utils/withApollo';
 import Head from 'components/Head';
 import Layout from 'components/Layout';
 import PackageCard from 'components/PackageCard';
 import WrappedLoader from 'components/WrappedLoader';
-
-import { tagsList } from '../utils/constant';
-import Button from '../components/Button';
+import PackageFoundBar from 'components/PackageFoundBar';
 
 const useStyles = makeStyles((theme) => ({
   container: {
@@ -42,30 +40,6 @@ const useStyles = makeStyles((theme) => ({
     alignItems: 'center',
     paddingTop: '25%',
   },
-  resultBar: {
-    display: 'flex',
-    width: '100%',
-    backgroundColor: theme.palette.primary.main,
-    fontSize: '20px',
-    color: 'white',
-    [theme.breakpoints.up('sm')]: {
-      padding: '2px 0',
-      paddingLeft: '5%',
-    },
-    [theme.breakpoints.down('xs')]: {
-      justifyContent: 'center',
-    },
-  },
-  line: {
-    width: '100%',
-    height: '1px',
-    margin: '20px 0',
-    [theme.breakpoints.down('xs')]: {
-      height: 0,
-      margin: '10px 0',
-    },
-    backgroundColor: theme.palette.grey[400],
-  },
   footer: {
     display: 'flex',
     flexDirection: 'column',
@@ -78,6 +52,7 @@ const useStyles = makeStyles((theme) => ({
     flexDirection: 'column',
     width: '70%',
     maxWidth: 600,
+    margin: '10px 0',
     [theme.breakpoints.down('sm')]: {
       width: '100%',
     },
@@ -97,12 +72,6 @@ const useStyles = makeStyles((theme) => ({
       backgroundColor: theme.palette.primary.main,
     },
   },
-  tagsContainer: {
-    display: 'flex',
-    justifyContent: 'center',
-    marginTop: theme.spacing(2),
-    flexWrap: 'wrap',
-  },
   tag: {
     margin: `0 ${theme.spacing(1)}px`,
     [theme.breakpoints.down('xs')]: {
@@ -111,17 +80,15 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-function Search(): JSX.Element {
+const Search: NextPage = () => {
   const router = useRouter();
   const theme = useTheme();
   const classes = useStyles();
   const isMobile = useMediaQuery(theme.breakpoints.down('xs'));
-  // tags is of type string, it has the following format: tag1,tag2,tag3
-  const { q, tags, page = 1 } = router.query;
-  const selectedTags = typeof tags === 'string' && tags.length > 0 ? tags.split(',') : [];
+  const { q, page = 1 } = router.query;
   const baseIndex = Number(page) * 5 - 5;
   const { data, loading } = useQuery<{ search: Package[] }>(SEARCH, {
-    variables: { keyword: q ?? '', tags: selectedTags },
+    variables: { keyword: q ?? '' },
   });
 
   const numberOfPages = () => {
@@ -141,7 +108,6 @@ function Search(): JSX.Element {
       if (packageData) {
         list.push(
           <div className={classes.list} key={packageData.name}>
-            {idx !== 0 && <div className={classes.line} />}
             <PackageCard packageData={packageData} key={packageData.name} />
           </div>,
         );
@@ -160,32 +126,11 @@ function Search(): JSX.Element {
       </Layout>
     );
   }
-  const searchByTag = (tag: string) => {
-    const isPresent = selectedTags.find((e) => e === tag);
-    const newTags = isPresent ? selectedTags.filter((e) => e !== tag).join(',') : selectedTags.concat(tag).join(',');
-    router.push({ pathname: '/search', query: { q, ...(newTags.length > 0 ? { tags: newTags } : {}), ...(page ? { page } : {}) } });
-  };
 
   return (
     <Layout>
       <Head title="Search" />
-      <div className={classes.resultBar}>
-        <Typography variant="body1" data-testid="number-of-packages">
-          {data ? data.search.length : 0}
-          {' '}
-          packages found
-        </Typography>
-      </div>
-      <div className={classes.tagsContainer}>
-        {tagsList.map((tag) => {
-          const isSelected = selectedTags.find((e) => e === tag);
-          return (
-            <Button onClick={() => searchByTag(tag)} type="button" key={tag} variant={isSelected ? 'contained' : 'outlined'} className={classes.tag}>
-              {tag}
-            </Button>
-          );
-        })}
-      </div>
+      <PackageFoundBar nbPackage={data ? data.search.length : 0} />
       <div className={classes.container}>
         {packages()}
       </div>
@@ -200,7 +145,7 @@ function Search(): JSX.Element {
                 {...item}
                 className={classes.numberButton}
                 component="a"
-                href={`/search?q=${q}&page=${item.page}`}
+                href={`/search?q=${q ?? ''}&page=${item.page}`}
               />
             )}
           />
@@ -208,6 +153,13 @@ function Search(): JSX.Element {
       )}
     </Layout>
   );
-}
+};
 
-export default withApollo(Search, { getDataFromTree });
+export const getStaticProps: GetStaticProps = async ({ locale }) => (
+  {
+    props: {
+      ...(await serverSideTranslations(locale as string, ['common'])),
+    },
+  }
+);
+export default Search;

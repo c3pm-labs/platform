@@ -1,5 +1,6 @@
 import { Divider, makeStyles, Typography } from '@material-ui/core';
 import { useRouter } from 'next/router';
+import { useTranslation } from 'next-i18next';
 
 import Button from '../../../Button';
 import { User } from '../../../../types';
@@ -41,6 +42,7 @@ const ProfileInfos = ({ user }: ProfileInfosProps): JSX.Element => {
   const router = useRouter();
   const classes = useStyles();
   const viewer = useViewer();
+  const { t } = useTranslation('common');
 
   return (
     <>
@@ -49,12 +51,6 @@ const ProfileInfos = ({ user }: ProfileInfosProps): JSX.Element => {
         className={classes.name}
       >
         {user ? user.username : 'error'}
-      </Typography>
-      <Typography
-        variant="subtitle1"
-        className={classes.mail}
-      >
-        {user ? user.email : 'error'}
       </Typography>
       <Typography
         variant="subtitle1"
@@ -69,9 +65,9 @@ const ProfileInfos = ({ user }: ProfileInfosProps): JSX.Element => {
       >
         {!user || !user.packages ? '0' : user.packages.length}
         {' '}
-        package
+        {t('profile.package')}
         {user && user.packages && user.packages.length > 1 ? 's ' : ' '}
-        uploaded
+        {t('profile.uploaded')}
       </Typography>
       {viewer && user.email === viewer.email
         ? (
@@ -84,7 +80,7 @@ const ProfileInfos = ({ user }: ProfileInfosProps): JSX.Element => {
               router.push('/settings');
             }}
           >
-            Edit
+            {t('buttons.edit')}
           </Button>
         ) : null}
 

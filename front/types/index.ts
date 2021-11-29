@@ -3,6 +3,7 @@ export interface Package {
   latest: Version;
   versions: Version[];
   author: User;
+  downloads: number;
   tags: string[];
   contributors: string[];
   documentation: string;

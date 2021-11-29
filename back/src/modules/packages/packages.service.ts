@@ -24,30 +24,62 @@ export async function getLatestVersion(ctx: Context, packageName: string): Promi
   return versions[0];
 }
 
-export async function search(keyword: string, tags: string[] = []): Promise<Package[]> {
-  if (keyword && !tags) {
-    return db.$queryRaw<Package[]>`
-    SELECT *
-    FROM "Package"
-    WHERE "name" ~* ${keyword}
-    ORDER BY "name" ASC
-    `;
+const sortKeys = {
+  'name-asc': { name: 'asc' },
+  'name-desc': { name: 'desc' },
+  'downloads-asc': { downloads: 'asc' },
+  'downloads-desc': { downloads: 'desc' },
+};
+
+export async function search(s: string): Promise<Package[]> {
+  const parameters: any = s.match(/[a-zA-Z-]+:[a-zA-Z-]+/g)?.reduce((acc, match) => {
+    const [key, value] = match.split(':');
+    return { ...acc, [key]: [...(acc[key] ?? []), value] };
+  }, {}) ?? {};
+
+  const keyword = s.replace(/[a-zA-Z-]+:[a-zA-Z-]+/g, '').trim();
+
+  let orderBy = sortKeys[parameters.sort ?? 'downloads-desc'];
+
+  if (keyword && !parameters.sort) {
+    orderBy = {
+      _relevance: {
+        fields: ['name'],
+        search: keyword,
+        sort: 'asc',
+      },
+    };
   }
-  if (!keyword && tags) {
-    return db.$queryRaw<Package[]>`
-    SELECT *
-    FROM "Package"
-    WHERE "tags" @> (${tags})
-    ORDER BY "name" ASC
-    `;
-  }
-  return db.$queryRaw<Package[]>`
-  SELECT *
-  FROM "Package"
-  WHERE "name" ~* ${keyword}
-  AND "tags" @> (${tags})
-  ORDER BY "name" ASC
-  `;
+
+  return db.package.findMany({
+    where: {
+      AND: [
+        {
+          OR: [
+            { name: { contains: keyword } },
+            { versions: { some: { description: { contains: keyword } } } },
+          ],
+        },
+        {
+          tags: {
+            hasEvery: parameters.tag ?? [],
+          },
+        },
+        {
+          ...(parameters.author?.length > 0 ? {
+            OR: parameters.author.map((author) => ({
+              author: {
+                username: {
+                  equals: author,
+                },
+              },
+            })),
+          } : {}),
+        },
+      ],
+    },
+    orderBy,
+  });
 }
 
 export async function getPackage(ctx: Context, name: string): Promise<Package> {
@@ -55,6 +87,16 @@ export async function getPackage(ctx: Context, name: string): Promise<Package> {
     where: {
       name,
     },
+  });
+}
+
+export async function getPopularPackages(ctx: Context): Promise<Package[]> {
+  return ctx.db.package.findMany({
+    orderBy: [
+      {
+        downloads: 'desc',
+      },
+    ],
   });
 }
 
@@ -111,6 +153,22 @@ export async function deleteVersion(
   return pkg;
 }
 
+export async function countDownloads(ctx: Context, packageName: string): Promise<Package> {
+  const pkg = await ctx.db.package.findUnique({ where: { name: packageName } });
+  let updatedPkg;
+  try {
+    updatedPkg = await ctx.db.package.update({
+      where: { name: packageName },
+      data: {
+        downloads: pkg.downloads + 1,
+      },
+    });
+  } catch (e) {
+    throw new ForbiddenError('Couldn\'t update downloads count');
+  }
+  return updatedPkg;
+}
+
 export async function publish(ctx: Context, file: Express.Multer.File): Promise<void> {
   let c3pmBuffer;
   let readmeBuffer;
@@ -152,13 +210,13 @@ export async function publish(ctx: Context, file: Express.Multer.File): Promise<
           repository: parsedC3PM.repository,
           versions: {
             create:
-            {
-              version: parsedC3PM.version,
-              readme: readmeBuffer ?? 'There is no readme for this package',
-              description: parsedC3PM.description,
-              license: parsedC3PM.license,
-              tags: parsedC3PM.tags,
-            },
+              {
+                version: parsedC3PM.version,
+                readme: readmeBuffer ?? 'There is no readme for this package',
+                description: parsedC3PM.description,
+                license: parsedC3PM.license,
+                tags: parsedC3PM.tags,
+              },
           },
         },
       });
@@ -181,13 +239,13 @@ export async function publish(ctx: Context, file: Express.Multer.File): Promise<
         repository: parsedC3PM.repository,
         versions: {
           create:
-          {
-            version: parsedC3PM.version,
-            readme: readmeBuffer ?? 'There is no readme for this package',
-            description: parsedC3PM.description,
-            license: parsedC3PM.license,
-            tags: parsedC3PM.tags,
-          },
+            {
+              version: parsedC3PM.version,
+              readme: readmeBuffer ?? 'There is no readme for this package',
+              description: parsedC3PM.description,
+              license: parsedC3PM.license,
+              tags: parsedC3PM.tags,
+            },
         },
       },
     });
