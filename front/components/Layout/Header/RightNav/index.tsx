@@ -61,11 +61,6 @@ function RightNav(): JSX.Element {
         </div>
       ) : (
         <div className={classes.buttons}>
-          <IconButton color="primary" onClick={toggleTheme}>
-            {
-              colorTheme === 'light' ? <DarkIcon /> : <LightIcon />
-            }
-          </IconButton>
           <ButtonLink href="/login" className={classes.marginRight} variant="outlined">
             {t('buttons.login')}
           </ButtonLink>
@@ -73,6 +68,11 @@ function RightNav(): JSX.Element {
             {t('buttons.register')}
           </ButtonLink>
           <LanguageMenu isUserLoggedIn={false} />
+          <IconButton color="primary" onClick={toggleTheme}>
+            {
+              colorTheme === 'light' ? <DarkIcon /> : <LightIcon />
+            }
+          </IconButton>
         </div>
       )}
     </>

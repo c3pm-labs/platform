@@ -83,7 +83,7 @@ const useStyles = makeStyles((theme: Theme) => createStyles({
   downloads: {
     borderRadius: 7,
     padding: '2px 8px',
-    color: 'white',
+    color: '#191919',
   },
 }));
 

@@ -1,6 +1,8 @@
 import {
-  createContext, ReactNode, useContext, useMemo, useState,
+  createContext, ReactNode, useContext, useEffect, useLayoutEffect, useMemo, useRef, useState,
 } from 'react';
+import { useMediaQuery } from '@material-ui/core';
+import useCookie from '../hooks/useCookie';
 
 interface ColorTheme {
   mode: 'light' | 'dark';
@@ -10,12 +12,19 @@ interface ColorTheme {
 const ColorThemeContext = createContext(null as unknown as ColorTheme);
 
 export function ColorThemeProvider({ children }: { children: ReactNode }): JSX.Element {
-  const [isDarkMode, setIsDarkMode] = useState<boolean>(false);
+  const systemPrefersDarkMode = useMediaQuery('(prefers-color-scheme: dark)', { noSsr: true });
+  const [isDarkMode, setIsDarkMode] = useCookie<boolean | undefined>('prefersDarkMode', undefined);
+
+  useEffect(() => {
+    if (isDarkMode === undefined) {
+      setIsDarkMode(systemPrefersDarkMode);
+    }
+  }, [isDarkMode, setIsDarkMode]);
 
   const value = useMemo<ColorTheme>(() => ({
     mode: isDarkMode ? 'dark' : 'light',
     toggle: () => setIsDarkMode(!isDarkMode),
-  }), [isDarkMode]);
+  }), [isDarkMode, setIsDarkMode]);
 
   return <ColorThemeContext.Provider value={value}>{children}</ColorThemeContext.Provider>;
 }

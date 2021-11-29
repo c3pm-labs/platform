@@ -20,7 +20,7 @@ const useStyles = makeStyles((theme) => createStyles({
     backgroundColor: 'transparent !important',
   },
   padding: {
-    padding: 0,
+    padding: 2,
   },
   margin: {
     marginRight: theme.spacing(2),
