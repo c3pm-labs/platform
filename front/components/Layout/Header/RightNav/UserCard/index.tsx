@@ -11,6 +11,7 @@ import makeStyles from '@material-ui/core/styles/makeStyles';
 import { useLogout, useViewer } from 'hooks/auth';
 import { useRouter } from 'next/router';
 import { useTranslation } from 'next-i18next';
+import { useTheme } from '@material-ui/core/styles';
 
 import MenuItemLink from 'components/Layout/Header/RightNav/UserCard/MenuItemLink';
 import Avatar from 'components/Avatar';
@@ -40,11 +41,11 @@ const useStyles = makeStyles((theme) => ({
     '& .MuiList-root': {
       padding: 0,
     },
-    backgroundColor: theme.palette.grey[200],
+    backgroundColor: theme.palette.background.default,
     borderBottomLeftRadius: '15px',
     borderBottomRightRadius: '15px',
     width: 150,
-    color: 'black',
+    color: theme.palette.text.primary,
   },
   option: {
     borderTop: `1px solid ${theme.palette.grey[300]}`,
@@ -66,6 +67,7 @@ function UserCard(): JSX.Element {
   const router = useRouter();
   const logout = useLogout();
   const { t } = useTranslation('common');
+  const theme = useTheme();
 
   const handleLogout = async () => {
     await router.push({ pathname: '/' });
@@ -105,7 +107,9 @@ function UserCard(): JSX.Element {
           withName={false}
           linkToProfile={false}
         />
-        {open ? <ExpandLess /> : <ExpandMore />}
+        {open
+          ? <ExpandLess htmlColor={theme.palette.text.primary} />
+          : <ExpandMore htmlColor={theme.palette.text.primary} />}
       </button>
       <Popper
         open={open}

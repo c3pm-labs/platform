@@ -51,12 +51,12 @@ function RightNav(): JSX.Element {
     <>
       { viewer ? (
         <div className={classes.buttons}>
-          <IconButton color="primary" onClick={toggleTheme}>
+          <LanguageMenu />
+          <IconButton color="primary" onClick={toggleTheme} className={classes.marginRight}>
             {
               colorTheme === 'light' ? <DarkIcon /> : <LightIcon />
             }
           </IconButton>
-          <LanguageMenu isUserLoggedIn />
           <UserCard />
         </div>
       ) : (
@@ -67,7 +67,7 @@ function RightNav(): JSX.Element {
           <ButtonLink href="/register" className={classes.marginRight} variant="contained">
             {t('buttons.register')}
           </ButtonLink>
-          <LanguageMenu isUserLoggedIn={false} />
+          <LanguageMenu />
           <IconButton color="primary" onClick={toggleTheme}>
             {
               colorTheme === 'light' ? <DarkIcon /> : <LightIcon />
