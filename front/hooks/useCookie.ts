@@ -12,12 +12,11 @@ function tryParseCookie<T>(key: string, initialValue: T): T {
   return initialValue;
 }
 
-function useCookie<T>(key, initialValue: T): [T | undefined, (value: T) => void] {
+function useCookie<T>(key: string, initialValue: T): [T | undefined, (value: T) => void] {
   const initialValueOrCookie = tryParseCookie<T>(key, initialValue);
   const [value, setInnerValue] = useState<T>(initialValueOrCookie);
 
   function setValue(newValue: T) {
-    console.log('setting cookie');
     setInnerValue(newValue);
 
     if (typeof window !== 'undefined') {

@@ -2,7 +2,6 @@ import { Typography } from '@material-ui/core';
 import makeStyles from '@material-ui/core/styles/makeStyles';
 import Link from 'next/link';
 import Image from 'next/image';
-import { useTheme } from '@material-ui/core/styles';
 
 function getFontSize(size: string): number {
   if (size === 'xl') {

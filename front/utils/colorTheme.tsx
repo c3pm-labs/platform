@@ -1,7 +1,8 @@
 import {
-  createContext, ReactNode, useContext, useEffect, useLayoutEffect, useMemo, useRef, useState,
+  createContext, ReactNode, useContext, useEffect, useMemo,
 } from 'react';
 import { useMediaQuery } from '@material-ui/core';
+
 import useCookie from '../hooks/useCookie';
 
 interface ColorTheme {
@@ -19,6 +20,7 @@ export function ColorThemeProvider({ children }: { children: ReactNode }): JSX.E
     if (isDarkMode === undefined) {
       setIsDarkMode(systemPrefersDarkMode);
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isDarkMode, setIsDarkMode]);
 
   const value = useMemo<ColorTheme>(() => ({
