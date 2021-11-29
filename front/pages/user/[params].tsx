@@ -4,9 +4,10 @@ import {
 } from '@material-ui/core';
 import { useRouter } from 'next/router';
 import { Status, useUser } from 'hooks/user';
-import { getDataFromTree } from '@apollo/react-ssr';
+import type { NextPage, GetServerSideProps } from 'next';
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
+import { useTranslation } from 'next-i18next';
 
-import withApollo from 'utils/withApollo';
 import Head from 'components/Head';
 import Layout from 'components/Layout';
 
@@ -16,25 +17,46 @@ import ProfileInfos from '../../components/pages/profile/ProfileInfos';
 import PackageCard from '../../components/PackageCard';
 
 const useStyles = makeStyles((theme) => ({
-  box: {
+  container: {
     display: 'flex',
     [theme.breakpoints.between('md', 'xl')]: {
       flexDirection: 'row',
       minHeight: '80vh',
+      padding: 0,
+      marginTop: 40,
     },
     flexDirection: 'column',
     alignItems: 'flex-start',
+    justifyContent: 'center',
+    padding: 30,
+    marginTop: 40,
+  },
+  packagesContainer: {
+    paddingBottom: theme.spacing(3),
+  },
+  profileContainerPadding: {
+    width: '25%',
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    [theme.breakpoints.down('md')]: {
+      width: '100%',
+    },
   },
   profileContainer: {
     display: 'flex',
     justifyContent: 'center',
     flexDirection: 'row',
     alignItems: 'center',
-    marginTop: 40,
+    paddingBottom: theme.spacing(8),
+    paddingTop: theme.spacing(8),
+    background: 'linear-gradient(197.6deg, rgba(38, 179, 239, 0.2) 0.93%, rgba(255, 112, 68, 0.2) 98.91%)',
+    boxShadow: '0px 4px 15px rgba(0, 0, 0, 0.12)',
+    borderRadius: theme.shape.borderRadius,
     [theme.breakpoints.between('md', 'xl')]: {
       height: '100%',
       maxWidth: 400,
-      width: '40%',
+      width: '100%',
     },
     [theme.breakpoints.down('md')]: {
       width: '100%',
@@ -50,44 +72,52 @@ const useStyles = makeStyles((theme) => ({
     display: 'flex',
     justifyContent: 'center',
     [theme.breakpoints.up('md')]: {
+      paddingLeft: theme.spacing(4),
       justifyContent: 'flex-start',
     },
-    fontSize: 24,
+    [theme.breakpoints.down('md')]: {
+      marginTop: theme.spacing(3),
+    },
+    fontSize: '1.25em',
+    fontWeight: 500,
     width: '100%',
   },
   packageContainer: {
     width: '100%',
     display: 'flex',
+    justifyContent: 'center',
     flexGrow: 0.5,
     flexDirection: 'column',
-    marginTop: 40,
+    marginTop: 50,
     [theme.breakpoints.up('sm')]: {
-      paddingLeft: theme.spacing(1),
-      paddingRight: theme.spacing(1),
-      alignSelf: 'center',
-      width: '60%',
+      width: '100%',
     },
     [theme.breakpoints.up('md')]: {
-      paddingLeft: theme.spacing(1),
-      paddingRight: theme.spacing(1),
+      margin: '0 30px',
+    },
+    [theme.breakpoints.up('lg')]: {
+      marginTop: 0,
       width: '50%',
+      marginLeft: 40,
     },
   },
   packages: {
     display: 'flex',
-    marginTop: theme.spacing(1),
+    justifyContent: 'center',
+    alignItems: 'center',
+    width: '100%',
   },
   noPackage: {
     fontSize: 14,
-    textAlign: 'center',
-    marginTop: theme.spacing(2),
+    textAlign: 'left',
   },
 }));
 
-function Profile(): JSX.Element {
+const Profile: NextPage = () => {
   const classes = useStyles();
   const router = useRouter();
   const user = useUser({ id: String(router.query.params) });
+  const { t } = useTranslation('common');
 
   if (user === Status.LOADING) {
     return (<></>);
@@ -96,37 +126,30 @@ function Profile(): JSX.Element {
   if (user === Status.NO_USER) {
     return (<PageNotFound />);
   }
-
   return (
     <>
       <Layout>
         <Head title="c3pm - profile" />
-        <Box className={classes.box} p={1} m={1}>
-          <div className={classes.profileContainer}>
-            <Box display="flex" alignItems="center" flexDirection="column" p={0} m={0}>
-              <Avatar
-                user={user}
-                withName={false}
-                classes={{ picture: classes.picture }}
-              />
-              <ProfileInfos user={user} />
-            </Box>
+        <div className={classes.container}>
+          <div className={classes.profileContainerPadding}>
+            <div className={classes.profileContainer}>
+              <Box display="flex" alignItems="center" flexDirection="column" p={0} m={0}>
+                <Avatar
+                  user={user}
+                  withName={false}
+                  classes={{ picture: classes.picture }}
+                />
+                <ProfileInfos user={user} />
+              </Box>
+            </div>
           </div>
           <div className={classes.packageContainer}>
-            <Box display="flex" justifyContent="center" flexDirection="row">
-              <Typography
-                variant="subtitle1"
-                className={classes.title}
-              >
-                Packages
-              </Typography>
-            </Box>
             {user.packages.length === 0 ? (
               <Typography
                 variant="body1"
                 className={classes.noPackage}
               >
-                You don&apos;t have any package yet.
+                {t('profile.noPackage')}
               </Typography>
             ) : (
               <Box display="flex" justifyContent="center" flexDirection="column">
@@ -134,17 +157,28 @@ function Profile(): JSX.Element {
                   {user && user.packages && user.packages.map((data) => (
                     <div key={data.name}>
                       <div className={classes.packages} />
-                      <PackageCard packageData={data} key={data.name} />
+                      <div className={classes.packagesContainer}>
+                        <PackageCard packageData={data} key={data.name} />
+                      </div>
                     </div>
                   ))}
                 </Box>
               </Box>
             )}
           </div>
-        </Box>
+        </div>
       </Layout>
     </>
   );
-}
+};
 
-export default withApollo(Profile, { getDataFromTree });
+export const getServerSideProps: GetServerSideProps = async ({ locale }) => (
+  {
+    props: {
+      ssrUser: '',
+      ...(await serverSideTranslations(locale as string, ['common'])),
+    },
+  }
+);
+
+export default Profile;

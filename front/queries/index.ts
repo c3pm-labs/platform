@@ -126,6 +126,7 @@ export const SEARCH = gql`
         search(keyword: $keyword, tags: $tags) {
             name,
             tags,
+            downloads,
             versions(first: 1000, last: 0) {
                 description,
                 license,
@@ -136,6 +137,7 @@ export const SEARCH = gql`
             }
             author {
                 username,
+                id,
             }
             latest {
                 description,
@@ -149,9 +151,37 @@ export const SEARCH = gql`
     }
 `;
 
+export const DISCOVER = gql`
+    query discover {
+        discover {
+            name,
+            downloads,
+            tags,
+            author {
+                username,
+            }
+            latest {
+                description,
+                license,
+                readme,
+                publishedAt,
+                version,
+            }
+        }
+    }
+`;
+
 export const FORGOT = gql`
     mutation forgotPassword($email: String!) {
         forgotPassword(email: $email) {
+            id,
+        }
+    }
+`;
+
+export const CONTACT = gql`
+    mutation contactUs($firstname: String!, $lastname: String!, $email: String!, $message: String!) {
+        contactUs(firstname: $firstname, lastname: $lastname, email: $email, message: $message) {
             id,
         }
     }

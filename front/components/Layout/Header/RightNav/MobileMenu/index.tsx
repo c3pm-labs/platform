@@ -78,6 +78,12 @@ function MobileMenu(): JSX.Element {
         PaperProps={{ square: true }}
       >
         {viewer ? [
+          <Button href={`/user/${viewer.id}`} fullWidth variant="contained" key="settings">
+            Profil
+          </Button>,
+          <Button href="/settings" fullWidth variant="outlined" key="settings">
+            Settings
+          </Button>,
           <Button onClick={logout} fullWidth variant="outlined" color="error" key="logout">
             Sign out
           </Button>,

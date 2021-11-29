@@ -10,6 +10,11 @@ export interface MarkdownDisplayerProps {
 
 const useStyles = makeStyles((theme) => ({
   readme: {
+    background: '#FFFFFF',
+    boxShadow: '0px 4px 15px rgba(0, 0, 0, 0.12)',
+    borderRadius: theme.shape.borderRadius,
+    padding: theme.spacing(4),
+    marginTop: theme.spacing(4),
     '& > *': {
       fontFamily: 'Segoe UI,Helvetica, Arial, sans-serif',
       fontSize: 16,

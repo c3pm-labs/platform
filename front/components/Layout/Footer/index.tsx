@@ -1,6 +1,8 @@
 import { makeStyles } from '@material-ui/core/styles';
 import { Typography } from '@material-ui/core';
-import Link from 'next/link';
+import { useTranslation } from 'next-i18next';
+
+import TextLink from 'components/TextLink';
 
 const useStyles = makeStyles((theme) => ({
   container: {
@@ -36,6 +38,8 @@ const useStyles = makeStyles((theme) => ({
 
 function Footer(): JSX.Element {
   const classes = useStyles();
+  const { t } = useTranslation('common');
+
   const linkElement = (link: string, name: string) => (
     <a
       target="_blank"
@@ -50,17 +54,18 @@ function Footer(): JSX.Element {
   return (
     <div className={classes.container}>
       <div className={classes.textContainer}>
-        <span>General Information</span>
+        <span>{t('footer.general')}</span>
         {linkElement('https://docs.c3pm.io', 'Docs')}
         {linkElement('https://github.com/c3pm-labs/', 'Github')}
-        {linkElement('https://github.com/c3pm-labs/c3pm/releases', 'Releases')}
+        {linkElement('https://github.com/c3pm-labs/c3pm/releases', t('footer.releases'))}
+        <TextLink className={classes.text} href="/tos">
+          {t('tos.title')}
+        </TextLink>
       </div>
       <div className={classes.textContainer}>
-        <span>Contact us</span>
+        <span>{t('footer.contact')}</span>
         {linkElement('mailto:contact@c3pm.io', 'contact@c3pm.io')}
-        {linkElement('https://github.com/c3pm-labs/c3pm/issues/new/choose', 'Submit an issue')}
-        {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
-        <Link href="/team"><a className={classes.text}>Team</a></Link>
+        {linkElement('https://github.com/c3pm-labs/c3pm/issues/new/choose', t('footer.issue'))}
       </div>
     </div>
   );

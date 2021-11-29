@@ -80,18 +80,17 @@ export interface ContactUsParams {
   message?: string;
 }
 
-export async function contactUs(ctx: Context, { ...props }: ContactUsParams): Promise<User | null> {
+export async function contactUs(ctx: Context, params: ContactUsParams): Promise<User> {
   try {
     sgMail.setApiKey(process.env.SENDGRID_API_KEY);
     await sgMail.send({
-      from: props.email,
+      from: 'contact@c3pm.io',
       to: 'contact@c3pm.io',
-      subject: `Contact from ${props.firstname} ${props.lastname}`,
-      text: props.message,
+      subject: `Contact from ${params.firstname} ${params.lastname} ${params.email}`,
+      text: params.message,
     });
-    return null;
+    return await ctx.session.get();
   } catch (e) {
-    console.log(e);
-    throw new ForbiddenError('Error in contact');
+    throw new ForbiddenError(e);
   }
 }

@@ -99,7 +99,10 @@ function Header(): JSX.Element {
         <Hidden implementation="css" xsDown>
           <Logo type="classic" size="sm" />
         </Hidden>
-        <SearchBar className={classes.search} />
+        <SearchBar
+          dataTestId="search-header"
+          className={classes.search}
+        />
         <RightNav />
       </Toolbar>
     </AppBar>

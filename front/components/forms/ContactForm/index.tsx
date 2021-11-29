@@ -6,6 +6,7 @@ import Button from 'components/Button';
 import TextInput from 'components/TextInput';
 import { contactFormSchema } from 'utils/validation';
 import { ModalContext } from 'utils/contexts/modalContext';
+import { useContactUs } from 'hooks/contact_us';
 
 const useStyles = makeStyles((theme) => ({
   container: {
@@ -76,9 +77,9 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-type ContactParams = {
-  firstName: string;
-  lastName: string;
+export type ContactParams = {
+  firstname: string;
+  lastname: string;
   email: string;
   message: string;
 };
@@ -86,9 +87,10 @@ type ContactParams = {
 const ContactForm = (): JSX.Element => {
   const classes = useStyles();
   const { modalDispatch } = useContext(ModalContext);
+  const { contactUs, contactUsError } = useContactUs();
   const initialValues: ContactParams = {
-    firstName: '',
-    lastName: '',
+    firstname: '',
+    lastname: '',
     email: '',
     message: '',
   };
@@ -102,7 +104,7 @@ const ContactForm = (): JSX.Element => {
         initialValues={initialValues}
         validationSchema={contactFormSchema}
         onSubmit={async (values): Promise<void> => {
-          // TODO Call Backend mutation
+          await contactUs(values);
           modalDispatch({ open: false, children: <></> });
         }}
       >
@@ -112,7 +114,7 @@ const ContactForm = (): JSX.Element => {
             <TextInput
               className={`${classes.input} ${classes.nameContainer}`}
               label="Firstname"
-              name="firstName"
+              name="firstname"
               placeholder="Firstname"
               type="text"
               fullWidth

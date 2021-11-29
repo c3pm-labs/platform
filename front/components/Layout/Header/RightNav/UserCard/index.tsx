@@ -10,6 +10,7 @@ import ExpandLess from '@material-ui/icons/ExpandLess';
 import makeStyles from '@material-ui/core/styles/makeStyles';
 import { useLogout, useViewer } from 'hooks/auth';
 import { useRouter } from 'next/router';
+import { useTranslation } from 'next-i18next';
 
 import MenuItemLink from 'components/Layout/Header/RightNav/UserCard/MenuItemLink';
 import Avatar from 'components/Avatar';
@@ -40,8 +41,8 @@ const useStyles = makeStyles((theme) => ({
       padding: 0,
     },
     backgroundColor: theme.palette.grey[200],
-    borderBottomLeftRadius: theme.shape.borderRadius,
-    borderBottomRightRadius: theme.shape.borderRadius,
+    borderBottomLeftRadius: '15px',
+    borderBottomRightRadius: '15px',
     width: 150,
   },
   option: {
@@ -63,6 +64,8 @@ function UserCard(): JSX.Element {
   const viewer = useViewer();
   const router = useRouter();
   const logout = useLogout();
+  const { t } = useTranslation('common');
+
   const handleLogout = async () => {
     await router.push({ pathname: '/' });
     await logout();
@@ -99,6 +102,7 @@ function UserCard(): JSX.Element {
           classes={{ picture: classes.avatar }}
           user={viewer}
           withName={false}
+          linkToProfile={false}
         />
         {open ? <ExpandLess /> : <ExpandMore />}
       </button>
@@ -123,20 +127,20 @@ function UserCard(): JSX.Element {
                     href="/user/[params]"
                     as={`/user/${viewer.id}`}
                   >
-                    Profile
+                    {t('buttons.profile')}
                   </MenuItemLink>
                   <MenuItemLink
                     className={classes.option}
                     onClick={handleClose}
                     href="/settings"
                   >
-                    Settings
+                    {t('buttons.settings')}
                   </MenuItemLink>
                   <MenuItem
                     className={clsx(classes.option, classes.logout)}
                     onClick={handleLogout}
                   >
-                    Sign out
+                    {t('buttons.logout')}
                   </MenuItem>
                 </MenuList>
               </ClickAwayListener>

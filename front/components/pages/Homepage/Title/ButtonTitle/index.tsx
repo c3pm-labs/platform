@@ -4,13 +4,17 @@ import {
 import clsx from 'clsx';
 import Link from 'next/link';
 import { Link as ScrollLink } from 'react-scroll';
+import { useTranslation } from 'next-i18next';
+
+import TextLink from 'components/TextLink';
 
 const useStyles = makeStyles((theme) => ({
   containerButton: {
     display: 'flex',
-    flexDirection: 'row',
+    flexDirection: 'column',
     justifyContent: 'space-between',
     alignItems: 'center',
+    marginTop: theme.spacing(2),
   },
   getStartedButton: {
     color: 'white',
@@ -33,10 +37,17 @@ const useStyles = makeStyles((theme) => ({
     minHeight: '1.5em',
     minWidth: '1.5em',
   },
+  getStarted: {
+    minWidth: '15em',
+  },
+  learnMore: {
+    color: theme.palette.secondary.main,
+  },
 }));
 
 function ButtonTitle(): JSX.Element {
   const classes = useStyles();
+  const { t } = useTranslation('common');
 
   return (
     <div className={classes.containerButton}>
@@ -45,6 +56,7 @@ function ButtonTitle(): JSX.Element {
           color="primary"
           variant="contained"
           size="large"
+          className={classes.getStarted}
         >
           <Typography
             className={clsx(
@@ -53,7 +65,7 @@ function ButtonTitle(): JSX.Element {
               classes.defaultStyleButton,
             )}
           >
-            Get started
+            {t('buttons.getStarted')}
           </Typography>
         </Button>
       </Link>
@@ -65,21 +77,11 @@ function ButtonTitle(): JSX.Element {
         spy
         hashSpy
       >
-        <Button
-          variant="outlined"
-          size="large"
-          className={classes.overRideColorLearnMoreButton}
-        >
-          <Typography
-            className={clsx(
-              classes.leanMoreButton,
-              classes.defaultStyleText,
-              classes.defaultStyleButton,
-            )}
-          >
-            Learn More
+        <TextLink className={classes.learnMore} href="">
+          <Typography>
+            {t('buttons.learn')}
           </Typography>
-        </Button>
+        </TextLink>
       </ScrollLink>
     </div>
   );

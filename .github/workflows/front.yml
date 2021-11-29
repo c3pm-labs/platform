@@ -38,23 +38,7 @@ jobs:
         npm run test
       env:
         CI: true
-  
-  Storybook :
-    runs-on: ubuntu-latest
-    steps:
-    - uses: actions/checkout@v2
-    - name: Set up Node.js
-      uses: actions/setup-node@v1
-      with:
-        node-version: 12.x
-    - name: Install dependencies and build storybook
-      working-directory: ./front
-      run: |
-        npm ci
-        npm run build:storybook
-      env:
-        CI: true
-  
+
   Lint :
     runs-on: ubuntu-latest
     steps:
