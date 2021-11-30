@@ -59,7 +59,6 @@ function MobileMenu(): JSX.Element {
     setAnchorEl(null);
   };
 
-
   return (
     <>
       <IconButton onClick={handleClick} className={styles.iconButton}>
