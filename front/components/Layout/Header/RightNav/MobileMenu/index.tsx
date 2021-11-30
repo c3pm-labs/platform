@@ -104,4 +104,3 @@ function MobileMenu(): JSX.Element {
 }
 
 export default MobileMenu;
-// {t('buttons.login')}
