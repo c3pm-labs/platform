@@ -5,6 +5,7 @@ import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
 import Menu from '@material-ui/core/Menu';
 import CloseIcon from '@material-ui/icons/Close';
+import { useTranslation } from 'next-i18next';
 
 import Button from 'components/Button';
 import ButtonLink from 'components/ButtonLink';
@@ -48,6 +49,7 @@ function MobileMenu(): JSX.Element {
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
   const viewer = useViewer();
   const logout = useLogout();
+  const { t } = useTranslation('common');
 
   const handleClick = (event: MouseEvent<HTMLButtonElement>): void => {
     setAnchorEl(event.currentTarget);
@@ -56,6 +58,7 @@ function MobileMenu(): JSX.Element {
   const handleClose = (): void => {
     setAnchorEl(null);
   };
+
 
   return (
     <>
@@ -79,20 +82,20 @@ function MobileMenu(): JSX.Element {
       >
         {viewer ? [
           <Button href={`/user/${viewer.id}`} fullWidth variant="contained" key="settings">
-            Profil
+            {t('buttons.profile')}
           </Button>,
           <Button href="/settings" fullWidth variant="outlined" key="settings">
-            Settings
+            {t('buttons.settings')}
           </Button>,
           <Button onClick={logout} fullWidth variant="outlined" color="error" key="logout">
-            Sign out
+            {t('buttons.logout')}
           </Button>,
         ] : [
           <ButtonLink href="/login" fullWidth variant="outlined" key="login">
-            Sign in
+            {t('buttons.login')}
           </ButtonLink>,
           <ButtonLink href="/register" fullWidth variant="contained" color="primary" key="register">
-            Sign up
+            {t('buttons.register')}
           </ButtonLink>,
         ]}
       </Menu>
@@ -101,3 +104,4 @@ function MobileMenu(): JSX.Element {
 }
 
 export default MobileMenu;
+// {t('buttons.login')}
