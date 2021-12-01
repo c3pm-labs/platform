@@ -13,6 +13,12 @@
         "confirmation": "Enter password confirmation",
         "samePassword": "Passwords must match"
     },
+    "user already exists": "user already exists",
+    "invalid credentials": "invalid credentials",
+    "email is a required field": "email is a required field",
+    "username is a required field": "username is a required field",
+    "password is a required field": "password is a required field",
+    "newPassword is a required field": "newPassword is a required field",
     "password": {
         "forgotten": "Password forgotten",
         "emailSent": "Email sent. Check your inbox.",

@@ -13,6 +13,12 @@
         "confirmation": "Entrez la confirmation du mot de passe",
         "samePassword": "Les mots de passes doivent être identiques"
     },
+    "user already exists": "L'utilisateur existe déjà",
+    "invalid credentials": "Identifiants incorrects",
+    "email is a required field": "L'email est obligatoire",
+    "username is a required field": "Le pseudonyme est obligatoire",
+    "password is a required field": "Le mot de passe est obligatoire",
+    "newPassword is a required field": "La confirmation du mot de passe est obligatoire",
     "password": {
       "forgotten": "Mot de passe oublié",
       "emailSent": "Email envoyé. Verifiez votre boîte de réception.",
