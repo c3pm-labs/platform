@@ -32,7 +32,7 @@
         "save": "Save"
     },
     "found": "packages found",
-    "search": "packageName tag:network author:superdev",
+    "search": "boost tag:network",
     "lastUpdated": "Last updated on",
     "login": {
         "welcome": "Welcome back!",
@@ -92,9 +92,8 @@
         "all": "Discover all packages  🔍",
         "publishedPackages": "published packages! 🎉",
         "see": " See them all",
-        "published": "published",
-        "packages": "packages",
-        "downloaded": "downloaded",
+        "published": "published packages",
+        "downloaded": "downloaded packages",
         "weHave": "On c3pm we have:",
         "currently": "c3pm currently has",
         "trending": "Discover our trending packages 🔥"
