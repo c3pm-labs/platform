@@ -2,7 +2,7 @@ import {
   makeStyles, Typography, Hidden,
 } from '@material-ui/core';
 import { useTranslation } from 'next-i18next';
-import React, { useState } from 'react';
+import React from 'react';
 
 import SearchBar from 'components/Layout/Header/SearchBar';
 import Logo from 'components/Logo';
@@ -94,7 +94,6 @@ const useStyles = makeStyles((theme) => ({
 
 function Title(): JSX.Element {
   const classes = useStyles();
-  const [seeMore, setSeeMore] = useState(false);
   const { t } = useTranslation('common');
 
   return (

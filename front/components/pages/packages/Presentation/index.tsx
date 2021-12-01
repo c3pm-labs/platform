@@ -3,7 +3,6 @@ import CodeIcon from '@material-ui/icons/Code';
 import PeopleIcon from '@material-ui/icons/People';
 import LanguageIcon from '@material-ui/icons/Language';
 import React from 'react';
-import Link from 'next/link';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
 

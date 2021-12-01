@@ -1,12 +1,13 @@
 import { useContext } from 'react';
 import { makeStyles, Typography } from '@material-ui/core';
 import { Form, Formik } from 'formik';
+import { useTranslation } from 'next-i18next';
+import { useContactUs } from 'hooks/contact_us';
 
 import Button from 'components/Button';
 import TextInput from 'components/TextInput';
 import { contactFormSchema } from 'utils/validation';
 import { ModalContext } from 'utils/contexts/modalContext';
-import { useContactUs } from 'hooks/contact_us';
 
 const useStyles = makeStyles((theme) => ({
   container: {
@@ -87,7 +88,8 @@ export type ContactParams = {
 const ContactForm = (): JSX.Element => {
   const classes = useStyles();
   const { modalDispatch } = useContext(ModalContext);
-  const { contactUs, contactUsError } = useContactUs();
+  const { t } = useTranslation('common');
+  const { contactUs } = useContactUs();
   const initialValues: ContactParams = {
     firstname: '',
     lastname: '',
@@ -98,7 +100,7 @@ const ContactForm = (): JSX.Element => {
   return (
     <div className={classes.container}>
       <Typography className={classes.title} variant="h1">
-        Contact us
+        {t('contactForm.title')}
       </Typography>
       <Formik
         initialValues={initialValues}
@@ -115,7 +117,7 @@ const ContactForm = (): JSX.Element => {
               className={`${classes.input} ${classes.nameContainer}`}
               label="Firstname"
               name="firstname"
-              placeholder="Firstname"
+              placeholder={t('contactForm.firstname')}
               type="text"
               fullWidth
               required
@@ -124,7 +126,7 @@ const ContactForm = (): JSX.Element => {
               className={`${classes.input} ${classes.nameContainer}`}
               label="Lastname"
               name="lastname"
-              placeholder="Lastname"
+              placeholder={t('contactForm.lastname')}
               type="text"
               fullWidth
             />
@@ -133,7 +135,7 @@ const ContactForm = (): JSX.Element => {
             className={classes.input}
             label="Email"
             name="email"
-            placeholder="Email"
+            placeholder={t('contactForm.email')}
             type="text"
             fullWidth
             required
@@ -142,7 +144,7 @@ const ContactForm = (): JSX.Element => {
             className={classes.input}
             label="Message"
             name="message"
-            placeholder="Message"
+            placeholder={t('contactForm.message')}
             type="text"
             fullWidth
             rows={6}
@@ -160,7 +162,7 @@ const ContactForm = (): JSX.Element => {
               }}
               fullWidth
             >
-              Cancel
+              {t('buttons.cancel')}
             </Button>
             <Button
               className={classes.button}
@@ -169,7 +171,7 @@ const ContactForm = (): JSX.Element => {
               type="submit"
               fullWidth
             >
-              Send
+              {t('buttons.send')}
             </Button>
           </div>
 

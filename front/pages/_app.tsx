@@ -24,16 +24,16 @@ function App({ Component, pageProps }: AppProps): JSX.Element {
     <ApolloProvider client={client}>
       <ThemeProvider theme={theme}>
         <ModalProvider>
-        <Head>
-          <title>c3pm</title>
-          <meta name="viewport" content="minimum-scale=1, initial-scale=1, width=device-width" />
-          <script type="text/javascript" src="//script.crazyegg.com/pages/scripts/0106/8707.js" async />
-        </Head>
-        <CssBaseline />
-        <Component {...pageProps} />
-        <Modal />
-      </ModalProvider>
-    </ThemeProvider>
+          <Head>
+            <title>c3pm</title>
+            <meta name="viewport" content="minimum-scale=1, initial-scale=1, width=device-width" />
+            <script type="text/javascript" src="//script.crazyegg.com/pages/scripts/0106/8707.js" async />
+          </Head>
+          <CssBaseline />
+          <Component {...pageProps} />
+          <Modal />
+        </ModalProvider>
+      </ThemeProvider>
     </ApolloProvider>
   );
 }
