@@ -94,7 +94,6 @@ const useStyles = makeStyles((theme) => ({
 
 function Title(): JSX.Element {
   const classes = useStyles();
-  const [seeMore, setSeeMore] = useState(false);
   const { t } = useTranslation('common');
 
   return (

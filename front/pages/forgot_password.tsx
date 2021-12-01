@@ -3,15 +3,15 @@ import { Formik, Form } from 'formik';
 import { makeStyles } from '@material-ui/core';
 import Typography from '@material-ui/core/Typography';
 import { useForgot } from 'hooks/forgot_password';
+import { GetStaticProps } from 'next';
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
+import { useTranslation } from 'next-i18next';
 
 import TextInput from 'components/TextInput';
 import Button from 'components/Button';
 import Head from 'components/Head';
 import Logo from 'components/Logo';
 import { ForgotParams, forgotSchema } from 'utils/validation';
-import { GetStaticProps } from "next";
-import { serverSideTranslations } from "next-i18next/serverSideTranslations";
-import { useTranslation } from "next-i18next";
 
 const useStyles = makeStyles((theme) => ({
   text: {
