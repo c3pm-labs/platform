@@ -13,6 +13,25 @@
         "confirmation": "Entrez la confirmation du mot de passe",
         "samePassword": "Les mots de passes doivent être identiques"
     },
+    "user already exists": "L'utilisateur existe déjà",
+    "invalid credentials": "Identifiants incorrects",
+    "email is a required field": "L'email est obligatoire",
+    "username is a required field": "Le pseudonyme est obligatoire",
+    "password is a required field": "Le mot de passe est obligatoire",
+    "newPassword is a required field": "La confirmation du mot de passe est obligatoire",
+    "password": {
+      "forgotten": "Mot de passe oublié",
+      "emailSent": "Email envoyé. Verifiez votre boîte de réception.",
+      "instructions": "Entrez votre email puis cliquez sur le boutton ci-dessous pour recevoir votre lien de réinitialisation de mot de passe.",
+      "email": "email",
+      "resetRequest": "Envoyer l'email",
+      "reset": "Réinitialiser le mot de passe",
+      "newPassword": "Entrez un nouveau mot de passe et sa confirmation.",
+      "confirm": "confirmer le mot de passe",
+      "new": "nouveau mot de passe",
+      "confirmNew": "Valider"
+
+    },
      "profile": {
         "noPackage": "Vous n'avez pas encore de paquets.",
         "package": "paquet",

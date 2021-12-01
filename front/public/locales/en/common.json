@@ -13,6 +13,25 @@
         "confirmation": "Enter password confirmation",
         "samePassword": "Passwords must match"
     },
+    "user already exists": "user already exists",
+    "invalid credentials": "invalid credentials",
+    "email is a required field": "email is a required field",
+    "username is a required field": "username is a required field",
+    "password is a required field": "password is a required field",
+    "newPassword is a required field": "newPassword is a required field",
+    "password": {
+        "forgotten": "Password forgotten",
+        "emailSent": "Email sent. Check your inbox.",
+        "instructions": "Enter your email and click the button below to receive a link to reset your password.",
+        "email": "email",
+        "resetRequest": "Send password reset email",
+        "reset": "Reset password",
+        "newPassword": "Enter your new password and password confirmation.",
+        "confirm": "confirm password",
+        "new": "new password",
+        "confirmNew": "Confirm new password"
+
+    },
     "profile": {
         "noPackage": "You don't have any package yet.",
         "package": "package",

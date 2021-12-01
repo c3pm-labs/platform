@@ -3,6 +3,9 @@ import { makeStyles } from '@material-ui/core';
 import { useRouter } from 'next/router';
 import { useReset } from 'hooks/forgot_password';
 import Typography from '@material-ui/core/Typography';
+import { GetStaticProps } from 'next';
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
+import { useTranslation } from 'next-i18next';
 
 import Button from 'components/Button';
 import Head from 'components/Head';
@@ -63,6 +66,7 @@ function ResetPassword(): JSX.Element {
   const router = useRouter();
   const reset = useReset();
   const { token } = router.query;
+  const { t } = useTranslation('common');
 
   return (
     <>
@@ -74,13 +78,13 @@ function ResetPassword(): JSX.Element {
         variant="h6"
         className={classes.text}
       >
-        Reset password
+        {t('password.reset')}
       </Typography>
       <Typography
         variant="subtitle1"
         className={classes.text}
       >
-        Enter your new password and password confirmation.
+        {t('password.newPassword')}
       </Typography>
       <Formik
         initialValues={{ password: '', confirm: '' }}
@@ -94,13 +98,13 @@ function ResetPassword(): JSX.Element {
           <div className={classes.input}>
             <PasswordInput
               name="password"
-              label="new password"
+              label={t('password.new')}
               required
               fullWidth
             />
             <PasswordInput
               name="confirm"
-              label="confirm password"
+              label={t('password.confirm')}
               required
               fullWidth
             />
@@ -112,7 +116,7 @@ function ResetPassword(): JSX.Element {
               type="submit"
               fullWidth
             >
-              Confirm new password
+              {t('password.confirmNew')}
             </Button>
           </div>
         </Form>
@@ -120,5 +124,13 @@ function ResetPassword(): JSX.Element {
     </>
   );
 }
+
+export const getStaticProps: GetStaticProps = async ({ locale }) => (
+  {
+    props: {
+      ...(await serverSideTranslations(locale as string, ['common'])),
+    },
+  }
+);
 
 export default ResetPassword;

@@ -2,6 +2,7 @@ import React from 'react';
 import { useField } from 'formik';
 import TextField from '@material-ui/core/TextField';
 import makeStyles from '@material-ui/core/styles/makeStyles';
+import { useTranslation } from 'next-i18next';
 
 const useStyles = makeStyles({
   root: {
@@ -29,12 +30,13 @@ export interface TextInputProps {
 const TextInput = ({ disableHelperText = false, name, ...props }: TextInputProps): JSX.Element => {
   const [field, meta] = useField({ name, ...props });
   const classes = useStyles();
+  const { t } = useTranslation('common');
   const { multiline, rows } = props;
   let helperText = ' ';
   if (disableHelperText) {
     helperText = '';
   } else if (!!meta.error && meta.touched) {
-    helperText = meta.error;
+    helperText = t(meta.error);
   }
 
   return (
