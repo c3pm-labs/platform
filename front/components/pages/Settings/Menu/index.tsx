@@ -2,6 +2,7 @@ import React from 'react';
 import {
   makeStyles, Typography,
 } from '@material-ui/core';
+import { useTranslation } from 'next-i18next';
 
 import Onglet from './Onglet';
 import Options from './utils';
@@ -55,11 +56,12 @@ function Menu(props: MenuProps): JSX.Element {
     setIsMenu,
   } = props;
   const classes = useStyles();
+  const { t } = useTranslation('common');
 
   return (
     <div className={classes.container}>
       <Typography className={classes.blueTitle}>
-        Settings :
+        {t('settings.menu.title')}
       </Typography>
       <div className={classes.options}>
         <Onglet

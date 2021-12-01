@@ -1,6 +1,8 @@
 {
     "packages": "Packages",
     "downloads": " downloads",
+    "Profile": "Profile",
+    "Security": "Security",
     "errors": {
         "emailOrUsername": "Email or username is required",
         "username": "Username is required",
@@ -26,7 +28,8 @@
         "login": "Sign in",
         "discover": "Discover all",
         "register": "Sign up",
-        "edit": "Edit"
+        "edit": "Edit",
+        "save": "Save"
     },
     "found": "packages found",
     "search": "packageName tag:network author:superdev",
@@ -38,6 +41,35 @@
         "forgot": "Forgot password?",
         "account": "Don't have an account? ",
         "register": "Sign Up"
+    },
+    "register": {
+        "title": "Join the team",
+        "username": "username",
+        "email": "email",
+        "account": "Already have an account? ",
+        "password": "password"
+    },
+    "settings": {
+        "success": "Infos successfully updated!",
+        "successPassword": "Password successfully updated!",
+        "profile": {
+            "username": "Username :",
+            "usernameP": "username",
+            "email": "Email :",
+            "emailP": "email",
+            "description": "Description :",
+            "descriptionP": "description"
+        },
+        "security": {
+            "password": "Password :",
+            "passwordP": "password",
+            "newPassword": "new password"
+        },
+      "menu": {
+        "title": "Settings",
+        "profile": "Profile",
+        "security": "Security"
+      }
     },
     "home": {
         "why": "Why c3pm?",

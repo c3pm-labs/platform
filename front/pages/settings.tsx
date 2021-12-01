@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import { Hidden, makeStyles } from '@material-ui/core';
-import { GetStaticProps } from 'next';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
+import { useTranslation } from 'next-i18next';
+import type { NextPage, GetStaticProps } from 'next';
 
 import Layout from 'components/Layout';
 import Menu from 'components/pages/Settings/Menu';
@@ -31,8 +32,9 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-function Settings(): JSX.Element {
+const Settings: NextPage = () => {
   const classes = useStyles();
+  const { t } = useTranslation('common');
   const [currentFocus, setCurrentFocus] = useState(Options.PROFILE);
   const [isMenu, setIsMenu] = useState(true);
 
@@ -64,7 +66,7 @@ function Settings(): JSX.Element {
           )
           : (
             <div className={classes.wrapperOptionMobile}>
-              <BackButton title={currentFocus} goBack={(): void => setIsMenu(true)} />
+              <BackButton title={t(currentFocus)} goBack={(): void => setIsMenu(true)} />
               { currentFocus === Options.PROFILE && <Profile />}
               { currentFocus === Options.SECURITY && <Security />}
             </div>
@@ -72,7 +74,7 @@ function Settings(): JSX.Element {
       </Hidden>
     </Layout>
   );
-}
+};
 
 export const getStaticProps: GetStaticProps = async ({ locale }) => (
   {
