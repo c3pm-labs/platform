@@ -20,7 +20,7 @@ const useStyles = makeStyles((theme: Theme) => createStyles({
     display: 'flex',
     flexDirection: 'column',
     justifyContent: 'space-between',
-    background: '#FFFFFF',
+    backgroundColor: theme.palette.type === 'light' ? theme.palette.background.default : '#333',
     boxShadow: '0px 4px 15px rgba(0, 0, 0, 0.12)',
     borderRadius: theme.shape.borderRadius,
     [theme.breakpoints.up('sm')]: {
@@ -83,7 +83,7 @@ const useStyles = makeStyles((theme: Theme) => createStyles({
   downloads: {
     borderRadius: 7,
     padding: '2px 8px',
-    color: 'white',
+    color: '#191919',
   },
 }));
 

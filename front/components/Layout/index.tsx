@@ -7,7 +7,7 @@ import Footer from './Footer';
 const useStyles = makeStyles((theme) => ({
   container: {
     minHeight: '100vh',
-    background: theme.palette.background.default,
+    backgroundColor: theme.palette.background.default,
   },
 }));
 

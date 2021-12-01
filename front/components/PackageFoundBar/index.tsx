@@ -9,7 +9,8 @@ const useStyles = makeStyles((theme) => ({
   resultBar: {
     display: 'flex',
     width: '100%',
-    background: 'linear-gradient(90.03deg, rgba(0, 184, 230, 0.6) 12.8%, rgba(255, 112, 68, 0.29) 89.18%)',
+    background: theme.palette.type === 'light' ? 'linear-gradient(90.03deg, rgba(38, 179, 239, 0.2) 12.8%, rgba(255, 112, 68, 0.2) 89.18%)'
+      : 'linear-gradient(90.03deg, rgba(38, 179, 239, 0.8) 12.8%, rgba(255, 112, 68, 0.8) 89.18%)',
     fontSize: '20px',
     color: 'white',
     maxHeight: '30px',

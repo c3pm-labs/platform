@@ -8,14 +8,15 @@ import Layout from 'components/Layout';
 import Accordion from 'components/Accordion';
 import CustomDivider from 'components/CustomDivider';
 
-const useStyles = makeStyles(() => ({
+const useStyles = makeStyles((theme) => ({
   container: {
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
     flexDirection: 'column',
     paddingBottom: '5rem',
-    background: 'linear-gradient(124.57deg, rgba(38, 179, 239, 0.2) 37.9%, rgba(255, 112, 68, 0.2) 74.33%)',
+    background: theme.palette.type === 'light' ? 'linear-gradient(124.57deg, rgba(38, 179, 239, 0.2) 37.9%, rgba(255, 112, 68, 0.2) 74.33%)'
+      : 'linear-gradient(124.57deg, rgba(38, 179, 239, 0.8) 37.9%, rgba(255, 112, 68, 0.8) 74.33%)',
   },
   title: {
     textAlign: 'center',

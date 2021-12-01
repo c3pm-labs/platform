@@ -50,7 +50,8 @@ const useStyles = makeStyles((theme) => ({
     alignItems: 'center',
     paddingBottom: theme.spacing(8),
     paddingTop: theme.spacing(8),
-    background: 'linear-gradient(197.6deg, rgba(38, 179, 239, 0.2) 0.93%, rgba(255, 112, 68, 0.2) 98.91%)',
+    background: theme.palette.type === 'light' ? 'linear-gradient(124.57deg, rgba(38, 179, 239, 0.2) 37.9%, rgba(255, 112, 68, 0.2) 74.33%)'
+      : 'linear-gradient(124.57deg, rgba(38, 179, 239, 0.8) 37.9%, rgba(255, 112, 68, 0.8) 74.33%)',
     boxShadow: '0px 4px 15px rgba(0, 0, 0, 0.12)',
     borderRadius: theme.shape.borderRadius,
     [theme.breakpoints.between('md', 'xl')]: {

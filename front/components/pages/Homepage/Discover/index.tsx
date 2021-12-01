@@ -17,7 +17,8 @@ const useStyles = makeStyles((theme) => ({
     flexDirection: 'column',
     alignItems: 'center',
     justifyContent: 'center',
-    background: 'linear-gradient(124.57deg, rgba(38, 179, 239, 0.2) 37.9%, rgba(255, 112, 68, 0.2) 74.33%)',
+    background: theme.palette.type === 'light' ? 'linear-gradient(124.57deg, rgba(38, 179, 239, 0.2) 37.9%, rgba(255, 112, 68, 0.2) 74.33%)'
+      : 'linear-gradient(124.57deg, rgba(38, 179, 239, 0.8) 37.9%, rgba(255, 112, 68, 0.8) 74.33%)',
     padding: '50px 0',
   },
   packageList: {

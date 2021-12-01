@@ -20,7 +20,7 @@ const useStyles = makeStyles((theme) => createStyles({
     backgroundColor: 'transparent !important',
   },
   padding: {
-    padding: 0,
+    padding: 2,
   },
   margin: {
     marginRight: theme.spacing(2),
@@ -44,11 +44,7 @@ const useStyles = makeStyles((theme) => createStyles({
   },
 }));
 
-type LanguageMenuProps = {
-  isUserLoggedIn: boolean;
-};
-
-const LanguageMenu = ({ isUserLoggedIn = false }: LanguageMenuProps): JSX.Element => {
+const LanguageMenu = (): JSX.Element => {
   const classes = useStyles();
   const router = useRouter();
   const { asPath } = useRouter();
@@ -83,7 +79,7 @@ const LanguageMenu = ({ isUserLoggedIn = false }: LanguageMenuProps): JSX.Elemen
 
   return (
     <>
-      <List className={!isUserLoggedIn ? classes.padding : classes.margin} component="nav">
+      <List className={classes.margin} component="nav">
         <ListItem
           aria-haspopup="true"
           className={classes.button}

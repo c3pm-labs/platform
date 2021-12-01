@@ -10,6 +10,7 @@ import { Package } from 'types';
 import { useQuery } from '@apollo/client';
 import { SEARCH } from 'queries';
 import type { NextPage, GetStaticProps } from 'next';
+import Link from 'next/link';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 
 import Head from 'components/Head';
@@ -141,12 +142,12 @@ const Search: NextPage = () => {
             count={numberOfPages()}
             size={isMobile ? 'small' : 'medium'}
             renderItem={(item) => (
-              <PaginationItem
-                {...item}
-                className={classes.numberButton}
-                component="a"
-                href={`/search?q=${q ?? ''}&page=${item.page}`}
-              />
+              <Link href={`/search?q=${q ?? ''}&page=${item.page}`}>
+                <PaginationItem
+                  {...item}
+                  className={classes.numberButton}
+                />
+              </Link>
             )}
           />
         </div>

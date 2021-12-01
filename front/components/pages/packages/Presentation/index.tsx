@@ -40,7 +40,8 @@ const useStyles = makeStyles((theme) => ({
     },
   },
   header: {
-    background: 'linear-gradient(100.51deg, rgba(0, 184, 230, 0.14) 45.2%, rgba(255, 112, 68, 0.2) 79.05%)',
+    background: theme.palette.type === 'light' ? 'linear-gradient(124.57deg, rgba(38, 179, 239, 0.2) 37.9%, rgba(255, 112, 68, 0.2) 74.33%)'
+      : 'linear-gradient(124.57deg, rgba(38, 179, 239, 0.8) 37.9%, rgba(255, 112, 68, 0.8) 74.33%)',
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'baseline',
@@ -67,6 +68,7 @@ const useStyles = makeStyles((theme) => ({
   version: {
     fontWeight: 500,
     fontSize: 18,
+    color: theme.palette.text.primary,
   },
   description: {
     color: theme.palette.grey[500],

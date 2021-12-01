@@ -1,9 +1,13 @@
 import useMediaQuery from '@material-ui/core/useMediaQuery';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
 import { useViewer } from 'hooks/auth';
+import IconButton from '@material-ui/core/IconButton';
+import LightIcon from '@material-ui/icons/WbSunny';
+import DarkIcon from '@material-ui/icons/Brightness2';
 import { useTranslation } from 'next-i18next';
 
 import ButtonLink from 'components/ButtonLink';
+import { useColorTheme } from 'utils/colorTheme';
 
 import LanguageMenu from '../LanguageMenu';
 
@@ -20,6 +24,12 @@ const useStyles = makeStyles((theme) => ({
   buttons: {
     display: 'flex',
     flexDirection: 'row',
+    alignItems: 'center',
+  },
+  container: {
+    display: 'flex',
+    flexDirection: 'row',
+    alignItems: 'center',
   },
 }));
 
@@ -28,6 +38,7 @@ function RightNav(): JSX.Element {
   const isMobile = useMediaQuery(theme.breakpoints.down('xs'));
   const viewer = useViewer();
   const classes = useStyles();
+  const [colorTheme, toggleTheme] = useColorTheme();
   const { t } = useTranslation('common');
 
   if (isMobile) {
@@ -38,10 +49,14 @@ function RightNav(): JSX.Element {
 
   return (
     <>
-
       { viewer ? (
         <div className={classes.buttons}>
-          <LanguageMenu isUserLoggedIn />
+          <LanguageMenu />
+          <IconButton color="primary" onClick={toggleTheme} className={classes.marginRight}>
+            {
+              colorTheme === 'light' ? <DarkIcon /> : <LightIcon />
+            }
+          </IconButton>
           <UserCard />
         </div>
       ) : (
@@ -52,7 +67,12 @@ function RightNav(): JSX.Element {
           <ButtonLink href="/register" className={classes.marginRight} variant="contained">
             {t('buttons.register')}
           </ButtonLink>
-          <LanguageMenu isUserLoggedIn={false} />
+          <LanguageMenu />
+          <IconButton color="primary" onClick={toggleTheme}>
+            {
+              colorTheme === 'light' ? <DarkIcon /> : <LightIcon />
+            }
+          </IconButton>
         </div>
       )}
     </>

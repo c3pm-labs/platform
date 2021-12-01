@@ -10,7 +10,7 @@ export interface MarkdownDisplayerProps {
 
 const useStyles = makeStyles((theme) => ({
   readme: {
-    background: '#FFFFFF',
+    background: theme.palette.background.default,
     boxShadow: '0px 4px 15px rgba(0, 0, 0, 0.12)',
     borderRadius: theme.shape.borderRadius,
     padding: theme.spacing(4),
@@ -23,7 +23,7 @@ const useStyles = makeStyles((theme) => ({
     '& code': {
       fontFamily: 'SFMono-Regular, Consolas, Liberation Mono, Menlo, monospace',
       fontSize: 14,
-      backgroundColor: '#f0f5f9',
+      backgroundColor: theme.palette.secondary.main,
       borderRadius: theme.shape.borderRadius,
       padding: '3px 5px',
     },
@@ -31,7 +31,7 @@ const useStyles = makeStyles((theme) => ({
       padding: theme.spacing(1),
       overflow: 'auto',
       borderRadius: theme.shape.borderRadius,
-      backgroundColor: '#f0f5f9',
+      backgroundColor: theme.palette.secondary.main,
       '& > code': {
         borderRadius: 'none',
         backgroundColor: 'none',

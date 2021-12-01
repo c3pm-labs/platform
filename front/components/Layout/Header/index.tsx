@@ -1,6 +1,6 @@
 import { Hidden } from '@material-ui/core';
 import useScrollTrigger from '@material-ui/core/useScrollTrigger';
-import { makeStyles } from '@material-ui/core/styles';
+import { makeStyles, useTheme } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 
@@ -32,6 +32,7 @@ const useStyles = makeStyles((theme) => ({
 function Header(): JSX.Element {
   const classes = useStyles();
   const elevationTrigger = useScrollTrigger({ threshold: 10, disableHysteresis: true });
+  const theme = useTheme();
 
   return (
     <AppBar
@@ -42,10 +43,10 @@ function Header(): JSX.Element {
     >
       <Toolbar className={classes.container}>
         <Hidden implementation="css" smUp>
-          <Logo type="mini" />
+          <Logo type="mini" theme={theme.palette.type} />
         </Hidden>
         <Hidden implementation="css" xsDown>
-          <Logo type="classic" size="sm" />
+          <Logo type="classic" size="sm" theme={theme.palette.type} />
         </Hidden>
         <SearchBar
           dataTestId="search-header"

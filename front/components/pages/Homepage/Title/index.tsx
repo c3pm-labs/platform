@@ -55,7 +55,8 @@ const useStyles = makeStyles((theme) => ({
   backgroundTitle: {
     paddingTop: theme.spacing(10),
     paddingBottom: theme.spacing(12),
-    background: 'linear-gradient(104.37deg, rgba(38, 179, 239, 0.2) 47.39%, rgba(255, 112, 68, 0.2) 78.49%)',
+    background: theme.palette.type === 'light' ? 'linear-gradient(124.57deg, rgba(38, 179, 239, 0.2) 37.9%, rgba(255, 112, 68, 0.2) 74.33%)'
+      : 'linear-gradient(124.57deg, rgba(38, 179, 239, 0.8) 37.9%, rgba(255, 112, 68, 0.8) 74.33%)',
     width: '100%',
     position: 'relative',
   },
