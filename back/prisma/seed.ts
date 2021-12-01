@@ -16,7 +16,6 @@ async function main() {
   const networkPkg = await db.package.create({
     data: {
       name: 'network',
-      tags: ['network', 'utils'],
       downloads: 134,
       versions: {
         create: [
