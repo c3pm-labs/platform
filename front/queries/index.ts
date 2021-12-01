@@ -160,6 +160,7 @@ export const DISCOVER = gql`
             tags,
             author {
                 username,
+                id,
             }
             latest {
                 description,
