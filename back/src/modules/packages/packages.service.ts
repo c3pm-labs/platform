@@ -60,11 +60,11 @@ export async function search(s: string): Promise<Package[]> {
             { versions: { some: { description: { contains: keyword } } } },
           ],
         },
-        {
+        (parameters.tag ? ({
           tags: {
-            hasEvery: parameters.tag ?? [],
+            hasEvery: parameters.tag,
           },
-        },
+        }) : {}),
         {
           ...(parameters.author?.length > 0 ? {
             OR: parameters.author.map((author) => ({

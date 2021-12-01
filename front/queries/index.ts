@@ -10,6 +10,7 @@ export const USER = gql`
             packages(first: 1000, last: 0) {
                 name
                 tags
+                downloads,
                 author {
                     username
                 }
@@ -159,6 +160,7 @@ export const DISCOVER = gql`
             tags,
             author {
                 username,
+                id,
             }
             latest {
                 description,
@@ -174,6 +176,14 @@ export const DISCOVER = gql`
 export const FORGOT = gql`
     mutation forgotPassword($email: String!) {
         forgotPassword(email: $email) {
+            id,
+        }
+    }
+`;
+
+export const CONTACT = gql`
+    mutation contactUs($firstname: String!, $lastname: String!, $email: String!, $message: String!) {
+        contactUs(firstname: $firstname, lastname: $lastname, email: $email, message: $message) {
             id,
         }
     }

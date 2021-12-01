@@ -60,6 +60,18 @@ export const UserMutation = extendType({
         return usersService.updateUser(ctx, args);
       },
     });
+    t.field('contactUs', {
+      type: User,
+      args: {
+        firstname: stringArg(),
+        lastname: nullable(stringArg()),
+        email: stringArg(),
+        message: stringArg(),
+      },
+      resolve(parent, args, ctx) {
+        return usersService.contactUs(ctx, args);
+      },
+    });
 
     t.field('updatePassword', {
       type: User,

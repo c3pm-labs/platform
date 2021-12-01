@@ -1,7 +1,10 @@
+import { useContext } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import { Typography } from '@material-ui/core';
 import { useTranslation } from 'next-i18next';
 
+import { ModalContext } from 'utils/contexts/modalContext';
+import ContactForm from 'components/forms/ContactForm';
 import TextLink from 'components/TextLink';
 
 const useStyles = makeStyles((theme) => ({
@@ -34,11 +37,17 @@ const useStyles = makeStyles((theme) => ({
     color: theme.palette.grey[500],
     marginBottom: 3,
   },
+  contactText: {
+    fontSize: 14,
+    color: theme.palette.grey[500],
+    cursor: 'pointer',
+  },
 }));
 
 function Footer(): JSX.Element {
   const classes = useStyles();
   const { t } = useTranslation('common');
+  const { modalDispatch } = useContext(ModalContext);
 
   const linkElement = (link: string, name: string) => (
     <a
@@ -66,6 +75,14 @@ function Footer(): JSX.Element {
         <span>{t('footer.contact')}</span>
         {linkElement('mailto:contact@c3pm.io', 'contact@c3pm.io')}
         {linkElement('https://github.com/c3pm-labs/c3pm/issues/new/choose', t('footer.issue'))}
+        <Typography
+          className={classes.contactText}
+          onClick={() => {
+            modalDispatch({ open: true, children: <ContactForm /> });
+          }}
+        >
+          {t('footer.sendMsg')}
+        </Typography>
       </div>
     </div>
   );

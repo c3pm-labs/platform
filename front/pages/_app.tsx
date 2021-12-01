@@ -7,6 +7,8 @@ import CssBaseline from '@material-ui/core/CssBaseline';
 import { ApolloProvider } from '@apollo/client';
 
 import client from 'utils/client';
+import Modal from 'components/Modal';
+import { ModalProvider } from 'utils/contexts/modalContext';
 
 import { ColorThemeProvider, useColorTheme } from '../utils/colorTheme';
 import { getDesignTokens } from '../utils/theme';
@@ -36,13 +38,16 @@ function App({ Component, pageProps }: AppProps): JSX.Element {
     <ApolloProvider client={client}>
       <ColorThemeProvider>
         <Theme>
-          <Head>
-            <title>c3pm</title>
-            <meta name="viewport" content="minimum-scale=1, initial-scale=1, width=device-width" />
-            <script type="text/javascript" src="//script.crazyegg.com/pages/scripts/0106/8707.js" async />
-          </Head>
-          <CssBaseline />
-          <Component {...pageProps} />
+          <ModalProvider>
+            <Head>
+              <title>c3pm</title>
+              <meta name="viewport" content="minimum-scale=1, initial-scale=1, width=device-width" />
+              <script type="text/javascript" src="//script.crazyegg.com/pages/scripts/0106/8707.js" async />
+            </Head>
+            <CssBaseline />
+            <Component {...pageProps} />
+            <Modal />
+          </ModalProvider>
         </Theme>
       </ColorThemeProvider>
     </ApolloProvider>

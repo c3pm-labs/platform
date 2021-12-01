@@ -1,6 +1,8 @@
 {
     "packages": "Paquets",
     "downloads": " téléchargements",
+    "Profile": "Profil",
+    "Security": "Sécurité",
     "errors": {
         "emailOrUsername": "Email ou pseudo obligatoire",
         "username": "Pseudo obligatoire",
@@ -10,6 +12,25 @@
         "invalidPassword": "Mot de passe trop court, 8 characters minimum",
         "confirmation": "Entrez la confirmation du mot de passe",
         "samePassword": "Les mots de passes doivent être identiques"
+    },
+    "user already exists": "L'utilisateur existe déjà",
+    "invalid credentials": "Identifiants incorrects",
+    "email is a required field": "L'email est obligatoire",
+    "username is a required field": "Le pseudonyme est obligatoire",
+    "password is a required field": "Le mot de passe est obligatoire",
+    "newPassword is a required field": "La confirmation du mot de passe est obligatoire",
+    "password": {
+      "forgotten": "Mot de passe oublié",
+      "emailSent": "Email envoyé. Verifiez votre boîte de réception.",
+      "instructions": "Entrez votre email puis cliquez sur le boutton ci-dessous pour recevoir votre lien de réinitialisation de mot de passe.",
+      "email": "email",
+      "resetRequest": "Envoyer l'email",
+      "reset": "Réinitialiser le mot de passe",
+      "newPassword": "Entrez un nouveau mot de passe et sa confirmation.",
+      "confirm": "confirmer le mot de passe",
+      "new": "nouveau mot de passe",
+      "confirmNew": "Valider"
+
     },
      "profile": {
         "noPackage": "Vous n'avez pas encore de paquets.",
@@ -26,10 +47,13 @@
         "login": "Connexion",
         "register": "S'enregistrer",
         "edit": "Modifier",
-        "discover": "Tout découvrir"
+        "discover": "Tout découvrir",
+        "send": "Envoyer",
+        "cancel": "Annuler",
+        "save": "Sauvegarder"
     },
     "found": "paquets trouvés",
-    "search": "nomDuPaquet tag:network author:superdev",
+    "search": "boost tag:network",
     "lastUpdated": "Modifié pour la dernière fois le",
      "login": {
         "welcome": "Bon retour !",
@@ -37,7 +61,36 @@
         "password": "mot de passe",
         "forgot": "Mot de passe oublié ?",
         "account": "Pas encore de compte ? ",
-        "register": "S'enregistrer"
+        "register": " S'enregistrer"
+    },
+     "register": {
+        "title": "Rejoins l'équipe",
+        "username": "pseudonyme",
+        "email": "email",
+        "account": "Tu as déjà un compte ? ",
+        "password": "mot de passe"
+    },
+      "settings": {
+        "success": "Les infos ont bien été sauvegardées !",
+        "successPassword": "Mot de passe modifié !",
+        "profile": {
+            "username": "Pseudonyme :",
+            "usernameP": "pseudonyme",
+            "email": "Adresse email :",
+            "emailP": "adresse email",
+            "description": "Description :",
+            "descriptionP": "description"
+        },
+        "security": {
+            "password": "Mot de passe :",
+            "passwordP": "mot de passe",
+            "newPassword": "nouveau mot de passe"
+        },
+      "menu": {
+        "title": "Paramètres",
+        "profile": "Profil",
+        "security": "Sécurité"
+      }
     },
     "home": {
         "why": "Pourquoi c3pm ?",
@@ -59,12 +112,18 @@
         "all": "Découvre tous nos paquets 🔍",
         "publishedPackages": "paquets publiées ! 🎉",
         "see": " Tout voir",
-        "published": "publiés",
-        "packages": "paquets",
-        "downloaded": "téléchargés",
+        "published": "paquets publiés",
+        "downloaded": "paquets téléchargés",
         "weHave": "Sur c3pm nous avons:",
         "currently": "c3pm actuellement",
         "trending": "Découvre nos paquets tendances 🔥"
+    },
+    "contactForm": {
+        "title": "Nous contacter",
+        "firstname": "Prénom",
+        "lastname": "Nom",
+        "email": "Adresse mail",
+        "message": "Message"
     },
     "footer": {
         "general": "Informations générales",
@@ -72,7 +131,8 @@
         "releases": "Versions",
         "issue": "Nous remonter un problème",
         "team": "L'équipe",
-        "tos": "Terms of services"
+        "tos": "Terms of services",
+        "sendMsg": "Nous envoyer un message"
     },
    "tos": {
     "title": "Conditions générales d'utilisation",

@@ -3,6 +3,9 @@ import Typography from '@material-ui/core/Typography';
 import { useRegister } from 'hooks/auth';
 import { makeStyles, useTheme } from '@material-ui/core';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
+import { useTranslation } from 'next-i18next';
+import type { NextPage, GetStaticProps } from 'next';
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 
 import TextLink from 'components/TextLink';
 import TextInput from 'components/TextInput';
@@ -88,7 +91,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-function Register(): JSX.Element {
+const Register: NextPage = () => {
   const classes = useStyles();
   const { register, registerError } = useRegister();
 
@@ -97,6 +100,7 @@ function Register(): JSX.Element {
   const matches = useMediaQuery(theme.breakpoints.up('lg'));
   const isDesktop = useMediaQuery(theme.breakpoints.up('md'));
   const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
+  const { t } = useTranslation('common');
 
   const getSize = (): LogoProps['size'] => {
     if (isMobile) {
@@ -121,7 +125,7 @@ function Register(): JSX.Element {
             variant="subtitle1"
             className={classes.text}
           >
-            Join the team
+            {t('register.title')}
           </Typography>
           <Formik
             initialValues={initialValues}
@@ -130,31 +134,31 @@ function Register(): JSX.Element {
               await register(values);
             }}
           >
-            <Form noValidate className={classes.input}>
+            <Form className={classes.input}>
               <Typography
                 variant="body2"
                 color="error"
                 className={classes.error}
               >
-                {registerError.error?.message}
+                {t(registerError.error?.message)}
               </Typography>
               <TextInput
                 type="text"
                 name="username"
-                label="username"
+                label={t('register.username')}
                 required
                 fullWidth
               />
               <TextInput
                 type="email"
                 name="email"
-                label="email"
+                label={t('register.email')}
                 required
                 fullWidth
               />
               <PasswordInput
                 name="password"
-                label="password"
+                label={t('register.password')}
                 required
                 fullWidth
               />
@@ -164,7 +168,7 @@ function Register(): JSX.Element {
                 type="submit"
                 fullWidth
               >
-                Sign up
+                {t('buttons.register')}
               </Button>
             </Form>
           </Formik>
@@ -172,13 +176,24 @@ function Register(): JSX.Element {
             variant="caption"
             className={classes.login}
           >
-            Already have an account?&nbsp;
-            <TextLink href="/login">Sign in</TextLink>
+            {t('register.account')}
+            <Typography noWrap>
+              &nbsp;
+            </Typography>
+            <TextLink href="/login">{t('buttons.login')}</TextLink>
           </Typography>
         </div>
       </div>
     </>
   );
-}
+};
+
+export const getStaticProps: GetStaticProps = async ({ locale }) => (
+  {
+    props: {
+      ...(await serverSideTranslations(locale as string, ['common'])),
+    },
+  }
+);
 
 export default Register;

@@ -19,13 +19,6 @@ const useStyles = makeStyles((theme) => ({
     justifyContent: 'space-between',
     width: '100%',
   },
-  links: {
-    display: 'flex',
-    justifyContent: 'flex-end',
-    borderBottom: `1px solid ${theme.palette.grey[300]}`,
-    padding: `0px ${theme.spacing(3)}px`,
-    '& > a': { textDecoration: 'none' },
-  },
   search: {
     maxWidth: 480,
     flex: 1,
@@ -34,14 +27,6 @@ const useStyles = makeStyles((theme) => ({
       margin: `0 ${theme.spacing(2)}px`,
     },
   },
-  text: {
-    textDecoration: 'none',
-    fontSize: 14,
-    color: theme.palette.grey[700],
-    textAlign: 'left',
-    margin: '0px 4px',
-  },
-
 }));
 
 function Header(): JSX.Element {

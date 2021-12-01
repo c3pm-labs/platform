@@ -1,6 +1,8 @@
 {
     "packages": "Packages",
     "downloads": " downloads",
+    "Profile": "Profile",
+    "Security": "Security",
     "errors": {
         "emailOrUsername": "Email or username is required",
         "username": "Username is required",
@@ -10,6 +12,25 @@
         "invalidPassword": "Password is too short, 8 characters minimum",
         "confirmation": "Enter password confirmation",
         "samePassword": "Passwords must match"
+    },
+    "user already exists": "user already exists",
+    "invalid credentials": "invalid credentials",
+    "email is a required field": "email is a required field",
+    "username is a required field": "username is a required field",
+    "password is a required field": "password is a required field",
+    "newPassword is a required field": "newPassword is a required field",
+    "password": {
+        "forgotten": "Password forgotten",
+        "emailSent": "Email sent. Check your inbox.",
+        "instructions": "Enter your email and click the button below to receive a link to reset your password.",
+        "email": "email",
+        "resetRequest": "Send password reset email",
+        "reset": "Reset password",
+        "newPassword": "Enter your new password and password confirmation.",
+        "confirm": "confirm password",
+        "new": "new password",
+        "confirmNew": "Confirm new password"
+
     },
     "profile": {
         "noPackage": "You don't have any package yet.",
@@ -26,10 +47,13 @@
         "login": "Sign in",
         "discover": "Discover all",
         "register": "Sign up",
-        "edit": "Edit"
+        "edit": "Edit",
+        "send": "Send",
+        "cancel": "Cancel",
+        "save": "Save"
     },
     "found": "packages found",
-    "search": "packageName tag:network author:superdev",
+    "search": "boost tag:network",
     "lastUpdated": "Last updated on",
     "login": {
         "welcome": "Welcome back!",
@@ -38,6 +62,35 @@
         "forgot": "Forgot password?",
         "account": "Don't have an account? ",
         "register": "Sign Up"
+    },
+    "register": {
+        "title": "Join the team",
+        "username": "username",
+        "email": "email",
+        "account": "Already have an account? ",
+        "password": "password"
+    },
+    "settings": {
+        "success": "Infos successfully updated!",
+        "successPassword": "Password successfully updated!",
+        "profile": {
+            "username": "Username :",
+            "usernameP": "username",
+            "email": "Email :",
+            "emailP": "email",
+            "description": "Description :",
+            "descriptionP": "description"
+        },
+        "security": {
+            "password": "Password :",
+            "passwordP": "password",
+            "newPassword": "new password"
+        },
+      "menu": {
+        "title": "Settings",
+        "profile": "Profile",
+        "security": "Security"
+      }
     },
     "home": {
         "why": "Why c3pm?",
@@ -60,19 +113,26 @@
         "all": "Discover all packages  🔍",
         "publishedPackages": "published packages! 🎉",
         "see": " See them all",
-        "published": "published",
-        "packages": "packages",
-        "downloaded": "downloaded",
+        "published": "published packages",
+        "downloaded": "downloaded packages",
         "weHave": "On c3pm we have:",
         "currently": "c3pm currently has",
         "trending": "Discover our trending packages 🔥"
+    },
+    "contactForm": {
+        "title": "Contact us",
+        "firstname": "Firstname",
+        "lastname": "Lastname",
+        "email": "Email",
+        "message": "Message"
     },
     "footer": {
         "general": "General informations",
         "contact": "Contact us",
         "releases": "Releases",
         "issue": "Submit an issue",
-        "team": "Team"
+        "team": "Team",
+        "sendMsg": "Send us a message"
     },
     "tos": {
         "title": "Terms of service",
