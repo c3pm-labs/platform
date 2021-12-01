@@ -97,7 +97,7 @@ Cypress.Commands.add('assertRegister', () => {
 
 Cypress.Commands.add('checkAuthCookie', () => {
   cy.getCookies()
-    .should('have.length', 1)
+    .should('have.length', 2)
     .then((cookies) => {
       expect(cookies[0]).to.have.property('name', 'connect.sid');
     });
