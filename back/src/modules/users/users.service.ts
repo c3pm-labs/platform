@@ -85,7 +85,7 @@ export async function contactUs(ctx: Context, params: ContactUsParams): Promise<
     sgMail.setApiKey(process.env.SENDGRID_API_KEY);
     await sgMail.send({
       from: 'contact@c3pm.io',
-      to: 'contact@c3pm.io',
+      to: process.env.CONTACT_EMAIL,
       subject: `Contact from ${params.firstname} ${params.lastname} ${params.email}`,
       text: params.message,
     });
