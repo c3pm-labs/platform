@@ -124,7 +124,7 @@ function PackageCard({ packageData, discover = undefined }: PackageCardProps): J
         <Typography color="textPrimary" variant="body1" style={{ width: '100%' }}>{latest.description}</Typography>
       </div>
       <div className={classes.tagsContainer}>
-        {tags?.map((tag) => <span key={`tag-${tag}-${name}`} className={classes.tag}>{tag}</span>)}
+        {tags?.slice(0, 3)?.map((tag) => <span key={`tag-${tag}-${name}`} className={classes.tag}>{tag}</span>)}
       </div>
       <div className={classes.bottom}>
         <Avatar
