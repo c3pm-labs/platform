@@ -6,6 +6,7 @@ import { Form, Formik } from 'formik';
 import { useMutation } from '@apollo/client';
 import * as yup from 'yup';
 import { Alert } from '@material-ui/lab';
+import { useTranslation } from 'next-i18next';
 
 import WrappedLoader from 'components/WrappedLoader';
 
@@ -70,6 +71,7 @@ type SnackBarState = {
 function Security(): JSX.Element {
   const classes = useStyles();
   const viewer = useViewer();
+  const { t } = useTranslation('common');
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const [snackbar, setSnackbar] = useState<SnackBarState>({ type: 'success' });
   const [updatePassword] = useMutation(UPDATEPASSWORD, {
@@ -78,7 +80,7 @@ function Security(): JSX.Element {
       setIsOpen(true);
     },
     onCompleted: () => {
-      setSnackbar({ type: 'success', message: 'Password successfully updated!' });
+      setSnackbar({ type: 'success', message: t('settings.successPassword') });
       setIsOpen(true);
     },
   });
@@ -111,25 +113,25 @@ function Security(): JSX.Element {
         }}
       >
         <Form className={classes.form}>
-          <span className={classes.title}>Password :</span>
+          <span className={classes.title}>{t('settings.security.password')}</span>
           <div className={classes.column}>
             <PasswordInput
-              label="password"
+              label={t('settings.security.passwordP')}
               name="password"
-              placeholder="current password"
+              placeholder={t('settings.security.passwordP')}
               fullWidth
               className={classes.input}
               autoComplete="none"
             />
             <PasswordInput
-              label="new password"
+              label={t('settings.security.newPassword')}
               name="newPassword"
-              placeholder="new password"
+              placeholder={t('settings.security.newPassword')}
               fullWidth
               autoComplete="none"
             />
             <Button type="submit" variant="contained" color="primary" className={classes.button}>
-              Save
+              {t('buttons.save')}
             </Button>
           </div>
         </Form>
