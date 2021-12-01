@@ -9,6 +9,9 @@ import Button from 'components/Button';
 import Head from 'components/Head';
 import Logo from 'components/Logo';
 import { ForgotParams, forgotSchema } from 'utils/validation';
+import { GetStaticProps } from "next";
+import { serverSideTranslations } from "next-i18next/serverSideTranslations";
+import { useTranslation } from "next-i18next";
 
 const useStyles = makeStyles((theme) => ({
   text: {
@@ -65,6 +68,7 @@ function ForgotPassword(): JSX.Element {
   const classes = useStyles();
   const { forgot, forgotError } = useForgot();
   const [emailSent, setEmailSent] = useState(false);
+  const { t } = useTranslation('common');
 
   return (
     <>
@@ -76,7 +80,7 @@ function ForgotPassword(): JSX.Element {
         variant="h6"
         className={classes.text}
       >
-        Password forgotten
+        {t('password.forgotten')}
       </Typography>
       {
         emailSent
@@ -85,14 +89,14 @@ function ForgotPassword(): JSX.Element {
               variant="subtitle1"
               className={classes.text}
             >
-              Email sent. Check your inbox.
+              {t('password.emailSent')}
             </Typography>
           ) : (
             <Typography
               variant="subtitle1"
               className={classes.text}
             >
-              Enter your email and click the button below to receive a link to reset your password.
+              {t('password.instructions')}
             </Typography>
           )
       }
@@ -116,7 +120,7 @@ function ForgotPassword(): JSX.Element {
             <TextInput
               type="text"
               name="email"
-              label="email"
+              label={t('password.email')}
               required
               fullWidth
             />
@@ -127,7 +131,7 @@ function ForgotPassword(): JSX.Element {
               variant="contained"
               type="submit"
             >
-              Send password reset email
+              {t('password.resetRequest')}
             </Button>
           </div>
         </Form>
@@ -135,5 +139,13 @@ function ForgotPassword(): JSX.Element {
     </>
   );
 }
+
+export const getStaticProps: GetStaticProps = async ({ locale }) => (
+  {
+    props: {
+      ...(await serverSideTranslations(locale as string, ['common'])),
+    },
+  }
+);
 
 export default ForgotPassword;

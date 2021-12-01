@@ -13,6 +13,19 @@
         "confirmation": "Enter password confirmation",
         "samePassword": "Passwords must match"
     },
+    "password": {
+        "forgotten": "Password forgotten",
+        "emailSent": "Email sent. Check your inbox.",
+        "instructions": "Enter your email and click the button below to receive a link to reset your password.",
+        "email": "email",
+        "resetRequest": "Send password reset email",
+        "reset": "Reset password",
+        "newPassword": "Enter your new password and password confirmation.",
+        "confirm": "confirm password",
+        "new": "new password",
+        "confirmNew": "Confirm new password"
+
+    },
     "profile": {
         "noPackage": "You don't have any package yet.",
         "package": "package",

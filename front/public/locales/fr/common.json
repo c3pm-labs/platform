@@ -13,6 +13,19 @@
         "confirmation": "Entrez la confirmation du mot de passe",
         "samePassword": "Les mots de passes doivent être identiques"
     },
+    "password": {
+      "forgotten": "Mot de passe oublié",
+      "emailSent": "Email envoyé. Verifiez votre boîte de réception.",
+      "instructions": "Entrez votre email puis cliquez sur le boutton ci-dessous pour recevoir votre lien de réinitialisation de mot de passe.",
+      "email": "email",
+      "resetRequest": "Envoyer l'email",
+      "reset": "Réinitialiser le mot de passe",
+      "newPassword": "Entrez un nouveau mot de passe et sa confirmation.",
+      "confirm": "confirmer le mot de passe",
+      "new": "nouveau mot de passe",
+      "confirmNew": "Valider"
+
+    },
      "profile": {
         "noPackage": "Vous n'avez pas encore de paquets.",
         "package": "paquet",
