@@ -106,10 +106,8 @@ const Discover: NextPage = () => {
             <span className={classes.highlight}>
               {data.discover.length}
               {' '}
-              {t('discover.published')}
-              {' '}
             </span>
-            {t('discover.packages')}
+            {t('discover.published')}
           </span>
           <br />
           <span>
@@ -118,10 +116,8 @@ const Discover: NextPage = () => {
             <span className={classes.highlight}>
               {totalDownloads}
               {' '}
-              {t('discover.downloaded')}
-              {' '}
             </span>
-            {t('discover.packages')}
+            {t('discover.downloaded')}
           </span>
         </div>
       </div>

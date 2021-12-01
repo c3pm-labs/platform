@@ -32,7 +32,7 @@
         "save": "Sauvegarder"
     },
     "found": "paquets trouvés",
-    "search": "nomDuPaquet tag:network author:superdev",
+    "search": "boost tag:network",
     "lastUpdated": "Modifié pour la dernière fois le",
      "login": {
         "welcome": "Bon retour !",
@@ -91,9 +91,8 @@
         "all": "Découvre tous nos paquets 🔍",
         "publishedPackages": "paquets publiées ! 🎉",
         "see": " Tout voir",
-        "published": "publiés",
-        "packages": "paquets",
-        "downloaded": "téléchargés",
+        "published": "paquets publiés",
+        "downloaded": "paquets téléchargés",
         "weHave": "Sur c3pm nous avons:",
         "currently": "c3pm actuellement",
         "trending": "Découvre nos paquets tendances 🔥"

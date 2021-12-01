@@ -10,6 +10,7 @@ export const USER = gql`
             packages(first: 1000, last: 0) {
                 name
                 tags
+                downloads,
                 author {
                     username
                 }
