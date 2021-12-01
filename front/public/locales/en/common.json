@@ -29,6 +29,8 @@
         "discover": "Discover all",
         "register": "Sign up",
         "edit": "Edit",
+        "send": "Send",
+        "cancel": "Cancel",
         "save": "Save"
     },
     "found": "packages found",
@@ -98,12 +100,20 @@
         "currently": "c3pm currently has",
         "trending": "Discover our trending packages 🔥"
     },
+    "contactForm": {
+        "title": "Contact us",
+        "firstname": "Firstname",
+        "lastname": "Lastname",
+        "email": "Email",
+        "message": "Message"
+    },
     "footer": {
         "general": "General informations",
         "contact": "Contact us",
         "releases": "Releases",
         "issue": "Submit an issue",
-        "team": "Team"
+        "team": "Team",
+        "sendMsg": "Send us a message"
     },
     "tos": {
         "title": "Terms of service",

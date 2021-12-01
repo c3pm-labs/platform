@@ -8,6 +8,7 @@ A date-time string at UTC, such as 2007-12-03T10:15:30Z, compliant with the `dat
 scalar DateTime
 
 type Mutation {
+  contactUs(email: String!, firstname: String!, lastname: String, message: String!): User!
   deleteVersion(packageName: String!, version: String!): Package!
   forgotPassword(email: String!): User!
   login(login: String!, password: String!): User!

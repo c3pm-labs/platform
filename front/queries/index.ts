@@ -180,6 +180,14 @@ export const FORGOT = gql`
     }
 `;
 
+export const CONTACT = gql`
+    mutation contactUs($firstname: String!, $lastname: String!, $email: String!, $message: String!) {
+        contactUs(firstname: $firstname, lastname: $lastname, email: $email, message: $message) {
+            id,
+        }
+    }
+`;
+
 export const DELETE_VERSION = gql`
     mutation deleteVersion($packageName: String!, $version: String!) {
         deleteVersion(packageName: $packageName, version: $version) {

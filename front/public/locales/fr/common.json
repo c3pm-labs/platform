@@ -29,6 +29,8 @@
         "register": "S'enregistrer",
         "edit": "Modifier",
         "discover": "Tout découvrir",
+        "send": "Envoyer",
+        "cancel": "Annuler",
         "save": "Sauvegarder"
     },
     "found": "paquets trouvés",
@@ -97,13 +99,21 @@
         "currently": "c3pm actuellement",
         "trending": "Découvre nos paquets tendances 🔥"
     },
+    "contactForm": {
+        "title": "Nous contacter",
+        "firstname": "Prénom",
+        "lastname": "Nom",
+        "email": "Adresse mail",
+        "message": "Message"
+    },
     "footer": {
         "general": "Informations générales",
         "contact": "Nous contacter",
         "releases": "Versions",
         "issue": "Nous remonter un problème",
         "team": "L'équipe",
-        "tos": "Terms of services"
+        "tos": "Terms of services",
+        "sendMsg": "Nous envoyer un message"
     },
    "tos": {
     "title": "Conditions générales d'utilisation",
