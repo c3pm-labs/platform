@@ -54,12 +54,6 @@ const ProfileInfos = ({ user }: ProfileInfosProps): JSX.Element => {
       </Typography>
       <Typography
         variant="subtitle1"
-        className={classes.mail}
-      >
-        {user ? user.email : 'error'}
-      </Typography>
-      <Typography
-        variant="subtitle1"
         className={classes.description}
       >
         {user ? user.description : 'error'}

@@ -191,17 +191,13 @@ const Presentation = ({ version } : PresentationProps): JSX.Element => {
           {(new Date(version.package.latest.publishedAt)).toDateString()}
         </span>
         <div className={classes.separator} />
-        <Link href="/user/[id]" as={`/user/${version.package.author.id}`} passHref>
-          {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
-          <a className={classes.avatar} data-testid="author">
-            <Avatar
-              user={version.package.author}
-              classes={
-                { container: classes.avatar, picture: classes.picture, name: classes.name }
-              }
-            />
-          </a>
-        </Link>
+        <Avatar
+          user={version.package.author}
+          classes={
+            { container: classes.avatar, picture: classes.picture, name: classes.name }
+          }
+          testId="author"
+        />
       </div>
       { gotMetaData ? (
         <div className={classes.metadataContainer}>

@@ -1,6 +1,8 @@
 {
     "packages": "Paquets",
     "downloads": " téléchargements",
+    "Profile": "Profil",
+    "Security": "Sécurité",
     "errors": {
         "emailOrUsername": "Email ou pseudo obligatoire",
         "username": "Pseudo obligatoire",
@@ -26,10 +28,11 @@
         "login": "Connexion",
         "register": "S'enregistrer",
         "edit": "Modifier",
-        "discover": "Tout découvrir"
+        "discover": "Tout découvrir",
+        "save": "Sauvegarder"
     },
     "found": "paquets trouvés",
-    "search": "rechercher",
+    "search": "nomDuPaquet tag:network author:superdev",
     "lastUpdated": "Modifié pour la dernière fois le",
      "login": {
         "welcome": "Bon retour !",
@@ -37,12 +40,42 @@
         "password": "mot de passe",
         "forgot": "Mot de passe oublié ?",
         "account": "Pas encore de compte ? ",
-        "register": "S'enregistrer"
+        "register": " S'enregistrer"
+    },
+     "register": {
+        "title": "Rejoins l'équipe",
+        "username": "pseudonyme",
+        "email": "email",
+        "account": "Tu as déjà un compte ? ",
+        "password": "mot de passe"
+    },
+      "settings": {
+        "success": "Les infos ont bien été sauvegardées !",
+        "successPassword": "Mot de passe modifié !",
+        "profile": {
+            "username": "Pseudonyme :",
+            "usernameP": "pseudonyme",
+            "email": "Adresse email :",
+            "emailP": "adresse email",
+            "description": "Description :",
+            "descriptionP": "description"
+        },
+        "security": {
+            "password": "Mot de passe :",
+            "passwordP": "mot de passe",
+            "newPassword": "nouveau mot de passe"
+        },
+      "menu": {
+        "title": "Paramètres",
+        "profile": "Profil",
+        "security": "Sécurité"
+      }
     },
     "home": {
         "why": "Pourquoi c3pm ?",
         "title": "Ton outil pour plonger facilement dans le C++",
         "easy": "C++ rendu facile ",
+        "seeMore": "en savoir plus sur les options de recherche",
         "trivial": " Gestion de dépendances triviale ",
         "sharing": " Partage de paquets",
         "easyDescription": "Avec c3pm, commencez votre projet cross-plateform avec 0 configuration. Cela n'a jamais été aussi simple !",

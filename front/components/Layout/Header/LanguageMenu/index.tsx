@@ -22,30 +22,43 @@ const useStyles = makeStyles((theme) => createStyles({
   padding: {
     padding: 0,
   },
+  margin: {
+    marginRight: theme.spacing(2),
+  },
   button: {
-    border: `1px solid ${theme.palette.primary.main}`,
-    borderRadius: '15px',
+    height: '2.2rem',
+    border: `1px solid ${theme.palette.secondary.main}`,
+    backgroundColor: theme.palette.secondary.main,
+    borderRadius: '25px',
+    color: 'white',
+    '& span, & svg': {
+      fontSize: '14px',
+    },
     '&:hover': {
-      backgroundColor: theme.palette.primary.main,
-      textColor: 'white',
+      backgroundColor: 'white',
+      color: theme.palette.secondary.main,
     },
   },
   paper: {
-    top: '60px !important',
+    top: '50px !important',
   },
 }));
 
-const LanguageMenu = (): JSX.Element => {
+type LanguageMenuProps = {
+  isUserLoggedIn: boolean;
+};
+
+const LanguageMenu = ({ isUserLoggedIn = false }: LanguageMenuProps): JSX.Element => {
   const classes = useStyles();
   const router = useRouter();
   const { asPath } = useRouter();
 
   const getCurrentLanguage = (): { index: number; language: string } => {
     if (router.locale === 'fr') {
-      return { index: 0, language: 'Français' };
+      return { index: 0, language: 'FR' };
     }
 
-    return { index: 1, language: 'English' };
+    return { index: 1, language: 'EN' };
   };
 
   const currentLanguage = getCurrentLanguage();
@@ -70,7 +83,7 @@ const LanguageMenu = (): JSX.Element => {
 
   return (
     <>
-      <List className={classes.padding} component="nav">
+      <List className={!isUserLoggedIn ? classes.padding : classes.margin} component="nav">
         <ListItem
           aria-haspopup="true"
           className={classes.button}
