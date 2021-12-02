@@ -107,7 +107,7 @@ const Login: NextPage = () => {
 
   const getSize = (): LogoProps['size'] => {
     if (isMobile) {
-      return null;
+      return 'lg';
     }
     if (matches) {
       return 'xl';
